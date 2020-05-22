@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "es2018",
+    "module": "CommonJS",
+    "outDir": "./build",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "lib": [ "dom", "esnext" ],
+    "jsx": "react",
+  },
+  "include": ["components", "webpack.config.ts", ".notReadyYet/login.tsx"]
+}
