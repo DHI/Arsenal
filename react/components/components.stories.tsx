@@ -5,7 +5,7 @@ import {
   TableRow,
   Checkbox,
 } from '@material-ui/core';
-import { useObserver } from 'mobx-react-lite';
+import { useObserver, observer } from 'mobx-react-lite';
 import * as React from 'react';
 import {
   CreateTableModel,
@@ -43,9 +43,10 @@ export const dataTable = () => {
       <>
         <DataTable
           table={demoTable}
-          Row={({ row, index }) => {
+          Row={observer(({ row, index }) => {
             const id = row[0];
-            return useObserver(() => (
+
+            return (
               <TableRow key={id}>
                 <TableCell>
                   <Checkbox
@@ -57,8 +58,8 @@ export const dataTable = () => {
                   <TableCell key={cell}>{cell}</TableCell>
                 ))}
               </TableRow>
-            ));
-          }}
+            );
+          })}
         />
         <DataTableFilter table={demoTable} selections={selections} />
       </>
