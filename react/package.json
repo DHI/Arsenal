@@ -4,10 +4,11 @@
     "lint": "concurrently 'yarn lint:eslint' 'yarn lint:ts'",
     "lint:eslint": "eslint --ext .ts,.tsx,.js,.jsx .",
     "lint:ts": "tsc --noEmit",
-    "build": "yarn build:clean; webpack -p --env.production --color --hide-modules --display-optimization-bailout",
+    "build": "yarn build:clean; NODE_ENV=production webpack -p --env.production --color --hide-modules --display-optimization-bailout",
     "build:storybook": "build-storybook -c .storybook -o .storybook/build",
     "build:clean": "rimraf ./build/*",
     "preversion": "yarn lint && yarn test && yarn build",
+    "makePublish": "cd build && npm publish",
     "bundleAnalyzer": "yarn -s webpack -p --profile --json > build/stats.json && yarn -s webpack-bundle-analyzer ./build/stats.json ./build"
   },
   "dependencies": {
@@ -31,6 +32,8 @@
     "styled-components": "~5.0.1"
   },
   "devDependencies": {
+    "@types/copy-webpack-plugin": "5",
+    "copy-webpack-plugin": "5",
     "@babel/core": "^7.8.7",
     "@storybook/addon-viewport": "^5.3.18",
     "@storybook/react": "^5.3.18",

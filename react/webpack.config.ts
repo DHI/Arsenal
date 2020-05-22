@@ -1,7 +1,8 @@
-import * as TypeCheckPlugin from 'fork-ts-checker-webpack-plugin';
+import * as TypeCheck from 'fork-ts-checker-webpack-plugin';
 import * as path from 'path';
 import * as webpack from 'webpack';
 import * as packageJson from './package.json';
+import * as Copy from 'copy-webpack-plugin';
 
 const dir = (...filePaths: string[]) => path.resolve(__dirname, ...filePaths);
 const isProd = process.env.NODE_ENV === 'production';
@@ -16,9 +17,15 @@ export default {
     mainFields: ['browser', 'jsnext:main', 'main'],
   },
   plugins: [
-    new TypeCheckPlugin({ silent: process.argv.includes('--json') }),
+    new TypeCheck({ silent: process.argv.includes('--json') }),
     new webpack.EnvironmentPlugin({ NODE_ENV: mode }),
     ...(!isProd ? [new webpack.HotModuleReplacementPlugin()] : []),
+    new Copy([
+      {
+        from: dir('./package.json'),
+        to: dir('./build'),
+      },
+    ]),
   ],
   module: {
     rules: [
@@ -43,10 +50,10 @@ export default {
     /** `components` is used in [name] */
     components: dir('./components/index.tsx'),
   },
+  target: 'web',
   output: {
     path: dir('./build'),
-    library: packageJson.name,
-    libraryTarget: 'system',
+    libraryTarget: 'commonjs',
     /** @example Creates `./build/components.js` */
     filename: `[name].js`,
   },

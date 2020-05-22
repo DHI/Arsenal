@@ -10,5 +10,5 @@
     "lib": [ "dom", "esnext" ],
     "jsx": "react",
   },
-  "include": ["components", "webpack.config.ts", ".notReadyYet/login.tsx"]
+  "include": ["components", "webpack.config.ts", "test"]
 }
