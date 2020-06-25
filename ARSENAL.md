@@ -27,6 +27,7 @@
 | **StyledComponents**                           | https://styled-components.com                                       |
 | **GraphQL**                                    | https://graphql.org/                                                |
 
+![](./docs/architecture.drawio.png)
 
 ### Typescript
 
