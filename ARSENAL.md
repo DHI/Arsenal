@@ -1,19 +1,33 @@
 # Arsenal
 
++ [Mandatory tools](#mandatory-tools)
++ [Recommended tools](#recommended-tools)
++ [Typescript](#typescript)
++ [Mobx State Tree](#mobx-state-tree)
++ [Webpack](#webpack)
++ [GraphQL](#graphql)
++ [React](#react)
+  + [(React) Styled Components](#react-styled-components)
+  + [(React) Material UI](#react-material-ui)
++ [(React) - React Map Gl](#react---react-map-gl)
++ [(React) - React Deck.gl](#react---react-deckgl)
++ [Plotly](#plotly)
++ [Wendigo](#wendigo)
++ [Jest](#jest)
+
+## Mandatory tools
+
 |                            |                                               |
 | -------------------------- | --------------------------------------------- |
 | **Typescript**             | https://www.typescriptlang.org                |
+| **Webpack**                | https://webpack.js.org/configuration          |
 | **React**                  | https://reactjs.org/docs/getting-started.html |
 | **MobX State Tree**        | https://mobx-state-tree.js.org/               |
-| **GraphQL**                | https://graphql.org/                          |
-| **MaterialUI**             | https://material-ui.com                       |
 | **StyledComponents**       | https://styled-components.com                 |
-| **React Map GL**           | https://github.com/visgl/react-map-gl         |
-| **Deck GL**                | https://github.com/visgl/deck.gl              |
-| **Plotly**                 | https://github.com/plotly/plotly.js/          |
-| **Wendigo**                | https://github.com/angrykoala/wendigo         |
-| **Jest**                   | https://jestjs.io/                            |
-| **Webpack**                | https://webpack.js.org/configuration          |
+| **GraphQL**                | https://graphql.org/                          |
+
+## Recommended tools
+
 
 ## Typescript
 
@@ -29,6 +43,11 @@
 - Establishes a convention to encapsulate business logic in a clear manner
 - Can be wired up to GraphQL directly
 
+## Webpack
+
+- The leader in bundling tools
+- Continues to learn from other tools and get better
+
 ## GraphQL
 
 - Presents data in a way that is natural for UI development
@@ -41,24 +60,34 @@
 
 - Makes UI development deterministic
 - Huge ecosystem full of useful libraries and guides
-
-### React - Material UI
-
-- Lots of useful components that look nice
-- Large ecosystem and active community
-
-### React - Styled Components
+  
+### (React) Styled Components
 
 - Allows for styling to remain type-safe
 - Allows for IDE CSS linting & autocomplete
 - Currently the leader in CSS-in-JS solutions
+  
+|                            |                                               |
+| -------------------------- | --------------------------------------------- |
+| **React Map GL**           | https://github.com/visgl/react-map-gl         |
+| **MaterialUI**             | https://material-ui.com                       |
+| **Deck GL**                | https://github.com/visgl/deck.gl              |
+| **Plotly**                 | https://github.com/plotly/plotly.js/          |
+| **Jest**                   | https://jestjs.io/                            |
+| **Wendigo**                | https://github.com/angrykoala/wendigo         |
 
-## React - React Map Gl
+
+### (React) Material UI
+
+- Lots of useful components that look nice
+- Large ecosystem and active community
+
+## (React) - React Map Gl
 
 - Decent mapbox wrapper library for declarative map configuration
 - Decent community, backed by Uber, most active of its kind
 
-## React - React Deck.gl
+## (React) - React Deck.gl
 
 - Enhances mapbox declarative capabilities
 - Supports useful visualization techniques
@@ -75,7 +104,3 @@
 
 - The standard Javascript test runner as of 2020
 
-## Webpack
-
-- The leader in bundling tools
-- Continues to learn from other tools and get better
