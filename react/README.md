@@ -1,15 +1,20 @@
-# @dhi/webdev
+# React
 
-Intended to eventually publish `@dhi/webdev`.
-
-Currently the project only includes react components, but it would be ideal if it could include anything webdev related.
+A minimalistic project for publishing react components on NPM
 
 ## Usage
 
-Build then check the exports:
+Build then check that components are being exported correctly:
 ```
 yarn build && yarn ts-node test/testBuiltComponentExports.ts
 
 ```
 
-The project build to `build` then we `cd build && npm publish` to publish.
+## NPM Release
+
+The project builds to `./lib`.
+
+```ts
+// Example of extracting a single component
+import { MyComponent } from '@dhi/webdev-arsenal/lib/MyComponent
+```

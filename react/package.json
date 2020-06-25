@@ -66,6 +66,6 @@
     "webpack-cli": "~3.3.10"
   },
   "prettier": "eslint-config-standard-typescript-prettier/prettier",
-  "name": "@dhi/webdev",
+  "name": "@dhi/webdev-arsenal",
   "version": "0.1.1"
 }

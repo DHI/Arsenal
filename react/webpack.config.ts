@@ -5,6 +5,7 @@ import * as packageJson from './package.json';
 import * as Copy from 'copy-webpack-plugin';
 
 const dir = (...filePaths: string[]) => path.resolve(__dirname, ...filePaths);
+const buildDir = dir(`./lib`)
 const isProd = process.env.NODE_ENV === 'production';
 const mode = isProd ? 'production' : 'development';
 
@@ -23,7 +24,7 @@ export default {
     new Copy([
       {
         from: dir('./package.json'),
-        to: dir('./build'),
+        to: buildDir,
       },
     ]),
   ],
@@ -47,12 +48,12 @@ export default {
     ],
   },
   entry: {
-    /** `components` is used in [name] */
+    /** `components` is used as [name] */
     components: dir('./components/index.tsx'),
   },
   target: 'web',
   output: {
-    path: dir('./build'),
+    path: buildDir,
     libraryTarget: 'commonjs',
     /** @example Creates `./build/components.js` */
     filename: `[name].js`,

@@ -3,7 +3,7 @@
     "strict": true,
     "target": "es2018",
     "module": "CommonJS",
-    "outDir": "./build",
+    "outDir": "./lib",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "skipLibCheck": true,

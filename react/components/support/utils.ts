@@ -7,7 +7,7 @@
 import Debug from 'debug';
 
 export const SetterAction = <S extends unknown>(self: S) => (
-  props: Partial<typeof self>, // TODO: omit actions and views from this somehow (volatile and props only?)
+  props: Partial<typeof self>, // TODO: take in a MST model type instead of self
 ) => Object.assign(self, props);
 
 /* eslint-disable @typescript-eslint/no-empty-function */
