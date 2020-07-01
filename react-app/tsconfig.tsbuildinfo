@@ -1936,16 +1936,6 @@
         "signature": "de47e9a0dc279f3bcb8282227ab4752b48281514a05edb47f6de1ac92cd3152a",
         "affectsGlobalScope": true
       },
-      "./client/example/test.tsx": {
-        "version": "90d3134905473bfb927c4767788a31cff09d06b2daf3adb71357569deb5d609b",
-        "signature": "9cfccaa0993ad834828ce5ac6e82bf256b92d502e80be99b2a26badd36bffc8f",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/history/index.d.ts": {
-        "version": "e057ffada5a43ac83957a1d76dc0daaa01bbea4d7aa2eb466ffad5e3bce6424f",
-        "signature": "e057ffada5a43ac83957a1d76dc0daaa01bbea4d7aa2eb466ffad5e3bce6424f",
-        "affectsGlobalScope": false
-      },
       "./node_modules/mobx-state-tree/dist/core/node/livelinessChecking.d.ts": {
         "version": "725adc4feccf192c14f50266f5d95c84bd5bd9f9c78bf3733ff722dad298a27f",
         "signature": "725adc4feccf192c14f50266f5d95c84bd5bd9f9c78bf3733ff722dad298a27f",
@@ -2376,6 +2366,11 @@
         "signature": "43827e956603ed287e9950196ca7c6673a07b23aa0dfffed0998546380fc0fe3",
         "affectsGlobalScope": false
       },
+      "./node_modules/history/index.d.ts": {
+        "version": "e057ffada5a43ac83957a1d76dc0daaa01bbea4d7aa2eb466ffad5e3bce6424f",
+        "signature": "e057ffada5a43ac83957a1d76dc0daaa01bbea4d7aa2eb466ffad5e3bce6424f",
+        "affectsGlobalScope": false
+      },
       "./node_modules/mst-log/dist/index.d.ts": {
         "version": "fccfa59b3722faf5cbbe7e308e59ffa59acfbd99858487735d83e0837c406466",
         "signature": "fccfa59b3722faf5cbbe7e308e59ffa59acfbd99858487735d83e0837c406466",
@@ -2387,17 +2382,72 @@
         "affectsGlobalScope": false
       },
       "./client/root/root.models.ts": {
-        "version": "5880ad3aeacf588065c9246faf458dd9bf2d832c7c195f596eb386b60a9272f6",
-        "signature": "d37444e82ea7de677892847e9aab6892f22bb83d1ac5f64608fe14badea8361d",
+        "version": "7506846565476580a316408875bfa711d515f2e3a55bf06f25117224bd906d91",
+        "signature": "e1b9e0a506ad4d34d7951763d8dc12347c6b8d539733585048fd03f6a1b5a688",
         "affectsGlobalScope": false
       },
       "./client/store.ts": {
-        "version": "99a395caf158c2adb20e4d4410a7660d67b00a767c58dd13cdcb9ab660e7666f",
-        "signature": "2bebab1c44ebbcec07135ee0bd9aec4b261c42578544feaef00f079d19e58794",
+        "version": "a9060e0958fac483c6fef2d9aa9f900df229d4db7a2076db56a3ac112569b2ae",
+        "signature": "98f6c0019a3c268dc97929c55f2860d4c9d534136b2296956c5555d907a47172",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/assertEnvironment.d.ts": {
+        "version": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
+        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/staticRendering.d.ts": {
+        "version": "f0cf46afbdff530923e8eaa10ae909d0fc4894d3beeab71be5972660d0f94657",
+        "signature": "f0cf46afbdff530923e8eaa10ae909d0fc4894d3beeab71be5972660d0f94657",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/observer.d.ts": {
+        "version": "20423b338529dc6c08091a31dfd4c8eb59c43618add12be380bc5c2c1defdefa",
+        "signature": "20423b338529dc6c08091a31dfd4c8eb59c43618add12be380bc5c2c1defdefa",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/useObserver.d.ts": {
+        "version": "322aa16c6c143f1d818c5971d3f7641ab15cd726daed0c3bc4e344fa3377ef6b",
+        "signature": "322aa16c6c143f1d818c5971d3f7641ab15cd726daed0c3bc4e344fa3377ef6b",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/ObserverComponent.d.ts": {
+        "version": "1ef8231b4474206db819a4564eff1e0c9191bdd988717e774c3c7919819f2aed",
+        "signature": "1ef8231b4474206db819a4564eff1e0c9191bdd988717e774c3c7919819f2aed",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/utils.d.ts": {
+        "version": "5c5975a57f974dea93b814baaa9e001f0bc4a832d9f3d75a8193c2e12331171b",
+        "signature": "5c5975a57f974dea93b814baaa9e001f0bc4a832d9f3d75a8193c2e12331171b",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/useAsObservableSource.d.ts": {
+        "version": "7f9b0d5e3fa15ab156fdc7967b7cde90bc655199c9f27bfd529dc8936f0ed5d0",
+        "signature": "7f9b0d5e3fa15ab156fdc7967b7cde90bc655199c9f27bfd529dc8936f0ed5d0",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/useLocalStore.d.ts": {
+        "version": "c1fc7bc6a2c8ed40e9d17abba1c515923a7d860916611171b1f78019e4c75ec5",
+        "signature": "c1fc7bc6a2c8ed40e9d17abba1c515923a7d860916611171b1f78019e4c75ec5",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/observerBatching.d.ts": {
+        "version": "26cbd21f3e1ac44a5bb11319afaaccd7723825a842f25fea58c57963838023c3",
+        "signature": "26cbd21f3e1ac44a5bb11319afaaccd7723825a842f25fea58c57963838023c3",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/mobx-react-lite/dist/index.d.ts": {
+        "version": "f815dae43798e2225ae2c7e1f619563a2df058e7dbb39110f203ae442823a754",
+        "signature": "f815dae43798e2225ae2c7e1f619563a2df058e7dbb39110f203ae442823a754",
+        "affectsGlobalScope": false
+      },
+      "./client/example/example.tsx": {
+        "version": "cfd10bdf76d783a383aa6b22a17110e36a39c6f132ada32f6ad93e493eb6e452",
+        "signature": "324ba2dc7544f934ab31573f24cb2d1654c5c80e81e145fc2e453b1fe5f0b97a",
         "affectsGlobalScope": false
       },
       "./client/root/root.tsx": {
-        "version": "805d75a68eb4b97736b4b3055cd92b277e5bbc610711a3af6443ec99c902fac8",
+        "version": "745612288d9dd93945526044609b8664b5d65f69d25bc6b3bbeda58c9f3c68dc",
         "signature": "22e6d8071e0a3fba1c833ad8ae4d1c7a64f328de4bbb8aeeaa1f3cb9512971ab",
         "affectsGlobalScope": false
       },
@@ -3271,12 +3321,17 @@
         "./node_modules/@types/node/ts3.7/index.d.ts",
         "./node_modules/@types/node/util.d.ts"
       ],
-      "./client/example/test.tsx": [
+      "./client/example/example.tsx": [
+        "./client/store.ts",
+        "./node_modules/@material-ui/core/index.d.ts",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts",
-        "./node_modules/@types/react/index.d.ts"
+        "./node_modules/@types/react/index.d.ts",
+        "./node_modules/@types/styled-components/ts3.7/index.d.ts",
+        "./node_modules/mobx-react-lite/dist/index.d.ts",
+        "./node_modules/mobx-state-tree/dist/index.d.ts"
       ],
       "./client/index.tsx": [
         "./client/root/root.tsx",
@@ -3288,6 +3343,7 @@
         "./node_modules/@types/react/index.d.ts"
       ],
       "./client/root/root.models.ts": [
+        "./client/example/example.tsx",
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts",
@@ -3304,7 +3360,7 @@
         "./node_modules/@types/react/index.d.ts"
       ],
       "./client/root/root.tsx": [
-        "./client/example/test.tsx",
+        "./client/example/example.tsx",
         "./client/root/root.models.ts",
         "./client/store.ts",
         "./node_modules/@material-ui/core/CssBaseline/index.d.ts",
@@ -7508,6 +7564,77 @@
         "./node_modules/@types/node/util.d.ts",
         "./node_modules/csstype/index.d.ts"
       ],
+      "./node_modules/mobx-react-lite/dist/ObserverComponent.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/assertEnvironment.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/index.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/mobx-react-lite/dist/ObserverComponent.d.ts",
+        "./node_modules/mobx-react-lite/dist/assertEnvironment.d.ts",
+        "./node_modules/mobx-react-lite/dist/observer.d.ts",
+        "./node_modules/mobx-react-lite/dist/observerBatching.d.ts",
+        "./node_modules/mobx-react-lite/dist/staticRendering.d.ts",
+        "./node_modules/mobx-react-lite/dist/useAsObservableSource.d.ts",
+        "./node_modules/mobx-react-lite/dist/useLocalStore.d.ts",
+        "./node_modules/mobx-react-lite/dist/useObserver.d.ts",
+        "./node_modules/mobx-react-lite/dist/utils.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/observer.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/observerBatching.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/staticRendering.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/useAsObservableSource.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/useLocalStore.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/useObserver.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/utils.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
       "./node_modules/mobx-state-tree/dist/core/action.d.ts": [
         "./node_modules/@types/node/fs.d.ts",
         "./node_modules/@types/node/ts3.2/fs.d.ts",
@@ -8496,8 +8623,11 @@
         "./node_modules/@types/node/ts3.7/index.d.ts",
         "./node_modules/@types/node/util.d.ts"
       ],
+      "./client/example/example.tsx": [
+        "./node_modules/mobx-state-tree/dist/index.d.ts"
+      ],
       "./client/root/root.models.ts": [
-        "./node_modules/@types/history/index.d.ts",
+        "./node_modules/history/index.d.ts",
         "./node_modules/mobx-state-tree/dist/index.d.ts"
       ],
       "./client/root/root.tsx": [
@@ -15142,6 +15272,77 @@
         "./node_modules/csstype/index.d.ts",
         "./node_modules/gl-matrix/index.d.ts"
       ],
+      "./node_modules/mobx-react-lite/dist/ObserverComponent.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/assertEnvironment.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/index.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/mobx-react-lite/dist/ObserverComponent.d.ts",
+        "./node_modules/mobx-react-lite/dist/assertEnvironment.d.ts",
+        "./node_modules/mobx-react-lite/dist/observer.d.ts",
+        "./node_modules/mobx-react-lite/dist/observerBatching.d.ts",
+        "./node_modules/mobx-react-lite/dist/staticRendering.d.ts",
+        "./node_modules/mobx-react-lite/dist/useAsObservableSource.d.ts",
+        "./node_modules/mobx-react-lite/dist/useLocalStore.d.ts",
+        "./node_modules/mobx-react-lite/dist/useObserver.d.ts",
+        "./node_modules/mobx-react-lite/dist/utils.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/observer.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts",
+        "./node_modules/@types/react/index.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/observerBatching.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/staticRendering.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/useAsObservableSource.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/useLocalStore.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/useObserver.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "./node_modules/mobx-react-lite/dist/utils.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
       "./node_modules/mobx-state-tree/dist/core/action.d.ts": [
         "./node_modules/@types/gl-matrix/index.d.ts",
         "./node_modules/@types/luma.gl__core/index.d.ts",
@@ -16718,7 +16919,7 @@
       "../../node_modules/@types/http-cache-semantics/index.d.ts",
       "../../node_modules/@types/keyv/index.d.ts",
       "../../node_modules/@types/responselike/index.d.ts",
-      "./client/example/test.tsx",
+      "./client/example/example.tsx",
       "./client/index.tsx",
       "./client/root/root.models.ts",
       "./client/root/root.stories.tsx",
@@ -17221,6 +17422,16 @@
       "./node_modules/history/index.d.ts",
       "./node_modules/html-webpack-plugin/typings.d.ts",
       "./node_modules/jss/src/index.d.ts",
+      "./node_modules/mobx-react-lite/dist/ObserverComponent.d.ts",
+      "./node_modules/mobx-react-lite/dist/assertEnvironment.d.ts",
+      "./node_modules/mobx-react-lite/dist/index.d.ts",
+      "./node_modules/mobx-react-lite/dist/observer.d.ts",
+      "./node_modules/mobx-react-lite/dist/observerBatching.d.ts",
+      "./node_modules/mobx-react-lite/dist/staticRendering.d.ts",
+      "./node_modules/mobx-react-lite/dist/useAsObservableSource.d.ts",
+      "./node_modules/mobx-react-lite/dist/useLocalStore.d.ts",
+      "./node_modules/mobx-react-lite/dist/useObserver.d.ts",
+      "./node_modules/mobx-react-lite/dist/utils.d.ts",
       "./node_modules/mobx-state-tree/dist/core/action.d.ts",
       "./node_modules/mobx-state-tree/dist/core/actionContext.d.ts",
       "./node_modules/mobx-state-tree/dist/core/flow.d.ts",

@@ -1,9 +1,11 @@
 import { createHashHistory } from 'history';
-import { addMiddleware, SnapshotIn } from 'mobx-state-tree';
+import { addMiddleware, SnapshotIn, onPatch } from 'mobx-state-tree';
 import { mstLog } from 'mst-log';
 import { createContext, useContext } from 'react';
 import { syncHistoryWithStore } from 'tiny-mst-router';
 import { IStore, RootModel, IStoreSnapshot } from './root/root.models';
+
+export { IStore, IStoreSnapshot };
 
 /** Hash history is ideal as it allows one to serve the SPA as a static file */
 export const defaultHistory = createHashHistory();
@@ -17,6 +19,10 @@ export function createStore(
 
   // Try commenting this out if the logs become too verbose.
   addMiddleware(store, mstLog());
+
+  onPatch(store, (d) => {
+    console.log(`STORE PATCH %o`, d);
+  });
 
   const routing = syncHistoryWithStore(history, store.router);
 
@@ -32,4 +38,4 @@ export const MstContextProvider = StoreContext.Provider;
  * @example
  * const { login } = useStore()
  */
-export const useStore = () => useContext(StoreContext);
+export const useStore = () => useContext(StoreContext)!;

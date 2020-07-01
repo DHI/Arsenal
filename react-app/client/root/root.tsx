@@ -8,7 +8,7 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import 'typeface-roboto';
-import { Stuff } from '../example/test';
+import { Example } from '../example/example';
 import { createStore, MstContextProvider } from '../store';
 import { IStore } from './root.models';
 
@@ -18,7 +18,7 @@ export const createEntryComponent = () => {
 
   const Entry = () => (
     <Root theme={muiTheme} store={store}>
-      <Stuff />
+      <Example />
     </Root>
   );
 
