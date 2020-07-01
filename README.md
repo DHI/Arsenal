@@ -2,7 +2,8 @@
 
 > Shared resources across DHI web development projects
 
-- [./react](./react) A minimalistic project for publishing react components on NPM
+- [./react-library](./react-library) A minimalistic project for publishing react components on NPM
+- [./react-app](./react-app) A minimalistic project for starting a new MST react app.
 
 # Standards
 

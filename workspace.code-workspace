@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "./react"
+			"path": "./react-app"
 		},
 		{
-			"path": "./tsdxrws"
+			"path": "./react-library"
 		},
 		{
 			"path": "."
