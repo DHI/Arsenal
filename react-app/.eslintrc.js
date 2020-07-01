@@ -1,14 +1,17 @@
 /** @ts-check @type import('eslint-config-standard-typescript-prettier/types').TsEslintConfig */
 module.exports = {
   plugins: ['only-warn', 'react', 'react-hooks'],
-  extends: ['standard-typescript-prettier'],
+  extends: [
+    'standard-typescript-prettier',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+  ],
   rules: {
     'camelcase': ['off'],
     '@typescript-eslint/camelcase': ['off'],
     'newline-before-return': ['error'],
     'no-use-before-define': ['off'],
     'newline-after-var': ['error'],
-    // https://eslint.org/docs/rules/padding-line-between-statements
     'padding-line-between-statements': [
       'error',
       { blankLine: 'always', prev: '*', next: 'multiline-expression' },
@@ -23,6 +26,8 @@ module.exports = {
     ],
     '@typescript-eslint/explicit-module-boundary-types': ['off'],
     '@typescript-eslint/ban-types': ['off'],
+    'react-hooks/exhaustive-deps': ['off'],
+    'react/prop-types': ['off'],
   },
   parserOptions: {
     ecmaVersion: 2019,
