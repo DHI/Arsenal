@@ -1,8 +1,7 @@
 # {ProjectName}
 
-+ [Domain details](#domain-details)
-+ [Development workflow](#development-workflow)
 + [Tech stack](#tech-stack)
++ [Project Dependency Graph](#project-dependency-graph)
 
 ## Tech stack
 
