@@ -16,3 +16,6 @@
 | **MobX State Tree**        | https://mobx-state-tree.js.org/               |
 | **MobX React Lite**        | https://github.com/mobxjs/mobx-react-lite/    |
 
+## Project Dependency Graph
+
+![](./dependencygraph.svg)

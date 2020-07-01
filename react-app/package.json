@@ -8,6 +8,7 @@
     "build": "yarn build:clean && yarn build:prodEnvFile; webpack -p --env.production --color --hide-modules --display-optimization-bailout",
     "build:prodEnvFile": "shx test -e ./.env.production || shx cp .env.example .env.production",
     "build:clean": "rimraf ./build/*",
+    "build:depGraph": "depcruise --exclude '^node_modules' --output-type dot client | dot -T svg > dependencygraph.svg",
     "bundleAnalyzer": "yarn -s webpack -p --profile --json > build/stats.json && yarn -s webpack-bundle-analyzer ./build/stats.json ./build"
   },
   "dependencies": {
@@ -52,6 +53,8 @@
     "babel-loader": "^8.1.0",
     "concurrently": "^5.2.0",
     "css-loader": "~3.6.0",
+    "dependency-cruiser": "^9.8.0",
+    "dot": "^1.1.3",
     "dotenv-cli": "^3.1.0",
     "dotenv-webpack": "~1.8.0",
     "eslint": "~7.2.0",
