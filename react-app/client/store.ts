@@ -4,6 +4,11 @@ import { mstLog } from 'mst-log';
 import { createContext, useContext } from 'react';
 import { syncHistoryWithStore } from 'tiny-mst-router';
 import { IStore, RootModel, IStoreSnapshot } from './root/root.models';
+import Debug from 'debug';
+
+const log = Debug('Store');
+
+log.enabled = true;
 
 export { IStore, IStoreSnapshot };
 
@@ -18,10 +23,15 @@ export function createStore(
   const store = RootModel.create(snapshot);
 
   // Try commenting this out if the logs become too verbose.
-  addMiddleware(store, mstLog());
+  addMiddleware(
+    store,
+    mstLog({
+      getShouldGroupBeCollapsed: () => false,
+    }),
+  );
 
   onPatch(store, (d) => {
-    console.log(`STORE PATCH %o`, d);
+    log(`STORE PATCH %o`, d);
   });
 
   const routing = syncHistoryWithStore(history, store.router);
@@ -38,4 +48,10 @@ export const MstContextProvider = StoreContext.Provider;
  * @example
  * const { login } = useStore()
  */
-export const useStore = () => useContext(StoreContext)!;
+export const useStore = () => {
+  const store = useContext(StoreContext);
+
+  if (!store) throw new Error('MST Store provider context is missing');
+
+  return store;
+};

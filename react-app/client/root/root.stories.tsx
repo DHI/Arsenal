@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { createEntryComponent } from './root';
 import * as React from 'react';
 
@@ -8,5 +9,5 @@ export default {
 export const entry = (() => {
   const Entry = createEntryComponent();
 
-  return Entry;
+  return () => <Entry />;
 })();
