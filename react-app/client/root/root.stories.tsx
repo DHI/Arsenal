@@ -8,5 +8,5 @@ export default {
 export const entry = (() => {
   const Entry = createEntryComponent();
 
-  return () => <Entry />;
+  return Entry;
 })();

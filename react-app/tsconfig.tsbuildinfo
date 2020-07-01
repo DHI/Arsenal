@@ -2407,7 +2407,7 @@
         "affectsGlobalScope": false
       },
       "./client/root/root.stories.tsx": {
-        "version": "59ddc7b3a19861490bfbadda362aad4aad0fe336458ef9d5fb29be545fb7bb28",
+        "version": "614cdc637a9ece372ed274f2934b0f2b2ded0c436ef3edd8fdd4c7de5b8131ec",
         "signature": "e38f6a7312f7f1a1c7ca351b0ddb2583793cfca857e13b55f68ced3e69752a60",
         "affectsGlobalScope": false
       },
