@@ -11,6 +11,7 @@
   + [(React) Material UI](#react-material-ui)
   + [(React) - React Map Gl](#react---react-map-gl)
   + [(React) - React Deck.gl](#react---react-deckgl)
+  + [(React) - MobX State Tree GraphQL](#react---mobx-state-tree-graphql)
   + [Plotly](#plotly)
   + [Wendigo](#wendigo)
   + [Jest](#jest)
@@ -79,6 +80,7 @@
 | **MaterialUI**   | https://material-ui.com               |
 | **React Map GL** | https://github.com/visgl/react-map-gl |
 | **Deck GL**      | https://github.com/visgl/deck.gl      |
+| **MST GQL**      | https://github.com/mobxjs/mst-gql     |
 | **Plotly**       | https://github.com/plotly/plotly.js/  |
 | **Jest**         | https://jestjs.io/                    |
 | **Wendigo**      | https://github.com/angrykoala/wendigo |
@@ -97,6 +99,12 @@
 
 - Enhances mapbox declarative capabilities
 - Supports useful visualization techniques
+- 
+### (React) - MobX State Tree GraphQL
+
+> Link: https://github.com/mobxjs/mst-gql
+
+- A client for GraphQL to bootstrap your state
 
 ### Plotly
 
