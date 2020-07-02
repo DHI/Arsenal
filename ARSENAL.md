@@ -36,6 +36,8 @@
 - Helps scale big projects
 - Improves onboarding & cross-project context-switching costs
 
+> Resources: https://github.com/typescript-cheatsheets
+
 ### Mobx State Tree
 
 - Makes state management easy and low-complexity inside React
@@ -54,7 +56,7 @@
 - Makes UI development deterministic
 - Huge ecosystem full of useful libraries and guides
 
-> Details: https://github.com/typescript-cheatsheets/react-typescript-cheatsheet
+> Resources: https://github.com/typescript-cheatsheets/react-typescript-cheatsheet
 
 #### (React) Styled Components
 
