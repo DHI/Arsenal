@@ -54,6 +54,8 @@
 - Makes UI development deterministic
 - Huge ecosystem full of useful libraries and guides
 
+> Details: https://github.com/typescript-cheatsheets/react-typescript-cheatsheet
+
 #### (React) Styled Components
 
 - Allows for styling to remain type-safe
