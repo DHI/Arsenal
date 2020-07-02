@@ -1,22 +1,24 @@
 # Arsenal
 
-+ [Mandatory tools](#mandatory-tools)
++ [Core tools](#core-tools)
   + [Typescript](#typescript)
   + [Mobx State Tree](#mobx-state-tree)
   + [Webpack](#webpack)
   + [React](#react)
-    + [(React) Styled Components](#react-styled-components)
+  + [(React) Styled Components](#react-styled-components)
   + [GraphQL](#graphql)
 + [Recommended tools](#recommended-tools)
   + [(React) Material UI](#react-material-ui)
-  + [(React) - React Map Gl](#react---react-map-gl)
-  + [(React) - React Deck.gl](#react---react-deckgl)
-  + [(React) - MobX State Tree GraphQL](#react---mobx-state-tree-graphql)
+  + [(React) React Map Gl](#react-react-map-gl)
+  + [(React) React Deck.gl](#react-react-deckgl)
+  + [(React) MobX State Tree GraphQL](#react-mobx-state-tree-graphql)
   + [Plotly](#plotly)
   + [Wendigo](#wendigo)
   + [Jest](#jest)
 
-## Mandatory tools
+![](./docs/architecture.drawio.png)
+
+## Core tools
 
 |                                                |                                                                     |
 | ---------------------------------------------- | ------------------------------------------------------------------- |
@@ -27,8 +29,6 @@
 | **MobX State Tree**                            | https://mobx-state-tree.js.org/                                     |
 | **StyledComponents**                           | https://styled-components.com                                       |
 | **GraphQL**                                    | https://graphql.org/                                                |
-
-![](./docs/architecture.drawio.png)
 
 ### Typescript
 
@@ -59,7 +59,7 @@
 
 > Resources: https://github.com/typescript-cheatsheets/react-typescript-cheatsheet
 
-#### (React) Styled Components
+### (React) Styled Components
 
 - Allows for styling to remain type-safe
 - Allows for IDE CSS linting & autocomplete
@@ -85,26 +85,27 @@
 | **Jest**         | https://jestjs.io/                    |
 | **Wendigo**      | https://github.com/angrykoala/wendigo |
 
+
 ### (React) Material UI
 
 - Lots of useful components that look nice
 - Large ecosystem and active community
 
-### (React) - React Map Gl
+### (React) React Map Gl
 
 - Decent mapbox wrapper library for declarative map configuration
 - Decent community, backed by Uber, most active of its kind
 
-### (React) - React Deck.gl
+### (React) React Deck.gl
 
 - Enhances mapbox declarative capabilities
 - Supports useful visualization techniques
-- 
-### (React) - MobX State Tree GraphQL
+
+### (React) MobX State Tree GraphQL
 
 > Link: https://github.com/mobxjs/mst-gql
 
-- A client for GraphQL to bootstrap your state
+- A client for GraphQL to marry your GQL server with your frontend state management
 
 ### Plotly
 
