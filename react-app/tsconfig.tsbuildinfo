@@ -2447,8 +2447,8 @@
         "affectsGlobalScope": false
       },
       "./client/example/example.tsx": {
-        "version": "cfd10bdf76d783a383aa6b22a17110e36a39c6f132ada32f6ad93e493eb6e452",
-        "signature": "324ba2dc7544f934ab31573f24cb2d1654c5c80e81e145fc2e453b1fe5f0b97a",
+        "version": "0eb9b00b82439792fb2cdcf5d50a8c5957b29ef50b9f0406d23655ae39636579",
+        "signature": "9a72bf9c8d48a4194fa4f1dcf412abd797c8b9f3d93fc0b7118957d2a97c4ef5",
         "affectsGlobalScope": false
       },
       "./client/root/root.tsx": {

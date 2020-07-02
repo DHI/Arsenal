@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { AppBar, Box, Typography, Input } from '@material-ui/core';
+import { AppBar, Box, Typography, Input, Button } from '@material-ui/core';
 
-import { types as t } from 'mobx-state-tree';
+import { types as t, SnapshotIn } from 'mobx-state-tree';
 import { useStore } from '../store';
 import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
@@ -21,10 +21,25 @@ export const Example = observer(() => {
         />
         <Box p={4} />
         <Typography variant="h3">{example.fancyText}</Typography>
+        <Typography variant="h4">
+          <ExampleItem text="Foo" />
+        </Typography>
       </Box>
     </>
   );
 });
+
+const ExampleItem = observer(
+  (initialState: SnapshotIn<typeof ExampleItemModel>) => {
+    const [store] = React.useState(() => ExampleItemModel.create(initialState));
+
+    return (
+      <Button onClick={() => store.setText(store.text + '!')}>
+        {store.text}
+      </Button>
+    );
+  },
+);
 
 const $Input = styled(Input)`
   width: 100%;
@@ -51,5 +66,13 @@ export const ExampleModel = t
   .actions((self) => ({
     setText(text: typeof self.text) {
       self.text = text.trim().toUpperCase();
+    },
+  }));
+
+export const ExampleItemModel = t
+  .model({ text: 'Text Input' })
+  .actions((self) => ({
+    setText(text: typeof self.text) {
+      self.text = text;
     },
   }));
