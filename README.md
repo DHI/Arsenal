@@ -8,6 +8,7 @@
 # Standards
 
 - [./ARSENAL.md](./ARSENAL.md) Elaborates on standard tools and conventions
+- [./VSCODE.md](./VSCODE.md) Recommended VSCode conventions and extensions
   
 # Integration
 
