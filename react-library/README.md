@@ -2,9 +2,8 @@
 
 A minimal react library project for publishing components to share
 
----
-> **Dependency Graph**:
->![](dependencygraph.svg)
+![](dependencygraph.svg)
+
 ---
 
 ## Usage

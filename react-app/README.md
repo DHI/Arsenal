@@ -2,10 +2,10 @@
 
 A minimal react single page app project
 
+![](dependencygraph.svg)
+
 ---
-> **Dependency Graph**:
->![](dependencygraph.svg)
----
+
 
 ## Tech stack
 
