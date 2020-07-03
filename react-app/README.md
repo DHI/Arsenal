@@ -1,7 +1,11 @@
-# {ProjectName}
+# React App
 
-+ [Tech stack](#tech-stack)
-+ [Project Dependency Graph](#project-dependency-graph)
+A minimal react single page app project
+
+---
+> **Dependency Graph**:
+>![](dependencygraph.svg)
+---
 
 ## Tech stack
 
@@ -14,7 +18,3 @@
 | **MaterialUI**             | https://material-ui.com                       |
 | **MobX State Tree**        | https://mobx-state-tree.js.org/               |
 | **MobX React Lite**        | https://github.com/mobxjs/mobx-react-lite/    |
-
-## Project Dependency Graph
-
-![](./dependencygraph.svg)

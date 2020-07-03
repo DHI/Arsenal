@@ -1,6 +1,11 @@
-# React
+# React Components Library
 
-A minimalistic project for publishing react components on NPM
+A minimal react library project for publishing components to share
+
+---
+> **Dependency Graph**:
+>![](dependencygraph.svg)
+---
 
 ## Usage
 

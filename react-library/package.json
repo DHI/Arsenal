@@ -9,6 +9,7 @@
     "build:clean": "rimraf ./build/*",
     "preversion": "yarn lint && yarn test && yarn build",
     "makePublish": "cd build && npm publish",
+    "build:depGraph": "depcruise --include-only '^components' --output-type dot components | dot -T svg > dependencygraph.svg",
     "bundleAnalyzer": "yarn -s webpack -p --profile --json > build/stats.json && yarn -s webpack-bundle-analyzer ./build/stats.json ./build"
   },
   "dependencies": {
@@ -32,11 +33,10 @@
     "styled-components": "~5.0.1"
   },
   "devDependencies": {
-    "@types/copy-webpack-plugin": "5",
-    "copy-webpack-plugin": "5",
     "@babel/core": "^7.8.7",
     "@storybook/addon-viewport": "^5.3.18",
     "@storybook/react": "^5.3.18",
+    "@types/copy-webpack-plugin": "5",
     "@types/dotenv-webpack": "~1.7.0",
     "@types/react": "~16.9.23",
     "@types/react-dom": "~16.9.5",
@@ -49,7 +49,9 @@
     "@types/webpack-env": "~1.15.1",
     "babel-loader": "^8.0.6",
     "concurrently": "^5.1.0",
+    "copy-webpack-plugin": "5",
     "css-loader": "~3.4.2",
+    "dependency-cruiser": "^9.8.0",
     "dotenv-cli": "^3.1.0",
     "dotenv-webpack": "~1.7.0",
     "eslint-config-standard-typescript-prettier": "~2.2.2",
