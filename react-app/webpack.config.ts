@@ -15,7 +15,7 @@ type Config = { devServer?: any } & webpack.Configuration;
 /** This IIFE allows the config to be exactly typed */
 export default (<Cfg extends Config>(c: Cfg) => c)({
   mode,
-  devtool: mode === 'production' ? false : 'cheap-module-eval-source-map',
+  devtool: mode === 'production' ? false : 'source-map',
   plugins: [
     new webpack.EnvironmentPlugin({ NODE_ENV: mode }),
     new HtmlPlugin({

@@ -2927,8 +2927,8 @@
         "affectsGlobalScope": false
       },
       "./webpack.config.ts": {
-        "version": "e74ec1172fa516f2a334c3cd2c780e92137e58e1c432952ecaa2222deb27096c",
-        "signature": "75a4bf5debac8d0b15fc2f276655104c54d12044d8dfe7ac11a20a165bdd8121",
+        "version": "dd74f6a82d337b014bdf60c1aa9121bcc9c51ea2797d550c0b1c8f6ebdd584d4",
+        "signature": "a88b33d68d809097e30a5d4b5d409997147a45164e0759aadb8ebef637a54d28",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/bluebird/index.d.ts": {
@@ -3265,62 +3265,14 @@
       ],
       "jsx": 2,
       "incremental": true,
-      "tsBuildInfoFile": "./tsconfig.tsbuildinfo",
       "sourceMap": false,
+      "tsBuildInfoFile": "./tsconfig.tsbuildinfo",
       "inlineSourceMap": false,
       "declarationMap": false,
       "importsNotUsedAsValues": 1,
       "configFilePath": "./tsconfig.json"
     },
     "referencedMap": {
-      "../../node_modules/@types/cacheable-request/index.d.ts": [
-        "../../node_modules/@types/http-cache-semantics/index.d.ts",
-        "../../node_modules/@types/keyv/index.d.ts",
-        "../../node_modules/@types/responselike/index.d.ts",
-        "./node_modules/@types/node/events.d.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/ts3.7/index.d.ts",
-        "./node_modules/@types/node/url.d.ts",
-        "./node_modules/@types/node/util.d.ts"
-      ],
-      "../../node_modules/@types/emscripten/index.d.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts"
-      ],
-      "../../node_modules/@types/events/index.d.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts"
-      ],
-      "../../node_modules/@types/http-cache-semantics/index.d.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/util.d.ts"
-      ],
-      "../../node_modules/@types/keyv/index.d.ts": [
-        "./node_modules/@types/node/events.d.ts",
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/ts3.7/index.d.ts",
-        "./node_modules/@types/node/util.d.ts"
-      ],
-      "../../node_modules/@types/responselike/index.d.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/stream.d.ts",
-        "./node_modules/@types/node/ts3.2/fs.d.ts",
-        "./node_modules/@types/node/ts3.2/util.d.ts",
-        "./node_modules/@types/node/ts3.7/index.d.ts",
-        "./node_modules/@types/node/util.d.ts"
-      ],
       "./client/example/example.tsx": [
         "./client/store.ts",
         "./node_modules/@material-ui/core/index.d.ts",
@@ -8573,9 +8525,7 @@
         "./node_modules/@types/webpack/index.d.ts",
         "./node_modules/fork-ts-checker-webpack-plugin/lib/index.d.ts",
         "./node_modules/html-webpack-plugin/typings.d.ts"
-      ]
-    },
-    "exportedModulesMap": {
+      ],
       "../../node_modules/@types/cacheable-request/index.d.ts": [
         "../../node_modules/@types/http-cache-semantics/index.d.ts",
         "../../node_modules/@types/keyv/index.d.ts",
@@ -8623,7 +8573,9 @@
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/ts3.7/index.d.ts",
         "./node_modules/@types/node/util.d.ts"
-      ],
+      ]
+    },
+    "exportedModulesMap": {
       "./client/example/example.tsx": [
         "./node_modules/mobx-state-tree/dist/index.d.ts"
       ],
@@ -16911,15 +16863,57 @@
         "./node_modules/@types/node/ts3.2/fs.d.ts",
         "./node_modules/@types/node/ts3.2/util.d.ts",
         "./node_modules/@types/node/util.d.ts"
+      ],
+      "../../node_modules/@types/cacheable-request/index.d.ts": [
+        "../../node_modules/@types/http-cache-semantics/index.d.ts",
+        "../../node_modules/@types/keyv/index.d.ts",
+        "../../node_modules/@types/responselike/index.d.ts",
+        "./node_modules/@types/node/events.d.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/http.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/ts3.7/index.d.ts",
+        "./node_modules/@types/node/url.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "../../node_modules/@types/emscripten/index.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "../../node_modules/@types/events/index.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "../../node_modules/@types/http-cache-semantics/index.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "../../node_modules/@types/keyv/index.d.ts": [
+        "./node_modules/@types/node/events.d.ts",
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/ts3.7/index.d.ts",
+        "./node_modules/@types/node/util.d.ts"
+      ],
+      "../../node_modules/@types/responselike/index.d.ts": [
+        "./node_modules/@types/node/fs.d.ts",
+        "./node_modules/@types/node/http.d.ts",
+        "./node_modules/@types/node/stream.d.ts",
+        "./node_modules/@types/node/ts3.2/fs.d.ts",
+        "./node_modules/@types/node/ts3.2/util.d.ts",
+        "./node_modules/@types/node/ts3.7/index.d.ts",
+        "./node_modules/@types/node/util.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "../../node_modules/@types/cacheable-request/index.d.ts",
-      "../../node_modules/@types/emscripten/index.d.ts",
-      "../../node_modules/@types/events/index.d.ts",
-      "../../node_modules/@types/http-cache-semantics/index.d.ts",
-      "../../node_modules/@types/keyv/index.d.ts",
-      "../../node_modules/@types/responselike/index.d.ts",
       "./client/example/example.tsx",
       "./client/index.tsx",
       "./client/root/root.models.ts",
@@ -17563,7 +17557,13 @@
       "./node_modules/typescript/lib/lib.esnext.promise.d.ts",
       "./node_modules/typescript/lib/lib.esnext.string.d.ts",
       "./typings.d.ts",
-      "./webpack.config.ts"
+      "./webpack.config.ts",
+      "../../node_modules/@types/cacheable-request/index.d.ts",
+      "../../node_modules/@types/emscripten/index.d.ts",
+      "../../node_modules/@types/events/index.d.ts",
+      "../../node_modules/@types/http-cache-semantics/index.d.ts",
+      "../../node_modules/@types/keyv/index.d.ts",
+      "../../node_modules/@types/responselike/index.d.ts"
     ]
   },
   "version": "3.9.5"

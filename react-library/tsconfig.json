@@ -9,6 +9,7 @@
     "skipLibCheck": true,
     "lib": [ "dom", "esnext" ],
     "jsx": "react",
+    "sourceMap": true
   },
   "include": ["components", "webpack.config.ts", "test"]
 }

@@ -18,3 +18,10 @@ A minimal react single page app project
 | **MaterialUI**             | https://material-ui.com                       |
 | **MobX State Tree**        | https://mobx-state-tree.js.org/               |
 | **MobX React Lite**        | https://github.com/mobxjs/mobx-react-lite/    |
+
+# Development Workflow
+
+- Run `yarn dev` to start storybook
+- Wait for it to build
+- Hit `F5` in VSCode to spawn the debug version of chrome
+- Add breakpoints and see them met inside VSCode!

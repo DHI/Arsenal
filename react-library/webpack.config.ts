@@ -5,14 +5,14 @@ import * as packageJson from './package.json';
 import * as Copy from 'copy-webpack-plugin';
 
 const dir = (...filePaths: string[]) => path.resolve(__dirname, ...filePaths);
-const buildDir = dir(`./lib`)
+const buildDir = dir(`./lib`);
 const isProd = process.env.NODE_ENV === 'production';
 const mode = isProd ? 'production' : 'development';
 
 /** @reference https://webpack.js.org/configuration/ */
 export default {
   mode,
-  devtool: isProd ? false : 'cheap-module-eval-source-map',
+  devtool: isProd ? false : 'source-map',
   resolve: {
     extensions: ['.js', '.tsx', '.ts', '.json'],
     mainFields: ['browser', 'jsnext:main', 'main'],
