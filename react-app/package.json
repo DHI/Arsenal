@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "start-storybook --quiet --ci -p 9002 -c .storybook",
+    "dev": "start-storybook --quiet --ci -p 9001 -c .storybook",
     "lint": "concurrently 'yarn lint:eslint' 'yarn lint:ts'",
     "lint:eslint": "eslint .",
     "lint:ts": "tsc --noEmit --incremental false --tsBuildInfoFile null",

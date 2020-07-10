@@ -8,7 +8,7 @@
       "type": "pwa-chrome",
       "request": "launch",
       "name": "Launch Chrome against localhost",
-      "url": "http://localhost:9002",
+      "url": "http://localhost:9001",
       "smartStep": true,
       "internalConsoleOptions": "openOnSessionStart",
       // "pauseForSourceMap": true, // Might be necessary, try it if you have issues
