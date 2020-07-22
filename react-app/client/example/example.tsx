@@ -162,6 +162,7 @@ export const ExampleModel = t
      * This is a very broad action which just sets the entire pathname
      */
     setUrlPath(value: string) {
+      // We could use the defined view: "self.router" here as well, but this demonstrates both patterns
       const { router } = getParentOfType(self, RootModel);
 
       router.replace(value);
