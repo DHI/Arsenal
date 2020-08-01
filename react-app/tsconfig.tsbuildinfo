@@ -2447,7 +2447,7 @@
         "affectsGlobalScope": false
       },
       "./client/example/example.tsx": {
-        "version": "5a7217310ee1424e7b3eac7f0a0b0d9497a78329546bcba41ce1e00956cfbc59",
+        "version": "e446474be61585f8378dcfc799967089d4f1ee8779c55a91875bdb6afbd3308f",
         "signature": "3dd6ad088c19a5030c953dfc5635070208d449ea23057d3dd09f58a79b56d748",
         "affectsGlobalScope": false
       },
