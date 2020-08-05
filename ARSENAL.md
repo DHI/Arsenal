@@ -3,6 +3,8 @@
 + [Core tools](#core-tools)
   + [Typescript](#typescript)
   + [Mobx State Tree](#mobx-state-tree)
+    + [Manage Application State with Mobx-state-tree](#manage-application-state-with-mobx-state-tree)
+    + [The best GraphQL client you haven't heard of (mst-gql)](#the-best-graphql-client-you-havent-heard-of-mst-gql)
   + [Webpack](#webpack)
   + [React](#react)
   + [(React) Styled Components](#react-styled-components)
@@ -45,6 +47,15 @@
 - Mobx ensures React rendering stays performant
 - Establishes a convention to encapsulate business logic in a clear manner
 - Can be wired up to GraphQL directly
+
+#### Manage Application State with Mobx-state-tree
+
+> https://egghead.io/courses/manage-application-state-with-mobx-state-tree
+
+#### The best GraphQL client you haven't heard of (mst-gql)
+
+> https://www.youtube.com/watch?v=N4ni8u47XVs
+
 
 ### Webpack
 

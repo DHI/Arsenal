@@ -9,7 +9,6 @@
 
 - [./ARSENAL.md](./ARSENAL.md) Elaborates on standard tools and conventions
 - [./VSCODE.md](./VSCODE.md) Recommended VSCode conventions and extensions
-- [./PATTERNS.md](./PATTERNS.md) Useful patterns to observe while coding, including learning material
   
 # Integration
 
