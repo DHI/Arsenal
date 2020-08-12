@@ -6,11 +6,12 @@
   + [React](#react)
     + [React Typescript Cheat sheet](#react-typescript-cheat-sheet)
   + [Mobx State Tree](#mobx-state-tree)
-    + [Manage Application State with Mobx-state-tree](#manage-application-state-with-mobx-state-tree)
+    + [(LEARN) Manage Application State with Mobx-state-tree](#learn-manage-application-state-with-mobx-state-tree)
   + [MobX State Tree + GraphQL](#mobx-state-tree--graphql)
-    + [The best GraphQL client you haven't heard of (mst-gql)](#the-best-graphql-client-you-havent-heard-of-mst-gql)
+    + [(LEARN) The best GraphQL client you haven't heard of (mst-gql)](#learn-the-best-graphql-client-you-havent-heard-of-mst-gql)
   + [Webpack](#webpack)
   + [GraphQL](#graphql)
+    + [(LEARN) GraphQL Basics - Build an app with the SpaceX API](#learn-graphql-basics---build-an-app-with-the-spacex-api)
   + [Styled Components (React)](#styled-components-react)
   + [Eslint config with Prettier](#eslint-config-with-prettier)
 + [Recommended tools](#recommended-tools)
@@ -59,7 +60,7 @@
 - Establishes a convention to encapsulate business logic in a clear manner
 - Can be wired up to GraphQL directly
 
-#### Manage Application State with Mobx-state-tree
+#### (LEARN) Manage Application State with Mobx-state-tree
 
 > https://egghead.io/courses/manage-application-state-with-mobx-state-tree
 
@@ -71,7 +72,7 @@
 
 - A client for GraphQL to marry a GQL server with your frontend state management
 
-#### The best GraphQL client you haven't heard of (mst-gql)
+#### (LEARN) The best GraphQL client you haven't heard of (mst-gql)
 
 > https://www.youtube.com/watch?v=N4ni8u47XVs
 
@@ -94,6 +95,10 @@
 - Easy to use in the UI and server
 - Facilitates easy mocking of data
 - Provides schemas for clear contracts
+
+#### (LEARN) GraphQL Basics - Build an app with the SpaceX API
+
+> https://www.youtube.com/watch?v=7wzR4Ig5pTI
 
 ### Styled Components (React)
 
