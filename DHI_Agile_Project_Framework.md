@@ -30,5 +30,5 @@ sprint has been fully allocated. Whether or not the team completes said tasks is
 team as no velocity data to measure against. But.... because story points were allocated, at the start of the sprint we at least have an initial 
 velocity. By the end of the first sprint though, regardless of how many tasks were completed (ie done done) or not completed, we will have a more accurate guestimate 
 for the team's velocity. From this point on, as each sprint is completed, the velocity of the team only improves. This will in turn
-provide for a continuing basis upon which accurate estimates can be made or at the least, an increasing level of confidence in the team in meeting feature delivery
+provide for a continuing basis upon which accurate estimates can be made or at the least, give an increasing level of confidence in the team in meeting feature delivery
 milestones.
