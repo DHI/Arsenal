@@ -42,6 +42,5 @@
 
 ## Documents
 
-- [./ARSENAL.md](./ARSENAL.md) Elaborates on standard tools and conventions
 - [./VSCODE.md](./VSCODE.md) Recommended VSCode conventions and extensions
 - [./REPO_INTEGRATION.md](./REPO_INTEGRATION.md)
