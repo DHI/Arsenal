@@ -5,7 +5,7 @@
     + [Typescript cheatsheets](#typescript-cheatsheets)
   + [React](#react)
     + [React Typescript Cheat sheet](#react-typescript-cheat-sheet)
-  + [Mobx State Tree](#mobx-state-tree)
+  + [Mobx](#mobx)
     + [(LEARN) Manage Application State with Mobx-state-tree](#learn-manage-application-state-with-mobx-state-tree)
   + [MobX State Tree + GraphQL](#mobx-state-tree--graphql)
     + [(LEARN) The best GraphQL client you haven't heard of (mst-gql)](#learn-the-best-graphql-client-you-havent-heard-of-mst-gql)
@@ -51,14 +51,12 @@
 
 > https://github.com/typescript-cheatsheets/react-typescript-cheatsheet
 
-### Mobx State Tree
+### Mobx
 
-> https://mobx-state-tree.js.org/
+> https://github.com/mobxjs
 
 - Makes state management easy and low-complexity inside React
 - Mobx ensures React rendering stays performant
-- Establishes a convention to encapsulate business logic in a clear manner
-- Can be wired up to GraphQL directly
 
 #### (LEARN) Manage Application State with Mobx-state-tree
 
