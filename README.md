@@ -2,7 +2,7 @@
 
 > Shared resources across DHI web development projects
 
-## Frontend tooling
+## Foundation
 
 - Code:
   - [x] [TypeScript](https://www.typescriptlang.org)
@@ -19,7 +19,7 @@
   - [x] [MobX-Keystone](https://mobx-keystone.js.org/)
   - [x] [Overmindjs](https://overmindjs.org/)
 
-## Library choices
+## Recommended Libraries
 
 - Geospatial:
   - [x] [Deckgl](https://deck.gl/)
@@ -32,9 +32,6 @@
   - [x] [Cypress](https://www.cypress.io/)
 - Unit testing:
   - [x] [Jest](https://jestjs.io/)
-
-## Api
-
 - API protocols:
   - [x] [GraphQL](https://graphql.org/)
 
