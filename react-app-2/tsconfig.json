@@ -20,6 +20,6 @@
   "include": [
     "src",
     "src/__config/*.d.ts",
-    "snowpack.config.js"
+    "*.js"
   ]
 }

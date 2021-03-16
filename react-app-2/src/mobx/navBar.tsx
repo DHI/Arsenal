@@ -15,23 +15,19 @@ export const NavBar = observer(() => {
         `}
       />
       <main
-        className={css`
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: ${height}px;
-          width: 100%;
-          display: flex;
-          align-items: center;
-          padding: 0.2em 1em;
+        className={
+          "absolute flex top-0 left-0 flex-grow items-center p-1 py-2 " +
+          css`
+            height: ${height}px;
 
-          a {
-            display: inline-block;
-            margin-right: 1em;
-            color: #5da9e7;
-            border: 1px solid #6a8eaf44;
-          }
-        `}
+            a {
+              display: inline-block;
+              margin-right: 1em;
+              color: #5da9e7;
+              border: 1px solid #6a8eaf44;
+            }
+          `
+        }
       >
         <a href={`#${router.routes.home.toPath()}`}>Home</a>
         <a

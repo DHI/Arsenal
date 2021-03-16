@@ -4,10 +4,10 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
   mount: {
-    "./src/mobx": { url: "/" },
-    ".": { url: "/" },
+    src: { url: "/" },
   },
   plugins: [
+    "@snowpack/plugin-postcss", // Depends on npm deps: postcss, postcss-cli, @snowpack/plugin-postcss
     "@snowpack/plugin-typescript", // Just does type checks
     "@snowpack/plugin-dotenv",
   ],
@@ -16,6 +16,6 @@ module.exports = {
     open: "none",
   },
   buildOptions: {
-    out: "./x",
+    out: "./build",
   },
 };

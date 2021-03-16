@@ -16,5 +16,3 @@ function Root() {
 }
 
 render(<Root />, document.getElementById("__root"));
-
-import.meta.hot?.accept();
