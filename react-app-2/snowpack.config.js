@@ -9,6 +9,7 @@ module.exports = {
   },
   plugins: [
     "@snowpack/plugin-typescript", // Just does type checks
+    "@snowpack/plugin-dotenv",
   ],
   packageOptions: {},
   devOptions: {

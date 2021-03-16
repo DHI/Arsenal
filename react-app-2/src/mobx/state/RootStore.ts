@@ -8,7 +8,7 @@ export class RootStore {
   constructor() {
     makeAutoObservable(this);
 
-    (window as any).store = this;
+    window.store = this;
   }
 
   /** Shortcut to useRootStore */

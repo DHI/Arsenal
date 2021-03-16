@@ -218,6 +218,14 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.0.6.tgz#023d72a5c4531b4ce204528971700a78a85a0c50"
   integrity sha512-Myxw//kzromB9yWgS8qYGuGVf91oBUUJpNvy5eM50sqvmKLbKjwLxohJnkWGTeeI9v9IBMtPLxz5Gc60FIfvCA==
 
+"@snowpack/plugin-dotenv@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@snowpack/plugin-dotenv/-/plugin-dotenv-2.0.5.tgz#e8bcc5cb59c951f7d560e36397960dd2252a56ee"
+  integrity sha512-y54lwYRDpTfDTU3uopHLND0DKIjjyWiYxhvOPfZvC4OpOd7UIRwMdSOd5XLZJPEBJ4BD38lDLiXh+ODfNDqhnQ==
+  dependencies:
+    dotenv "^8.2.0"
+    dotenv-expand "^5.1.0"
+
 "@snowpack/plugin-typescript@^1.2.1":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@snowpack/plugin-typescript/-/plugin-typescript-1.2.1.tgz#7170b039d16d41963cc61a714fe7c37f3fdd9d51"
@@ -656,6 +664,16 @@ doctrine@^3.0.0:
   integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
   dependencies:
     esutils "^2.0.2"
+
+dotenv-expand@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-5.1.0.tgz#3fbaf020bfd794884072ea26b1e9791d45a629f0"
+  integrity sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==
+
+dotenv@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -2199,11 +2217,6 @@ word-wrap@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
-
-workerpool@6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/workerpool/-/workerpool-6.1.0.tgz#a8e038b4c94569596852de7a8ea4228eefdeb37b"
-  integrity sha512-toV7q9rWNYha963Pl/qyeZ6wG+3nnsyvolaNUS8+R5Wtw6qJPTxIlOP1ZSvcGhEJw+l3HMMmtiNo9Gl61G4GVg==
 
 wrappy@1:
   version "1.0.2"

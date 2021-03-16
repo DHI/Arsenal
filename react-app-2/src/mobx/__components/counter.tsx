@@ -1,8 +1,14 @@
-import { CounterStore } from "../state/CounterStore";
 import * as React from "react";
 import { observer } from "mobx-react-lite";
 
-export const Counter = observer(({ counter }: { counter: CounterStore }) => {
+export const Counter = observer<{
+  counter: {
+    count: number;
+    incr(): any;
+    decr(): any;
+    setCount(v: number): any;
+  };
+}>(({ counter }) => {
   return (
     <>
       <p>Current count: [{counter.count}]</p>

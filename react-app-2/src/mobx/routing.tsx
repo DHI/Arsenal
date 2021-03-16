@@ -4,6 +4,7 @@ import * as React from "react";
 import { XRoute, XRouter } from "xroute";
 import { RootStore } from "./state/RootStore";
 import { Counter } from "./__components/counter";
+import { IS_COUNTER_ENABLED } from "./__config/features";
 
 const components = {
   home() {
@@ -15,7 +16,7 @@ const components = {
     return (
       <>
         <p>Page 2 is active</p>
-        <Counter counter={counter} />
+        {IS_COUNTER_ENABLED && <Counter counter={counter} />}
       </>
     );
   },
