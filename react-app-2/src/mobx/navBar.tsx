@@ -33,16 +33,17 @@ export const NavBar = observer(() => {
           }
         `}
       >
-        <a href={"#" + router.routes.home.toPath()}>Home</a>
+        <a href={`#${router.routes.home.toPath()}`}>Home</a>
         <a
-          href={"#" + router.routes.page2.toPath({ language: "en", page: "2" })}
+          href={`#${router.routes.page2.toPath({ language: "en", page: "2" })}`}
         >
           Page2
         </a>
         <a
-          href={
-            "#" + router.routes.pageAny.toPath({ language: "en", page: "3" })
-          }
+          href={`#${router.routes.pageAny.toPath({
+            language: "en",
+            page: "3",
+          })}`}
         >
           Page 3
         </a>
