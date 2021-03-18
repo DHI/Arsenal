@@ -2,20 +2,7 @@
 
 ## Directory Structure patterns
 
-```
-/project/
-  /client/
-    /__components
-      - Contains generic react components or utility functions
-    /__stories/
-    /__tests/
-
-  package.json
-  tsconfig.json
-  snowpack.config.json
-  
-
-```
+See [./react-app-2/README.md](./react-app-2/README.md)
 
 ## Data access & graphql client
 
