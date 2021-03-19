@@ -1,8 +1,25 @@
 # React app template 2021
 
++ [TODO](#todo)
 + [Conventions](#conventions)
   + [Directory structure](#directory-structure)
     + [Using "private" __ prefixes](#using-private-__-prefixes)
+
+## TODO
+
+- Add react-cosmos or StoryBrowser
+- Add overmindjs example project
+- Can XRoute be made compatible with overmindjs?
+- Choose a testing method:
+  - Integration tests:
+    - Cypress
+    - Wendigo
+    - stories
+  - Unit tests:
+    - stories
+    - jest / react-test-library / ???
+- Graphql client:
+  - Use graphql-codegen
 
 ## Conventions
 
