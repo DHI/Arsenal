@@ -11,11 +11,6 @@ export class RootStore {
     window.store = this;
   }
 
-  /** Shortcut to useRootStore */
-  static use() {
-    return useRootStore();
-  }
-
   router = createRouter();
   counter = new CounterStore(this);
 }
@@ -24,7 +19,7 @@ export const RootStoreReactContext = createContext<RootStore | undefined>(
   undefined
 );
 
-export function useRootStore() {
+export function useStore() {
   return (
     useContext(RootStoreReactContext) ??
     (() => {

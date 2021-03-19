@@ -1,10 +1,10 @@
 import { observer } from "mobx-react-lite";
-import { RootStore } from "./state/RootStore";
+import { useStore } from "./state/RootStore";
 import * as React from "react";
 import { css } from "@emotion/css";
 
 export const NavBar = observer(() => {
-  const { router } = RootStore.use();
+  const { router } = useStore();
   const height = 50;
 
   return (

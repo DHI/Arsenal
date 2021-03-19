@@ -2,7 +2,7 @@ import { createHashHistory } from "history";
 import { observer } from "mobx-react-lite";
 import * as React from "react";
 import { XRoute, XRouter } from "xroute";
-import { RootStore } from "./state/RootStore";
+import { useStore } from "./state/RootStore";
 import { Counter } from "./__components/counter";
 import { IS_COUNTER_ENABLED } from "./__config/features";
 
@@ -11,7 +11,7 @@ const components = {
     return <>Home</>;
   },
   page2() {
-    const { counter } = RootStore.use();
+    const { counter } = useStore();
 
     return (
       <>
@@ -23,7 +23,7 @@ const components = {
   pageAny() {
     const {
       router: { routes },
-    } = RootStore.use();
+    } = useStore();
 
     return <>Page any {routes.pageAny.params?.page} is active</>;
   },
@@ -33,7 +33,7 @@ const components = {
 export const Routes = observer(() => {
   const {
     router: { route },
-  } = RootStore.use();
+  } = useStore();
 
   const Component = components[route?.key ?? "home"];
 
