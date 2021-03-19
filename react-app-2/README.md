@@ -47,42 +47,26 @@ This pattern is already prolific when it comes to testing, mocking etc. You may 
 
 ```ts
 /project/
-
-  - package.json
-  - tsconfig.json // Configured to import all *.d.ts inside src/__config
-  
   - /tests/ // (Optional) Top-level integration tests
-
   - /stories/ // (Optional) Top-level integration Storybook stories
-
   - /src/
-    - routings.tsx // Compose routing in one place
-    - store.ts // Compose the state/store in one place
-    - index.tsx // Compose the entry point of the app here
-
     - /__config/
-      env.d.ts // Global variables/env vars 
-
-      features.ts // Feature flags, to turn features on and off based on env vars.
-                  // Exports constant booleans like IS_SOME_FEATURE_ENABLED
-
-      <name>.d.ts // Any other typings you gotta do
-
+      - env.d.ts // Global variables/env vars 
+      - features.ts // Feature flags, to turn features on and off based on env vars.
+                    // Exports constant booleans like IS_SOME_FEATURE_ENABLED
+      - <name>.d.ts // Any other typings you gotta do
     - /__components/ // For GLOBAL components which are shared throughout the entire app
-      - colors.ts // Colors relevant to the entire app
-      - theme.ts // Global theme
-      - fancyTable.tsx // No global state, just takes props and returns JSX
-
       - /anotherComponent/ // Example of a component with its own stories, tests etc.
         - __translations.tsx // Can be a folder or file, doesnt matter
         - anotherComponent.tsx
         - anotherComponent.stories.tsx
         - anotherComponent.test.tsx
         - someImage.png
-
+      - colors.ts // Colors relevant to the entire app
+      - theme.ts // Global theme
+      - fancyTable.tsx // No global state, just takes props and returns JSX
     - /__translations/ // Global compositional root to merge all translations and then add to the global state.
                        // Also for global translations (which apply to any part of the app)
-
     - /someFeature/
       - __translations.tsx // Translations for `someFeature` go here
       - /__components/
@@ -94,7 +78,11 @@ This pattern is already prolific when it comes to testing, mocking etc. You may 
       - someFeature.tsx // A controller, likely the "index" or "pageRoot"
       - someFeatureSectionGreen.tsx // Another controller, but for a subsection
       - someFeatureSectionBlue.tsx // Another controller, but for a subsection
-
+    - routings.tsx // Compose routing in one place
+    - store.ts // Compose the state/store in one place
+    - index.tsx // Compose the entry point of the app here
+  - package.json
+  - tsconfig.json // Configured to import all *.d.ts inside src/__config
 ```
 
 Each project should define its own conventions around which "private" folder/files it wants to make standard.
