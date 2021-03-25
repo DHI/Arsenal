@@ -1,43 +1,25 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { createHashHistory } from "history";
 import { observer } from "mobx-react-lite";
 import * as React from "react";
 import { XRoute, XRouter } from "xroute";
-import { useStore } from "./state/RootStore";
-import { Counter } from "./__components/counter";
-import { IS_COUNTER_ENABLED } from "./__config/features";
+import { HomePage, Page2, PageAny } from "./someExamplePages";
+import { useStore } from "./store";
 
-const components = {
-  home() {
-    return <>Home</>;
-  },
-  page2() {
-    const { counter } = useStore();
-
-    return (
-      <>
-        <p>Page 2 is active</p>
-        {IS_COUNTER_ENABLED && <Counter counter={counter} />}
-      </>
-    );
-  },
-  pageAny() {
-    const {
-      router: { routes },
-    } = useStore();
-
-    return <>Page any {routes.pageAny.params?.page} is active</>;
-  },
-};
-
-/** Root router for the app */
 export const Routes = observer(() => {
   const {
-    router: { route },
+    router: { route, routes },
   } = useStore();
 
-  const Component = components[route?.key ?? "home"];
+  const routeComponentMap: { [k in keyof typeof routes]: React.FC } = {
+    home: HomePage,
+    page2: Page2,
+    pageAny: PageAny,
+  };
 
-  return <Component />;
+  const MatchingRoute = routeComponentMap[route?.key ?? "home"];
+
+  return <MatchingRoute />;
 });
 
 export function createRouter() {
