@@ -11,6 +11,7 @@ module.exports = {
     "@snowpack/plugin-typescript", // Just does type checks
     "@snowpack/plugin-dotenv",
   ],
+  routes: [],
   packageOptions: {},
   devOptions: {
     open: "none",
