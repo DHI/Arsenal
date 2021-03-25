@@ -7,15 +7,16 @@ module.exports = {
     src: { url: "/" },
   },
   plugins: [
-    // ["@snowpack/plugin-webpack"], // Lets use snowpack's bundle till we need this...
     "@snowpack/plugin-postcss", // Depends on npm deps: postcss, postcss-cli, @snowpack/plugin-postcss
     "@snowpack/plugin-typescript", // Just does type checks
     "@snowpack/plugin-dotenv",
+    ["@snowpack/plugin-webpack"],
   ],
   optimize: {
-    bundle: true,
-    minify: false,
-    target: "es2020",
+    target: "es2017",
+    // bundle: true,
+    // minify: false,
+    // manifest: true,
   },
   routes: [],
   packageOptions: {},

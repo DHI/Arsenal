@@ -1,3 +1,4 @@
 import "./global.css";
 import "./mobx";
-import.meta.hot?.accept();
+
+if (import.meta.hot) import.meta.hot.accept();
