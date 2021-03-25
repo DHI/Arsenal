@@ -36,7 +36,7 @@ export const PageAny = () => {
           Next
         </$FancyButton>
       </p>
-      Change page (strings)
+      Change page (strings) (will error when you dont use a number)
       <input value={activePage} onChange={(e) => setPage(e.target.value)} />
       <p></p>
     </>
