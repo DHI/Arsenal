@@ -1,9 +1,16 @@
 # React app template 2021
 
++ [Usage](#usage)
 + [TODO](#todo)
 + [Conventions](#conventions)
   + [Directory structure](#directory-structure)
     + [Using "private" __ prefixes](#using-private-__-prefixes)
+
+## Usage
+
+- Start the development server (Snowpack): `yarn && yarn start`
+- Start the Storybook server: `yarn start-storybook`
+- Build: `yarn build`
 
 ## TODO
 
