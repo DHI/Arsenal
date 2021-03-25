@@ -7,7 +7,8 @@
 
 ## TODO
 
-
+- Configure emotioncss optimally
+  - Should use a babel transform to make styled components work best.
 - Graphql client:
   - Use graphql-codegen
 

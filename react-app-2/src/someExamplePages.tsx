@@ -1,7 +1,7 @@
 import { useStore } from "./store";
 import * as React from "react";
 import { IS_COUNTER_ENABLED } from "./__config/featureFlags";
-import { Counter } from "./__components/counter";
+import { BasicCounter } from "./__components/basicCounter";
 import styled from "@emotion/styled";
 
 export const HomePage = () => <>Homepage</>;
@@ -12,7 +12,7 @@ export const Page2 = () => {
   return (
     <>
       <p>Page 2 is active</p>
-      {IS_COUNTER_ENABLED && <Counter counter={counter} />}
+      {IS_COUNTER_ENABLED && <BasicCounter counter={counter} />}
     </>
   );
 };
