@@ -3,10 +3,11 @@ import * as React from "react";
 import { IS_COUNTER_ENABLED } from "./__config/featureFlags";
 import { BasicCounter } from "./__components/basicCounter";
 import styled from "@emotion/styled";
+import { observer } from "mobx-react-lite";
 
-export const HomePage = () => <>Homepage</>;
+export const HomePage = observer(() => <>Homepage</>);
 
-export const Page2 = () => {
+export const Page2 = observer(() => {
   const { counter } = useStore();
 
   return (
@@ -15,9 +16,9 @@ export const Page2 = () => {
       {IS_COUNTER_ENABLED && <BasicCounter counter={counter} />}
     </>
   );
-};
+});
 
-export const PageAny = () => {
+export const PageAny = observer(() => {
   const {
     router: { routes },
     anyPage: { activePage, activePageInteger, setPage },
@@ -41,7 +42,7 @@ export const PageAny = () => {
       <p></p>
     </>
   );
-};
+});
 
 const $FancyButton = styled.button`
   background: #666;

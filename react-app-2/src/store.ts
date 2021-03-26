@@ -58,13 +58,13 @@ export class CounterStore {
   }
 }
 
-export const RootStoreReactContext = createContext<RootStore | undefined>(
+export const StoreReactContext = createContext<RootStore | undefined>(
   undefined
 );
 
 export function useStore() {
   return (
-    useContext(RootStoreReactContext) ??
+    useContext(StoreReactContext) ??
     (() => {
       throw new Error("RootStoreReactContext missing.");
     })()
