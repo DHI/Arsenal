@@ -4,8 +4,12 @@ import * as React from "react";
 import { css } from "@emotion/css";
 
 export const NavBar = observer(() => {
-  const { router } = useStore();
+  const {
+    router: { routes },
+  } = useStore();
   const height = 50;
+
+  console.log({ routes });
 
   return (
     <>
@@ -24,22 +28,32 @@ export const NavBar = observer(() => {
               display: inline-block;
               margin-right: 1em;
               color: #5da9e7;
-              border: 1px solid #6a8eaf44;
             }
           `
         }
       >
-        <a href={`#${router.routes.home.toPath()}`}>Home</a>
         <a
-          href={`#${router.routes.page2.toPath({ language: "en", page: "2" })}`}
+          href={`#${routes.home.toPath()}`}
+          className={`${routes.home.isActive ? "border-2 border-red-800" : ""}`}
+        >
+          Home
+        </a>
+        <a
+          href={`#${routes.page2.toPath({ language: "en", page: "2" })}`}
+          className={`${
+            routes.page2.isActive ? "border-4 border-blue-800" : ""
+          }`}
         >
           Page2
         </a>
         <a
-          href={`#${router.routes.pageAny.toPath({
+          href={`#${routes.pageAny.toPath({
             language: "en",
             page: "3",
           })}`}
+          className={`${
+            routes.pageAny.isActive ? "border-4 border-green-800" : ""
+          }`}
         >
           Page 3
         </a>
@@ -47,8 +61,11 @@ export const NavBar = observer(() => {
           onClick={(e) => {
             e.preventDefault();
 
-            router.routes.pageAny.push({ page: "4", language: "foo" });
+            routes.pageAny.push({ page: "4", language: "foo" });
           }}
+          className={`${
+            routes.pageAny.isActive ? "border-4 border-green-800" : ""
+          }`}
         >
           Page 4
         </button>
