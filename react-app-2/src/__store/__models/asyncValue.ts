@@ -1,7 +1,7 @@
 import { action, observable } from "mobx";
 
 /**
- * An easier way to encapsulate API access.
+ * An experimental but simple way to encapsulate API access.
  *
  * Read the example closely:
  *
