@@ -10,6 +10,9 @@ This template is built on top of these notable features:
   - [x] Emotioncss
     - [x] In react classnames
     - [ ] Styled components as css selectors (requires babel config)
+    - [ ] Migrate to twin? (https://github.com/ben-rogerson/twin.examples/tree/master/react-emotion)
+      - https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion-typescript
+      - [ ] Ensure it works same as emotion
   - [x] Tailwindcss
     - [x] In react classnames
     - [ ] In styled components
