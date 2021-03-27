@@ -9,8 +9,10 @@ This template is built on top of these notable features:
 - [x] Emotioncss + Tailwindcss
 - [x] Snowpack for fast development experience
 - [x] Webpack production build
-- [x] Storybook stories support
+- [x] Storybook stories
 - [ ] DeckGL map & layer state management
+- [ ] Bundle splitting per page
+  - [ ] TODO: Demonstrate use of `@loadable/component`
 
 ## Get started:
 
@@ -23,7 +25,7 @@ yarn build # produce production build
 
 ## Conventions:
 
-This section elaborates on some convention *recommendations*.
+This section elaborates on some convention *recommendations* that have been applied to this project.
 
 Your project might be different.
 
@@ -109,6 +111,12 @@ This pattern is already prolific when it comes to testing, mocking etc. You may 
 ```
 
 Each project should define its own conventions around which "private" folder/files it wants to make standard.
+
+## File & Directorys should use camel case always:
+
+Keep all files & directories in the camelcase format as a consistant rule. 
+
+Instead, opt for the symbol searching in your IDE to locate interfaces/functions/variables - do not rely on file names being in sync with their contents, as it cannot be guaranteed in the same way an export member can be.
 
 ## TODO:
 

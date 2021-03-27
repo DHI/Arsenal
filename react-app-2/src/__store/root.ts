@@ -3,7 +3,7 @@ import { makeAutoObservable } from "mobx";
 import { createContext, useContext } from "react";
 import { createRouter } from "../routing";
 import { AnyPageStore } from "./anyPage";
-import { CounterStore } from "./counter";
+import { CounterStore } from "./__models/counter";
 
 export class RootStore {
   constructor() {
