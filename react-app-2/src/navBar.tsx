@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useStore } from "./store";
+import { useStore } from "./__store/root";
 import * as React from "react";
 import { css } from "@emotion/css";
 

@@ -1,4 +1,4 @@
-import { useStore } from "./store";
+import { useStore } from "./__store/root";
 import * as React from "react";
 import { IS_COUNTER_ENABLED } from "./__config/featureFlags";
 import { BasicCounter } from "./__components/basicCounter";

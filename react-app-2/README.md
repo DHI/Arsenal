@@ -1,31 +1,39 @@
-# React app template 2021
+# React App (March 2021)
 
-+ [Usage](#usage)
-+ [TODO](#todo)
-+ [Conventions](#conventions)
-  + [Directory structure](#directory-structure)
-    + [Using "private" __ prefixes](#using-private-__-prefixes)
+This template is built on top of these notable features:
 
-## Usage
+- [x] React
+- [x] State based routing
+- [x] Mobx global state
+- [x] Mobx local state
+- [x] Emotioncss + Tailwindcss
+- [x] Snowpack for fast development experience
+- [x] Webpack production build
+- [x] Storybook stories support
+- [ ] DeckGL map & layer state management
 
-- Start the development server (Snowpack): `yarn && yarn start`
-- Start the Storybook server: `yarn start-storybook`
-- Build: `yarn build`
+## Get started:
 
-## TODO
+```bash
+yarn # install
+yarn start # start dev server
+yarn start-storybook # start storybook
+yarn build # produce production build
+```
 
-- Configure emotioncss optimally
-  - Should use a babel transform to make styled components work best.
-- Graphql client:
-  - Use graphql-codegen
+## Conventions:
 
-## Conventions
+This section elaborates on some convention *recommendations*.
 
-### Directory structure
+Your project might be different.
+
+Document your conventions, whatever they may be.
+
+### Directory structure:
 
 When developing a UI project, an intuitive pattern that typically emerges (eg. angularjs, vuejs) is where the markup, styling, state and assets are grouped together in the same folder.
 
-Another way we see emerge is where a few top-level folders are created to contain a collection of *all* similar components
+Another way we see emerge; a few top-level folders are created to contain a collection of *all* similar components.
 
 eg. 
 - `components` for components with no global state
@@ -43,7 +51,7 @@ Once the project grows and you're looking at 40 files in each folder:
   
 By adding another layer of convention we can try to have the best of both worlds.
 
-#### Using "private" __ prefixes 
+#### Using "private" __ prefixes:
 
 One can design their folder structure to incorporate a naming convention like so:
 
@@ -101,3 +109,14 @@ This pattern is already prolific when it comes to testing, mocking etc. You may 
 ```
 
 Each project should define its own conventions around which "private" folder/files it wants to make standard.
+
+## TODO:
+
+- Configure emotioncss optimally
+  - Should use a babel transform to make styled components work best.
+- Graphql client:
+  - Use graphql-codegen
+- Show deckgl examples
+  - Map
+  - Layers
+  - Tooltips

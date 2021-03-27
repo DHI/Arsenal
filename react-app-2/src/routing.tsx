@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 import * as React from "react";
 import { XRoute, XRouter } from "xroute";
 import { HomePage, Page2, PageAny } from "./someExamplePages";
-import { useStore } from "./store";
+import { useStore } from "./__store/root";
 
 export const Routes = observer(() => {
   const {

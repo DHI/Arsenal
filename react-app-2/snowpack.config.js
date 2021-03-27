@@ -24,6 +24,8 @@ module.exports = {
     open: "none",
   },
   buildOptions: {
-    out: "./build",
+    out: "./build/dist",
+
+    clean: true,
   },
 };
