@@ -6,7 +6,15 @@ This template is built on top of these notable features:
 - [x] State based routing
 - [x] Mobx global state
 - [x] Mobx local state
-- [x] Emotioncss + Tailwindcss
+- [x] Styling:
+  - [x] Emotioncss
+    - [x] In react classnames
+    - [ ] Styled components as css selectors (requires babel config)
+  - [x] Tailwindcss
+    - [x] In react classnames
+    - [ ] In styled components
+      - (https://github.com/ben-rogerson/twin.macro)
+      - Likely needs babel transpile
 - [x] Snowpack for fast development experience
 - [x] Webpack production build
 - [x] Storybook stories
@@ -128,3 +136,4 @@ Instead, opt for the symbol searching in your IDE to locate interfaces/functions
   - Map
   - Layers
   - Tooltips
+- Try https://github.com/ben-rogerson/twin.macro

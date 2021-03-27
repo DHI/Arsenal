@@ -5,12 +5,13 @@ import React from "react";
 import { StaticMap } from "react-map-gl";
 import "mapbox-gl/src/css/mapbox-gl.css";
 import { MapViewportModel } from "../__store/__models/mapViewport";
-import { css, cx } from "@emotion/css";
+import styled from "@emotion/styled";
 
-/** A basic wrapper on top of the DeckGL component */
+/** A basic wrapper on top of the DeckGL component, coupled to the MapViewportModel */
 export const DeckGlMap = observer<{
   viewport: MapViewportModel;
   layers: Layer<any>[];
+  /** Be sure to provide mapStyle & token. */
   staticMap: Partial<PropsOf<typeof StaticMap>>;
   deckgl?: Partial<PropsOf<typeof DeckGL>>;
 
@@ -25,19 +26,7 @@ export const DeckGlMap = observer<{
     staticMap,
     deckgl: deckglProps,
   }) => (
-    <main
-      className={cx(
-        css`
-          height: 100%;
-          width: 100%;
-
-          #deckgl-wrapper {
-            overflow: hidden !important;
-          }
-        `,
-        className
-      )}
-    >
+    <$DeckGlMap className={className}>
       <DeckGL
         height="100%"
         width="100%"
@@ -51,15 +40,18 @@ export const DeckGlMap = observer<{
         layers={layers}
         {...deckglProps}
       >
-        <StaticMap
-          height="100%"
-          width="100%"
-          mapStyle="mapbox://styles/jharper93/ckm0qhxx69hkj17qk6d058ct6"
-          mapboxApiAccessToken="pk.eyJ1IjoiamhhcnBlcjkzIiwiYSI6ImNrNHkwaWNtZTA2NWYzam14bzQzbzVuNm8ifQ.JXnAeNYWelY8Dx0_tW3SnA"
-          {...staticMap}
-        />
+        <StaticMap height="100%" width="100%" {...staticMap} />
         {children}
       </DeckGL>
-    </main>
+    </$DeckGlMap>
   )
 );
+
+export const $DeckGlMap = styled.main`
+  height: 100%;
+  width: 100%;
+
+  #deckgl-wrapper {
+    overflow: hidden !important;
+  }
+`;

@@ -4,6 +4,7 @@ import { createContext, useContext } from "react";
 import { createRouter } from "../routing";
 import { AnyPageStore } from "./anyPage";
 import { ApiStore } from "./api";
+import { MapPageStore } from "./mapPage";
 
 export class RootStore {
   constructor() {
@@ -14,6 +15,7 @@ export class RootStore {
 
   router = createRouter();
   anyPage = new AnyPageStore(this);
+  mapPage = new MapPageStore(this);
   api = new ApiStore(this);
 }
 
