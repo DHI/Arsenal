@@ -6,6 +6,7 @@ import { useStore } from "../../__store/root";
 import * as React from "react";
 import { LatLonDisplay } from "./latLon";
 import { css } from "twin.macro";
+import { CursorCrosshair } from "../../__components/cursorCrosshair";
 
 export const brisbaneMapRoute = XRoute(
   "brisbaneMap",
@@ -47,7 +48,7 @@ export const BrisbaneMapRoot = observer(() => {
 
         <LatLonDisplay />
         <MapTooltips />
-        {/* <CursorCrosshair position={cursorPosition.state} /> */}
+        <CursorCrosshair position={cursorPosition.state} />
       </main>
     </>
   );
