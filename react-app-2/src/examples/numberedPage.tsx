@@ -1,32 +1,30 @@
-import { useStore } from "./__store/root";
+import { useStore } from "../__store/root";
 import * as React from "react";
-import { IS_COUNTER_ENABLED } from "./__config/featureFlags";
-import { BasicCounter } from "./__components/basicCounter";
 import styled from "@emotion/styled";
 import { observer } from "mobx-react-lite";
+import { XRoute } from "xroute";
+import { NavBar } from "../navBar";
 
-export const HomePage = observer(() => <>Homepage</>);
+export const numberedPagesRoute = XRoute(
+  "numberedPages",
+  "/:language/page/:page(\\d+)",
+  {} as { language: string; page: string }
+);
 
-export const Page2 = observer(() => {
-  const { counter } = useStore();
-
-  return (
-    <>
-      <p>Page 2 is active</p>
-      {IS_COUNTER_ENABLED && <BasicCounter counter={counter} />}
-    </>
-  );
-});
-
-export const PageAny = observer(() => {
+export const NumberedPagesRoot = observer(() => {
   const {
-    router: { routes },
-    anyPage: { activePage, activePageInteger, setPage },
+    router: {
+      routes: {
+        numberedPages: { params },
+      },
+    },
+    numberedPages: { activePage, activePageInteger, setPage },
   } = useStore();
 
   return (
     <>
-      <h3>Page {routes.pageAny.params?.page}</h3>
+      <NavBar />
+      <h3>Page {params?.page}</h3>
       <p>
         Change page: &nbsp;
         <$FancyButton onClick={() => setPage(activePageInteger - 1)}>

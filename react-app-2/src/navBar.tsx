@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "./__store/root";
 import * as React from "react";
 import { css } from "@emotion/css";
+import styled from "@emotion/styled";
 
 export const NavBar = observer(() => {
   const {
@@ -73,3 +74,7 @@ export const NavBar = observer(() => {
     </>
   );
 });
+
+const $Link = styled.a`
+  color
+`;

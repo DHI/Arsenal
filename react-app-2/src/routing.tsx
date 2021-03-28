@@ -2,8 +2,10 @@
 import { createHashHistory } from "history";
 import { observer } from "mobx-react-lite";
 import * as React from "react";
-import { XRoute, XRouter } from "xroute";
-import { HomePage, Page2, PageAny } from "./someExamplePages";
+import { XRouter } from "xroute";
+import { BrisbaneMapRoot, brisbaneMapRoute } from "./examples/brisbaneMap";
+import { HomePageRoot, homePageRoute } from "./examples/homePage";
+import { NumberedPagesRoot, numberedPagesRoute } from "./examples/numberedPage";
 import { useStore } from "./__store/root";
 
 export const Routes = observer(() => {
@@ -11,32 +13,20 @@ export const Routes = observer(() => {
     router: { route, routes },
   } = useStore();
 
-  const routeComponentMap: { [k in keyof typeof routes]: React.FC } = {
-    home: HomePage,
-    page2: Page2,
-    pageAny: PageAny,
+  const routeToComponent: { [k in keyof typeof routes]: React.FC } = {
+    home: HomePageRoot,
+    numberedPages: NumberedPagesRoot,
+    brisbaneMap: BrisbaneMapRoot,
   };
 
-  const MatchingRoute = routeComponentMap[route?.key ?? "home"];
+  const RoutedComponent = routeToComponent[route?.key ?? "home"];
 
-  return <MatchingRoute />;
+  return <RoutedComponent />;
 });
 
 export function createRouter() {
   return new XRouter(
-    [
-      XRoute("home", "/:language?", {} as { language?: string }),
-      XRoute(
-        "page2",
-        "/:language/:page(2)",
-        {} as { language: string; page: "2" }
-      ),
-      XRoute(
-        "pageAny",
-        "/:language/:page",
-        {} as { language: string; page: string }
-      ),
-    ],
+    [homePageRoute, numberedPagesRoute, brisbaneMapRoute],
     createHashHistory()
   );
 }

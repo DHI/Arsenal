@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import { RootStore } from "./root";
 import { MapViewportModel } from "./__models/mapViewport";
 
-export class MapPageStore {
+export class BrisbaneMapStore {
   constructor(private root: RootStore) {
     makeAutoObservable(this);
   }

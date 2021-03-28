@@ -2,13 +2,17 @@
 import { makeAutoObservable } from "mobx";
 import { RootStore } from "./root";
 
-export class AnyPageStore {
+/**
+ * A basic store to hold state for a page
+ * which supports an infinite number of numbered pages.
+ */
+export class NumberedPagesStore {
   constructor(private root: RootStore) {
     makeAutoObservable(this);
   }
 
   get route() {
-    return this.root.router.routes.pageAny;
+    return this.root.router.routes.numberedPages;
   }
 
   get activePage() {
@@ -20,7 +24,8 @@ export class AnyPageStore {
   }
 
   setPage = (page: this["activePage"] | number) => {
-    if (isNaN(Number(page))) throw new Error("Cant set not number pages!");
+    if (isNaN(Number(page)))
+      throw new Error(`${page} must be a number or undefined.`);
 
     this.route.push({ page: page?.toString() });
   };

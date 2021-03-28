@@ -7,6 +7,7 @@ module.exports = {
     src: { url: "/" },
   },
   plugins: [
+    "@snowpack/plugin-babel",
     "@snowpack/plugin-postcss", // Depends on npm deps: postcss, postcss-cli, @snowpack/plugin-postcss
     "@snowpack/plugin-typescript", // Just does type checks
     "@snowpack/plugin-dotenv",
@@ -19,7 +20,9 @@ module.exports = {
     // manifest: true,
   },
   routes: [],
-  packageOptions: {},
+  packageOptions: {
+    knownEntrypoints: ["@emotion/react", "@emotion/styled"],
+  },
   devOptions: {
     open: "none",
   },

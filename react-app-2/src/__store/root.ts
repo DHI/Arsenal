@@ -2,10 +2,13 @@
 import { makeAutoObservable } from "mobx";
 import { createContext, useContext } from "react";
 import { createRouter } from "../routing";
-import { AnyPageStore } from "./anyPage";
+import { NumberedPagesStore } from "./numberedPage";
 import { ApiStore } from "./api";
-import { MapPageStore } from "./mapPage";
+import { BrisbaneMapStore } from "./brisbaneMap";
 
+/**
+ * This apps global state.
+ */
 export class RootStore {
   constructor() {
     makeAutoObservable(this);
@@ -14,8 +17,8 @@ export class RootStore {
   }
 
   router = createRouter();
-  anyPage = new AnyPageStore(this);
-  mapPage = new MapPageStore(this);
+  numberedPages = new NumberedPagesStore(this);
+  brisbaneMap = new BrisbaneMapStore(this);
   api = new ApiStore(this);
 }
 

@@ -8,11 +8,14 @@
     "moduleResolution": "node",
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "jsx": "react",
     "declaration": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    /** For emotion's css={} prop, twin.macro etc. */
+    "noEmit": true,
+    "jsx": "preserve",
+    "jsxImportSource": "@emotion/react"
   },
   "exclude": [
     "node_modules"

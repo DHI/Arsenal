@@ -2,11 +2,9 @@
 import { makeAutoObservable } from "mobx";
 
 export class CounterStore {
-  constructor() {
+  constructor(public count: number = 0) {
     makeAutoObservable(this);
   }
-
-  count = 0;
 
   incr = () => ++this.count;
   decr = () => --this.count;
