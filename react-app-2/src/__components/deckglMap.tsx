@@ -40,7 +40,12 @@ export const DeckGlMap = observer<{
         layers={layers}
         {...deckglProps}
       >
-        <StaticMap height="100%" width="100%" {...staticMap} />
+        <StaticMap
+          height="100%"
+          width="100%"
+          mapStyle="mapbox://styles/mapbox/outdoors-v11"
+          {...staticMap}
+        />
         {children}
       </DeckGL>
     </$DeckGlMap>

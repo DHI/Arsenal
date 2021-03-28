@@ -57,11 +57,12 @@ const $Link = styled.a`
 // `;
 
 const $NavBar = styled.main`
-  ${tw`fixed flex top-0 left-0 p-4 py-6 z-10 pt-2 w-full justify-center items-stretch`}
+  ${tw`fixed flex top-0 left-0 p-4 py-6 z-10 pt-2 w-full justify-center items-center bg-gray-100`}
   box-shadow: 0 3px 7px #0008;
 
   > a {
     ${tw`mx-20`}
   }
 `;
+// This doesnt work with emotioncss @ twin.macro...
 // > ${$Link} {

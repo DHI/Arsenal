@@ -18,11 +18,17 @@ export const BrisbaneMapRoot = observer(() => {
   return (
     <>
       <NavBar />
-      <main className={`h-full w-full`}>
-        <DeckGlMap layers={layers} viewport={viewport} staticMap={{}} />
-        <section
-          className={`absolute bottom-0 left-0 w-20 h-10 shadow-md m-2 rounded-sm p-4`}
-        >
+      <main tw="h-full w-full">
+        <DeckGlMap
+          layers={layers}
+          viewport={viewport}
+          staticMap={{
+            mapboxApiAccessToken:
+              "pk.eyJ1Ijoic2Fqb2RoaWdyb3VwIiwiYSI6ImNrbXNzeGs1bjBsMW4ycG81NmFnZjU2enkifQ.9qbf35asuvDu5ENhl8QRdg",
+            style: "mapbox://styles/mapbox/dark-v10",
+          }}
+        />
+        <section tw="absolute bottom-0 left-0 w-20 h-10 shadow-md m-2 rounded-sm p-4">
           Some overlay...
         </section>
       </main>
