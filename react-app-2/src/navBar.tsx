@@ -23,14 +23,14 @@ export const NavBar = observer(() => {
           Home
         </$Link>
         <$Link
-          tw="w-80 self-center"
+          tw="w-80"
           href={`#${routes.numberedPages.toPath({
             language: "en",
             page: "1",
           })}`}
           className={cx({ active: routes.numberedPages.isActive })}
         >
-          Page ({numberedPages.activePage})
+          Page By Number ({numberedPages.activePage ?? "None"})
         </$Link>
         <$Link
           onClick={() => routes.brisbaneMap.push({})}
@@ -44,7 +44,13 @@ export const NavBar = observer(() => {
 });
 
 const $Link = styled.a`
-  ${tw`flex border-2 border-gray-500 rounded px-3 pb-1`}
+  ${tw`
+     border-2
+     border-gray-400 rounded px-3 py-1 font-mono font-bold
+     transition-all
+     cursor-pointer
+     text-center
+  `}
 
   &:hover {
     ${tw`border-blue-800`}
@@ -57,11 +63,19 @@ const $Link = styled.a`
 // `;
 
 const $NavBar = styled.main`
-  ${tw`fixed flex top-0 left-0 p-4 py-6 z-10 pt-2 w-full justify-center items-center bg-gray-100`}
+  ${tw`
+    fixed flex
+    top-0 left-0
+    px-1 py-4
+    z-10 
+    w-full
+    justify-center items-center
+    bg-gray-100
+  `}
   box-shadow: 0 3px 7px #0008;
 
   > a {
-    ${tw`mx-20`}
+    ${tw`mx-5`}
   }
 `;
 // This doesnt work with emotioncss @ twin.macro...
