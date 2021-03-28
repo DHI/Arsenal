@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { RootStore } from "./root";
 import { MapViewportModel } from "./__models/mapViewport";
+import { StateModel } from "./__models/primitives";
 
 export class BrisbaneMapStore {
   constructor(private root: RootStore) {
@@ -16,6 +17,10 @@ export class BrisbaneMapStore {
     minZoom: 10,
     maxZoom: 20,
   });
+
+  cursorPosition = new StateModel<
+    undefined | { x: number; y: number; latitude?: number; longitude?: number }
+  >(undefined);
 
   get layers() {
     return [];

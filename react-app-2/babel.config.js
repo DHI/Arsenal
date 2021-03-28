@@ -22,5 +22,7 @@ module.exports = {
       "@babel/plugin-transform-react-jsx",
       { pragma: "__cssprop", pragmaFrag: "React.Fragment" },
     ],
+    ["@babel/plugin-proposal-decorators", { legacy: true }],
+    ["@babel/plugin-proposal-class-properties", { loose: true }],
   ],
 };
