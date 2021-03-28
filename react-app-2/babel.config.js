@@ -12,6 +12,7 @@ module.exports = {
     "@babel/preset-typescript",
   ],
   plugins: [
+    "babel-plugin-twin",
     "babel-plugin-macros",
     [
       "@emotion/babel-plugin-jsx-pragmatic",

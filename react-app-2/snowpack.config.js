@@ -22,6 +22,7 @@ module.exports = {
   routes: [],
   packageOptions: {
     polyfillNode: true,
+
     knownEntrypoints: [
       "@emotion/react",
       "@emotion/styled",
@@ -31,6 +32,7 @@ module.exports = {
   devOptions: {
     open: "none",
     port: 9001,
+    output: "stream",
   },
   buildOptions: {
     out: "./build/dist",

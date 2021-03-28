@@ -10,7 +10,6 @@ export const NavBar = observer(() => {
     router: { routes },
     numberedPages,
   } = useStore();
-  const height = 50;
 
   return (
     <>
@@ -18,6 +17,7 @@ export const NavBar = observer(() => {
       <$NavBar>
         <$Link
           href={`#${routes.homePage.toPath({})}`}
+          // Set active class for styled $Link to handle
           className={cx({ active: routes.numberedPages.isActive })}
         >
           Home
@@ -34,7 +34,8 @@ export const NavBar = observer(() => {
         </$Link>
         <$Link
           onClick={() => routes.brisbaneMap.push({})}
-          className={cx({ active: routes.brisbaneMap.isActive })}
+          // Just change out classnames when active instead...
+          className={`${routes.brisbaneMap.isActive ? "text-blue-100" : ""}`}
         >
           Brisbane Map
         </$Link>
@@ -51,6 +52,10 @@ const $Link = styled.a`
      cursor-pointer
      text-center
   `}
+
+  &.active {
+    ${tw`text-yellow-100 outline-white`}
+  }
 
   &:hover {
     ${tw`border-blue-800`}
