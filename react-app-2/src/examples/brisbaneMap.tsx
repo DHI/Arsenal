@@ -4,7 +4,7 @@ import { NavBar } from "../navBar";
 import { DeckGlMap } from "../__components/deckglMap";
 import { useStore } from "../__store/root";
 import * as React from "react";
-import { BrisbaneMapStore } from "../__store/brisbaneMap";
+import { CursorCrosshair } from "../__components/cursorCrosshair";
 
 export const brisbaneMapRoute = XRoute(
   "brisbaneMap",
@@ -45,25 +45,8 @@ export const BrisbaneMapRoot = observer(() => {
         />
 
         <LatLonDisplay />
-        <CursorCrosshair position={cursorPosition} />
-        {/* <CursorCrosshair /> */}
+        <CursorCrosshair position={cursorPosition.state} />
       </main>
-    </>
-  );
-});
-
-const CursorCrosshair = observer<{
-  position: BrisbaneMapStore["cursorPosition"];
-}>(() => {
-  const horLine = <div tw="absolute w-full border border-blue-400" />;
-  const vertLine = <div tw="absolute h-full border border-red-400" />;
-  const centerDot = <div tw="absolute rounded-lg border-4" />;
-
-  return (
-    <>
-      {horLine}
-      {vertLine}
-      {centerDot}
     </>
   );
 });
@@ -76,7 +59,7 @@ const LatLonDisplay = observer(() => {
   return (
     <>
       <section tw="absolute bottom-0 left-0 m-10 rounded-sm p-6 px-10 bg-black text-white opacity-60">
-        <h2 tw="text-3xl mb-4 text-green-200">Position:</h2>
+        <h2 tw="text-3xl mb-4 text-green-200">Center:</h2>
         <p>
           <b>Lat</b>: {viewport.latitude.toFixed(6)}
         </p>

@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx";
+import { ICursorPosition } from "../__components/cursorCrosshair";
 import { RootStore } from "./root";
 import { MapViewportModel } from "./__models/mapViewport";
 import { StateModel } from "./__models/primitives";
@@ -18,9 +19,11 @@ export class BrisbaneMapStore {
     maxZoom: 20,
   });
 
-  cursorPosition = new StateModel<
-    undefined | { x: number; y: number; latitude?: number; longitude?: number }
-  >(undefined);
+  cursorPosition = new StateModel<undefined | ICursorPosition>(undefined);
+
+  get route() {
+    return this.root.router.routes.brisbaneMap;
+  }
 
   get layers() {
     return [];
