@@ -3,7 +3,7 @@ import DeckGL from "@deck.gl/react";
 import { observer } from "mobx-react-lite";
 import React from "react";
 import { StaticMap } from "react-map-gl";
-import "mapbox-gl/src/css/mapbox-gl.css";
+import "mapbox-gl/dist/mapbox-gl.css";
 import { MapViewportModel } from "../__store/__models/mapViewport";
 import styled from "@emotion/styled";
 

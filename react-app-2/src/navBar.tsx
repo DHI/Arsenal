@@ -1,80 +1,67 @@
 import { observer } from "mobx-react-lite";
 import { useStore } from "./__store/root";
 import * as React from "react";
-import { css } from "@emotion/css";
-import styled from "@emotion/styled";
+import { cx } from "@emotion/css";
+import tw from "twin.macro";
+import styled from "@emotion/styled/macro";
 
 export const NavBar = observer(() => {
   const {
     router: { routes },
+    numberedPages,
   } = useStore();
   const height = 50;
 
-  console.log({ routes });
-
   return (
     <>
-      <div
-        className={css`
-          height: ${height}px;
-        `}
-      />
-      <main
-        className={
-          "absolute flex top-0 left-0 flex-grow items-center p-1 py-2 " +
-          css`
-            height: ${height}px;
-
-            a {
-              display: inline-block;
-              margin-right: 1em;
-              color: #5da9e7;
-            }
-          `
-        }
-      >
-        <a
-          href={`#${routes.home.toPath()}`}
-          className={`${routes.home.isActive ? "border-2 border-red-800" : ""}`}
+      <div tw="h-20" />
+      <$NavBar>
+        <$Link
+          href={`#${routes.homePage.toPath({})}`}
+          className={cx({ active: routes.numberedPages.isActive })}
         >
           Home
-        </a>
-        <a
-          href={`#${routes.page2.toPath({ language: "en", page: "2" })}`}
-          className={`${
-            routes.page2.isActive ? "border-4 border-blue-800" : ""
-          }`}
-        >
-          Page2
-        </a>
-        <a
-          href={`#${routes.pageAny.toPath({
+        </$Link>
+        <$Link
+          tw="w-80 self-center"
+          href={`#${routes.numberedPages.toPath({
             language: "en",
-            page: "3",
+            page: "1",
           })}`}
-          className={`${
-            routes.pageAny.isActive ? "border-4 border-green-800" : ""
-          }`}
+          className={cx({ active: routes.numberedPages.isActive })}
         >
-          Page 3
-        </a>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-
-            routes.pageAny.push({ page: "4", language: "foo" });
-          }}
-          className={`${
-            routes.pageAny.isActive ? "border-4 border-green-800" : ""
-          }`}
+          Page ({numberedPages.activePage})
+        </$Link>
+        <$Link
+          onClick={() => routes.brisbaneMap.push({})}
+          className={cx({ active: routes.brisbaneMap.isActive })}
         >
-          Page 4
-        </button>
-      </main>
+          Brisbane Map
+        </$Link>
+      </$NavBar>
     </>
   );
 });
 
 const $Link = styled.a`
-  color
+  ${tw`flex border-2 border-gray-500 rounded px-3 pb-1`}
+
+  &:hover {
+    ${tw`border-blue-800`}
+  }
 `;
+
+// const $NavBar = styled.main`
+//   ${tw`fixed flex top-0 left-0 p-4 py-6 z-10 pt-2 w-full justify-center items-stretch`}
+//   box-shadow: 0 3px 7px #0008;
+// `;
+
+const $NavBar = styled.main`
+  ${tw`fixed flex top-0 left-0 p-4 py-6 z-10 pt-2 w-full justify-center items-stretch`}
+  box-shadow: 0 3px 7px #0008;
+
+  > a {
+    ${tw`mx-20`}
+  }
+`;
+// > ${$Link} {

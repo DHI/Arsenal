@@ -21,10 +21,16 @@ module.exports = {
   },
   routes: [],
   packageOptions: {
-    knownEntrypoints: ["@emotion/react", "@emotion/styled"],
+    polyfillNode: true,
+    knownEntrypoints: [
+      "@emotion/react",
+      "@emotion/styled",
+      "@emotion/styled/base",
+    ],
   },
   devOptions: {
     open: "none",
+    port: 9001,
   },
   buildOptions: {
     out: "./build/dist",

@@ -14,12 +14,13 @@ export const Routes = observer(() => {
   } = useStore();
 
   const routeToComponent: { [k in keyof typeof routes]: React.FC } = {
-    home: HomePageRoot,
+    homePage: HomePageRoot,
     numberedPages: NumberedPagesRoot,
     brisbaneMap: BrisbaneMapRoot,
+    // brisbaneMap: () => <></>,
   };
 
-  const RoutedComponent = routeToComponent[route?.key ?? "home"];
+  const RoutedComponent = routeToComponent[route?.key ?? "homePage"];
 
   return <RoutedComponent />;
 });

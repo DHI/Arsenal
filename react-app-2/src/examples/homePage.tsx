@@ -4,7 +4,7 @@ import { NavBar } from "../navBar";
 import { XRoute } from "xroute";
 
 export const homePageRoute = XRoute(
-  "home",
+  "homePage",
   "/:language?",
   {} as { language?: string }
 );

@@ -4,23 +4,22 @@
 // - emotion css <p css={css``} /> syntax
 // - emotion css styled components full features
 module.exports = {
-  presets: [["@babel/preset-react"], "@babel/preset-typescript"],
+  presets: [
+    [
+      "@babel/preset-react",
+      { runtime: "automatic", importSource: "@emotion/react" },
+    ],
+    "@babel/preset-typescript",
+  ],
   plugins: [
     "babel-plugin-macros",
     [
       "@emotion/babel-plugin-jsx-pragmatic",
-      {
-        export: "jsx",
-        import: "__cssprop",
-        module: "@emotion/react",
-      },
+      { export: "jsx", import: "__cssprop", module: "@emotion/react" },
     ],
     [
       "@babel/plugin-transform-react-jsx",
-      {
-        pragma: "__cssprop",
-        pragmaFrag: "React.Fragment",
-      },
+      { pragma: "__cssprop", pragmaFrag: "React.Fragment" },
     ],
   ],
 };
