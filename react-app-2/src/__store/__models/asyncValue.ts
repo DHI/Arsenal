@@ -11,6 +11,7 @@ import { action, observable } from "mobx";
  *   return []
  * }
  * class ExampleModel {
+ *   constructor() { makeAutoObservable(this) }
  *   activeUserId = '22'
  *   files = new AsyncValue(async ({ foo }: { foo: number }) =>
  *     fetchFiles({ userId: this.activeUserId, foo })

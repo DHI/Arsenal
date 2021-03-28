@@ -21,12 +21,10 @@ export function areaLayers<FEATURE extends IAreaFeature>({
   hoverEvent?.id; // Listen to id changes
   clickEvent?.id; // Listen to id changes
 
-  const data = toJS(features.slice());
-
   return [
     new GeoJsonLayer({
       id,
-      data,
+      data: toJS(features),
       pickable: true,
       stroked: true,
       filled: true,
