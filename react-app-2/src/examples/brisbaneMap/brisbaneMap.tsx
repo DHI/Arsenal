@@ -1,14 +1,15 @@
 import { observer } from "mobx-react-lite";
 import { XRoute } from "xroute";
-import { NavBar } from "../navBar";
-import { DeckGlMap } from "../__components/deckglMap";
-import { useStore } from "../__store/root";
+import { NavBar } from "../../navBar";
+import { DeckGlMap } from "../../__components/deckglMap";
+import { useStore } from "../../__store/root";
 import * as React from "react";
-import { CursorCrosshair } from "../__components/cursorCrosshair";
+import { LatLonDisplay } from "./latLon";
+import { css } from "twin.macro";
 
 export const brisbaneMapRoute = XRoute(
   "brisbaneMap",
-  "/:language/brisbane/:lat?/:lon?",
+  "/:language/brisbane/:lat?/:lon?", // TODO: wire up lat/lon to URL
   {} as { language: string; lat?: string; lon?: string }
 );
 
@@ -35,8 +36,8 @@ export const BrisbaneMapRoot = observer(() => {
               if (!info?.index) return cursorPosition.set(undefined);
 
               cursorPosition.set({
-                latitude: info.coordinate?.[0],
-                longitude: info.coordinate?.[1],
+                latitude: info.coordinate?.[1],
+                longitude: info.coordinate?.[0],
                 x: info.x,
                 y: info.y,
               });
@@ -45,28 +46,41 @@ export const BrisbaneMapRoot = observer(() => {
         />
 
         <LatLonDisplay />
-        <CursorCrosshair position={cursorPosition.state} />
+        <MapTooltips />
+        {/* <CursorCrosshair position={cursorPosition.state} /> */}
       </main>
     </>
   );
 });
 
-const LatLonDisplay = observer(() => {
+const MapTooltips = observer(() => {
   const {
-    brisbaneMap: { viewport },
+    brisbaneMap: { areaHoverEvent },
   } = useStore();
+
+  console.log(areaHoverEvent.isActive);
 
   return (
     <>
-      <section tw="absolute bottom-0 left-0 m-10 rounded-sm p-6 px-10 bg-black text-white opacity-60">
-        <h2 tw="text-3xl mb-4 text-green-200">Center:</h2>
-        <p>
-          <b>Lat</b>: {viewport.latitude.toFixed(6)}
-        </p>
-        <p>
-          <b>Lon</b>: {viewport.longitude.toFixed(6)}
-        </p>
-      </section>
+      {areaHoverEvent.isActive && (
+        <div
+          css={css`
+            position: absolute;
+            background: white;
+            padding: 1em;
+            margin: 1em;
+            font-size: 90%;
+            border-radius: 1em;
+            border: 6px solid #8a211388;
+          `}
+          style={{
+            left: `${areaHoverEvent.x ?? 0}px`,
+            top: `${areaHoverEvent.y ?? 0}px`,
+          }}
+        >
+          {areaHoverEvent.properties?.title}
+        </div>
+      )}
     </>
   );
 });

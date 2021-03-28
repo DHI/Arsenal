@@ -1,6 +1,8 @@
 import { makeAutoObservable } from "mobx";
 
 /**
+ * NOTE: features must have a unique `id` field!
+ *
  * @example
  * // How to wire up to a layer:
  * new GeoJsonLayer({
