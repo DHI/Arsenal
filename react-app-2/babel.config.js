@@ -2,7 +2,6 @@
 // NOTE: This is all to support these features:
 // - twin.macro
 // - emotion css <p css={css``} /> syntax
-// - emotion css styled components full features
 module.exports = {
   presets: [
     [
