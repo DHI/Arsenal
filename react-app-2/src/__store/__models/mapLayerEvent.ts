@@ -30,11 +30,12 @@ export class MapLayerEventModel<
     return !!this.id;
   }
 
-  set = (
-    pickInfo:
-      | undefined
-      | { object?: DATUM; x?: number; y?: number; coordinate?: any },
-  ) => {
+  set = (pickInfo?: {
+    object?: DATUM;
+    x?: number;
+    y?: number;
+    coordinate?: any;
+  }) => {
     if (!pickInfo?.object?.id) return this.reset();
 
     const { object, coordinate, x, y } = pickInfo;
