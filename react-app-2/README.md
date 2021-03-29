@@ -10,9 +10,9 @@ This template is built on top of these notable features:
   - [x] Emotioncss
     - [x] In react classnames
     - [ ] Styled components as css selectors (requires babel config)
-    - [ ] Migrate to twin? (https://github.com/ben-rogerson/twin.examples/tree/master/react-emotion)
+    - [x] Migrate to twin? (https://github.com/ben-rogerson/twin.examples/tree/master/react-emotion)
       - https://github.com/ben-rogerson/twin.examples/tree/master/snowpack-react-emotion-typescript
-      - [ ] Ensure it works same as emotion
+      - [x] Ensure it works same as emotion
   - [x] Tailwindcss
     - [x] In react classnames
     - [ ] In styled components
@@ -21,7 +21,7 @@ This template is built on top of these notable features:
 - [x] Snowpack for fast development experience
 - [x] Webpack production build
 - [x] Storybook stories
-- [ ] DeckGL map & layer state management
+- [x] DeckGL map & layer state management
 - [ ] Bundle splitting per page
   - [ ] TODO: Demonstrate use of `@loadable/component`
 
