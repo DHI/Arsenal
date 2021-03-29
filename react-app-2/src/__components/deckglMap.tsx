@@ -1,11 +1,11 @@
-import { Layer } from "@deck.gl/core";
-import DeckGL from "@deck.gl/react";
-import { observer } from "mobx-react-lite";
-import React from "react";
-import { StaticMap } from "react-map-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
-import { MapViewportModel } from "../__store/__models/mapViewport";
-import styled from "@emotion/styled";
+import { Layer } from '@deck.gl/core';
+import DeckGL from '@deck.gl/react';
+import { observer } from 'mobx-react-lite';
+import React from 'react';
+import { StaticMap } from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import { MapViewportModel } from '../__store/__models/mapViewport';
+import styled from '@emotion/styled';
 
 /** A basic wrapper on top of the DeckGL component, coupled to the MapViewportModel */
 export const DeckGlMap = observer<{
@@ -49,7 +49,7 @@ export const DeckGlMap = observer<{
         {children}
       </DeckGL>
     </$DeckGlMap>
-  )
+  ),
 );
 
 export const $DeckGlMap = styled.main`

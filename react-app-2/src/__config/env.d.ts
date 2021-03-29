@@ -8,6 +8,6 @@ interface ImportMeta {
     readonly NODE_ENV: string;
     readonly SSR?: boolean;
 
-    readonly SNOWPACK_PUBLIC_FEATURE_COUNTER?: "on" | "off";
+    readonly SNOWPACK_PUBLIC_FEATURE_COUNTER?: 'on' | 'off';
   };
 }

@@ -1,6 +1,6 @@
-import { observer } from "mobx-react-lite";
-import * as React from "react";
-import tw, { css } from "twin.macro";
+import { observer } from 'mobx-react-lite';
+import * as React from 'react';
+import tw, { css } from 'twin.macro';
 
 export type ICursorPosition = {
   x: number;
@@ -71,7 +71,7 @@ export const CursorCrosshair = observer<{
           style={{
             top: `${y}px`,
             left: `${x}px`,
-            pointerEvents: "none",
+            pointerEvents: 'none',
           }}
         >
           {horLine}

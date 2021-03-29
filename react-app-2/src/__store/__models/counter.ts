@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
 
 export class CounterStore {
   constructor(public count: number = 0) {
@@ -9,5 +9,5 @@ export class CounterStore {
   incr = () => ++this.count;
   decr = () => --this.count;
 
-  setCount = (count: this["count"]) => (this.count = count);
+  setCount = (count: this['count']) => (this.count = count);
 }

@@ -4,38 +4,43 @@
 /** @type import("snowpack").SnowpackUserConfig */
 module.exports = {
   mount: {
-    src: { url: "/" },
+    src: { url: '/dist' },
   },
   plugins: [
-    "@snowpack/plugin-babel",
-    "@snowpack/plugin-postcss", // Depends on npm deps: postcss, postcss-cli, @snowpack/plugin-postcss
-    "@snowpack/plugin-typescript", // Just does type checks
-    "@snowpack/plugin-dotenv",
-    ["@snowpack/plugin-webpack"],
+    '@snowpack/plugin-babel',
+    '@snowpack/plugin-postcss', // Depends on npm deps: postcss, postcss-cli, @snowpack/plugin-postcss
+    '@snowpack/plugin-typescript', // Just does type checks
+    '@snowpack/plugin-dotenv',
+    ['@snowpack/plugin-webpack'],
   ],
   optimize: {
-    target: "es2017",
+    target: 'es2017',
     // bundle: true,
     // minify: false,
     // manifest: true,
   },
-  routes: [],
+  routes: [
+    {
+      src: '/',
+      dest: '/dist/index.html',
+    },
+  ],
   packageOptions: {
     polyfillNode: true,
 
     knownEntrypoints: [
-      "@emotion/react",
-      "@emotion/styled",
-      "@emotion/styled/base",
+      '@emotion/react',
+      '@emotion/styled',
+      '@emotion/styled/base',
     ],
   },
   devOptions: {
-    open: "none",
+    open: 'none',
     port: 9001,
-    output: "stream",
+    output: 'stream',
   },
   buildOptions: {
-    out: "./build/dist",
+    out: './build/dist',
 
     clean: true,
   },

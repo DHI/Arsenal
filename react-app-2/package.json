@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "description": "...",
-  "eslintConfig": {
-    "extends": "eslint-config-nfour/.eslintrc.react"
-  },
   "babelMacros": {
     "twin": {
       "preset": "emotion"
@@ -13,7 +10,8 @@
   },
   "scripts": {
     "build": "snowpack build",
-    "start": "snowpack dev"
+    "start": "snowpack dev",
+    "lint": "eslint ."
   },
   "browserslist": ">0.75%, not ie 11, not UCAndroid >0, not OperaMini all",
   "peerDependencies": {},

@@ -1,7 +1,7 @@
-import { GeoJsonLayer } from "@deck.gl/layers";
-import { GeoJsonLayerProps } from "@deck.gl/layers/geojson-layer/geojson-layer";
-import { toJS } from "mobx";
-import { MapLayerEventModel } from "../__store/__models/mapLayerEvent";
+import { GeoJsonLayer } from '@deck.gl/layers';
+import { GeoJsonLayerProps } from '@deck.gl/layers/geojson-layer/geojson-layer';
+import { toJS } from 'mobx';
+import { MapLayerEventModel } from '../__store/__models/mapLayerEvent';
 
 export type IFeature = GeoJSON.Feature<GeoJSON.Geometry, {}>;
 
@@ -30,7 +30,7 @@ export function pickableGeoJsonLayer<FEATURE extends IFeature>({
     filled: true,
     wireframe: true,
     extruded: false,
-    lineWidthUnits: "pixels",
+    lineWidthUnits: 'pixels',
     getFillColor: () => [100, 100, 100, 150],
     getLineColor: () => [100, 100, 100, 255],
     getLineWidth: ({ id }) => {

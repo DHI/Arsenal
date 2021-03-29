@@ -1,4 +1,4 @@
-import { action, observable } from "mobx";
+import { action, observable } from 'mobx';
 
 /**
  * An experimental but simple way to encapsulate API access.
@@ -25,7 +25,7 @@ import { action, observable } from "mobx";
 export class AsyncValue<VALUE extends any, PAYLOAD extends undefined | {}> {
   constructor(
     private _query: (payload: PAYLOAD) => Promise<VALUE>,
-    value?: VALUE
+    value?: VALUE,
   ) {
     this.value = value;
   }
@@ -35,7 +35,7 @@ export class AsyncValue<VALUE extends any, PAYLOAD extends undefined | {}> {
   // TODO: add error
   // see gqless/graphql-state-react for interfaces to make standard with.
 
-  @action.bound set(value: this["value"]) {
+  @action.bound set(value: this['value']) {
     return (this.value = value);
   }
 

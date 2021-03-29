@@ -1,6 +1,6 @@
-import { observer } from "mobx-react-lite";
-import { useStore } from "../../__store/root";
-import * as React from "react";
+import { observer } from 'mobx-react-lite';
+import { useStore } from '../../__store/root';
+import * as React from 'react';
 
 export const LatLonDisplay = observer(() => {
   const {

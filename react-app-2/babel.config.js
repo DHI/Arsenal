@@ -6,23 +6,23 @@
 module.exports = {
   presets: [
     [
-      "@babel/preset-react",
-      { runtime: "automatic", importSource: "@emotion/react" },
+      '@babel/preset-react',
+      { runtime: 'automatic', importSource: '@emotion/react' },
     ],
-    "@babel/preset-typescript",
+    '@babel/preset-typescript',
   ],
   plugins: [
-    "babel-plugin-twin",
-    "babel-plugin-macros",
+    'babel-plugin-twin',
+    'babel-plugin-macros',
     [
-      "@emotion/babel-plugin-jsx-pragmatic",
-      { export: "jsx", import: "__cssprop", module: "@emotion/react" },
+      '@emotion/babel-plugin-jsx-pragmatic',
+      { export: 'jsx', import: '__cssprop', module: '@emotion/react' },
     ],
     [
-      "@babel/plugin-transform-react-jsx",
-      { pragma: "__cssprop", pragmaFrag: "React.Fragment" },
+      '@babel/plugin-transform-react-jsx',
+      { pragma: '__cssprop', pragmaFrag: 'React.Fragment' },
     ],
-    ["@babel/plugin-proposal-decorators", { legacy: true }],
-    ["@babel/plugin-proposal-class-properties", { loose: true }],
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    ['@babel/plugin-proposal-class-properties', { loose: true }],
   ],
 };

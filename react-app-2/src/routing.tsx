@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { createHashHistory } from "history";
-import { observer } from "mobx-react-lite";
-import * as React from "react";
-import { XRouter } from "xroute";
+import { createHashHistory } from 'history';
+import { observer } from 'mobx-react-lite';
+import * as React from 'react';
+import { XRouter } from 'xroute';
 import {
   BrisbaneMapRoot,
   brisbaneMapRoute,
-} from "./examples/brisbaneMap/brisbaneMap";
-import { HomePageRoot, homePageRoute } from "./examples/homePage";
-import { NumberedPagesRoot, numberedPagesRoute } from "./examples/numberedPage";
-import { useStore } from "./__store/root";
+} from './examples/brisbaneMap/brisbaneMap';
+import { HomePageRoot, homePageRoute } from './examples/homePage';
+import { NumberedPagesRoot, numberedPagesRoute } from './examples/numberedPage';
+import { useStore } from './__store/root';
 
 export const Routes = observer(() => {
   const {
@@ -23,7 +23,7 @@ export const Routes = observer(() => {
     // brisbaneMap: () => <></>,
   };
 
-  const RoutedComponent = routeToComponent[route?.key ?? "homePage"];
+  const RoutedComponent = routeToComponent[route?.key ?? 'homePage'];
 
   return <RoutedComponent />;
 });
@@ -31,6 +31,6 @@ export const Routes = observer(() => {
 export function createRouter() {
   return new XRouter(
     [homePageRoute, numberedPagesRoute, brisbaneMapRoute],
-    createHashHistory()
+    createHashHistory(),
   );
 }

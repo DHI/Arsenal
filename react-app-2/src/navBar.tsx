@@ -1,9 +1,9 @@
-import { observer } from "mobx-react-lite";
-import { useStore } from "./__store/root";
-import * as React from "react";
-import { cx } from "@emotion/css";
-import tw from "twin.macro";
-import styled from "@emotion/styled/macro";
+import { observer } from 'mobx-react-lite';
+import { useStore } from './__store/root';
+import * as React from 'react';
+import { cx } from '@emotion/css';
+import tw from 'twin.macro';
+import styled from '@emotion/styled/macro';
 
 export const NavBar = observer(() => {
   const {
@@ -25,17 +25,17 @@ export const NavBar = observer(() => {
         <$Link
           tw="w-80"
           href={`#${routes.numberedPages.toPath({
-            language: "en",
-            page: "1",
+            language: 'en',
+            page: '1',
           })}`}
           className={cx({ active: routes.numberedPages.isActive })}
         >
-          Page By Number ({numberedPages.activePage ?? "None"})
+          Page By Number ({numberedPages.activePage ?? 'None'})
         </$Link>
         <$Link
           onClick={() => routes.brisbaneMap.push({})}
           // Just change out classnames when active instead...
-          className={`${routes.brisbaneMap.isActive ? "text-blue-100" : ""}`}
+          className={`${routes.brisbaneMap.isActive ? 'text-blue-100' : ''}`}
         >
           Brisbane Map
         </$Link>
@@ -78,6 +78,7 @@ const $NavBar = styled.main`
     bg-gray-100
   `}
   box-shadow: 0 3px 7px #0008;
+  background: #000a;
 
   > a {
     ${tw`mx-5`}

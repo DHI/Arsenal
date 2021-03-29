@@ -1,4 +1,4 @@
-import { observable, makeObservable, action } from "mobx";
+import { observable, makeObservable, action } from 'mobx';
 
 /**
  * An easier way to handle simple value getter/setter.
@@ -17,7 +17,7 @@ export class StateModel<STATE = any> {
 
   @observable state: STATE;
 
-  @action set = (state: this["state"]): void => {
+  @action set = (state: this['state']): void => {
     this.state = state;
   };
 }

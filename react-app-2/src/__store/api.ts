@@ -1,5 +1,5 @@
-import { makeAutoObservable } from "mobx";
-import { RootStore } from "./root";
+import { makeAutoObservable } from 'mobx';
+import { RootStore } from './root';
 
 export class ApiStore {
   constructor(private root: RootStore) {

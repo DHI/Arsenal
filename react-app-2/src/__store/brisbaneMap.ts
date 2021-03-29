@@ -1,12 +1,12 @@
-import { makeAutoObservable } from "mobx";
-import { BrisbaneAreaFeature } from "../examples/__config";
-import { ICursorPosition } from "../__components/cursorCrosshair";
-import { pickableGeoJsonLayer } from "../__components/mapLayers";
-import { RootStore } from "./root";
-import { MapLayerEventModel } from "./__models/mapLayerEvent";
-import { MapViewportModel } from "./__models/mapViewport";
-import { StateModel } from "./__models/primitives";
-import brisbaneFc from "../__assets/exampleBrisbaneGeoJson.json";
+import { makeAutoObservable } from 'mobx';
+import { BrisbaneAreaFeature } from '../examples/__config';
+import { ICursorPosition } from '../__components/cursorCrosshair';
+import { pickableGeoJsonLayer } from '../__components/mapLayers';
+import { RootStore } from './root';
+import { MapLayerEventModel } from './__models/mapLayerEvent';
+import { MapViewportModel } from './__models/mapViewport';
+import { BooleanModel, StateModel } from './__models/primitives';
+import brisbaneFc from '../__assets/exampleBrisbaneGeoJson.json';
 
 export class BrisbaneMapStore {
   constructor(private root: RootStore) {
@@ -23,8 +23,9 @@ export class BrisbaneMapStore {
     maxZoom: 20,
   });
 
-  cursorPosition = new StateModel<undefined | ICursorPosition>(undefined);
+  brisbaneAreaLayerToggle = new BooleanModel(true);
 
+  cursorPosition = new StateModel<undefined | ICursorPosition>(undefined);
   areaHoverEvent = new MapLayerEventModel<BrisbaneAreaFeature>();
 
   get route() {
@@ -32,14 +33,13 @@ export class BrisbaneMapStore {
   }
 
   get brisbaneAreaLayers() {
-    this.areaHoverEvent.id;
+    if (!this.brisbaneAreaLayerToggle.state === true) return [];
 
-    // NOTE: .slice() ensures the layer is regenered every time this function is called
     const features = brisbaneFc.features.slice() as BrisbaneAreaFeature[];
 
     return [
       pickableGeoJsonLayer({
-        id: "myarea",
+        id: 'myarea',
         features,
         hoverEvent: this.areaHoverEvent,
         layer: {

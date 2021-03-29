@@ -1,8 +1,8 @@
-import * as React from "react";
-import { render } from "react-dom";
-import { Routes } from "./routing";
-import { RootStore, StoreReactContext } from "./__store/root";
-import "./global.css";
+import * as React from 'react';
+import { render } from 'react-dom';
+import { Routes } from './routing';
+import { RootStore, StoreReactContext } from './__store/root';
+import './global.css';
 
 function Root() {
   const [store] = React.useState(() => new RootStore());
@@ -14,6 +14,6 @@ function Root() {
   );
 }
 
-render(<Root />, document.getElementById("__root"));
+render(<Root />, document.getElementById('__root'));
 
 if (import.meta.hot) import.meta.hot.accept();

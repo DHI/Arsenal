@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
 
 /**
  * NOTE: features must have a unique `id` field!
@@ -21,7 +21,7 @@ export class MapLayerEventModel<
   }
 
   id?: string | number = undefined;
-  properties?: DATUM["properties"] = undefined;
+  properties?: DATUM['properties'] = undefined;
   x?: number = undefined;
   y?: number = undefined;
 

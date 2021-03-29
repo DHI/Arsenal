@@ -1,4 +1,4 @@
-import { makeAutoObservable, toJS } from "mobx";
+import { makeAutoObservable, toJS } from 'mobx';
 
 export class MapViewportModel {
   constructor(initialState: Partial<MapViewportModel>) {

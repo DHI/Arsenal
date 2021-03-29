@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { makeAutoObservable } from "mobx";
-import { createContext, useContext } from "react";
-import { createRouter } from "../routing";
-import { NumberedPagesStore } from "./numberedPage";
-import { ApiStore } from "./api";
-import { BrisbaneMapStore } from "./brisbaneMap";
+import { makeAutoObservable } from 'mobx';
+import { createContext, useContext } from 'react';
+import { createRouter } from '../routing';
+import { NumberedPagesStore } from './numberedPage';
+import { ApiStore } from './api';
+import { BrisbaneMapStore } from './brisbaneMap';
 
 /**
  * This apps global state.
@@ -23,14 +23,14 @@ export class RootStore {
 }
 
 export const StoreReactContext = createContext<RootStore | undefined>(
-  undefined
+  undefined,
 );
 
 export function useStore() {
   return (
     useContext(StoreReactContext) ??
     (() => {
-      throw new Error("RootStoreReactContext missing.");
+      throw new Error('RootStoreReactContext missing.');
     })()
   );
 }

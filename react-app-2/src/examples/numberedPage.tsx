@@ -1,14 +1,14 @@
-import { useStore } from "../__store/root";
-import * as React from "react";
-import { observer } from "mobx-react-lite";
-import { XRoute } from "xroute";
-import { NavBar } from "../navBar";
-import { styled } from "twin.macro";
+import { useStore } from '../__store/root';
+import * as React from 'react';
+import { observer } from 'mobx-react-lite';
+import { XRoute } from 'xroute';
+import { NavBar } from '../navBar';
+import { styled } from 'twin.macro';
 
 export const numberedPagesRoute = XRoute(
-  "numberedPages",
-  "/:language/page/:page(\\d+)",
-  {} as { language: string; page: string }
+  'numberedPages',
+  '/:language/page/:page(\\d+)',
+  {} as { language: string; page: string },
 );
 
 export const NumberedPagesRoot = observer(() => {
