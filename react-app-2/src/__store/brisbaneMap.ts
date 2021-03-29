@@ -33,7 +33,7 @@ export class BrisbaneMapStore {
   }
 
   get brisbaneAreaLayers() {
-    if (!this.brisbaneAreaLayerToggle.state === true) return [];
+    if (!this.brisbaneAreaLayerToggle.value === true) return [];
 
     const features = brisbaneFc.features.slice() as BrisbaneAreaFeature[];
 

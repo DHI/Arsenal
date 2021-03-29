@@ -7,18 +7,18 @@ import { observable, makeObservable, action } from 'mobx';
  * const selectedFruit = new StateModel<'banana'|'apple'|undefined>(undefined)
  * selectedFruit.set('test') // TS error
  * selectedFruit.set('banana') // Valid
- * selectedFruit.state // 'banana'
+ * selectedFruit.value // 'banana'
  */
 export class StateModel<STATE = any> {
-  constructor(state: STATE) {
-    this.state = state;
+  constructor(value: STATE) {
+    this.value = value;
     makeObservable(this);
   }
 
-  @observable state: STATE;
+  @observable value: STATE;
 
-  @action set = (state: this['state']): void => {
-    this.state = state;
+  @action set = (state: this['value']): void => {
+    this.value = state;
   };
 }
 
@@ -29,15 +29,15 @@ export class StateModel<STATE = any> {
  *
  * @example
  * const isActive = new BooleanModel(true)
- * isActive.state // true
+ * isActive.value // true
  * isActive.toggle() // false
  * isActive.set(true)
  */
 export class BooleanModel extends StateModel {
-  constructor(public state = false) {
-    super(state);
+  constructor(public value = false) {
+    super(value);
     makeObservable(this);
   }
 
-  @action toggle = () => (this.state = !this.state);
+  @action toggle = () => (this.value = !this.value);
 }

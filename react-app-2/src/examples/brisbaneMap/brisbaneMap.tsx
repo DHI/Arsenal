@@ -49,7 +49,7 @@ export const BrisbaneMapRoot = observer(() => {
 
         <LatLonDisplay />
         <MapTooltips />
-        <CursorCrosshair position={cursorPosition.state} />
+        <CursorCrosshair position={cursorPosition.value} />
         <LayerTogglesOverlay />
       </main>
     </>
@@ -65,7 +65,7 @@ const LayerTogglesOverlay = observer(() => {
     <div tw="absolute top-60 right-0 bg-white opacity-90 text-sm text-red-500 m-5 p-8">
       <input
         type="checkbox"
-        checked={brisbaneAreaLayerToggle.state}
+        checked={brisbaneAreaLayerToggle.value}
         onChange={(e) => brisbaneAreaLayerToggle.set(e.target.checked)}
       />{' '}
       <label>Area Polygon</label>
