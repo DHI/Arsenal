@@ -22,6 +22,7 @@ export class MapLayerEventModel<
 
   id?: string | number = undefined;
   properties?: DATUM['properties'] = undefined;
+  coordinate?: [number, number] = undefined;
   x?: number = undefined;
   y?: number = undefined;
 
@@ -29,14 +30,19 @@ export class MapLayerEventModel<
     return !!this.id;
   }
 
-  set = (pickInfo: undefined | { object?: DATUM; x?: number; y?: number }) => {
+  set = (
+    pickInfo:
+      | undefined
+      | { object?: DATUM; x?: number; y?: number; coordinate?: any },
+  ) => {
     if (!pickInfo?.object?.id) return this.reset();
 
-    const { object, x, y } = pickInfo;
+    const { object, coordinate, x, y } = pickInfo;
     const { id, properties } = object ?? {};
 
     this.id = id;
     this.properties = properties;
+    this.coordinate = coordinate;
     this.x = x;
     this.y = y;
   };
@@ -44,6 +50,7 @@ export class MapLayerEventModel<
   reset = () => {
     this.id = undefined;
     this.properties = undefined;
+    this.coordinate = undefined;
     this.x = undefined;
     this.y = undefined;
   };
