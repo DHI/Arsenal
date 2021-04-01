@@ -13,10 +13,10 @@ import { makeAutoObservable } from 'mobx';
  * // How to use in a tooltip:
  * <Tooltip isHidden={!hoverEvent.isActive}>{hoverEvent.properties?.title}</Tooltip>
  */
-export class MapLayerEventModel<
+export class MapEventModel<
   DATUM extends { id?: string | number; properties?: {} }
 > {
-  constructor() {
+  constructor(private config: { ignoreId?: boolean } = {}) {
     makeAutoObservable(this);
   }
 
@@ -36,9 +36,9 @@ export class MapLayerEventModel<
     y?: number;
     coordinate?: any;
   }) => {
-    if (!pickInfo?.object?.id) return this.reset();
+    if (this.config.ignoreId !== true && !pickInfo?.object) return this.reset();
 
-    const { object, coordinate, x, y } = pickInfo;
+    const { object, coordinate, x, y } = pickInfo ?? {};
     const { id, properties } = object ?? {};
 
     this.id = id;

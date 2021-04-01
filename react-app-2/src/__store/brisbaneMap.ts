@@ -3,7 +3,7 @@ import { BrisbaneAreaFeature } from '../examples/brisbaneMap/__config';
 import { ICursorPosition } from '../__components/cursorCrosshair';
 import { pickableGeoJsonLayer } from '../__components/mapLayers';
 import { RootStore } from './root';
-import { MapLayerEventModel } from './__models/mapLayerEvent';
+import { MapEventModel } from './__models/mapLayerEvent';
 import { MapViewportModel } from './__models/mapViewport';
 import { BooleanModel, StateModel } from './__models/primitives';
 import brisbaneFc from '../__assets/exampleBrisbaneGeoJson.json';
@@ -26,7 +26,7 @@ export class BrisbaneMapStore {
   brisbaneAreaLayerToggle = new BooleanModel(true);
 
   cursorPosition = new StateModel<undefined | ICursorPosition>(undefined);
-  areaHoverEvent = new MapLayerEventModel<BrisbaneAreaFeature>();
+  areaHoverEvent = new MapEventModel<BrisbaneAreaFeature>();
 
   get route() {
     return this.root.router.routes.brisbaneMap;

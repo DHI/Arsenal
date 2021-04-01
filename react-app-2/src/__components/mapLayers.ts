@@ -1,7 +1,7 @@
 import { GeoJsonLayer } from '@deck.gl/layers';
 import { GeoJsonLayerProps } from '@deck.gl/layers/geojson-layer/geojson-layer';
 import { toJS } from 'mobx';
-import { MapLayerEventModel } from '../__store/__models/mapLayerEvent';
+import { MapEventModel } from '../__store/__models/mapLayerEvent';
 
 export type IFeature = GeoJSON.Feature<GeoJSON.Geometry, {}>;
 
@@ -15,8 +15,8 @@ export function pickableGeoJsonLayer<FEATURE extends IFeature>({
 }: {
   id: string;
   features?: FEATURE[];
-  hoverEvent?: MapLayerEventModel<FEATURE>;
-  clickEvent?: MapLayerEventModel<FEATURE>;
+  hoverEvent?: MapEventModel<FEATURE>;
+  clickEvent?: MapEventModel<FEATURE>;
   layer?: Partial<GeoJsonLayerProps<FEATURE>>;
 }) {
   hoverEvent?.id; // Listen to id changes
