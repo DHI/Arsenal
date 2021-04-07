@@ -6,7 +6,7 @@ import { XRoute } from 'xroute';
 export const homePageRoute = XRoute(
   'homePage',
   '/:language?',
-  {} as { language?: string },
+  {} as { pathname: { language?: string }; search: {} },
 );
 
 export const HomePageRoot = observer(() => (

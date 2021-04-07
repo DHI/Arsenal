@@ -11,7 +11,11 @@ import { CursorCrosshair } from '../../__components/cursorCrosshair';
 export const brisbaneMapRoute = XRoute(
   'brisbaneMap',
   '/:language/brisbane/:lat?/:lon?', // TODO: wire up lat/lon to URL
-  {} as { language: string; lat?: string; lon?: string },
+  {} as {
+    pathname: { language: string; lat?: string; lon?: string };
+    search: {};
+    hash: ''; // not using, can omit.
+  },
 );
 
 export const BrisbaneMapRoot = observer(() => {

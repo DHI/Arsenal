@@ -16,7 +16,7 @@ export class NumberedPagesStore {
   }
 
   get activePage() {
-    return this.route.params?.page;
+    return this.route.pathname?.page;
   }
 
   get activePageInteger() {
@@ -27,6 +27,6 @@ export class NumberedPagesStore {
     if (isNaN(Number(page)))
       throw new Error(`${page} must be a number or undefined.`);
 
-    this.route.push({ page: page?.toString() });
+    this.route.push({ pathname: { page: page?.toString() } });
   };
 }

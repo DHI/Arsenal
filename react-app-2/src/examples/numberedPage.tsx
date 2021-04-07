@@ -7,16 +7,14 @@ import { styled } from 'twin.macro';
 
 export const numberedPagesRoute = XRoute(
   'numberedPages',
-  '/:language/page/:page(\\d+)',
-  {} as { language: string; page: string },
+  '/:language/page/:page(\\d+)?',
+  {} as { pathname: { language: string; page?: string }; search: {} },
 );
 
 export const NumberedPagesRoot = observer(() => {
   const {
     router: {
-      routes: {
-        numberedPages: { params },
-      },
+      routes: { numberedPages: route },
     },
     numberedPages: { activePage, activePageInteger, setPage },
   } = useStore();
@@ -30,7 +28,7 @@ export const NumberedPagesRoot = observer(() => {
             <$FancyButton onClick={() => setPage(activePageInteger - 1)}>
               Back
             </$FancyButton>
-            <span tw="p-4">Page {params?.page}</span>
+            <span tw="p-4">Page {route.pathname?.page}</span>
             <$FancyButton onClick={() => setPage(activePageInteger + 1)}>
               Next
             </$FancyButton>

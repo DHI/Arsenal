@@ -16,7 +16,7 @@ export const NavBar = observer(() => {
       <div tw="h-20" />
       <$NavBar>
         <$Link
-          href={`#${routes.homePage.toPath({})}`}
+          href={`#${routes.homePage.toUri({})}`}
           // Set active class for styled $Link to handle
           className={cx({ active: routes.numberedPages.isActive })}
         >
@@ -24,16 +24,20 @@ export const NavBar = observer(() => {
         </$Link>
         <$Link
           tw="w-80"
-          href={`#${routes.numberedPages.toPath({
-            language: 'en',
-            page: '1',
+          href={`#${routes.numberedPages.toUri({
+            pathname: {
+              language: 'en',
+              page: '1',
+            },
           })}`}
           className={cx({ active: routes.numberedPages.isActive })}
         >
           Page By Number ({numberedPages.activePage ?? 'None'})
         </$Link>
         <$Link
-          onClick={() => routes.brisbaneMap.push({ language: 'en' })}
+          onClick={() =>
+            routes.brisbaneMap.push({ pathname: { language: 'en' } })
+          }
           // Just change out classnames when active instead...
           className={`${routes.brisbaneMap.isActive ? 'text-blue-100' : ''}`}
         >
