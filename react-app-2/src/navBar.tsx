@@ -33,7 +33,7 @@ export const NavBar = observer(() => {
           Page By Number ({numberedPages.activePage ?? 'None'})
         </$Link>
         <$Link
-          onClick={() => routes.brisbaneMap.push({})}
+          onClick={() => routes.brisbaneMap.push({ language: 'en' })}
           // Just change out classnames when active instead...
           className={`${routes.brisbaneMap.isActive ? 'text-blue-100' : ''}`}
         >
