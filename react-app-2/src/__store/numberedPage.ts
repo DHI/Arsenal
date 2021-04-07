@@ -27,6 +27,9 @@ export class NumberedPagesStore {
     if (isNaN(Number(page)))
       throw new Error(`${page} must be a number or undefined.`);
 
-    this.route.push({ pathname: { page: page?.toString() } });
+    this.route.push({
+      pathname: { page: page?.toString() },
+      search: { page: page?.toString() },
+    });
   };
 }

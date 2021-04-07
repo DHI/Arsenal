@@ -1142,12 +1142,12 @@
     mjolnir.js "^2.5.0"
     probe.gl "^3.3.1"
 
-"@deck.gl/layers@8.5.0-alpha.3":
-  version "8.5.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@deck.gl/layers/-/layers-8.5.0-alpha.3.tgz#5fad173a19bc9a4d66fb75050eabe6800f966020"
-  integrity sha512-MeAMdiBmiWgB10EOqpaS+QU0+2ExYwOF7OZEEZT1VU3dIcpyfnjssLutNNC76O2sbR0sGDX4kuavgb7jZlbvuQ==
+"@deck.gl/layers@^8.4.12":
+  version "8.4.12"
+  resolved "https://registry.yarnpkg.com/@deck.gl/layers/-/layers-8.4.12.tgz#25f2e37804edc429d8f9b7716b3d2a4efcf0508d"
+  integrity sha512-Wmqwj1NMDyqM0Ip8RMCkjsLgiZx5nAcpbEklWRU1RXP5KGxM8nLqVkwphKzUXerCVNTrZB7DKxO+7+heubMzTg==
   dependencies:
-    "@loaders.gl/images" "^3.0.0-alpha"
+    "@loaders.gl/images" "^2.3.13"
     "@mapbox/tiny-sdf" "^1.1.0"
     "@math.gl/polygon" "^3.4.2"
     earcut "^2.0.6"
@@ -1420,12 +1420,27 @@
     "@loaders.gl/loader-utils" "3.0.0-alpha.10"
     "@loaders.gl/worker-utils" "3.0.0-alpha.10"
 
+"@loaders.gl/images@^2.3.13":
+  version "2.3.13"
+  resolved "https://registry.yarnpkg.com/@loaders.gl/images/-/images-2.3.13.tgz#3b827cf1e8d31c8f1adf85136c7fd53c08dbb0a8"
+  integrity sha512-BBgLf17udhRnYwvsObAOM7jEeLBaeU3di1NyLhpTMa7WbG3jAnDlmy1BRue8wYfgVpWnmk18YubZtX6vCRrJnA==
+  dependencies:
+    "@loaders.gl/loader-utils" "2.3.13"
+
 "@loaders.gl/images@^3.0.0-alpha":
   version "3.0.0-alpha.10"
   resolved "https://registry.yarnpkg.com/@loaders.gl/images/-/images-3.0.0-alpha.10.tgz#d5d46d320effb132fe8b7b649049764031821ff7"
   integrity sha512-JJTGYZf+MvzFGRLxxZDRa9++en9ltnJig+GK5iI57WI2ECQddAeGd4mMOyYOYkK2Edb/hTwDM0KEypSi5j5Pog==
   dependencies:
     "@loaders.gl/loader-utils" "3.0.0-alpha.10"
+
+"@loaders.gl/loader-utils@2.3.13":
+  version "2.3.13"
+  resolved "https://registry.yarnpkg.com/@loaders.gl/loader-utils/-/loader-utils-2.3.13.tgz#5cf6403b1c19b2fe5abacbd89e6252b8ca50db96"
+  integrity sha512-vXzH5CWG8pWjUEb7hUr6CM4ERj4NVRpA60OxvVv/OaZZ7hNN63+9/tSUA5IXD9QArWPWrFBnKnvE+5gg4WNqTg==
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    "@probe.gl/stats" "^3.3.0"
 
 "@loaders.gl/loader-utils@3.0.0-alpha.10":
   version "3.0.0-alpha.10"

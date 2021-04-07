@@ -8,7 +8,10 @@ import { styled } from 'twin.macro';
 export const numberedPagesRoute = XRoute(
   'numberedPages',
   '/:language/page/:page(\\d+)?',
-  {} as { pathname: { language: string; page?: string }; search: {} },
+  {} as {
+    pathname: { language: string; page?: string };
+    search: { page?: string };
+  },
 );
 
 export const NumberedPagesRoot = observer(() => {
