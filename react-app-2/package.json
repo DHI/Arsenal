@@ -21,6 +21,7 @@
     "@deck.gl/layers": "^8.4.12",
     "@deck.gl/react": "8.5.0-alpha.3",
     "@loadable/component": "^5.14.1",
+    "@snowpack/plugin-react-refresh": "^2.4.2",
     "history": "^5.0.0",
     "mapbox-gl": "2.2.0",
     "mobx": "^6.1.8",

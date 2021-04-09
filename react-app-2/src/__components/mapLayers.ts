@@ -39,6 +39,7 @@ export function pickableGeoJsonLayer<FEATURE extends IFeature>({
       return 1;
     },
     onHover: hoverEvent?.set,
+    onDrag: hoverEvent?.set,
     onClick: clickEvent?.set,
     ...layerProps,
   });
