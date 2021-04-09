@@ -3,24 +3,13 @@
 // - twin.macro
 // - emotion css <p css={css``} /> syntax
 module.exports = {
-  presets: [
-    [
-      '@babel/preset-react',
-      { runtime: 'automatic', importSource: '@emotion/react' },
-    ],
-    '@babel/preset-typescript',
-  ],
+  presets: [['@babel/preset-react'], '@babel/preset-typescript'],
   plugins: [
+    '@babel/plugin-syntax-import-meta',
     'babel-plugin-twin',
     'babel-plugin-macros',
-    [
-      '@emotion/babel-plugin-jsx-pragmatic',
-      { export: 'jsx', import: '__cssprop', module: '@emotion/react' },
-    ],
-    [
-      '@babel/plugin-transform-react-jsx',
-      { pragma: '__cssprop', pragmaFrag: 'React.Fragment' },
-    ],
+    '@babel/plugin-transform-react-jsx',
+    'styled-components',
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     ['@babel/plugin-proposal-class-properties', { loose: true }],
   ],

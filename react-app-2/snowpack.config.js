@@ -28,11 +28,7 @@ module.exports = {
   packageOptions: {
     polyfillNode: true,
 
-    knownEntrypoints: [
-      '@emotion/react',
-      '@emotion/styled',
-      '@emotion/styled/base',
-    ],
+    knownEntrypoints: ['styled-components'],
   },
   devOptions: {
     open: 'none',

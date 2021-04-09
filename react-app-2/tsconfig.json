@@ -14,8 +14,7 @@
     "useDefineForClassFields": true,
     /** For emotion's css={} prop, twin.macro etc. */
     "noEmit": true,
-    "jsx": "preserve",
-    "jsxImportSource": "@emotion/react"
+    "jsx": "preserve"
   },
   "exclude": [
     "node_modules"
