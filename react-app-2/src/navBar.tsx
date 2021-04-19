@@ -1,9 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useStore } from './__store/root';
 import * as React from 'react';
-import { cx } from '@emotion/css';
-import tw from 'twin.macro';
-import styled from '@emotion/styled/macro';
+import tw, { styled } from 'twin.macro';
+import cn from 'clsx';
 
 export const NavBar = observer(() => {
   const {
@@ -18,7 +17,7 @@ export const NavBar = observer(() => {
         <$Link
           href={`#${routes.homePage.toUri({})}`}
           // Set active class for styled $Link to handle
-          className={cx({ active: routes.numberedPages.isActive })}
+          className={cn({ active: routes.numberedPages.isActive })}
         >
           Home
         </$Link>
@@ -30,7 +29,7 @@ export const NavBar = observer(() => {
               page: '1',
             },
           })}`}
-          className={cx({ active: routes.numberedPages.isActive })}
+          className={cn({ active: routes.numberedPages.isActive })}
         >
           Page By Number ({numberedPages.activePage ?? 'None'})
         </$Link>

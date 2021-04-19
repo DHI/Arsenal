@@ -35,20 +35,20 @@ export class BrisbaneMapStore {
   get brisbaneAreaLayers() {
     if (!this.brisbaneAreaLayerToggle.value === true) return [];
 
-    const features = brisbaneFc.features.slice() as BrisbaneAreaFeature[];
+    const features = brisbaneFc.features as BrisbaneAreaFeature[];
 
     return [
       pickableGeoJsonLayer({
         id: 'myarea',
         features,
         hoverEvent: this.areaHoverEvent,
-        layer: {
-          getFillColor: ({ id }) => {
-            if (this.areaHoverEvent.id === id) return [255, 100, 100, 140];
+        // layer: {
+        //   getFillColor: ({ id }) => {
+        //     if (this.areaHoverEvent.id === id) return [255, 100, 100, 140];
 
-            return [255, 100, 100, 70];
-          },
-        },
+        //     return [255, 100, 100, 70];
+        //   },
+        // },
       }),
     ];
   }

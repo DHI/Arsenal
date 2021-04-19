@@ -5,7 +5,7 @@ import React from 'react';
 import { StaticMap } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { MapViewportModel } from '../__store/__models/mapViewport';
-import styled from '@emotion/styled';
+import { styled } from 'twin.macro';
 
 /** A basic wrapper on top of the DeckGL component, coupled to the MapViewportModel */
 export const DeckGlMap = observer<{
@@ -25,31 +25,34 @@ export const DeckGlMap = observer<{
     className,
     staticMap,
     deckgl: deckglProps,
-  }) => (
-    <$DeckGlMap className={className}>
-      <DeckGL
-        height="100%"
-        width="100%"
-        viewState={viewport.viewState}
-        controller={true}
-        onViewStateChange={(v) => {
-          viewport.set(v.viewState);
-
-          if (deckglProps?.onViewStateChange) deckglProps?.onViewStateChange(v);
-        }}
-        layers={layers}
-        {...deckglProps}
-      >
-        <StaticMap
+  }) => {
+    return (
+      <$DeckGlMap className={className}>
+        <DeckGL
           height="100%"
           width="100%"
-          mapStyle="mapbox://styles/mapbox/outdoors-v11"
-          {...staticMap}
-        />
-        {children}
-      </DeckGL>
-    </$DeckGlMap>
-  ),
+          viewState={viewport.viewState}
+          layers={layers}
+          controller={true}
+          onViewStateChange={(v) => {
+            viewport.set(v.viewState);
+
+            if (deckglProps?.onViewStateChange)
+              deckglProps?.onViewStateChange(v);
+          }}
+          {...deckglProps}
+        >
+          <StaticMap
+            height="100%"
+            width="100%"
+            mapStyle="mapbox://styles/mapbox/outdoors-v11"
+            {...staticMap}
+          />
+          {children}
+        </DeckGL>
+      </$DeckGlMap>
+    );
+  },
 );
 
 export const $DeckGlMap = styled.main`

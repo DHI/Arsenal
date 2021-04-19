@@ -36,19 +36,19 @@ export const BrisbaneMapRoot = observer(() => {
               'pk.eyJ1Ijoic2Fqb2RoaWdyb3VwIiwiYSI6ImNrbXNzeGs1bjBsMW4ycG81NmFnZjU2enkifQ.9qbf35asuvDu5ENhl8QRdg',
             mapStyle: 'mapbox://styles/mapbox/dark-v10',
           }}
-          deckgl={{
-            onHover(info, e) {
-              if (!info?.index) return cursorPosition.set(undefined);
+          // deckgl={{
+          //   onHover(info, e) {
+          //     if (!info?.index) return cursorPosition.set(undefined);
 
-              // TODO: can just use the main MapLayerEventModel for this, just make it support coordinates.
-              cursorPosition.set({
-                latitude: info.coordinate?.[1],
-                longitude: info.coordinate?.[0],
-                x: info.x,
-                y: info.y,
-              });
-            },
-          }}
+          //     // TODO: can just use the main MapLayerEventModel for this, just make it support coordinates.
+          //     cursorPosition.set({
+          //       latitude: info.coordinate?.[1],
+          //       longitude: info.coordinate?.[0],
+          //       x: info.x,
+          //       y: info.y,
+          //     });
+          //   },
+          // }}
         />
 
         <LatLonDisplay />

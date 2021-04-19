@@ -4,7 +4,7 @@ import { createContext, useContext } from 'react';
 import { createRouter } from '../routing';
 import { NumberedPagesStore } from './numberedPage';
 import { ApiStore } from './api';
-import { BrisbaneMapStore } from '../examples/brisbaneMap/brisbaneMap.store';
+import { BrisbaneMapStore } from './brisbaneMap';
 
 /**
  * This apps global state.

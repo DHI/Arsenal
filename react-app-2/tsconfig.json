@@ -12,10 +12,8 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "useDefineForClassFields": true,
-    /** For emotion's css={} prop, twin.macro etc. */
     "noEmit": true,
-    "jsx": "preserve",
-    "jsxImportSource": "@emotion/react"
+    "jsx": "preserve"
   },
   "exclude": [
     "node_modules"
@@ -23,6 +21,7 @@
   "include": [
     "src",
     "src/__config/*.d.ts",
-    "*.js"
-, ".eslintrc.js"  ]
+    "*.js",
+    ".eslintrc.js"
+  ]
 }

@@ -10,7 +10,7 @@ export function pickableGeoJsonLayer<FEATURE extends IFeature>({
   hoverEvent,
   clickEvent,
   features = [],
-  layer: layerProps,
+  layer: layerProps = {},
   id,
 }: {
   id: string;
@@ -24,12 +24,10 @@ export function pickableGeoJsonLayer<FEATURE extends IFeature>({
 
   return new GeoJsonLayer({
     id,
-    data: toJS(features),
+    data: features.map((f) => toJS(f)),
     pickable: true,
     stroked: true,
     filled: true,
-    wireframe: true,
-    extruded: false,
     lineWidthUnits: 'pixels',
     getFillColor: () => [100, 100, 100, 150],
     getLineColor: () => [100, 100, 100, 255],
