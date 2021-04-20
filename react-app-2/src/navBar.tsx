@@ -17,7 +17,7 @@ export const NavBar = observer(() => {
         <$Link
           href={`#${routes.homePage.toUri({})}`}
           // Set active class for styled $Link to handle
-          className={cn({ active: routes.numberedPages.isActive })}
+          className={cn({ active: routes.homePage.isActive })}
         >
           Home
         </$Link>
@@ -37,8 +37,7 @@ export const NavBar = observer(() => {
           onClick={() =>
             routes.brisbaneMap.push({ pathname: { language: 'en' } })
           }
-          // Just change out classnames when active instead...
-          className={`${routes.brisbaneMap.isActive ? 'text-blue-100' : ''}`}
+          className={cn({ active: routes.brisbaneMap.isActive })}
         >
           Brisbane Map
         </$Link>

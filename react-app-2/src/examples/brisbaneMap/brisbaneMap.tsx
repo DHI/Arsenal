@@ -7,8 +7,6 @@ import * as React from 'react';
 import { LatLonDisplay } from './latLon';
 import { css } from 'twin.macro';
 import { CursorCrosshair } from '../../__components/cursorCrosshair';
-import { GeoJsonLayer } from '@deck.gl/layers';
-import brisbaneFc from '../../__assets/exampleBrisbaneGeoJson.json';
 
 export const brisbaneMapRoute = XRoute(
   'brisbaneMap',
@@ -22,7 +20,7 @@ export const brisbaneMapRoute = XRoute(
 
 export const BrisbaneMapRoot = observer(() => {
   const {
-    brisbaneMap: { viewport, cursorPosition },
+    brisbaneMap: { layers, viewport, cursorPosition },
   } = useStore();
 
   return (
@@ -30,27 +28,7 @@ export const BrisbaneMapRoot = observer(() => {
       <NavBar />
       <main tw="h-full w-full">
         <DeckGlMap
-          layers={[
-            new GeoJsonLayer({
-              id: 'sdad',
-              data: brisbaneFc.features,
-              pickable: false,
-              stroked: false,
-              filled: true,
-              lineWidthUnits: 'pixels',
-              getFillColor: () => [100, 100, 100, 150],
-              getLineColor: () => [100, 100, 100, 255],
-              getLineWidth: ({ id }) => {
-                // if (id === hoverEvent?.id) return 2;
-
-                return 1;
-              },
-              // onHover: hoverEvent?.set,
-              // onDrag: hoverEvent?.set,
-              // onClick: clickEvent?.set,
-              // ...layerProps,
-            }),
-          ]}
+          layers={layers}
           viewport={viewport}
           staticMap={{
             // TODO: move to env vars
@@ -58,19 +36,19 @@ export const BrisbaneMapRoot = observer(() => {
               'pk.eyJ1Ijoic2Fqb2RoaWdyb3VwIiwiYSI6ImNrbXNzeGs1bjBsMW4ycG81NmFnZjU2enkifQ.9qbf35asuvDu5ENhl8QRdg',
             mapStyle: 'mapbox://styles/mapbox/dark-v10',
           }}
-          // deckgl={{
-          //   onHover(info, e) {
-          //     if (!info?.index) return cursorPosition.set(undefined);
+          deckgl={{
+            onHover(info, e) {
+              if (!info?.index) return cursorPosition.set(undefined);
 
-          //     // TODO: can just use the main MapLayerEventModel for this, just make it support coordinates.
-          //     cursorPosition.set({
-          //       latitude: info.coordinate?.[1],
-          //       longitude: info.coordinate?.[0],
-          //       x: info.x,
-          //       y: info.y,
-          //     });
-          //   },
-          // }}
+              // TODO: can just use the main MapLayerEventModel for this, just make it support coordinates.
+              cursorPosition.set({
+                latitude: info.coordinate?.[1],
+                longitude: info.coordinate?.[0],
+                x: info.x,
+                y: info.y,
+              });
+            },
+          }}
         />
 
         <LatLonDisplay />

@@ -12,5 +12,6 @@ module.exports = {
     'babel-plugin-macros',
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     ['@babel/plugin-proposal-class-properties', { loose: true }],
+    'styled-components',
   ],
 };
