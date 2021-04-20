@@ -24,33 +24,30 @@ export const DeckGlMap = observer<{
     children,
     className,
     staticMap,
-    deckgl: deckglProps,
+    deckgl: deckglProps = {},
   }) => {
     return (
-      <$DeckGlMap className={className}>
-        <DeckGL
+      <DeckGL
+        height="100%"
+        width="100%"
+        viewState={viewport.viewState}
+        layers={layers}
+        controller={true}
+        onViewStateChange={(v) => {
+          viewport.set(v.viewState);
+
+          if (deckglProps?.onViewStateChange) deckglProps?.onViewStateChange(v);
+        }}
+        {...deckglProps}
+      >
+        <StaticMap
           height="100%"
           width="100%"
-          viewState={viewport.viewState}
-          layers={layers}
-          controller={true}
-          onViewStateChange={(v) => {
-            viewport.set(v.viewState);
-
-            if (deckglProps?.onViewStateChange)
-              deckglProps?.onViewStateChange(v);
-          }}
-          {...deckglProps}
-        >
-          <StaticMap
-            height="100%"
-            width="100%"
-            mapStyle="mapbox://styles/mapbox/outdoors-v11"
-            {...staticMap}
-          />
-          {children}
-        </DeckGL>
-      </$DeckGlMap>
+          mapStyle="mapbox://styles/mapbox/outdoors-v11"
+          {...staticMap}
+        />
+        {children}
+      </DeckGL>
     );
   },
 );

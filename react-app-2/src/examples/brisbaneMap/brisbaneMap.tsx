@@ -7,6 +7,8 @@ import * as React from 'react';
 import { LatLonDisplay } from './latLon';
 import { css } from 'twin.macro';
 import { CursorCrosshair } from '../../__components/cursorCrosshair';
+import { GeoJsonLayer } from '@deck.gl/layers';
+import brisbaneFc from '../../__assets/exampleBrisbaneGeoJson.json';
 
 export const brisbaneMapRoute = XRoute(
   'brisbaneMap',
@@ -20,7 +22,7 @@ export const brisbaneMapRoute = XRoute(
 
 export const BrisbaneMapRoot = observer(() => {
   const {
-    brisbaneMap: { layers, viewport, cursorPosition },
+    brisbaneMap: { viewport, cursorPosition },
   } = useStore();
 
   return (
@@ -28,7 +30,27 @@ export const BrisbaneMapRoot = observer(() => {
       <NavBar />
       <main tw="h-full w-full">
         <DeckGlMap
-          layers={layers}
+          layers={[
+            new GeoJsonLayer({
+              id: 'sdad',
+              data: brisbaneFc.features,
+              pickable: false,
+              stroked: false,
+              filled: true,
+              lineWidthUnits: 'pixels',
+              getFillColor: () => [100, 100, 100, 150],
+              getLineColor: () => [100, 100, 100, 255],
+              getLineWidth: ({ id }) => {
+                // if (id === hoverEvent?.id) return 2;
+
+                return 1;
+              },
+              // onHover: hoverEvent?.set,
+              // onDrag: hoverEvent?.set,
+              // onClick: clickEvent?.set,
+              // ...layerProps,
+            }),
+          ]}
           viewport={viewport}
           staticMap={{
             // TODO: move to env vars

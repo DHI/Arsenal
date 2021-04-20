@@ -42,13 +42,13 @@ export class BrisbaneMapStore {
         id: 'myarea',
         features,
         hoverEvent: this.areaHoverEvent,
-        // layer: {
-        //   getFillColor: ({ id }) => {
-        //     if (this.areaHoverEvent.id === id) return [255, 100, 100, 140];
+        layer: {
+          getFillColor: ({ id }) => {
+            if (this.areaHoverEvent.id === id) return [255, 100, 100, 140];
 
-        //     return [255, 100, 100, 70];
-        //   },
-        // },
+            return [255, 100, 100, 70];
+          },
+        },
       }),
     ];
   }

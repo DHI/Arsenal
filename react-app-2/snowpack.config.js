@@ -14,7 +14,7 @@ module.exports = {
     ['@snowpack/plugin-webpack'],
   ],
   optimize: {
-    target: 'es2017',
+    target: 'es2019',
 
     // bundle: true,
     // minify: false,

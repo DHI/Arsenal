@@ -1054,34 +1054,34 @@
     "@types/react" "*"
     indefinitely-typed "^1.1.0"
 
-"@deck.gl/core@8.4.12":
-  version "8.4.12"
-  resolved "https://registry.yarnpkg.com/@deck.gl/core/-/core-8.4.12.tgz#f5deff910b9b1bf271ad627eba48bbed6867df16"
-  integrity sha512-h0l/JzpNa3MlZTu+weQvlLWz0I0efJr8bNCFbbZnBDYxF5PKa+posChjABSAoPWYGotrpk4g1sv5JUBml54Dpw==
+"@deck.gl/core@8.3":
+  version "8.3.15"
+  resolved "https://registry.yarnpkg.com/@deck.gl/core/-/core-8.3.15.tgz#12a7eb1a99bbf64654c3d6afe4e89b8c55e65520"
+  integrity sha512-qQwvqfmgFGxtcgeGVThFFVHOk5jnaVy6CjTnMow1NyCky2WamzIyYRLveFp1rxRL7QjCZNVp6NwBbOuJ9kAf8A==
   dependencies:
-    "@loaders.gl/core" "^2.3.13"
-    "@loaders.gl/images" "^2.3.13"
-    "@luma.gl/core" "^8.4.1"
-    "@math.gl/web-mercator" "^3.4.2"
+    "@loaders.gl/core" "^2.3.0"
+    "@loaders.gl/images" "^2.3.0"
+    "@luma.gl/core" "^8.3.1"
+    "@math.gl/web-mercator" "^3.3.0"
     gl-matrix "^3.0.0"
-    math.gl "^3.4.2"
-    mjolnir.js "^2.5.0"
+    math.gl "^3.3.0"
+    mjolnir.js "^2.3.0"
     probe.gl "^3.2.1"
 
-"@deck.gl/layers@8.4.12":
-  version "8.4.12"
-  resolved "https://registry.yarnpkg.com/@deck.gl/layers/-/layers-8.4.12.tgz#25f2e37804edc429d8f9b7716b3d2a4efcf0508d"
-  integrity sha512-Wmqwj1NMDyqM0Ip8RMCkjsLgiZx5nAcpbEklWRU1RXP5KGxM8nLqVkwphKzUXerCVNTrZB7DKxO+7+heubMzTg==
+"@deck.gl/layers@8.3":
+  version "8.3.15"
+  resolved "https://registry.yarnpkg.com/@deck.gl/layers/-/layers-8.3.15.tgz#e0a5b30107666fb9d0db2c50d964e5224f64b1c8"
+  integrity sha512-stT9XDMhgdP2WfAI09sZQkONnJ4WPbU2TM/6JMMy7F8HKmjrHuYKSNhS0V2Uv+f7/fxoLTRZ1e6VLDzcRQl3mw==
   dependencies:
-    "@loaders.gl/images" "^2.3.13"
+    "@loaders.gl/images" "^2.3.0"
     "@mapbox/tiny-sdf" "^1.1.0"
-    "@math.gl/polygon" "^3.4.2"
+    "@math.gl/polygon" "^3.3.0"
     earcut "^2.0.6"
 
-"@deck.gl/react@8.4.12":
-  version "8.4.12"
-  resolved "https://registry.yarnpkg.com/@deck.gl/react/-/react-8.4.12.tgz#45d3a4d2c540cbd3e41a39912183f3534a9dfc7d"
-  integrity sha512-EzBkKbjGq1+HpzWqsr103X1hD5Z10pR3tne+MFAU0CtgRoGMCVjwVNfNVq8dGYnp8y/M3iE2AZ0pBt65pvvufw==
+"@deck.gl/react@8.3":
+  version "8.3.15"
+  resolved "https://registry.yarnpkg.com/@deck.gl/react/-/react-8.3.15.tgz#b90e4978c9be465fe08ef98d84febe2550530083"
+  integrity sha512-KNUykNq4eg7v/X/tsuYv2hV6QpZTLOXVazRv2pvz/PpkFE64mUREbVbo/yh/00fUhxCjJS+L1a0AUys5NbhzVQ==
   dependencies:
     prop-types "^15.6.0"
 
@@ -1209,7 +1209,7 @@
   dependencies:
     purgecss "^3.1.3"
 
-"@loaders.gl/core@^2.3.13":
+"@loaders.gl/core@^2.3.0":
   version "2.3.13"
   resolved "https://registry.yarnpkg.com/@loaders.gl/core/-/core-2.3.13.tgz#093fe965cfab0a72c902a63d461282ae1ed55dc2"
   integrity sha512-Hjm8eJjS/OUnaHrOSgXtE+qDg5V4Do0jIpp2u0Dv3CMxPrtd2TpwkDfAyZWmmbZew9rzqPoAVMINejS/ItWUeg==
@@ -1217,7 +1217,7 @@
     "@babel/runtime" "^7.3.1"
     "@loaders.gl/loader-utils" "2.3.13"
 
-"@loaders.gl/images@^2.3.13":
+"@loaders.gl/images@^2.3.0":
   version "2.3.13"
   resolved "https://registry.yarnpkg.com/@loaders.gl/images/-/images-2.3.13.tgz#3b827cf1e8d31c8f1adf85136c7fd53c08dbb0a8"
   integrity sha512-BBgLf17udhRnYwvsObAOM7jEeLBaeU3di1NyLhpTMa7WbG3jAnDlmy1BRue8wYfgVpWnmk18YubZtX6vCRrJnA==
@@ -1237,7 +1237,7 @@
   resolved "https://registry.yarnpkg.com/@luma.gl/constants/-/constants-8.4.4.tgz#a4dd5edba10081142e1407ecba93076695f33d07"
   integrity sha512-4e58QW6UKXkxiIvWSLoAnTc4cT8nvb0PhLzu1h8KiCuaDT5Vq8csOymcNOy/jhpfcIhHlmT1KwowF5m/DcOlKg==
 
-"@luma.gl/core@^8.4.1":
+"@luma.gl/core@^8.3.1":
   version "8.4.4"
   resolved "https://registry.yarnpkg.com/@luma.gl/core/-/core-8.4.4.tgz#70897ab37e61e86fc84cbbfcfea3cf006a5aa500"
   integrity sha512-rK69iWEr8BmFbrmknkBg6IhFgcByaAm/z9qKnsRsEeomZXF5F7to/m7/RdvrsmpYVDkmWNDkqg1tiOGh55iaLQ==
@@ -1347,14 +1347,14 @@
     "@babel/runtime" "^7.12.0"
     gl-matrix "^3.0.0"
 
-"@math.gl/polygon@^3.4.2":
+"@math.gl/polygon@^3.3.0":
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/@math.gl/polygon/-/polygon-3.4.2.tgz#36c327257959c8edcc258c4ddeaecf04b125cb90"
   integrity sha512-ANbZmcrzavzEe0bHbdEYyiudPdGGV/quB3FxUJa3L1QCcZbnrqvnuwqX+8U8ltIDhbACG1x0Uxefwo8p77aMNw==
   dependencies:
     "@math.gl/core" "3.4.2"
 
-"@math.gl/web-mercator@^3.2.0", "@math.gl/web-mercator@^3.4.2":
+"@math.gl/web-mercator@^3.2.0", "@math.gl/web-mercator@^3.3.0":
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/@math.gl/web-mercator/-/web-mercator-3.4.2.tgz#72c7c7e698bcf8d1d1d60c0ec4c5a4698c9b960e"
   integrity sha512-Az/WI8vxbqnrTEcYgqDQ3CgCRoFA2a4XT9mkjVrT7iIlfrUF5lrIXcmpljjKvoFNBldKrng7hFSeHHM2ghgSrg==
@@ -7985,7 +7985,7 @@ markdown-to-jsx@^7.1.0:
   resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.1.2.tgz#19d3da4cd8864045cdd13a0d179147fbd6a088d4"
   integrity sha512-O8DMCl32V34RrD+ZHxcAPc2+kYytuDIoQYjY36RVdsLK7uHjgNVvFec4yv0X6LgB4YEZgSvK5QtFi5YVqEpoMA==
 
-math.gl@^3.4.2:
+math.gl@^3.3.0:
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/math.gl/-/math.gl-3.4.2.tgz#1d39b6b9f735b57134c26f079607611dbf4e8c89"
   integrity sha512-0I77HBiC+q/XRRw807dCwUeMTUotzNQUQZEk0kPd39iRmU67dLId0+OtCGFYjIzyM+gNaj1JWueiOYV/gdl+dQ==
@@ -8274,7 +8274,7 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-mjolnir.js@^2.5.0:
+mjolnir.js@^2.3.0, mjolnir.js@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/mjolnir.js/-/mjolnir.js-2.5.0.tgz#5918b74625d9682002da82e01d6ffb0b16b02b0e"
   integrity sha512-YkVoyKs7qm9xvAgRgjx3Md/7eYqmq7VXOgTKQNnmuzcBJzMebjdIWa7FdTd0RZBrw3UL6V6TTktsxJwBMLXUNA==
@@ -10072,10 +10072,10 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-map-gl@6.1.11:
-  version "6.1.11"
-  resolved "https://registry.yarnpkg.com/react-map-gl/-/react-map-gl-6.1.11.tgz#f205bca135b1a738d79e248b4f0ed6da222add1e"
-  integrity sha512-Nyze/nVyL2mjqI5bBuxxf4f1hWrRKhiEjEjznmhTgrx+4yCngWkbVNBcxGZ49lO9RtYX+gXBk5PT/AYXFus4Mg==
+react-map-gl@6.1.12:
+  version "6.1.12"
+  resolved "https://registry.yarnpkg.com/react-map-gl/-/react-map-gl-6.1.12.tgz#27eac23de0e5f8983798c789059f7b617dd20a64"
+  integrity sha512-DTDnQNPHdPwoLTxDtIhcavekM1K02iUxFKPfIXxyo8RYQ3vA7jrILt9rpfTvQt+EoeF5302oxoue2v7+N6ex+Q==
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@types/geojson" "^7946.0.7"
