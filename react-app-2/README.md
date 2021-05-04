@@ -34,6 +34,11 @@ yarn start-storybook # start storybook
 yarn build # produce production build
 ```
 
+Currently runs on either `webpack` or `snowpack`. 
+
+Snowpack is tricky to configure due to its teething problems (its quite new), but offers a superior development experience.
+The project should be compatible with either.
+
 ## Conventions
 
 Your project might be different.
