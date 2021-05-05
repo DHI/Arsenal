@@ -22,6 +22,7 @@
     "src",
     "src/__config/*.d.ts",
     "*.js",
+    "*.ts",
     ".eslintrc.js"
   ]
 }
