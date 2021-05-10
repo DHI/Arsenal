@@ -59,6 +59,20 @@ module.exports = {
               ],
             },
           },
+          // {
+          //   loader: 'esbuild-loader',
+          //   options: {
+          //     loader: 'tsx',
+          //     target: 'es2018',
+          //   },
+          // },
+        ],
+      },
+      {
+        include: dir('./src'),
+        test: /\.[tj]sx?$/,
+        exclude: /node_modules/,
+        use: [
           {
             loader: 'esbuild-loader',
             options: {
@@ -108,6 +122,7 @@ module.exports = {
     publicPath: '/',
     path: dir('./build'),
   },
+  target: 'web',
   stats: 'minimal',
   devServer: {
     hot: true,
