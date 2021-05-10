@@ -13442,10 +13442,10 @@ xmlchars@^2.2.0:
   resolved "https://registry.yarnpkg.com/xmlchars/-/xmlchars-2.2.0.tgz#060fe1bcb7f9c76fe2a17db86a9bc3ab894210cb"
   integrity sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==
 
-xroute@^5.0.3-0:
-  version "5.0.3-0"
-  resolved "https://registry.yarnpkg.com/xroute/-/xroute-5.0.3-0.tgz#556e9e60b7e7ba9d19792a1cb7abcb8dacf5133a"
-  integrity sha512-7o7NyMiO0ijkSfN5lwqNOymp7JDXJnnszPkJoc8eoIlNq89b8ssrMLkRPzTP3RNvqS4UcGDiCSPiEPt6laxr4g==
+xroute@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/xroute/-/xroute-5.1.1.tgz#a9233afabceeec3770650ebca27cff7cdb899214"
+  integrity sha512-7PuMxi56idLRu462kZoYjJ/nBrWgdl5BRoXr/3x4+jGFzJ+EitaDKPnZmaD4b7wymcZRO42a8JYem0BsC58WqA==
   dependencies:
     lodash-es "~4.17.21"
     path-to-regexp "^6.2.0"
