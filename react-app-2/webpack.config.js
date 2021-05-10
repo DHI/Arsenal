@@ -50,6 +50,13 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
+            loader: 'esbuild-loader',
+            options: {
+              loader: 'tsx',
+              target: 'es2018',
+            },
+          },
+          {
             loader: 'babel-loader',
             options: {
               ...babelConfig,
@@ -57,27 +64,6 @@ module.exports = {
                 ...babelConfig.plugins,
                 ...(IS_REACT_REFRESH ? ['react-refresh/babel'] : []),
               ],
-            },
-          },
-          // {
-          //   loader: 'esbuild-loader',
-          //   options: {
-          //     loader: 'tsx',
-          //     target: 'es2018',
-          //   },
-          // },
-        ],
-      },
-      {
-        include: dir('./src'),
-        test: /\.[tj]sx?$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'esbuild-loader',
-            options: {
-              loader: 'tsx',
-              target: 'es2018',
             },
           },
         ],

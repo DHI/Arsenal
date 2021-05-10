@@ -13,7 +13,7 @@ export const NavBar = observer(() => {
     <>
       <div
         css={css`
-          height: 80px;
+          height: 60px;
         `}
       />
       <$NavBar>
