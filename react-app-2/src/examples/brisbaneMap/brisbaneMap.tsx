@@ -66,7 +66,17 @@ const LayerTogglesOverlay = observer(() => {
   } = useStore();
 
   return (
-    <div>
+    <div
+      css={css`
+        position: absolute;
+        top: 60%;
+        right: 0;
+        background: white;
+        opacity: 0.9;
+        margin: 1em;
+        padding: 1em;
+      `}
+    >
       <input
         type="checkbox"
         checked={brisbaneAreaLayerToggle.value}

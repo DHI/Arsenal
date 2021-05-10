@@ -1,8 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useStore } from './__store/root';
 import * as React from 'react';
-import styled from 'styled-components';
-import cn from 'clsx';
+import { css, cx, styled } from '__css';
 
 export const NavBar = observer(() => {
   const {
@@ -12,12 +11,16 @@ export const NavBar = observer(() => {
 
   return (
     <>
-      <div />
+      <div
+        css={css`
+          height: 80px;
+        `}
+      />
       <$NavBar>
         <$Link
           href={`#${routes.homePage.toUri({})}`}
           // Set active class for styled $Link to handle
-          className={cn({ active: routes.homePage.isActive })}
+          className={cx({ active: routes.homePage.isActive })}
         >
           Home
         </$Link>
@@ -28,7 +31,7 @@ export const NavBar = observer(() => {
               page: '1',
             },
           })}`}
-          className={cn({ active: routes.numberedPages.isActive })}
+          className={cx({ active: routes.numberedPages.isActive })}
         >
           Page By Number ({numberedPages.activePage ?? 'None'})
         </$Link>
@@ -36,7 +39,7 @@ export const NavBar = observer(() => {
           onClick={() =>
             routes.brisbaneMap.push({ pathname: { language: 'en' } })
           }
-          className={cn({ active: routes.brisbaneMap.isActive })}
+          className={cx({ active: routes.brisbaneMap.isActive })}
         >
           Brisbane Map
         </$Link>
@@ -45,9 +48,22 @@ export const NavBar = observer(() => {
   );
 });
 
-const $Link = styled.a``;
+const $Link = styled.a`
+  border: 2px solid #aaa;
+  margin: 0.3em;
+  padding: 0.5em 1em;
+`;
 
 const $NavBar = styled.main`
   box-shadow: 0 3px 7px #0008;
   background: #000a;
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background: #0008;
 `;
