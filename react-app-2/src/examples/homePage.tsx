@@ -12,6 +12,6 @@ export const homePageRoute = XRoute(
 export const HomePageRoot = observer(() => (
   <>
     <NavBar />
-    <p tw="text-center p-8">Homepage</p>
+    <p>Homepage</p>
   </>
 ));

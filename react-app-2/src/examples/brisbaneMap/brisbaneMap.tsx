@@ -5,7 +5,7 @@ import { DeckGlMap } from '../../__components/deckglMap';
 import { useStore } from '../../__store/root';
 import * as React from 'react';
 import { LatLonDisplay } from './latLon';
-import { css } from 'twin.macro';
+import { css } from '__css';
 import { CursorCrosshair } from '../../__components/cursorCrosshair';
 
 export const brisbaneMapRoute = XRoute(
@@ -26,7 +26,7 @@ export const BrisbaneMapRoot = observer(() => {
   return (
     <>
       <NavBar />
-      <main tw="h-full w-full">
+      <main>
         <DeckGlMap
           layers={layers}
           viewport={viewport}
@@ -66,7 +66,7 @@ const LayerTogglesOverlay = observer(() => {
   } = useStore();
 
   return (
-    <div tw="absolute top-60 right-0 bg-white opacity-90 text-sm text-red-500 m-5 p-8">
+    <div>
       <input
         type="checkbox"
         checked={brisbaneAreaLayerToggle.value}

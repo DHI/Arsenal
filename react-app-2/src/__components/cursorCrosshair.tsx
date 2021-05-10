@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
-import tw, { css } from 'twin.macro';
+import { css } from '__css';
 
 export type ICursorPosition = {
   x: number;
@@ -18,7 +18,6 @@ export const CursorCrosshair = observer<{
 
   const horLine = (
     <div
-      tw="absolute w-full left-0 top-2/4"
       css={css`
         border-top: 4px solid #3aa5d688;
       `}
@@ -28,7 +27,6 @@ export const CursorCrosshair = observer<{
   const vertLine = (
     <div
       css={css`
-        ${tw`absolute h-full`}
         top: 0;
         left: 50%;
         border-left: 4px solid #6bdb8d88;
@@ -37,9 +35,8 @@ export const CursorCrosshair = observer<{
   );
 
   const center = (
-    <div tw="absolute left-2/4 top-2/4">
+    <div>
       <div
-        tw="m-2 text-xs flex"
         css={css`
           background: #fff5;
 
@@ -57,7 +54,6 @@ export const CursorCrosshair = observer<{
   return (
     <>
       <main
-        tw="fixed w-full h-full"
         css={css`
           left: -100%;
           top: -100%;
@@ -67,7 +63,6 @@ export const CursorCrosshair = observer<{
         `}
       >
         <div
-          tw="relative w-full h-full"
           style={{
             top: `${y}px`,
             left: `${x}px`,

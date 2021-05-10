@@ -6,6 +6,7 @@ const TsPlugin = require('fork-ts-checker-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const babelConfig = require('./babel.config');
 const DotenvWebpack = require('dotenv-webpack');
+const tsconfig = require('./tsconfig.json');
 const dir = (...filePaths) => path.resolve(__dirname, ...filePaths);
 const mode =
   process.env.NODE_ENV === 'production' ? 'production' : 'development';
@@ -47,16 +48,25 @@ module.exports = {
         include: dir('./src'),
         test: /\.[tj]sx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            ...babelConfig,
-            plugins: [
-              ...babelConfig.plugins,
-              ...(IS_REACT_REFRESH ? ['react-refresh/babel'] : []),
-            ],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              ...babelConfig,
+              plugins: [
+                ...babelConfig.plugins,
+                ...(IS_REACT_REFRESH ? ['react-refresh/babel'] : []),
+              ],
+            },
           },
-        },
+          {
+            loader: 'esbuild-loader',
+            options: {
+              loader: 'tsx',
+              target: 'es2018',
+            },
+          },
+        ],
       },
       {
         test: /\.(svg|ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/,
@@ -73,6 +83,13 @@ module.exports = {
   },
   resolve: {
     extensions: ['.mjs', '.js', '.jsx', '.tsx', '.ts', '.json'],
+    alias: {
+      ...Object.fromEntries(
+        Object.entries(
+          tsconfig.compilerOptions.paths,
+        ).map(([key, [firstPath]]) => [key, dir(firstPath)]),
+      ),
+    },
   },
   optimization: {
     runtimeChunk: 'single',

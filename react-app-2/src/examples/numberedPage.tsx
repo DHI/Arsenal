@@ -3,7 +3,7 @@ import * as React from 'react';
 import { observer } from 'mobx-react-lite';
 import { XRoute } from 'xroute';
 import { NavBar } from '../navBar';
-import { styled } from 'twin.macro';
+import { styled } from '__css';
 
 export const numberedPagesRoute = XRoute(
   'numberedPages',
@@ -25,23 +25,22 @@ export const NumberedPagesRoot = observer(() => {
   return (
     <>
       <NavBar />
-      <main tw="flex justify-center p-4 pt-8">
-        <div tw="max-w-md">
-          <p tw="mb-8 flex w-full justify-center items-center">
+      <main>
+        <div>
+          <p>
             <$FancyButton onClick={() => setPage(activePageInteger - 1)}>
               Back
             </$FancyButton>
-            <span tw="p-4">Page {route.pathname?.page}</span>
+            <span>Page {route.pathname?.page}</span>
             <$FancyButton onClick={() => setPage(activePageInteger + 1)}>
               Next
             </$FancyButton>
           </p>
-          <div tw="flex items-center">
-            <label tw="my-4 text-sm italic opacity-70 w-6/12">
+          <div>
+            <label>
               Change page (strings) (will error when you dont use a number)
             </label>
             <input
-              tw="w-6/12 py-1 px-4 h-10 "
               value={activePage}
               onChange={(e) => setPage(e.target.value)}
             />

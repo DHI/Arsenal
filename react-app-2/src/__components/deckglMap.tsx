@@ -5,7 +5,7 @@ import React from 'react';
 import { StaticMap } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { MapViewportModel } from '../__store/__models/mapViewport';
-import { styled } from 'twin.macro';
+import { styled } from '__css';
 
 /** A basic wrapper on top of the DeckGL component, coupled to the MapViewportModel */
 export const DeckGlMap = observer<{
