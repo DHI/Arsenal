@@ -1,6 +1,8 @@
 // Snowpack Configuration File
 // See all supported options: https://www.snowpack.dev/reference/configuration
 
+const tsconfig = require('./tsconfig.json');
+
 /** @type import("snowpack").SnowpackUserConfig */
 module.exports = {
   plugins: [
@@ -18,7 +20,15 @@ module.exports = {
   },
   packageOptions: {
     polyfillNode: true,
+
     knownEntrypoints: ['styled-components'],
+  },
+  alias: {
+    ...Object.fromEntries(
+      Object.entries(
+        tsconfig.compilerOptions.paths,
+      ).map(([key, [firstPath]]) => [key, firstPath]),
+    ),
   },
   devOptions: {
     open: 'none',

@@ -16,7 +16,7 @@
     "experimentalDecorators": true,
     "useDefineForClassFields": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "react"
   },
   "exclude": [
     "node_modules"
