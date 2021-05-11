@@ -4,7 +4,7 @@
   "private": true,
   "description": "...",
   "scripts": {
-    "build": "webpack build",
+    "build": "webpack build --node-env production",
     "start": "webpack serve",
     "lint": "eslint .",
     "lint:ts": "tsc --noEmit"
