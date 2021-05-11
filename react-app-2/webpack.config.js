@@ -12,6 +12,8 @@ const mode =
   process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 const ENABLE_ANALYTICS = process.env.WEBPACK_ANALYZE === 'true';
+const ENABLE_TS_CHECK =
+  !process.argv.includes('--disableTsCheck') && !ENABLE_ANALYTICS;
 const ENABLE_REACT_REFRESH =
   mode === 'development' && !process.argv.includes('--disableReactRefresh');
 
@@ -29,7 +31,7 @@ module.exports = {
     new DotenvWebpack(),
     new HtmlPlugin({ template: dir('./src/index.html') }),
     ...(ENABLE_REACT_REFRESH ? [new ReactRefreshWebpackPlugin({})] : []),
-    ...(!ENABLE_ANALYTICS ? [new TsPlugin()] : []),
+    ...(ENABLE_TS_CHECK ? [new TsPlugin()] : []),
     ...(ENABLE_ANALYTICS
       ? [
           new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)({
