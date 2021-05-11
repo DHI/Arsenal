@@ -11,17 +11,14 @@ const dir = (...filePaths) => path.resolve(__dirname, ...filePaths);
 const mode =
   process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
-const IS_DEVELOPMENT = mode === 'development';
-const IS_PRODUCTION = mode === 'production';
-const IS_ANALYTICS = process.env.WEBPACK_ANALYZE === 'true';
-
-const IS_REACT_REFRESH =
+const ENABLE_ANALYTICS = process.env.WEBPACK_ANALYZE === 'true';
+const ENABLE_REACT_REFRESH =
   mode === 'development' && !process.argv.includes('--disableReactRefresh');
 
 console.dir({
   mode,
-  IS_ANALYTICS,
-  IS_REACT_REFRESH,
+  ENABLE_ANALYTICS,
+  ENABLE_REACT_REFRESH,
 });
 
 /** @ts-check @type import('webpack').Configuration */
@@ -31,9 +28,9 @@ module.exports = {
   plugins: [
     new DotenvWebpack(),
     new HtmlPlugin({ template: dir('./src/index.html') }),
-    ...(IS_REACT_REFRESH ? [new ReactRefreshWebpackPlugin({})] : []),
-    ...(!IS_ANALYTICS ? [new TsPlugin()] : []),
-    ...(IS_ANALYTICS
+    ...(ENABLE_REACT_REFRESH ? [new ReactRefreshWebpackPlugin({})] : []),
+    ...(!ENABLE_ANALYTICS ? [new TsPlugin()] : []),
+    ...(ENABLE_ANALYTICS
       ? [
           new (require('webpack-bundle-analyzer').BundleAnalyzerPlugin)({
             analyzerMode: 'server',
@@ -62,7 +59,7 @@ module.exports = {
               ...babelConfig,
               plugins: [
                 ...babelConfig.plugins,
-                ...(IS_REACT_REFRESH ? ['react-refresh/babel'] : []),
+                ...(ENABLE_REACT_REFRESH ? ['react-refresh/babel'] : []),
               ],
             },
           },
