@@ -11886,10 +11886,10 @@ xdg-basedir@^4.0.0:
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-4.0.0.tgz#4bc8d9984403696225ef83a1573cbbcb4e79db13"
   integrity sha512-PSNhEJDejZYV7h50BohL09Er9VaIefr2LMAf3OEmpCkjOi34eYyQYAXUTjEQtZJTKcF0E2UKTh+osDLsgNim9Q==
 
-xroute@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/xroute/-/xroute-5.1.1.tgz#a9233afabceeec3770650ebca27cff7cdb899214"
-  integrity sha512-7PuMxi56idLRu462kZoYjJ/nBrWgdl5BRoXr/3x4+jGFzJ+EitaDKPnZmaD4b7wymcZRO42a8JYem0BsC58WqA==
+xroute@^5.4:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/xroute/-/xroute-5.4.0.tgz#b5e26ddc234fda8925ee4c2e80d6d5d6ccf18fd9"
+  integrity sha512-9YEyNlLTel4RhHx548wnDOcrhxIupZrD2NZlXWRhITPXTC2a2c5kR6/h/7n75mq6Irkah9NLSw4uMPg+u2iDDw==
   dependencies:
     lodash-es "~4.17.21"
     path-to-regexp "^6.2.0"

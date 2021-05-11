@@ -24,7 +24,7 @@
     "react-dom": "^17.0.2",
     "react-map-gl": "6.1.12",
     "styled-components": "^5.2.3",
-    "xroute": "^5.1.1"
+    "xroute": "^5.4"
   },
   "devDependencies": {
     "@babel/core": "^7.14",
