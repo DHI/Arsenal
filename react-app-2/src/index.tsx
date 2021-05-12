@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Routes } from './routing';
 import { RootStore, StoreReactContext } from './__store/root';
 import './global.css';
+import './__config/featureFlags';
 
 function Root() {
   const [store] = React.useState(() => new RootStore());

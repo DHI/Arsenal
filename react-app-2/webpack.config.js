@@ -17,10 +17,23 @@ const ENABLE_TS_CHECK =
 const ENABLE_REACT_REFRESH =
   mode === 'development' && !process.argv.includes('--disableReactRefresh');
 
+const ENV_VAR_PREFIX = 'REACT__';
+
+const ENVIRONMENT_VARS = {
+  NODE_ENV: mode,
+  /** Find all env vars prefixed with ENV_VAR_PREFIX */
+  ...Object.fromEntries(
+    Object.entries(process.env).filter(([key]) =>
+      key.startsWith(ENV_VAR_PREFIX),
+    ),
+  ),
+};
+
 console.dir({
   mode,
   ENABLE_ANALYTICS,
   ENABLE_REACT_REFRESH,
+  ENVIRONMENT_VARS,
 });
 
 /** @ts-check @type import('webpack').Configuration */
@@ -28,7 +41,10 @@ module.exports = {
   mode,
   devtool: mode === 'production' ? false : 'eval-cheap-module-source-map',
   plugins: [
-    new DotenvWebpack(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(ENVIRONMENT_VARS.NODE_ENV),
+      'window.REACT_ENV': JSON.stringify(ENVIRONMENT_VARS),
+    }),
     new HtmlPlugin({ template: dir('./src/index.html') }),
     ...(ENABLE_REACT_REFRESH ? [new ReactRefreshWebpackPlugin({})] : []),
     ...(ENABLE_TS_CHECK ? [new TsPlugin()] : []),

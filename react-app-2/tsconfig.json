@@ -24,7 +24,6 @@
   "include": [
     "src",
     "src/__config/*.d.ts",
-    "*.js",
-    ".eslintrc.js"
+    "*.js"
   ]
 }
