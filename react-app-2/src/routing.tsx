@@ -10,6 +10,12 @@ import {
 import { HomePageRoot, homePageRoute } from './examples/homePage';
 import { NumberedPagesRoot, numberedPagesRoute } from './examples/numberedPage';
 import { useStore } from './__store/root';
+import { StoryBrowserPage } from './__stories/__storyBrowser/storyBrowserPage';
+import { StoryBrowserRenderPage } from './__stories/__storyBrowser/storyBrowserRenderPage';
+import {
+  storyBrowserRenderRoute,
+  storyBrowserRoute,
+} from './__stories/__storyBrowser/__routes';
 
 export const Routes = observer(() => {
   const {
@@ -20,7 +26,8 @@ export const Routes = observer(() => {
     homePage: HomePageRoot,
     numberedPages: NumberedPagesRoot,
     brisbaneMap: BrisbaneMapRoot,
-    // brisbaneMap: () => <></>,
+    storyBrowser: StoryBrowserPage,
+    storyBrowserRender: StoryBrowserRenderPage,
   };
 
   const RoutedComponent = routeToComponent[route?.key ?? 'homePage'];
@@ -30,7 +37,13 @@ export const Routes = observer(() => {
 
 export function createRouter() {
   return new XRouter(
-    [homePageRoute, numberedPagesRoute, brisbaneMapRoute],
+    [
+      storyBrowserRoute,
+      storyBrowserRenderRoute,
+      homePageRoute,
+      numberedPagesRoute,
+      brisbaneMapRoute,
+    ],
     createHashHistory(),
   );
 }

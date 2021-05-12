@@ -9,7 +9,9 @@
     "build:production": "dotenv -e .env.production -- webpack build --node-env production",
     "start": "dotenv -e .env.dev -- webpack serve",
     "lint": "eslint .",
-    "lint:ts": "tsc --noEmit"
+
+    "lint:ts": "tsc --noEmit",
+    "generateStoryMap": "yarn makeStoryMap '**/*.stories.tsx' --output ./src/__stories/__storyBrowser/STORY_MAP.ts"
   },
   "browserslist": ">0.75%, not ie 11, not UCAndroid >0, not OperaMini all",
   "peerDependencies": {},
@@ -17,6 +19,8 @@
     "@deck.gl/core": "^8.4.13",
     "@deck.gl/layers": "^8.4.13",
     "@deck.gl/react": "^8.4.13",
+    "@loadable/component": "^5.15.0",
+    "@types/loadable__component": "^5.13.3",
     "clsx": "^1.1.1",
     "history": "^5.0.0",
     "mapbox-gl": "2.2.0",
@@ -25,6 +29,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-map-gl": "6.1.12",
+    "story-browser": "^2.0.0",
     "styled-components": "^5.2.3",
     "xroute": "^5.4"
   },
@@ -35,10 +40,7 @@
     "@babel/plugin-syntax-jsx": "^7.12.13",
     "@babel/plugin-syntax-typescript": "^7.12.13",
     "@danmarshall/deckgl-typings": "~4.8.0",
-    "@open-wc/webpack-import-meta-loader": "^0.4.7",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
-    "@storybook/cli": "^6.2.8",
-    "@storybook/react": "^6.2.8",
     "@types/geojson": "^7946.0.7",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
