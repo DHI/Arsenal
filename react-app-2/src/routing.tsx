@@ -10,9 +10,9 @@ import {
 import { HomePageRoot, homePageRoute } from './examples/homePage';
 import { NumberedPagesRoot, numberedPagesRoute } from './examples/numberedPage';
 import { useStore } from './__store/root';
-import { StoryBrowserPage } from './__stories/__storyBrowser/storyBrowserPage';
-import { StoryBrowserRenderPage } from './__stories/__storyBrowser/storyBrowserRenderPage';
 import {
+  LazyStoryBrowserPage,
+  LazyStoryBrowserRenderPage,
   storyBrowserRenderRoute,
   storyBrowserRoute,
 } from './__stories/__storyBrowser/__routes';
@@ -22,12 +22,14 @@ export const Routes = observer(() => {
     router: { route, routes },
   } = useStore();
 
-  const routeToComponent: { [k in keyof typeof routes]: React.FC } = {
+  const routeToComponent: {
+    [k in keyof typeof routes]: React.ComponentType;
+  } = {
     homePage: HomePageRoot,
     numberedPages: NumberedPagesRoot,
     brisbaneMap: BrisbaneMapRoot,
-    storyBrowser: StoryBrowserPage,
-    storyBrowserRender: StoryBrowserRenderPage,
+    storyBrowser: LazyStoryBrowserPage,
+    storyBrowserRender: LazyStoryBrowserRenderPage,
   };
 
   const RoutedComponent = routeToComponent[route?.key ?? 'homePage'];
