@@ -29,7 +29,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-map-gl": "6.1.12",
-    "story-browser": "^2.0.0",
+    "story-browser": "^2.1.0",
     "styled-components": "^5.2.3",
     "xroute": "^5.4"
   },
