@@ -1,0 +1,53 @@
+{
+  "extends": "@nrwl/workspace/presets/npm.json",
+  "npmScope": "arsenal",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "test",
+          "lint",
+          "package",
+          "prepare"
+        ],
+        "accessToken": "NTI2NTdkMmYtMGQ2Yi00M2I5LWFjNmQtOWVmZmIzODkwYjU4fHJlYWQtd3JpdGU="
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ],
+    "prepare": [
+      {
+        "target": "prepare",
+        "projects": "dependencies"
+      }
+    ],
+    "package": [
+      {
+        "target": "package",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "projects": {
+    "boilerplate": {
+      "implicitDependencies": []
+    },
+    "react-app-2": {
+      "implicitDependencies": []
+    },
+    "@dhi/webdev-arsenal": {
+      "implicitDependencies": []
+    }
+  },
+  "affected": {
+    "defaultBase": "master"
+  }
+}

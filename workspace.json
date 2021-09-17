@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "projects": {
+    "boilerplate": {
+      "root": "apps/react-app"
+    },
+    "react-app-2": {
+      "root": "apps/react-app-2"
+    },
+    "@dhi/webdev-arsenal": {
+      "root": "packages/react-library",
+      "type": "library"
+    }
+  }
+}
