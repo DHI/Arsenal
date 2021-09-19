@@ -1,7 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "@dhi/arsenal.reactapp": {
+    "react-app": {
       "root": "apps/react-app"
     },
     "@dhi/arsenal.jsonform": {
@@ -14,9 +14,9 @@
       "sourceRoot": "packages/models/src",
       "projectType": "library"
     },
-    "@dhi/arsenal.react": {
-      "root": "packages/react",
-      "sourceRoot": "packages/react/src",
+    "@dhi/arsenal.ui": {
+      "root": "packages/ui",
+      "sourceRoot": "packages/ui/src",
       "projectType": "library"
     }
   },
@@ -27,7 +27,10 @@
       }
     }
   },
+  "defaultProject": "react-app",
   "cli": {
-    "defaultCollection": "@nrwl/react"
+    "analytics": false,
+    "defaultCollection": "@nrwl/react",
+    "pacakgeManager": "pnpm"
   }
 }

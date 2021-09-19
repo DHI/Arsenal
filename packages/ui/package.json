@@ -1,5 +1,6 @@
 {
   "name": "@dhi/arsenal.ui",
+  "version": "0.1.0",
   "dependencies": {
     "styled-components": "^5.3.1",
     "clsx": "^1.1.1"

@@ -1,7 +1,9 @@
 {
   "name": "@dhi/arsenal.jsonform",
+  "version": "0.1.0",
   "dependencies": {
     "@dhi/arsenal.models": "workspace:../models",
+    "@dhi/arsenal.ui": "workspace:../ui",
     "@types/lodash-es": "^4.17.5",
     "lodash-es": "^4.17.21",
     "ajv": "^8.6.2",

@@ -2,13 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "strict": true,
-    "jsx": "react-jsx",
-    "baseUrl": "/",
+    "declaration": true,
     "outDir": "../../dist/out-tsc",
   },
-  "files": [
-    "../../node_modules/@nrwl/react/typings/cssmodule.d.ts",
-    "../../node_modules/@nrwl/react/typings/image.d.ts"
-  ],
-  "include": ["src", "*.js"]
+  "include": ["src"]
 }
