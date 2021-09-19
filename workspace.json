@@ -1,15 +1,33 @@
 {
   "version": 2,
   "projects": {
-    "boilerplate": {
+    "@dhi/arsenal.reactapp": {
       "root": "apps/react-app"
     },
-    "react-app-2": {
-      "root": "apps/react-app-2"
+    "@dhi/arsenal.jsonform": {
+      "root": "packages/jsonform",
+      "sourceRoot": "packages/jsonform/src",
+      "projectType": "library"
     },
-    "@dhi/webdev-arsenal": {
-      "root": "packages/react-library",
-      "type": "library"
+    "@dhi/arsenal.models": {
+      "root": "packages/models",
+      "sourceRoot": "packages/models/src",
+      "projectType": "library"
+    },
+    "@dhi/arsenal.react": {
+      "root": "packages/react",
+      "sourceRoot": "packages/react/src",
+      "projectType": "library"
     }
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
   }
 }

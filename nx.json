@@ -37,13 +37,16 @@
     ]
   },
   "projects": {
+    "@dhi/webdev-arsenal": {
+      "implicitDependencies": []
+    },
     "boilerplate": {
       "implicitDependencies": []
     },
-    "react-app-2": {
-      "implicitDependencies": []
+    "jsonform": {
+      "tags": []
     },
-    "@dhi/webdev-arsenal": {
+    "react-app-2": {
       "implicitDependencies": []
     }
   },
