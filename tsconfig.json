@@ -2,6 +2,8 @@
   "compilerOptions": {
     "target": "ES2020",
     "baseUrl": "/",
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "useDefineForClassFields": true,

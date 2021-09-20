@@ -2,6 +2,7 @@
   "name": "@dhi/arsenal",
   "private": true,
   "devDependencies": {
+    "@changesets/cli": "^2.17.0",
     "@nrwl/cli": "^12.9.0",
     "@nrwl/cypress": "12.9.0",
     "@nrwl/eslint-plugin-nx": "12.9.0",

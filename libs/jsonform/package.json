@@ -1,6 +1,7 @@
 {
   "name": "@dhi/arsenal.jsonform",
   "version": "0.1.0",
+  "main": "./x",
   "scripts": {
     "build": "tsc"
   },

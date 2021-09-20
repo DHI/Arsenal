@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "strict": true,
+    "declaration": true,
+    "outDir": "./x",
+  },
+  "include": ["src", "*.js"]
+}

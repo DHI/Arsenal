@@ -1,0 +1,13 @@
+{
+  "name": "@dhi/arsenal.ui",
+  "version": "0.1.0",
+  "main": "./x",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@emotion/styled": "^11.3.0",
+    "@emotion/css": "^11.1.3"
+
+  }
+}

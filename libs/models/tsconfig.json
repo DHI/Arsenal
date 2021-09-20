@@ -3,7 +3,7 @@
   "compilerOptions": {
     "strict": true,
     "declaration": true,
-    "outDir": "../../dist/out-tsc",
+    "outDir": "./x",
   },
   "include": ["src"]
 }
