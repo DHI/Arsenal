@@ -1,8 +1,6 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "strict": true,
-    "declaration": true,
     "composite": true,
     "rootDir": "src",
     "outDir": "./x",
