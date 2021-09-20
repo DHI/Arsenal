@@ -1,6 +1,6 @@
 {
   "extends": "@nrwl/workspace/presets/npm.json",
-  "npmScope": "arsenal",
+  "npmScope": "dhi",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
@@ -37,16 +37,16 @@
     ]
   },
   "projects": {
-    "@dhi/webdev-arsenal": {
+    "@dhi/arsenal.jsonform": {
       "implicitDependencies": []
     },
-    "boilerplate": {
-      "implicitDependencies": []
-    },
-    "jsonform": {
+    "@dhi/arsenal.models": {
       "tags": []
     },
-    "react-app-2": {
+    "@dhi/arsenal.ui": {
+      "implicitDependencies": []
+    },
+    "react-app": {
       "implicitDependencies": []
     }
   },

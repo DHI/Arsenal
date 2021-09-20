@@ -14,8 +14,7 @@
     "paths": {
       "@dhi/arsenal.jsonform": [ "./packages/jsonform/src/index.ts" ],
       "@dhi/arsenal.ui": [ "./packages/ui/src/index.ts" ],
-      "@dhi/arsenal.models": [ "./packages/models/src/index.ts" ],
-      
+      "@dhi/arsenal.models": [ "./packages/models/src/index.ts" ]
     }
   }
 }

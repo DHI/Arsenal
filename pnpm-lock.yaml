@@ -4,15 +4,15 @@ importers:
 
   .:
     specifiers:
-      '@nrwl/cli': latest
+      '@nrwl/cli': ^12.9.0
       '@nrwl/eslint-plugin-nx': 12.9.0
       '@nrwl/linter': 12.9.0
-      '@nrwl/nx-cloud': latest
+      '@nrwl/nx-cloud': ^12.3.10
       '@nrwl/react': ^12.9.0
       '@nrwl/storybook': ^12.9.0
-      '@nrwl/tao': latest
+      '@nrwl/tao': ^12.9.0
       '@nrwl/web': 12.9.0
-      '@nrwl/workspace': latest
+      '@nrwl/workspace': ^12.9.0
       '@testing-library/react': 11.2.6
       '@testing-library/react-hooks': 7.0.1
       '@types/react': 17.0.3
@@ -4223,7 +4223,7 @@ packages:
   /axios/0.21.4:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.14.4
+      follow-redirects: 1.14.4_debug@4.3.2
     transitivePeerDependencies:
       - debug
     dev: true

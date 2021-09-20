@@ -1,9 +1,6 @@
 {
   "version": 2,
   "projects": {
-    "react-app": {
-      "root": "apps/react-app"
-    },
     "@dhi/arsenal.jsonform": {
       "root": "packages/jsonform",
       "sourceRoot": "packages/jsonform/src",
@@ -18,12 +15,25 @@
       "root": "packages/ui",
       "sourceRoot": "packages/ui/src",
       "projectType": "library"
+    },
+    "react-app": {
+      "root": "apps/react-app"
     }
+    
   },
   "generators": {
     "@nrwl/react": {
       "application": {
+        "style": "styled-components",
+        "linter": "eslint",
         "babel": true
+      },
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "eslint"
       }
     }
   },

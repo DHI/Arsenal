@@ -1,6 +1,9 @@
 {
   "name": "@dhi/arsenal.jsonform",
   "version": "0.1.0",
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "@dhi/arsenal.models": "workspace:../models",
     "@dhi/arsenal.ui": "workspace:../ui",
