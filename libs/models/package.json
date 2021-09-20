@@ -2,9 +2,6 @@
   "name": "@dhi/arsenal.models",
   "version": "0.1.0",
   "main": "./x",
-  "scripts": {
-    "build": "tsc"
-  },
   "dependencies": {
     "mobx": "^6.3.2"
   }
