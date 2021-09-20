@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES2020",
     "baseUrl": "/",
+    "rootDir": "src",
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "experimentalDecorators": true,
