@@ -1,6 +1,11 @@
 {
   "name": "@dhi/arsenal",
   "private": true,
+  "scripts": {
+    "build": "pnpm -r run build",
+    "build:libs": "pnpm -r run build --filter ./libs",
+    "build:watch": "tsc --watch"
+  },
   "devDependencies": {
     "@changesets/cli": "^2.17.0",
     "@nrwl/cli": "^12.9.0",

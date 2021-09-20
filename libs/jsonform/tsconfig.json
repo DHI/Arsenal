@@ -3,6 +3,7 @@
   "compilerOptions": {
     "strict": true,
     "declaration": true,
+    "composite": true,
     "outDir": "./x",
   },
   "include": ["src", "*.js"]

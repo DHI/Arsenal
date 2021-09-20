@@ -13,10 +13,16 @@
       "dom"
     ],
     "moduleResolution": "node",
-    "paths": {
-      "@dhi/arsenal.jsonform": [ "./packages/jsonform/src/index.ts" ],
-      "@dhi/arsenal.ui": [ "./packages/ui/src/index.ts" ],
-      "@dhi/arsenal.models": [ "./packages/models/src/index.ts" ]
-    }
-  }
+  },
+  "references": [
+    {
+      "path": "./libs/jsonform"
+    },
+    {
+      "path": "./libs/models"
+    },
+    {
+      "path": "./libs/ui"
+    },
+  ]
 }
