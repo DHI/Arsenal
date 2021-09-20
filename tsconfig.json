@@ -1,19 +1,6 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "baseUrl": "/",
-    "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react",
-    "experimentalDecorators": true,
-    "resolveJsonModule": true,
-    "useDefineForClassFields": true,
-    "incremental": true,
-    "lib": [
-      "ES2020",
-      "dom"
-    ],
-    "moduleResolution": "node",
-  },
+  "extends": "./tsconfig.base.json",
+  "files": [],
   "references": [
     {
       "path": "./libs/jsonform"
