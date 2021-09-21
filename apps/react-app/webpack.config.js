@@ -121,7 +121,7 @@ module.exports = {
   },
   output: {
     publicPath: '/',
-    path: dir('./build'),
+    path: dir('./x'),
   },
   target: 'web',
   stats: 'minimal',

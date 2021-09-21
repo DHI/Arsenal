@@ -3,7 +3,7 @@
     "strict": true,
     "target": "ES2020",
     "module": "ES2020",
-    "outDir": "./.build",
+    "outDir": "./x",
     "paths": {
       "__css": ["./src/__css"]
     },
