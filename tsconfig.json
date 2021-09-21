@@ -1,5 +1,12 @@
 {
   "extends": "./tsconfig.base.json",
+  // "compilerOptions": {
+  //   "paths": {
+  //     "@dhi/arsenal.models": ["./libs/models"],
+  //     "@dhi/arsenal.jsonform": ["./libs/jsonform"],
+  //     "@dhi/arsenal.ui": ["./libs/ui"]
+  //   }
+  // },
   "files": [],
   "references": [
     // {
