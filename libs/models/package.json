@@ -2,11 +2,11 @@
   "name": "@dhi/arsenal.models",
   "version": "1.0.0",
   "main": "./x",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DHI/Arsenal"
-  },
   "dependencies": {
     "mobx": "^6.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DHI/Arsenal/tree/master/libs/models"
   }
 }
