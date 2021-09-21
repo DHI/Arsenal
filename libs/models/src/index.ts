@@ -1,2 +1,3 @@
 export * from './AsyncValue';
-export * from './primitives';
+export * from './StateModel';
+export * from './BooleanModel';
