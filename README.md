@@ -4,6 +4,13 @@
 
 See [./.docs](./.docs)
 
+## Project
+
+- ./apps
+  - Applications
+- ./libs
+  - NPM packages (Published to Github Packages)
+
 ## Usage
 
 This project uses:
