@@ -490,7 +490,7 @@ export const FormField = observer<{
                 key={rowIndex}
                 css={css`
                   margin-bottom: 10px;
-                  border: 2px solid ${theme.palette.grey[700]};
+                  border: 2px solid ${theme.palette?.grey?.[700]};
                   padding: 1em;
                   margin: 1em 0;
                   position: relative;
@@ -634,7 +634,7 @@ function validateSchema(schema: Schema, value: any) {
 
 const GridRow = (p: PropsOf<typeof Grid>) => <Grid container {...p} />;
 const $GroupRow = styled(GridRow)`
-  border-left: 0.75em solid ${(x: any) => x.theme.palette.grey[700]};
+  border-left: 0.75em solid ${(x: any) => x.theme?.palette?.grey?.[700]};
   padding-left: 0.75em;
   margin: 0.5em 0;
 `;
