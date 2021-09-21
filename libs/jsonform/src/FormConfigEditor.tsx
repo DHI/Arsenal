@@ -212,7 +212,7 @@ export const FormConfigEditor = observer<{
           operations={operations}
         />
       ))}
-      <Grid>
+      <Grid container>
         {state.hasValidationErrors && (
           <Alert
             severity="error"
@@ -228,6 +228,7 @@ export const FormConfigEditor = observer<{
         )}
       </Grid>
       <Grid
+        container
         css={css`
           flex-grow: 1;
           justify-content: space-between;
@@ -480,6 +481,7 @@ export const FormField = observer<{
 
             return (
               <Grid
+                container
                 key={rowIndex}
                 css={css`
                   margin-bottom: 10px;
@@ -521,7 +523,7 @@ export const FormField = observer<{
               </Grid>
             );
           })}
-          <Grid>
+          <Grid container>
             <Button
               variant="contained"
               color="secondary"
@@ -594,7 +596,7 @@ export const FormField = observer<{
               </Tooltip>
             </ButtonGroup>
             <br />
-            <Grid>
+            <Grid container>
               <FormField
                 field={yField}
                 state={state}

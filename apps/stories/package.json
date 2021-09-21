@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "webpack serve",
     "build": "webpack build --node-env production",
-    "make:stories": "pnpm makeStoryMap '**/*.stories.tsx' --output ./src/__dev/STORIES.ts",
-    "start": "webpack serve"
+    "make:stories": "pnpm makeStoryMap '**/*.stories.tsx' --output ./src/__dev/STORIES.ts"
   },
   "browserslist": ">0.75%, not ie 11, not UCAndroid >0, not OperaMini all",
   "dependencies": {

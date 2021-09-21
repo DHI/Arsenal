@@ -1,6 +1,6 @@
-import '@emotion/react/types/css-prop';
+import {} from '@emotion/react/types/css-prop';
 import styled from '@emotion/styled';
 import { cx, injectGlobal } from '@emotion/css';
-import { css, ThemeProvider, PropsOf } from '@emotion/react';
+import { css, ThemeProvider } from '@emotion/react';
 
-export { cx, styled, css, injectGlobal, ThemeProvider, PropsOf };
+export { cx, styled, css, injectGlobal, ThemeProvider };

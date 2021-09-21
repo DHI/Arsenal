@@ -5,7 +5,11 @@ import {
   extractScaffoldFromFields,
   FormConfigEditor,
 } from '@dhi/arsenal.jsonform';
-import { outfallParameterFields, reditScenarioForm } from './reditScenario';
+import {
+  outfallParameterFields,
+  reditScenarioForm,
+} from '@dhi/arsenal.jsonform/x/reditScenario';
+import { WithDarkTheme } from './__dev/themes';
 
 export default {
   title: 'JsonForm',
@@ -21,45 +25,57 @@ export function Main() {
 
     return (
       <Grid
+        container
         css={css`
           overflow: auto;
           height: 100vh;
         `}
       >
-        <$Container>
-          <FormConfigEditor
-            form={reditScenarioForm}
-            data={data}
-            onData={setData}
-          />
-        </$Container>
-        <$Container>
-          <pre
-            css={css`
-              font-size: 90%;
-              height: 100vh;
-              overflow: auto;
-            `}
-          >
-            {JSON.stringify(reditScenarioForm, null, 2)}
-          </pre>
-        </$Container>
-        <$Container>
-          <pre
-            css={css`
-              font-size: 90%;
-              height: 100vh;
-              overflow: auto;
-            `}
-          >
-            {JSON.stringify(data, null, 2)}
-          </pre>
-        </$Container>
+        <Grid item>
+          <$Container>
+            <FormConfigEditor
+              form={reditScenarioForm}
+              data={data}
+              onData={setData}
+            />
+          </$Container>
+        </Grid>
+        <Grid item>
+          <$Container>
+            <pre
+              css={css`
+                font-size: 90%;
+                height: 100vh;
+                overflow: auto;
+              `}
+            >
+              {JSON.stringify(reditScenarioForm, null, 2)}
+            </pre>
+          </$Container>
+        </Grid>
+
+        <Grid item>
+          <$Container>
+            <pre
+              css={css`
+                font-size: 90%;
+                height: 100vh;
+                overflow: auto;
+              `}
+            >
+              {JSON.stringify(data, null, 2)}
+            </pre>
+          </$Container>
+        </Grid>
       </Grid>
     );
   };
 
-  return <Component />;
+  return (
+    <WithDarkTheme>
+      <Component />
+    </WithDarkTheme>
+  );
 }
 
 export function Fn_extractScaffoldFromFields() {

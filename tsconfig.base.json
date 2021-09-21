@@ -8,7 +8,7 @@
     "jsxImportSource": "@emotion/react",
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "useDefineForClassFields": true,
+    "useDefineForClassFields": false,
     "incremental": true,
     "moduleResolution": "node",
     "lib": [

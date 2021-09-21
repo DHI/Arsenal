@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "react": "^17.0.2",
-    "@emotion/react": "^11.4.1"
+    "@emotion/react": "11.4.1"
   },
   "devDependencies": {
     "@types/react": "17.0.22",
@@ -22,7 +22,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@types/react": "17.0.22"
+      "@types/react": "17.0.22",
+      "@emotion/react": "11.4.1"
     }
   }
 }

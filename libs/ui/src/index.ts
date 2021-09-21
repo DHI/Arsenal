@@ -1,3 +1,2 @@
-import './cssProp.d';
-
 export * from './css';
+export * from './types';
