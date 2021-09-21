@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "strict": false,
+    "target": "ES2020",
+    "module": "ES2020",
+    "outDir": "./x",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "declaration": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": true,
+    "noEmit": true
+  },
+  "include": [
+    "src/__dev/*.d.ts",
+    "src",
+    "*.js"
+  ]
+}

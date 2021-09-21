@@ -9,7 +9,6 @@ const mode =
   process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 /** @ts-check @type import('webpack').Configuration */
-
 module.exports = {
   mode,
   devtool: 'eval-cheap-module-source-map',
