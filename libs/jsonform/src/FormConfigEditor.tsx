@@ -11,7 +11,7 @@ import {
 } from './types';
 import { makeAutoObservable, runInAction, toJS } from 'mobx';
 import { BooleanModel } from '@dhi/arsenal.models';
-import { css, styled } from '@dhi/arsenal.ui';
+import { css, PropsOf, styled } from '@dhi/arsenal.ui';
 import cloneDeep from 'lodash-es/cloneDeep';
 import { JsonPointer } from 'json-ptr';
 import { StepperForm } from './components/StepperForm';
@@ -299,8 +299,12 @@ export const FormField = observer<{
               size="small"
               variant="outlined"
               css={css`
-                margin: 0.5em 0;
-                max-width: 225px;
+                && {
+                  margin: 0.5em 0;
+                  width: 100%;
+
+                  max-width: 225px;
+                }
               `}
             >
               <InputLabel shrink id={selectId}>
@@ -350,7 +354,7 @@ export const FormField = observer<{
 
       return (
         <Grid item>
-          <TextField
+          <$TextField
             variant="outlined"
             size="small"
             label={<>{field.name}</>}
@@ -360,7 +364,6 @@ export const FormField = observer<{
             error={!isValid}
             helperText={errors?.[0]?.message}
             css={css`
-              margin: 0.5em 0;
               ${fieldType === 'number'
                 ? css`
                     min-width: 150px;
@@ -627,14 +630,17 @@ function validateSchema(schema: Schema, value: any) {
   return { isValid, errors: validate.errors };
 }
 
-const $GroupRow = styled(Grid)`
+const GridRow = (p: PropsOf<typeof Grid>) => <Grid container {...p} />;
+const $GroupRow = styled(GridRow)`
   border-left: 0.75em solid ${(x: any) => x.theme.palette.grey[700]};
   padding-left: 0.75em;
   margin: 0.5em 0;
 `;
 
 const $TextField = styled(TextField)`
-  margin: 0.25em 0.2em;
+  && {
+    margin: 0.45em 0;
+  }
 `;
 const $SmallTextField = styled($TextField)`
   max-width: 160px;
