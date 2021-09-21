@@ -3,6 +3,7 @@ import Popper from '@material-ui/core/Popper/Popper';
 import Grow from '@material-ui/core/Grow/Grow';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener/ClickAwayListener';
 import { observer } from 'mobx-react-lite';
+import { PropsOf } from '@dhi/arsenal.ui';
 
 export const DropdownMenu: React.FC<{
   isOpen?: boolean;

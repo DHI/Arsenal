@@ -1,26 +1,28 @@
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
 import { DropdownMenu } from './dropdownMenu';
-import * as ui from '__ui';
+import { Button, ListItemIcon, MenuItem, Paper } from '@material-ui/core';
+import { PropsOf } from '@dhi/arsenal.ui';
+import { CloseIcon, CheckIcon } from './icons';
 
 export const ConfirmDropdown = observer<{
   trigger: {
     icon?: React.ReactNode;
     label: React.ReactNode;
-    button?: Partial<PropsOf<typeof ui.Button>>;
+    button?: Partial<PropsOf<typeof Button>>;
   };
   confirm: {
     icon?: React.ReactNode;
     label: React.ReactNode;
     onClick?(): void;
 
-    menuItem?: Partial<PropsOf<typeof ui.MenuItem>>;
+    menuItem?: Partial<PropsOf<typeof MenuItem>>;
   };
   cancel?: {
     icon?: React.ReactNode;
     label?: React.ReactNode;
     onClick?(): void;
-    menuItem?: Partial<PropsOf<typeof ui.MenuItem>>;
+    menuItem?: Partial<PropsOf<typeof MenuItem>>;
   };
   className?: string;
 }>(({ trigger, cancel, confirm, ...p }) => {
@@ -28,7 +30,7 @@ export const ConfirmDropdown = observer<{
     <DropdownMenu>
       {({ isOpen, closeMenu, openMenu }) => ({
         button: (
-          <ui.Button
+          <Button
             variant="outlined"
             onClick={openMenu}
             endIcon={trigger.icon}
@@ -37,35 +39,31 @@ export const ConfirmDropdown = observer<{
             {...p}
           >
             {trigger.label}
-          </ui.Button>
+          </Button>
         ),
         menu: (
-          <ui.Paper>
-            <ui.MenuItem
+          <Paper>
+            <MenuItem
               {...cancel?.menuItem}
               onClick={() => {
                 closeMenu();
                 cancel?.onClick?.();
               }}
             >
-              <ui.ListItemIcon>
-                {cancel?.icon ?? <ui.CloseIcon />}
-              </ui.ListItemIcon>
+              <ListItemIcon>{cancel?.icon ?? <CloseIcon />}</ListItemIcon>
               {cancel?.label ?? 'Cancel'}
-            </ui.MenuItem>
-            <ui.MenuItem
+            </MenuItem>
+            <MenuItem
               {...confirm?.menuItem}
               onClick={() => {
                 closeMenu();
                 confirm.onClick?.();
               }}
             >
-              <ui.ListItemIcon>
-                {confirm.icon ?? <ui.CheckIcon />}
-              </ui.ListItemIcon>
+              <ListItemIcon>{confirm.icon ?? <CheckIcon />}</ListItemIcon>
               {confirm.label}
-            </ui.MenuItem>
-          </ui.Paper>
+            </MenuItem>
+          </Paper>
         ),
       })}
     </DropdownMenu>

@@ -5,7 +5,7 @@
     "clean": "rimraf libs/**/tsconfig.tsbuildinfo apps/**/tsconfig.tsbuildinfo",
     "build": "pnpm -r run build",
     "build:libs": "tsc -b .",
-    "dev:libs": "pnpm build:libs --watch"
+    "dev:libs": "pnpm build:libs -- -w"
   },
   "devDependencies": {
     "@changesets/cli": "^2.17.0",
