@@ -6,6 +6,11 @@ See [./.docs](./.docs)
 
 ## Usage
 
+This project uses:
+- `pnpm` with workspaces
+- `changesets` for npm versioning
+- Requires you configure your .npmrc with GitHub Access Token. [See this for details](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
+
 ```bash
 # Clone repo
 
