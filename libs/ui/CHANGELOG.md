@@ -1,5 +1,11 @@
 # @dhi/arsenal.ui
 
+## 1.1.0
+
+### Minor Changes
+
+- Fix up dependencies
+
 ## 1.0.2
 
 ### Patch Changes
