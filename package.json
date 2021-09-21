@@ -7,15 +7,22 @@
     "build:libs": "tsc -b .",
     "dev:libs": "pnpm build:libs -- -w"
   },
+  "dependencies": {
+    "react": "^17.0.2",
+    "@emotion/react": "^11.4.1"
+  },
   "devDependencies": {
+    "@types/react": "17.0.22",
+    "@types/react-dom": "17.0.9",
     "@changesets/cli": "^2.17.0",
     "eslint": "^7.32.0",
     "eslint-config-nfour": "^1.3.0",
     "rimraf": "^3.0.2",
     "typescript": "~4.4.3"
   },
-  "dependencies": {
-    "@emotion/react": "^11.4.1",
-    "tslib": "^2.0.0"
+  "pnpm": {
+    "overrides": {
+      "@types/react": "17.0.22"
+    }
   }
 }
