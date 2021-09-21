@@ -140,3 +140,5 @@ export type FormJSONSchema =
   | NumberInputSchema;
 
 export interface FormJSONSchemaError {}
+
+export type LonLat = [longitude: number, latitude: number];

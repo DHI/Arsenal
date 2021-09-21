@@ -1,7 +1,16 @@
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
-import { css, styled } from '@dhi/arsenal.ui';
-import { Stepper } from '@material-ui/core';
+import { css, PropsOf, styled } from '@dhi/arsenal.ui';
+import {
+  Button,
+  ButtonGroup,
+  Grid,
+  Step,
+  StepButton,
+  StepContent,
+  Stepper,
+} from '@material-ui/core';
+import { ArrowLeft, ArrowRight } from '@material-ui/icons';
 
 export const StepperForm = observer<{
   activeStepIndex: number;
@@ -39,7 +48,7 @@ export const StepperForm = observer<{
           <$StepContent>
             {body()}
             {nextPrevButtons && (
-              <$Row
+              <Grid
                 css={css`
                   margin-top: 1em;
                   margin-bottom: -1em;
@@ -47,21 +56,21 @@ export const StepperForm = observer<{
               >
                 <ButtonGroup>
                   <Button
-                    startIcon={<LeftIcon />}
+                    startIcon={<ArrowLeft />}
                     disabled={i === 0}
                     onClick={() => onStep?.(i - 1)}
                   >
                     Back
                   </Button>
                   <Button
-                    endIcon={<RightIcon />}
+                    endIcon={<ArrowRight />}
                     disabled={i === all.length - 1}
                     onClick={() => onStep?.(i + 1)}
                   >
                     Next
                   </Button>
                 </ButtonGroup>
-              </$Row>
+              </Grid>
             )}
           </$StepContent>
         </Step>

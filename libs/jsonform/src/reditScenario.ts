@@ -1,4 +1,4 @@
-import { FieldGroup, FormConfig, ofType, StepperGroup } from './formConfig';
+import { FieldGroup, FormConfig, ofType, StepperGroup } from './types';
 
 const ofFieldGroup = ofType<FieldGroup>();
 const ofStepperField = ofType<StepperGroup['steps'][number]>();

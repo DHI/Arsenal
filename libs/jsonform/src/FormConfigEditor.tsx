@@ -4,45 +4,45 @@ import {
   Field,
   FieldKinds,
   FormConfig,
+  LonLat,
   RootFieldKinds,
   StepperGroup,
   StepperStep,
-} from './formConfig';
+} from './types';
 import { makeAutoObservable, runInAction, toJS } from 'mobx';
 import { BooleanModel } from '@dhi/arsenal.models';
-import { css, styled } from '@dhi/arsenal.react';
+import { css, styled } from '@dhi/arsenal.ui';
 import cloneDeep from 'lodash-es/cloneDeep';
 import { JsonPointer } from 'json-ptr';
-import { StepperForm } from '../__components/stepperForm';
+import { StepperForm } from './components/StepperForm';
 import isArray from 'lodash-es/isArray';
 import {
   TextField,
-  $Row,
+  Grid,
   Button,
-  AddBoxIcon,
-  $Col,
   ButtonGroup,
-  LocationSearchingIcon,
-  RoomIcon,
   Tooltip,
   MenuItem,
   Select,
-  DiscardIcon,
-  SaveIcon,
-} from '__ui';
-import { LonLat } from '../__store/__models/mapViewport';
-import Ajv, { Schema } from 'ajv';
-import {
   FormControl,
   FormHelperText,
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  useTheme,
 } from '@material-ui/core';
+import Ajv, { Schema } from 'ajv';
 import { pascalCase } from 'change-case';
 import { deepObserve } from 'mobx-utils';
 import Alert from '@material-ui/lab/Alert';
-import { ConfirmDropdown } from '../__components/dropdowns';
+import { ConfirmDropdown } from './components/dropdowns';
+import {
+  DiscardIcon,
+  SaveIcon,
+  AddBoxIcon,
+  RoomIcon,
+  LocationSearchingIcon,
+} from './components/icons';
 
 type Data = Record<string, any>;
 type LocationPickReaction = (
@@ -203,7 +203,7 @@ export const FormConfigEditor = observer<{
   }, [state]);
 
   return (
-    <$Col {...{ className }}>
+    <Grid item {...{ className }}>
       {form.fields.map((f, i) => (
         <FormField
           key={f.kind + i}
@@ -212,7 +212,7 @@ export const FormConfigEditor = observer<{
           operations={operations}
         />
       ))}
-      <$Row>
+      <Grid>
         {state.hasValidationErrors && (
           <Alert
             severity="error"
@@ -226,8 +226,8 @@ export const FormConfigEditor = observer<{
             {state.validationErrorsCount} issues found
           </Alert>
         )}
-      </$Row>
-      <$Row
+      </Grid>
+      <Grid
         css={css`
           flex-grow: 1;
           justify-content: space-between;
@@ -268,8 +268,8 @@ export const FormConfigEditor = observer<{
             {components.saveButton?.text || 'Save'}
           </Button>
         </ButtonGroup>
-      </$Row>
-    </$Col>
+      </Grid>
+    </Grid>
   );
 });
 
@@ -279,6 +279,8 @@ export const FormField = observer<{
   parentPointer?: JsonPointer;
   operations?: Operations;
 }>(({ field, state, parentPointer = new JsonPointer([]), operations }) => {
+  const theme = useTheme();
+
   switch (field.kind) {
     case 'field': {
       const pointer = parentPointer.concat(field.pointer);
@@ -291,7 +293,7 @@ export const FormField = observer<{
         const selectId = `${pointer.pointer}`;
 
         return (
-          <$Col>
+          <Grid item>
             <FormControl
               size="small"
               variant="outlined"
@@ -333,7 +335,7 @@ export const FormField = observer<{
                 </FormHelperText>
               )}
             </FormControl>
-          </$Col>
+          </Grid>
         );
       }
 
@@ -346,7 +348,7 @@ export const FormField = observer<{
       })();
 
       return (
-        <$Col>
+        <Grid item>
           <TextField
             variant="outlined"
             size="small"
@@ -390,7 +392,7 @@ export const FormField = observer<{
               })
             }
           />
-        </$Col>
+        </Grid>
       );
     }
 
@@ -434,7 +436,7 @@ export const FormField = observer<{
     case 'group':
       return (
         <$GroupRow>
-          <$Col>
+          <Grid item>
             {field.fields.map((f, i) => (
               <FormField
                 key={i}
@@ -444,7 +446,7 @@ export const FormField = observer<{
                 parentPointer={parentPointer}
               />
             ))}
-          </$Col>
+          </Grid>
         </$GroupRow>
       );
 
@@ -477,17 +479,17 @@ export const FormField = observer<{
             const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
 
             return (
-              <$Row
+              <Grid
                 key={rowIndex}
                 css={css`
                   margin-bottom: 10px;
-                  border: 2px solid ${(x) => x.theme.palette.grey[700]};
+                  border: 2px solid ${theme.palette.grey[700]};
                   padding: 1em;
                   margin: 1em 0;
                   position: relative;
                 `}
               >
-                <$Col>
+                <Grid item>
                   {field.fields.map((f, i) => (
                     <FormField
                       key={i}
@@ -515,11 +517,11 @@ export const FormField = observer<{
                       },
                     }}
                   />
-                </$Col>
-              </$Row>
+                </Grid>
+              </Grid>
             );
           })}
-          <$Row>
+          <Grid>
             <Button
               variant="contained"
               color="secondary"
@@ -530,7 +532,7 @@ export const FormField = observer<{
             >
               Add
             </Button>
-          </$Row>
+          </Grid>
         </>
       );
     }
@@ -544,7 +546,7 @@ export const FormField = observer<{
 
       return (
         <$GroupRow>
-          <$Col>
+          <Grid item>
             <ButtonGroup
               variant="outlined"
               color="primary"
@@ -592,7 +594,7 @@ export const FormField = observer<{
               </Tooltip>
             </ButtonGroup>
             <br />
-            <$Row>
+            <Grid>
               <FormField
                 field={yField}
                 state={state}
@@ -605,8 +607,8 @@ export const FormField = observer<{
                 operations={operations}
                 parentPointer={parentPointer}
               />
-            </$Row>
-          </$Col>
+            </Grid>
+          </Grid>
         </$GroupRow>
       );
     }
@@ -623,8 +625,8 @@ function validateSchema(schema: Schema, value: any) {
   return { isValid, errors: validate.errors };
 }
 
-const $GroupRow = styled($Row)`
-  border-left: 0.75em solid ${(x) => x.theme.palette.grey[700]};
+const $GroupRow = styled(Grid)`
+  border-left: 0.75em solid ${(x: any) => x.theme.palette.grey[700]};
   padding-left: 0.75em;
   margin: 0.5em 0;
 `;

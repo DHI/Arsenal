@@ -9,9 +9,9 @@
   // },
   "files": [],
   "references": [
-    // {
-    //   "path": "./libs/jsonform"
-    // },
+    {
+      "path": "./libs/jsonform"
+    },
     {
       "path": "./libs/models"
     },

@@ -5,5 +5,5 @@
     "rootDir": "src",
     "outDir": "./x",
   },
-  "include": ["src", "*.js"]
+  "include": ["src"]
 }
