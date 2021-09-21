@@ -83,7 +83,7 @@ export function Fn_extractScaffoldFromFields() {
     <$Container>
       <pre>
         {JSON.stringify(
-          extractScaffoldFromFields(outfallParameterFields as any),
+          extractScaffoldFromFields(outfallParameterFields.fields),
           null,
           2,
         )}
