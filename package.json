@@ -2,8 +2,9 @@
   "name": "@dhi/arsenal",
   "private": true,
   "scripts": {
+    "start": "pnpm run start --filter stories",
     "clean": "rimraf libs/**/tsconfig.tsbuildinfo apps/**/tsconfig.tsbuildinfo",
-    "build": "pnpm -r run build",
+    "build": "pnpm run build:libs && pnpm -r run build --filter apps/**",
     "build:libs": "tsc -b .",
     "dev:libs": "pnpm build:libs -- -w"
   },
