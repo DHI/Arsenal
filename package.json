@@ -4,6 +4,7 @@
   "scripts": {
     "start": "pnpm run start --filter ./apps/stories",
     "clean": "rimraf libs/**/tsconfig.tsbuildinfo apps/**/tsconfig.tsbuildinfo",
+    "release": "changeset && changeset version",
     "build": "pnpm run build:libs && pnpm -r run build --filter ./apps",
     "build:libs": "tsc -b .",
     "dev:libs": "pnpm build:libs -- -w"
