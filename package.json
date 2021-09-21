@@ -1,6 +1,10 @@
 {
   "name": "@dhi/arsenal",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DHI/Arsenal"
+  },
   "scripts": {
     "start": "pnpm run start --filter ./apps/stories",
     "clean": "rimraf libs/**/tsconfig.tsbuildinfo apps/**/tsconfig.tsbuildinfo",
