@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "pnpm run start --filter ./apps/stories",
-    "clean": "rimraf libs/**/tsconfig.tsbuildinfo apps/**/tsconfig.tsbuildinfo",
+    "clean": "pnpm -r exec rimraf tsconfig.tsbuildinfo ./x",
     "release:version": "changeset && changeset version",
     "release:publish": "pnpm -r publish",
     "build": "pnpm run build:libs && pnpm -r run build --filter ./apps",
