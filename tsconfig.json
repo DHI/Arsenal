@@ -3,13 +3,13 @@
   "files": [],
   "references": [
     {
-      "path": "./libs/jsonform"
-    },
-    {
       "path": "./libs/models"
     },
     {
       "path": "./libs/ui"
+    },
+    {
+      "path": "./libs/jsonform"
     },
   ]
 }
