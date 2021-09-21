@@ -11,6 +11,32 @@ See [./.docs](./.docs)
 - ./libs
   - NPM packages (Published to Github Packages)
 
+## Development guide
+
+```bash
+# Watch libs for changes
+# ...
+
+pnpm dev:libs
+```
+
+```bash
+# Link the package into an arbitrary project
+# ...
+
+cd libs/jsonform
+
+pnpm link --global
+
+cd ~/Projects/SomeProject
+
+pnpm link --global @dhi/arsenal.jsonform
+
+pnpm start
+
+# Should now utilize the live dependency, and react to changes on a recompile
+```
+
 ## Usage
 
 This project uses:
