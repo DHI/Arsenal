@@ -1,3 +1,0 @@
-[submodule "submodules/apps/UU_REDiT-FE"]
-	path = submodules/apps/UU_REDiT-FE
-	url = git@ssh.dev.azure.com:v3/dhigroup/DHI-AU-BasicProcess/UU_REDiT-FE

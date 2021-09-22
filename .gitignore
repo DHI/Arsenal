@@ -3,3 +3,5 @@ build
 x
 .npmrc
 tsconfig.tsbuildinfo
+.gitmodules
+submodules
