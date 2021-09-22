@@ -4,5 +4,3 @@ x
 .npmrc
 tsconfig.tsbuildinfo
 .gitmodules
-submodules/apps/*
-submodules/libs/*
