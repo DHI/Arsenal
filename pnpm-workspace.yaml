@@ -1,8 +1,5 @@
 packages:
-  # all packages in subdirs of packages/ and components/
   - 'libs/**'
   - 'apps/**'
   - 'submodules/libs/**'
   - 'submodules/apps/**'
-  # exclude packages that are inside test directories
-  # - '!**/test/**'
