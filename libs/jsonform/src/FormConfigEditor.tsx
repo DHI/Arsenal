@@ -1,5 +1,5 @@
-import { observer } from 'mobx-react-lite';
 import '@fontsource/roboto';
+import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import {
   Field,
@@ -67,7 +67,10 @@ class FormConfigEditorState {
     ReturnType<typeof validateSchema>
   >();
 
-  validationTimers = new Map<JsonPointer['pointer'], NodeJS.Timeout>();
+  validationTimers = new Map<
+    JsonPointer['pointer'],
+    ReturnType<typeof setTimeout>
+  >();
 
   get validationErrorsCount() {
     return [...this.fieldValidation.values()].reduce(
@@ -355,7 +358,6 @@ export const FormField = observer<{
 
       return (
         <Grid item>
-          5xxxxxxxxxxxx
           <$TextField
             variant="outlined"
             size="small"
@@ -559,6 +561,7 @@ export const FormField = observer<{
               color="primary"
               css={css`
                 margin-top: 0.5em;
+                margin-bottom: 0.6em;
               `}
             >
               <Tooltip title="Click to pick a location on the map" arrow>
