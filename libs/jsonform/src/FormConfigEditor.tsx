@@ -412,6 +412,7 @@ export const FormField = observer<{
         <StepperForm
           css={css`
             flex-grow: 1;
+            border: 40px solid green;
           `}
           activeStepIndex={step}
           steps={Object.fromEntries(
