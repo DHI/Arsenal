@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "main": "./x",
   "dependencies": {
-    "mobx": "^6.3.2"
+    "mobx": "^6.3.3"
   },
   "repository": {
     "type": "git",

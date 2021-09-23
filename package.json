@@ -32,6 +32,10 @@
   },
   "pnpm": {
     "overrides": {
+      "mobx": "6.3.3",
+      "mobx-react-lite": "3.2.1",
+      "react": "17.0.2",
+      "react-dom": "17.0.2",
       "@types/react": "17.0.22",
       "@emotion/react": "11.4.1"
     }
