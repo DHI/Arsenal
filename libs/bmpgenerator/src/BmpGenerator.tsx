@@ -1,4 +1,3 @@
-import '@fontsource/roboto';
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
 import { makeAutoObservable } from 'mobx';
@@ -10,8 +9,9 @@ import {
   OptionsPane,
   Editor,
 } from '@syncfusion/ej2-react-documenteditor';
-import { styled, css, Global } from '@dhi/arsenal.ui';
+import { styled } from '@dhi/arsenal.ui';
 import { BooleanModel, StateModel } from '@dhi/arsenal.models';
+import './styles.css';
 
 DocumentEditorContainerComponent.Inject(Toolbar, Search, Editor, OptionsPane);
 
@@ -78,19 +78,6 @@ export const BmpGenerator = observer<{
 
   return (
     <>
-      <Global
-        styles={css`
-          @import '~@syncfusion/ej2-react-documenteditor/styles/material.css';
-          @import '~@syncfusion/ej2-base/styles/material.css';
-          @import '~@syncfusion/ej2-buttons/styles/material.css';
-          @import '~@syncfusion/ej2-inputs/styles/material.css';
-          @import '~@syncfusion/ej2-popups/styles/material.css';
-          @import '~@syncfusion/ej2-lists/styles/material.css';
-          @import '~@syncfusion/ej2-navigations/styles/material.css';
-          @import '~@syncfusion/ej2-splitbuttons/styles/material.css';
-          @import '~@syncfusion/ej2-dropdowns/styles/material.css';
-        `}
-      />
       <div>
         <button
           onClick={() => {

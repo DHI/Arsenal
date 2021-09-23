@@ -1,6 +1,5 @@
 import Config, { withDir } from '../../webpack.config.base';
 import { Configuration } from 'webpack';
-import * as pkgJson from './package.json';
 
 const dir = withDir(__dirname);
 const base = Config({ dir });
@@ -14,8 +13,5 @@ export default {
     // library: 'index',
     path: dir('./x'),
   },
-  externals: [
-    ...Object.keys(pkgJson.dependencies),
-    ...Object.keys(pkgJson.peerDependencies),
-  ],
+  externals: ['react', 'react-dom'],
 } as Configuration;

@@ -52,20 +52,34 @@ export default ({ dir }: { dir: ReturnType<typeof withDir> }) => {
           ],
         },
         {
+          test: /\.(svg|ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf|webm)(\?.*)?$/,
+          loader: 'file-loader',
+        },
+        {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: false,
+              },
+            },
+          ],
         },
       ],
     },
     resolve: {
       extensions: ['.mjs', '.js', '.jsx', '.tsx', '.ts', '.json'],
     },
-
     output: {
       publicPath: '/',
       path: dir('./x'),
     },
     target: 'web',
     stats: 'minimal',
+    cache: {
+      type: 'filesystem',
+    },
   };
 };

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "webpack serve",
+    "dev": "webpack serve",
     "build": "webpack build --node-env production",
     "make:stories": "pnpm makeStoryMap '**/*.stories.tsx' --output ./src/__dev/STORIES.ts"
   },

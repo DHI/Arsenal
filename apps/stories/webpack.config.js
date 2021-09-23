@@ -15,8 +15,13 @@ module.exports = {
   plugins: [
     new HtmlPlugin({ template: dir('./src/__dev/index.html') }),
     new TsPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    ...(mode === 'development' ? [new ReactRefreshWebpackPlugin({})] : []),
+    ...(mode === 'development'
+      ? [
+          new ReactRefreshWebpackPlugin({
+            overlay: false,
+          }),
+        ]
+      : []),
   ],
   module: {
     rules: [
@@ -40,7 +45,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              injectType: 'styleTag',
+            },
+          },
+
+          'css-loader',
+        ],
       },
     ],
   },
