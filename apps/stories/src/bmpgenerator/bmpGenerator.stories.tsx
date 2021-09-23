@@ -1,8 +1,11 @@
 import { styled } from '@dhi/arsenal.ui';
 import * as React from 'react';
-import { SERVICE_URL } from '../__dev/constants';
 import { BmpGenerator } from '@dhi/arsenal.bmpgenerator';
 import { vesselcheckTemplateVariables } from './vesselcheckVariables';
+
+const SERVICE_URL = window.REACT_ENV.REACT__BMP_SERVICE_URL ?? '';
+
+console.table({ SERVICE_URL });
 
 export default {
   title: 'BmpGenerator',

@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path');
-const webpack = require('webpack');
+import * as path from 'path';
+import * as webpack from 'webpack';
 const TsPlugin = require('fork-ts-checker-webpack-plugin');
-const mode =
+
+export const MODE =
   process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
-const ENABLE_TS_CHECK = !process.argv.includes('--disableTsCheck');
-const ENV_VAR_PREFIX = 'REACT__';
+export const ENABLE_TS_CHECK = !process.argv.includes('--disableTsCheck');
+export const ENV_VAR_PREFIX = 'REACT__';
 
-const ENVIRONMENT_VARS = {
-  NODE_ENV: mode,
+export const ENVIRONMENT_VARS = {
+  NODE_ENV: MODE,
   /** Find all env vars prefixed with ENV_VAR_PREFIX */
   ...Object.fromEntries(
     Object.entries(process.env).filter(([key]) =>
@@ -18,7 +19,7 @@ const ENVIRONMENT_VARS = {
   ),
 };
 
-console.dir({ mode, ENVIRONMENT_VARS });
+console.dir({ MODE, ENVIRONMENT_VARS });
 
 export const withDir = (dirname: string) => (...filePaths: string[]) =>
   path.resolve(dirname, ...filePaths);
@@ -26,8 +27,8 @@ export const withDir = (dirname: string) => (...filePaths: string[]) =>
 export default ({ dir }: { dir: ReturnType<typeof withDir> }) => {
   /** @ts-check @type import('webpack').Configuration */
   return {
-    mode,
-    devtool: mode === 'production' ? false : 'eval-cheap-module-source-map',
+    mode: MODE,
+    devtool: MODE === 'production' ? false : 'eval-cheap-module-source-map',
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(ENVIRONMENT_VARS.NODE_ENV),
