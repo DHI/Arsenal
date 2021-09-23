@@ -15,6 +15,7 @@ module.exports = {
   plugins: [
     new HtmlPlugin({ template: dir('./src/__dev/index.html') }),
     new TsPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     ...(mode === 'development' ? [new ReactRefreshWebpackPlugin({})] : []),
   ],
   module: {
@@ -72,7 +73,7 @@ module.exports = {
     type: 'filesystem',
   },
   devServer: {
-    disableHostCheck: true,
+    // disableHostCheck: true,
     hot: true,
     port: 9001,
     host: '0.0.0.0',

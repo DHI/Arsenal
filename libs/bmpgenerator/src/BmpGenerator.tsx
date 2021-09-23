@@ -10,17 +10,8 @@ import {
   OptionsPane,
   Editor,
 } from '@syncfusion/ej2-react-documenteditor';
-import { styled } from '@dhi/arsenal.ui';
+import { styled, css, Global } from '@dhi/arsenal.ui';
 import { BooleanModel, StateModel } from '@dhi/arsenal.models';
-import '@syncfusion/ej2-react-documenteditor/styles/material.css';
-import '@syncfusion/ej2-base/styles/material.css';
-import '@syncfusion/ej2-buttons/styles/material.css';
-import '@syncfusion/ej2-inputs/styles/material.css';
-import '@syncfusion/ej2-popups/styles/material.css';
-import '@syncfusion/ej2-lists/styles/material.css';
-import '@syncfusion/ej2-navigations/styles/material.css';
-import '@syncfusion/ej2-splitbuttons/styles/material.css';
-import '@syncfusion/ej2-dropdowns/styles/material.css';
 
 DocumentEditorContainerComponent.Inject(Toolbar, Search, Editor, OptionsPane);
 
@@ -87,6 +78,19 @@ export const BmpGenerator = observer<{
 
   return (
     <>
+      <Global
+        styles={css`
+          @import '~@syncfusion/ej2-react-documenteditor/styles/material.css';
+          @import '~@syncfusion/ej2-base/styles/material.css';
+          @import '~@syncfusion/ej2-buttons/styles/material.css';
+          @import '~@syncfusion/ej2-inputs/styles/material.css';
+          @import '~@syncfusion/ej2-popups/styles/material.css';
+          @import '~@syncfusion/ej2-lists/styles/material.css';
+          @import '~@syncfusion/ej2-navigations/styles/material.css';
+          @import '~@syncfusion/ej2-splitbuttons/styles/material.css';
+          @import '~@syncfusion/ej2-dropdowns/styles/material.css';
+        `}
+      />
       <div>
         <button
           onClick={() => {

@@ -11,8 +11,8 @@
     {
       "path": "./libs/jsonform"
     },
-    {
-      "path": "./libs/bmpgenerator"
-    },
+    // {
+    //   "path": "./libs/bmpgenerator"
+    // },
   ]
 }

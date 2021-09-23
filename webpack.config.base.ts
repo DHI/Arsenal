@@ -2,7 +2,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const TsPlugin = require('fork-ts-checker-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const mode =
   process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
@@ -34,7 +33,6 @@ export default ({ dir }: { dir: ReturnType<typeof withDir> }) => {
         'process.env.NODE_ENV': JSON.stringify(ENVIRONMENT_VARS.NODE_ENV),
         'window.REACT_ENV': JSON.stringify(ENVIRONMENT_VARS),
       }),
-      new webpack.HotModuleReplacementPlugin(),
       ...(ENABLE_TS_CHECK ? [new TsPlugin()] : []),
     ],
     module: {
