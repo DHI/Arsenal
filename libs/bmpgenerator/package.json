@@ -1,0 +1,54 @@
+{
+  "name": "@dhi/arsenal.bmpgenerator",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./x",
+  "scripts": {
+    "start:server": "cd server && docker-compose up"
+  },
+  "peerDependencies": {
+    "mobx": "^6.3.3",
+    "mobx-react-lite": "^3.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "dependencies": {
+    "@dhi/arsenal.models": "workspace:*",
+    "@dhi/arsenal.ui": "workspace:*",
+    "@syncfusion/ej2": "^19.2.60",
+    "@syncfusion/ej2-base": "^19.2.60",
+    "@syncfusion/ej2-buttons": "^19.2.60",
+    "@syncfusion/ej2-data": "^19.2.60",
+    "@syncfusion/ej2-dropdowns": "^19.2.60",
+    "@syncfusion/ej2-filemanager": "^19.2.60",
+    "@syncfusion/ej2-icons": "^19.2.60",
+    "@syncfusion/ej2-inputs": "^19.2.60",
+    "@syncfusion/ej2-lists": "^19.2.60",
+    "@syncfusion/ej2-navigations": "^19.2.60",
+    "@syncfusion/ej2-popups": "^19.2.60",
+    "@syncfusion/ej2-react-base": "^19.2.60",
+    "@syncfusion/ej2-react-buttons": "^19.2.60",
+    "@syncfusion/ej2-react-documenteditor": "^19.2.60",
+    "@syncfusion/ej2-react-dropdowns": "^19.2.60",
+    "@syncfusion/ej2-react-filemanager": "^19.2.60",
+    "@syncfusion/ej2-react-inputs": "^19.2.60",
+    "@syncfusion/ej2-react-lists": "^19.2.60",
+    "@syncfusion/ej2-react-navigations": "^19.2.60",
+    "@syncfusion/ej2-react-popups": "^19.2.60",
+    "@syncfusion/ej2-react-splitbuttons": "^19.2.60",
+    "@syncfusion/ej2-richtexteditor": "^19.2.60",
+    "@syncfusion/ej2-splitbuttons": "^19.2.60",
+    "history": "^5.0.0",
+
+    "story-browser": "^2.1.0",
+    "xroute": "^6.0.1"
+  },
+  "devDependencies": {
+    "mobx": "^6.3.3",
+    "mobx-react-lite": "^3.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "@fontsource/roboto": "^4.5.0",
+    "typescript": "^4.4.2"
+  }
+}

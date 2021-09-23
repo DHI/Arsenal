@@ -9,6 +9,7 @@
   },
   "browserslist": ">0.75%, not ie 11, not UCAndroid >0, not OperaMini all",
   "dependencies": {
+    "@dhi/arsenal.bmpgenerator": "workspace:*",
     "@dhi/arsenal.jsonform": "workspace:*",
     "@dhi/arsenal.models": "workspace:*",
     "@dhi/arsenal.ui": "workspace:*",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "style-loader": "^3.3.0",
     "css-loader": "^5.2.6",
     "esbuild-loader": "^2.13.1",
     "file-loader": "^6.2.0",

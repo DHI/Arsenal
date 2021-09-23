@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "src",
+    "outDir": "./x",
+  },
+  "include": ["src"],
+  "references": [
+    { "path": "../models" },
+    { "path": "../ui" },
+  ]
+}

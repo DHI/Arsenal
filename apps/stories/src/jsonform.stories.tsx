@@ -26,7 +26,7 @@ export function Main() {
     return (
       <Grid
         container
-        className={css`
+        css={css`
           overflow: auto;
           height: 100vh;
         `}
@@ -43,7 +43,7 @@ export function Main() {
         <Grid item>
           <$Container>
             <pre
-              className={css`
+              css={css`
                 font-size: 90%;
                 height: 100vh;
                 overflow: auto;
@@ -57,7 +57,7 @@ export function Main() {
         <Grid item>
           <$Container>
             <pre
-              className={css`
+              css={css`
                 font-size: 90%;
                 height: 100vh;
                 overflow: auto;
