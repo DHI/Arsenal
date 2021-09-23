@@ -15,10 +15,23 @@ import './styles.css';
 
 DocumentEditorContainerComponent.Inject(Toolbar, Search, Editor, OptionsPane);
 
+export interface ReplacementProps {
+  textReplacements?: { tag: string; value: string | number }[];
+  tableReplacements?: {
+    tag: string;
+    value: { header: string[]; rows: string[][] };
+  }[];
+  imageReplacements?: { tag: string; value: string }[];
+}
+export interface PreviewBody extends ReplacementProps {
+  fileName: string;
+  documentContent: string;
+}
+
 export const BmpGenerator = observer<{
   serviceUrl: string;
-  variables?: Record<string, string | number>;
-}>(({ serviceUrl, variables = {} }) => {
+  replacements?: ReplacementProps;
+}>(({ serviceUrl, replacements = {} }) => {
   const editorRef = React.useRef<null | DocumentEditorContainer>(null);
   const [state] = React.useState(
     () =>
@@ -32,6 +45,8 @@ export const BmpGenerator = observer<{
         documentEditor = new StateModel<DocumentEditorContainer | undefined>(
           undefined,
         );
+
+        replacements = new StateModel<ReplacementProps | undefined>(undefined);
 
         get editor() {
           return this.documentEditor.value;
@@ -66,6 +81,29 @@ export const BmpGenerator = observer<{
             editor.documentEditor.searchModule.searchResults.clear();
           }
         };
+
+        uploadDocumentForPreview = async () => {
+          const blob = await this.editor!.documentEditor.saveAsBlob('Docx')!;
+          const file = new FileReader();
+
+          file.addEventListener('loadend', async (e) => {
+            const base64String = file.result;
+
+            await fetch(`${serviceUrl}/PreviewParameterReplacement`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+              },
+              body: JSON.stringify({
+                fileName: this.editor?.documentEditor.documentName,
+                documentContent: base64String,
+                ...this.replacements.value,
+              } as PreviewBody),
+            });
+          });
+
+          file.readAsDataURL(blob);
+        };
       })(),
   );
 
@@ -76,16 +114,13 @@ export const BmpGenerator = observer<{
     }
   }, [editorRef.current]);
 
+  React.useEffect(() => {
+    state.replacements.set(replacements);
+  }, [replacements]);
+
   return (
     <>
       <div>
-        <button
-          onClick={() => {
-            state.findReplaceVariables(variables);
-          }}
-        >
-          Replace Variables
-        </button>
         <$EditorWrapper>
           <DocumentEditorContainerComponent
             ref={editorRef as any}
@@ -93,6 +128,13 @@ export const BmpGenerator = observer<{
             height={'100%'}
             serviceUrl={serviceUrl}
             enableToolbar
+            toolbarClick={(arg: { item: { id: string } }) => {
+              switch (arg.item.id) {
+                case 'PreviewFilled': {
+                  state.uploadDocumentForPreview();
+                }
+              }
+            }}
             toolbarItems={[
               'FormFields',
               'New',
