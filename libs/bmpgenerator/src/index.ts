@@ -1,1 +1,1 @@
-export { BmpGenerator } from './BmpGenerator';
+export * from './BmpGenerator';

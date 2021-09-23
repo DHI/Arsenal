@@ -89,20 +89,32 @@ export const BmpGenerator = observer<{
           file.addEventListener('loadend', async (e) => {
             const base64String = file.result;
 
-            await fetch(`${serviceUrl}/PreviewParameterReplacement`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
+            const res = await fetch(
+              `${serviceUrl}/PreviewParameterReplacement`,
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json;charset=UTF-8',
+                },
+                body: JSON.stringify({
+                  fileName: this.editor?.documentEditor.documentName,
+                  documentContent: base64String,
+                  ...this.replacements.value,
+                } as PreviewBody),
               },
-              body: JSON.stringify({
-                fileName: this.editor?.documentEditor.documentName,
-                documentContent: base64String,
-                ...this.replacements.value,
-              } as PreviewBody),
-            });
+            );
+
+            const text = await res.text();
+
+            this.loadDocumentText(text);
           });
 
           file.readAsDataURL(blob);
+        };
+
+        loadDocumentText = (text: string) => {
+          console.log({ text });
+          this.editor?.documentEditor.open(text);
         };
       })(),
   );
@@ -130,15 +142,15 @@ export const BmpGenerator = observer<{
             enableToolbar
             toolbarClick={(arg: { item: { id: string } }) => {
               switch (arg.item.id) {
-                case 'PreviewFilled': {
+                case previewToolbarButton.id: {
                   state.uploadDocumentForPreview();
                 }
               }
             }}
             toolbarItems={[
-              'FormFields',
               'New',
               'Open',
+              previewToolbarButton,
               'Image',
               'Table',
               'Hyperlink',
@@ -155,6 +167,13 @@ export const BmpGenerator = observer<{
     </>
   );
 });
+
+const previewToolbarButton = {
+  prefixIcon: 'e-de-ctnr-lock',
+  tooltipText: 'Preview Filled',
+  text: 'Preview Filled',
+  id: 'PreviewFilled',
+};
 
 const $EditorWrapper = styled.div`
   width: 100%;
