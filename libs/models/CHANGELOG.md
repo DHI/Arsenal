@@ -1,5 +1,11 @@
 # @dhi/arsenal.models
 
+## 1.0.3
+
+### Patch Changes
+
+- Syncing versions
+
 ## 1.0.2
 
 ### Patch Changes
