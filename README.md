@@ -80,3 +80,22 @@ pnpm clean
 
 For package versioning please read this:
 - https://pnpm.io/using-changesets
+
+## Git submodules
+
+In order to link in in-development libraries we can make git submodules part of the pnpm workspace automatically.
+
+To add a project:
+
+```bash
+git submodule add <uri> ./submodules/apps/MySubmodule
+```
+
+Then alter the .gitmodules entry for it and add `ignore = dirty` like so:
+
+```ini
+[submodule "<path>"]
+	path = <path>
+	url = <url>
+	ignore = dirty
+```
