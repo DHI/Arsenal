@@ -262,6 +262,7 @@ importers:
       '@deck.gl/layers': ^8.5.2
       '@deck.gl/react': ^8.5.2
       '@dhi/arsenal.jsonform': ^1.1.1
+      '@dhi/arsenal.models': ^1.0.3
       '@dhi/arsenal.ui': ^1.1.1
       '@emotion/css': ^11.1.3
       '@emotion/react': 11.4.1
@@ -350,6 +351,7 @@ importers:
       '@deck.gl/layers': 8.5.9_@deck.gl+core@8.5.9
       '@deck.gl/react': 8.5.9_0673993c3d100a02e1214fc7f87a4e74
       '@dhi/arsenal.jsonform': link:../../../libs/jsonform
+      '@dhi/arsenal.models': link:../../../libs/models
       '@dhi/arsenal.ui': link:../../../libs/ui
       '@emotion/css': 11.1.3_@babel+core@7.15.5
       '@emotion/react': 11.4.1_7d120459bc49ec1f7e6eba73754045f3
