@@ -1,5 +1,12 @@
 # @dhi/arsenal.jsonform
 
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @dhi/arsenal.models@1.0.4
+
 ## 1.1.1
 
 ### Patch Changes
