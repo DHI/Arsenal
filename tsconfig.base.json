@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "ES2018",
     "baseUrl": "/",
     "strict": true,
     "declaration": true,
@@ -13,7 +13,7 @@
     "incremental": true,
     "moduleResolution": "node",
     "lib": [
-      "ES2020",
+      "es2018",
       "dom"
     ]
   },

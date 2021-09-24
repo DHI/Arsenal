@@ -9,8 +9,16 @@ import {
   OptionsPane,
   Editor,
 } from '@syncfusion/ej2-react-documenteditor';
-import { styled } from '@dhi/arsenal.ui';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { BooleanModel, StateModel } from '@dhi/arsenal.models';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
+} from '@material-ui/core';
 import './styles.css';
 
 DocumentEditorContainerComponent.Inject(Toolbar, Search, Editor, OptionsPane);
@@ -33,6 +41,7 @@ export const BmpGenerator = observer<{
   replacements?: ReplacementProps;
 }>(({ serviceUrl, replacements = {} }) => {
   const editorRef = React.useRef<null | DocumentEditorContainer>(null);
+  const previewEditorRef = React.useRef<null | DocumentEditorContainer>(null);
   const [state] = React.useState(
     () =>
       new (class State {
@@ -46,15 +55,23 @@ export const BmpGenerator = observer<{
           undefined,
         );
 
+        previewDocumentEditor = new StateModel<
+          DocumentEditorContainer | undefined
+        >(undefined);
+
+        isPreviewOpen = new BooleanModel(false);
+
         replacements = new StateModel<ReplacementProps | undefined>(undefined);
 
         get editor() {
           return this.documentEditor.value;
         }
 
-        initEditor = () => {
-          const editor = this.editor;
+        get previewEditor() {
+          return this.previewDocumentEditor.value;
+        }
 
+        initEditor = (editor?: DocumentEditorContainer) => {
           if (!editor) return;
 
           editor.resize();
@@ -106,15 +123,14 @@ export const BmpGenerator = observer<{
 
             const text = await res.text();
 
-            this.loadDocumentText(text);
+            this.loadPreview(text);
           });
 
           file.readAsDataURL(blob);
         };
 
-        loadDocumentText = (text: string) => {
-          console.log({ text });
-          this.editor?.documentEditor.open(text);
+        loadPreview = (text: string) => {
+          this.previewEditor?.documentEditor.open(text);
         };
       })(),
   );
@@ -122,9 +138,17 @@ export const BmpGenerator = observer<{
   React.useEffect(() => {
     if (editorRef.current) {
       state.documentEditor.set(editorRef.current);
-      state.initEditor();
+      state.initEditor(state.documentEditor.value);
     }
   }, [editorRef.current]);
+
+  React.useEffect(() => {
+    if (previewEditorRef.current) {
+      console.log('Setting preview editor', previewEditorRef);
+      state.previewDocumentEditor.set(previewEditorRef.current);
+      state.initEditor(state.previewDocumentEditor.value);
+    }
+  }, [previewEditorRef.current]);
 
   React.useEffect(() => {
     state.replacements.set(replacements);
@@ -133,6 +157,37 @@ export const BmpGenerator = observer<{
   return (
     <>
       <div>
+        <Dialog
+          open={state.isPreviewOpen.isTrue}
+          keepMounted
+          fullScreen
+          css={css`
+            && {
+              display: ${state.isPreviewOpen.isTrue ? 'block' : 'none'};
+            }
+          `}
+        >
+          <DialogTitle>Document Preview</DialogTitle>
+          <DialogContent>
+            <DocumentEditorContainerComponent
+              ref={previewEditorRef as any}
+              height={'100%'}
+              serviceUrl={serviceUrl}
+              restrictEditing
+              showPropertiesPane={false}
+              enableToolbar={false}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                state.isPreviewOpen.setFalse();
+              }}
+            >
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
         <$EditorWrapper>
           <DocumentEditorContainerComponent
             ref={editorRef as any}
@@ -143,6 +198,7 @@ export const BmpGenerator = observer<{
             toolbarClick={(arg: { item: { id: string } }) => {
               switch (arg.item.id) {
                 case previewToolbarButton.id: {
+                  state.isPreviewOpen.setTrue();
                   state.uploadDocumentForPreview();
                 }
               }
