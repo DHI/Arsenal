@@ -27,7 +27,7 @@ export interface ReplacementProps {
   textReplacements?: { tag: string; value: string | number }[];
   tableReplacements?: {
     tag: string;
-    value: { header: string[]; rows: string[][] };
+    value: { tableReplacements: string[]; rows: string[][] };
   }[];
   imageReplacements?: { tag: string; value: string }[];
 }
@@ -116,7 +116,15 @@ export const BmpGenerator = observer<{
                 body: JSON.stringify({
                   fileName: this.editor?.documentEditor.documentName,
                   documentContent: base64String,
-                  ...this.replacements.value,
+                  textReplacements: [
+                    ...(this.replacements.value?.textReplacements ?? []),
+                  ],
+                  imageReplacements: [
+                    ...(this.replacements.value?.imageReplacements ?? []),
+                  ],
+                  tableReplacements: [
+                    ...(this.replacements.value?.tableReplacements ?? []),
+                  ],
                 } as PreviewBody),
               },
             );

@@ -4,10 +4,10 @@
   "private": true,
   "main": "./x",
   "scripts": {
-    "build": "pnpm build:tsd && webpack",
+    "build": "webpack",
     "build:tsd": "tsc --emitDeclarationOnly",
     "clean": "rm -rf x/*",
-    "dev": "pnpm build:tsd && webpack --watch",
+    "dev": "webpack --watch",
     "dev:ts": "tsc -w",
     "start:server": "cd server && docker-compose up"
   },
