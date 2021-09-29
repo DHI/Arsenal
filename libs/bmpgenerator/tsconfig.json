@@ -4,7 +4,7 @@
     "composite": true,
     "rootDir": "src",
     "outDir": "./x",
-        "jsxImportSource": "@emotion/react",
+    "jsxImportSource": "@emotion/react",
     "jsx": "react-jsx"
   },
   "include": ["src"],

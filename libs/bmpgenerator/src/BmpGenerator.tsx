@@ -8,6 +8,8 @@ import {
   Search,
   OptionsPane,
   Editor,
+  SfdtExport,
+  WordExport,
 } from '@syncfusion/ej2-react-documenteditor';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -21,13 +23,20 @@ import {
 } from '@material-ui/core';
 import './styles.css';
 
-DocumentEditorContainerComponent.Inject(Toolbar, Search, Editor, OptionsPane);
+DocumentEditorContainerComponent.Inject(
+  Toolbar,
+  Search,
+  Editor,
+  OptionsPane,
+  SfdtExport,
+  WordExport,
+);
 
 export interface ReplacementProps {
   textReplacements?: { tag: string; value: string | number }[];
   tableReplacements?: {
     tag: string;
-    value: { tableReplacements: string[]; rows: string[][] };
+    value: { header: string[]; rows: string[][] };
   }[];
   imageReplacements?: { tag: string; value: string }[];
 }
@@ -36,10 +45,13 @@ export interface PreviewBody extends ReplacementProps {
   documentContent: string;
 }
 
+export { DocumentEditorContainer };
+
 export const BmpGenerator = observer<{
   serviceUrl: string;
   replacements?: ReplacementProps;
-}>(({ serviceUrl, replacements = {} }) => {
+  onEditor?(editor: DocumentEditorContainer): void;
+}>(({ serviceUrl, replacements = {}, onEditor }) => {
   const editorRef = React.useRef<null | DocumentEditorContainer>(null);
   const previewEditorRef = React.useRef<null | DocumentEditorContainer>(null);
   const [state] = React.useState(
@@ -47,6 +59,10 @@ export const BmpGenerator = observer<{
       new (class State {
         constructor() {
           makeAutoObservable(this);
+
+          document.addEventListener('resize', () => {
+            this.editor?.refresh();
+          });
         }
 
         documentIsReady = new BooleanModel(false);
@@ -77,26 +93,12 @@ export const BmpGenerator = observer<{
           editor.resize();
         };
 
-        findReplaceVariables = async (
-          vars: Record<string, string | number>,
-        ) => {
-          const editor = this.editor;
+        save = () => {
+          const data = this.editor?.documentEditor.serialize();
 
-          if (!editor) return;
+          console.log({ data });
 
-          console.log('Replacing...');
-
-          for (const [key, value] of Object.entries(vars)) {
-            editor.documentEditor.searchModule.findAll(`{${key}}`);
-
-            if (editor.documentEditor.searchModule.searchResults.length) {
-              editor.documentEditor.searchModule.searchResults.replaceAll(
-                value as string,
-              );
-            }
-
-            editor.documentEditor.searchModule.searchResults.clear();
-          }
+          this.editor?.documentEditor.save('file.docx', 'Docx');
         };
 
         uploadDocumentForPreview = async () => {
@@ -138,6 +140,7 @@ export const BmpGenerator = observer<{
         };
 
         loadPreview = (text: string) => {
+          console.log({ documentText: text });
           this.previewEditor?.documentEditor.open(text);
         };
       })(),
@@ -147,6 +150,7 @@ export const BmpGenerator = observer<{
     if (editorRef.current) {
       state.documentEditor.set(editorRef.current);
       state.initEditor(state.documentEditor.value);
+      onEditor?.(state.documentEditor.value!);
     }
   }, [editorRef.current]);
 
@@ -164,70 +168,75 @@ export const BmpGenerator = observer<{
 
   return (
     <>
-      <div>
-        <Dialog
-          open={state.isPreviewOpen.isTrue}
-          keepMounted
-          fullScreen
-          css={css`
-            && {
-              display: ${state.isPreviewOpen.isTrue ? 'block' : 'none'};
+      <$EditorWrapper>
+        <DocumentEditorContainerComponent
+          ref={editorRef as any}
+          documentChange={(e) => {
+            console.log({ e });
+            state.documentLastChanged.set(Date.now());
+          }}
+          height={'100%'}
+          serviceUrl={serviceUrl}
+          enableToolbar
+          toolbarClick={(arg: { item: { id: string } }) => {
+            switch (arg.item.id) {
+              case previewToolbarButton.id: {
+                state.isPreviewOpen.setTrue();
+                state.uploadDocumentForPreview();
+              }
+
+              case dlDocxToolbarButton.id: {
+                state.save();
+              }
             }
-          `}
-        >
-          <DialogTitle>Document Preview</DialogTitle>
-          <DialogContent>
-            <DocumentEditorContainerComponent
-              ref={previewEditorRef as any}
-              height={'100%'}
-              serviceUrl={serviceUrl}
-              restrictEditing
-              showPropertiesPane={false}
-              enableToolbar={false}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={() => {
-                state.isPreviewOpen.setFalse();
-              }}
-            >
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <$EditorWrapper>
+          }}
+          showPropertiesPane={false}
+          enableComment={false}
+          toolbarItems={[
+            'New',
+            'Open',
+            'Image',
+            'Table',
+            'Find',
+            previewToolbarButton,
+            dlDocxToolbarButton,
+          ]}
+        />
+      </$EditorWrapper>
+      <Dialog
+        open={state.isPreviewOpen.isTrue}
+        keepMounted
+        fullWidth
+        maxWidth="xl"
+        css={css`
+          && {
+            height: 90vh;
+            display: ${state.isPreviewOpen.isTrue ? 'block' : 'none'};
+          }
+        `}
+      >
+        <DialogTitle>Document Preview</DialogTitle>
+        <DialogContent>
           <DocumentEditorContainerComponent
-            ref={editorRef as any}
-            documentChange={(e) => state.documentLastChanged.set(Date.now())}
+            ref={previewEditorRef as any}
             height={'100%'}
             serviceUrl={serviceUrl}
-            enableToolbar
-            toolbarClick={(arg: { item: { id: string } }) => {
-              switch (arg.item.id) {
-                case previewToolbarButton.id: {
-                  state.isPreviewOpen.setTrue();
-                  state.uploadDocumentForPreview();
-                }
-              }
-            }}
-            toolbarItems={[
-              'New',
-              'Open',
-              previewToolbarButton,
-              'Image',
-              'Table',
-              'Hyperlink',
-              'Bookmark',
-              'PageSetup',
-              'PageNumber',
-              'Break',
-              'Find',
-              'LocalClipboard',
-            ]}
+            restrictEditing
+            showPropertiesPane={false}
+            enableToolbar={false}
+            enableComment={false}
           />
-        </$EditorWrapper>
-      </div>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => {
+              state.isPreviewOpen.setFalse();
+            }}
+          >
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 });
@@ -239,7 +248,14 @@ const previewToolbarButton = {
   id: 'PreviewFilled',
 };
 
+const dlDocxToolbarButton = {
+  prefixIcon: 'e-de-ctnr-lock',
+  tooltipText: 'Download Template (.docx)',
+  text: 'Download Template (.docx)',
+  id: 'DownloadDocx',
+};
+
 const $EditorWrapper = styled.div`
   width: 100%;
-  height: 90vh;
+  height: 100%;
 `;
