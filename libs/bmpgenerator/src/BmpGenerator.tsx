@@ -11,16 +11,8 @@ import {
   SfdtExport,
   WordExport,
 } from '@syncfusion/ej2-react-documenteditor';
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { BooleanModel, StateModel } from '@dhi/arsenal.models';
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Button,
-} from '@material-ui/core';
 import './styles.css';
 
 DocumentEditorContainerComponent.Inject(
@@ -48,177 +40,196 @@ export interface PreviewBody extends ReplacementProps {
 export { DocumentEditorContainer };
 
 export const BmpGenerator = observer<{
+  className?: string;
   serviceUrl: string;
   replacements?: ReplacementProps;
   onEditor?(editor: DocumentEditorContainer): void;
-}>(({ serviceUrl, replacements = {}, onEditor }) => {
-  const editorRef = React.useRef<null | DocumentEditorContainer>(null);
-  const previewEditorRef = React.useRef<null | DocumentEditorContainer>(null);
-  const [state] = React.useState(
-    () =>
-      new (class State {
-        constructor() {
-          makeAutoObservable(this);
+  RenderedDocumentContainer(props: { children: React.ReactNode }): JSX.Element;
+  showDocumentRender: boolean;
+}>(
+  ({
+    serviceUrl,
+    replacements = {},
+    onEditor,
+    className,
+    RenderedDocumentContainer,
+    showDocumentRender,
+  }) => {
+    const editorRef = React.useRef<null | DocumentEditorContainer>(null);
+    const renderedEditorRef = React.useRef<null | DocumentEditorContainer>(
+      null,
+    );
+    const [state] = React.useState(
+      () =>
+        new (class State {
+          constructor() {
+            makeAutoObservable(this);
 
-          document.addEventListener('resize', () => {
-            this.editor?.refresh();
-          });
-        }
-
-        documentIsReady = new BooleanModel(false);
-        documentLastChanged = new StateModel(Date.now());
-        documentEditor = new StateModel<DocumentEditorContainer | undefined>(
-          undefined,
-        );
-
-        previewDocumentEditor = new StateModel<
-          DocumentEditorContainer | undefined
-        >(undefined);
-
-        isPreviewOpen = new BooleanModel(false);
-
-        replacements = new StateModel<ReplacementProps | undefined>(undefined);
-
-        get editor() {
-          return this.documentEditor.value;
-        }
-
-        get previewEditor() {
-          return this.previewDocumentEditor.value;
-        }
-
-        initEditor = (editor?: DocumentEditorContainer) => {
-          if (!editor) return;
-
-          editor.resize();
-        };
-
-        save = () => {
-          const data = this.editor?.documentEditor.serialize();
-
-          console.log({ data });
-
-          this.editor?.documentEditor.save('file.docx', 'Docx');
-        };
-
-        uploadDocumentForPreview = async () => {
-          const blob = await this.editor!.documentEditor.saveAsBlob('Docx')!;
-          const file = new FileReader();
-
-          file.addEventListener('loadend', async (e) => {
-            const base64String = file.result;
-
-            const res = await fetch(
-              `${serviceUrl}/PreviewParameterReplacement`,
-              {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json;charset=UTF-8',
-                },
-                body: JSON.stringify({
-                  fileName: this.editor?.documentEditor.documentName,
-                  documentContent: base64String,
-                  textReplacements: [
-                    ...(this.replacements.value?.textReplacements ?? []),
-                  ],
-                  imageReplacements: [
-                    ...(this.replacements.value?.imageReplacements ?? []),
-                  ],
-                  tableReplacements: [
-                    ...(this.replacements.value?.tableReplacements ?? []),
-                  ],
-                } as PreviewBody),
-              },
-            );
-
-            const text = await res.text();
-
-            this.loadPreview(text);
-          });
-
-          file.readAsDataURL(blob);
-        };
-
-        loadPreview = (text: string) => {
-          console.log({ documentText: text });
-          this.previewEditor?.documentEditor.open(text);
-        };
-      })(),
-  );
-
-  React.useEffect(() => {
-    if (editorRef.current) {
-      state.documentEditor.set(editorRef.current);
-      state.initEditor(state.documentEditor.value);
-      onEditor?.(state.documentEditor.value!);
-    }
-  }, [editorRef.current]);
-
-  React.useEffect(() => {
-    if (previewEditorRef.current) {
-      console.log('Setting preview editor', previewEditorRef);
-      state.previewDocumentEditor.set(previewEditorRef.current);
-      state.initEditor(state.previewDocumentEditor.value);
-    }
-  }, [previewEditorRef.current]);
-
-  React.useEffect(() => {
-    state.replacements.set(replacements);
-  }, [replacements]);
-
-  return (
-    <>
-      <$EditorWrapper>
-        <DocumentEditorContainerComponent
-          ref={editorRef as any}
-          documentChange={(e) => {
-            console.log({ e });
-            state.documentLastChanged.set(Date.now());
-          }}
-          height={'100%'}
-          serviceUrl={serviceUrl}
-          enableToolbar
-          toolbarClick={(arg: { item: { id: string } }) => {
-            switch (arg.item.id) {
-              case previewToolbarButton.id: {
-                state.isPreviewOpen.setTrue();
-                state.uploadDocumentForPreview();
-              }
-
-              case dlDocxToolbarButton.id: {
-                state.save();
-              }
-            }
-          }}
-          showPropertiesPane={false}
-          enableComment={false}
-          toolbarItems={[
-            'New',
-            'Open',
-            'Image',
-            'Table',
-            'Find',
-            previewToolbarButton,
-            dlDocxToolbarButton,
-          ]}
-        />
-      </$EditorWrapper>
-      <Dialog
-        open={state.isPreviewOpen.isTrue}
-        keepMounted
-        fullWidth
-        maxWidth="xl"
-        css={css`
-          && {
-            height: 90vh;
-            display: ${state.isPreviewOpen.isTrue ? 'block' : 'none'};
+            document.addEventListener('resize', () => {
+              this.editor?.refresh();
+            });
           }
-        `}
-      >
-        <DialogTitle>Document Preview</DialogTitle>
-        <DialogContent>
+
+          documentIsReady = new BooleanModel(false);
+          documentLastChanged = new StateModel(Date.now());
+          documentEditor = new StateModel<DocumentEditorContainer | undefined>(
+            undefined,
+          );
+
+          renderedDocumentEditor = new StateModel<
+            DocumentEditorContainer | undefined
+          >(undefined);
+
+          isPreviewOpen = new BooleanModel(false);
+
+          replacements = new StateModel<ReplacementProps | undefined>(
+            undefined,
+          );
+
+          get editor() {
+            return this.documentEditor.value;
+          }
+
+          get renderingEditor() {
+            return this.renderedDocumentEditor.value;
+          }
+
+          initEditor = (editor?: DocumentEditorContainer) => {
+            if (!editor) return;
+
+            editor.resize();
+          };
+
+          save = () => {
+            const data = this.editor?.documentEditor.serialize();
+
+            console.log({ data });
+
+            this.editor?.documentEditor.save('file.docx', 'Docx');
+          };
+
+          loadDocumentRender = async () => {
+            const blob = await this.editor!.documentEditor.saveAsBlob('Docx')!;
+            const file = new FileReader();
+
+            file.addEventListener('loadend', async (e) => {
+              const base64String = file.result;
+
+              const res = await fetch(
+                `${serviceUrl}/PreviewParameterReplacement`,
+                {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                  },
+                  body: JSON.stringify({
+                    fileName: this.editor?.documentEditor.documentName,
+                    documentContent: base64String,
+                    textReplacements: [
+                      ...(this.replacements.value?.textReplacements ?? []),
+                    ],
+                    imageReplacements: [
+                      ...(this.replacements.value?.imageReplacements ?? []),
+                    ],
+                    tableReplacements: [
+                      ...(this.replacements.value?.tableReplacements ?? []),
+                    ],
+                  } as PreviewBody),
+                },
+              );
+
+              const text = await res.text();
+
+              this.loadRender(text);
+            });
+
+            file.readAsDataURL(blob);
+          };
+
+          loadRender = (text: string) => {
+            console.log({
+              documentText: text,
+              editor: this.renderingEditor?.documentEditor,
+            });
+
+            this.renderingEditor?.documentEditor.open(text);
+          };
+        })(),
+    );
+
+    React.useEffect(() => {
+      if (editorRef.current) {
+        state.documentEditor.set(editorRef.current);
+        state.initEditor(state.documentEditor.value);
+        onEditor?.(state.documentEditor.value!);
+      }
+    }, [editorRef.current]);
+
+    React.useEffect(() => {
+      if (renderedEditorRef.current) {
+        console.log({
+          'renderedEditorRef.current': renderedEditorRef.current,
+        });
+
+        state.renderedDocumentEditor.set(renderedEditorRef.current);
+        state.initEditor(state.renderedDocumentEditor.value);
+      }
+    }, [renderedEditorRef.current]);
+
+    React.useEffect(() => {
+      state.replacements.set(replacements);
+    }, [replacements]);
+
+    React.useEffect(() => {
+      if (showDocumentRender) {
+        state.loadDocumentRender();
+      }
+    }, [showDocumentRender]);
+
+    return (
+      <>
+        <$EditorWrapper {...{ className }}>
           <DocumentEditorContainerComponent
-            ref={previewEditorRef as any}
+            ref={editorRef as any}
+            documentChange={(e) => {
+              state.documentLastChanged.set(Date.now());
+            }}
+            height={'100%'}
+            serviceUrl={serviceUrl}
+            enableToolbar
+            showPropertiesPane={false}
+            enableComment={false}
+            toolbarItems={[
+              'New',
+              'Open',
+              'Separator',
+              'Undo',
+              'Redo',
+              'Separator',
+              'Image',
+              'Table',
+              'Hyperlink',
+              'Bookmark',
+              'TableOfContents',
+              'Separator',
+              'Header',
+              'Footer',
+              'Separator',
+              'PageSetup',
+              'PageNumber',
+              'Break',
+              'Separator',
+              'InsertFootnote',
+              'InsertEndnote',
+              'Separator',
+              'Find',
+            ]}
+          />
+        </$EditorWrapper>
+        <RenderedDocumentContainer>
+          {/* this is preventing the renderedEditorRef from working. Need to mount it with a portal or something?? */}
+          <DocumentEditorContainerComponent
+            ref={renderedEditorRef as any}
             height={'100%'}
             serviceUrl={serviceUrl}
             restrictEditing
@@ -226,34 +237,11 @@ export const BmpGenerator = observer<{
             enableToolbar={false}
             enableComment={false}
           />
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={() => {
-              state.isPreviewOpen.setFalse();
-            }}
-          >
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </>
-  );
-});
-
-const previewToolbarButton = {
-  prefixIcon: 'e-de-ctnr-lock',
-  tooltipText: 'Preview Filled',
-  text: 'Preview Filled',
-  id: 'PreviewFilled',
-};
-
-const dlDocxToolbarButton = {
-  prefixIcon: 'e-de-ctnr-lock',
-  tooltipText: 'Download Template (.docx)',
-  text: 'Download Template (.docx)',
-  id: 'DownloadDocx',
-};
+        </RenderedDocumentContainer>
+      </>
+    );
+  },
+);
 
 const $EditorWrapper = styled.div`
   width: 100%;

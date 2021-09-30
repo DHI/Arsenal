@@ -1,13 +1,14 @@
 import Config, { withDir } from '../../webpack.config.base';
 import { Configuration } from 'webpack';
 import * as pkgJson from './package.json';
+
 const DeclarationPlugin = require('npm-dts-webpack-plugin');
 const dir = withDir(__dirname);
 const base = Config({ dir });
 const entry = dir('./src/index.ts');
 const outdir = dir('./x');
 
-export default {
+export const config = {
   ...base,
   plugins: [
     ...base.plugins,
@@ -31,3 +32,5 @@ export default {
     ...Object.keys(pkgJson.peerDependencies),
   ],
 } as Configuration;
+
+export default config;

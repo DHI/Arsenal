@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import * as path from 'path';
 import * as webpack from 'webpack';
+// const babelOptions = require('./babel.config');
 const TsPlugin = require('fork-ts-checker-webpack-plugin');
 
 export const MODE =
@@ -39,7 +40,7 @@ export default ({ dir }: { dir: ReturnType<typeof withDir> }) => {
     module: {
       rules: [
         {
-          include: dir('./src'),
+          // include: dir('./src'),
           test: /\.[tj]sx?$/,
           exclude: /node_modules/,
           use: [
@@ -50,6 +51,18 @@ export default ({ dir }: { dir: ReturnType<typeof withDir> }) => {
                 target: 'es2018',
               },
             },
+            // {
+            //   loader: 'babel-loader',
+            //   options: {
+            //     plugins: [
+            //       '@babel/plugin-syntax-typescript',
+            //       '@babel/plugin-syntax-jsx',
+            //       // ['@babel/plugin-syntax-decorators', { legacy: true }],
+            //       // ['@babel/plugin-syntax-class-properties', { loose: true }],
+            //       '@emotion/babel-plugin',
+            //     ],
+            //   },
+            // },
           ],
         },
         {
