@@ -242,11 +242,13 @@ importers:
       '@syncfusion/ej2-react-splitbuttons': ^19.2.60
       '@syncfusion/ej2-richtexteditor': ^19.2.60
       '@syncfusion/ej2-splitbuttons': ^19.2.60
+      '@types/react-virtualized-auto-sizer': ^1.0.1
       history: ^5.0.0
       mobx: 6.3.3
       mobx-react-lite: 3.2.1
       react: 17.0.2
       react-dom: 17.0.2
+      react-virtualized-auto-sizer: ^1.0.6
       story-browser: ^2.1.0
       xroute: ^6.0.1
     dependencies:
@@ -255,9 +257,11 @@ importers:
       '@emotion/css': 11.1.3_@babel+core@7.14.8
       '@emotion/react': 11.4.1_abb58f94affbf8eaf82cab2498a47d68
       '@emotion/styled': 11.3.0_79408ac60c6b5aed3916be52c3a64406
+      '@types/react-virtualized-auto-sizer': 1.0.1
       history: 5.0.1
       mobx: 6.3.3
       mobx-react-lite: 3.2.1_8aec6830c9f393111667240500a3b25c
+      react-virtualized-auto-sizer: 1.0.6_react-dom@17.0.2+react@17.0.2
       story-browser: 2.1.0_119241a5be62d4a17ab9f4ad4d796b38
       xroute: 6.0.1_history@5.0.1
     devDependencies:
@@ -9092,6 +9096,12 @@ packages:
     dependencies:
       '@types/react': 17.0.24
 
+  /@types/react-virtualized-auto-sizer/1.0.1:
+    resolution: {integrity: sha512-GH8sAnBEM5GV9LTeiz56r4ZhMOUSrP43tAQNSRVxNexDjcNKLCEtnxusAItg1owFUFE6k0NslV26gqVClVvong==}
+    dependencies:
+      '@types/react': 17.0.24
+    dev: false
+
   /@types/react-window/1.8.5:
     resolution: {integrity: sha512-V9q3CvhC9Jk9bWBOysPGaWy/Z0lxYcTXLtLipkt2cnRj1JOSFNF7wqGpkScSXMgBwC+fnVRg/7shwgddBG5ICw==}
     dependencies:
@@ -9784,7 +9794,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       envinfo: 7.8.1
-      webpack-cli: 4.8.0_1aa085980ae2061343da92a11834249a
+      webpack-cli: 4.8.0_a1f4ccf56d4b0b3a788a70de982f531e
     dev: true
 
   /@webpack-cli/serve/1.5.2_7c3b358a9f51778452d16ef13906b9ff:
@@ -24838,6 +24848,17 @@ packages:
       prop-types: 15.7.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
+
+  /react-virtualized-auto-sizer/1.0.6_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-7tQ0BmZqfVF6YYEWcIGuoR3OdYe8I/ZFbNclFlGOC3pMqunkYF/oL30NCjSGl9sMEb17AnzixDz98Kqc3N76HQ==}
+    engines: {node: '>8.0.0'}
+    peerDependencies:
+      react: ^15.3.0 || ^16.0.0-alpha || ^17.0.0
+      react-dom: ^15.3.0 || ^16.0.0-alpha || ^17.0.0
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
 
   /react-virtualized-tree/3.4.1_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-MolDiG9XgmflPPX9uPzf7iSWLqOHDlCZEiyA4FVYjv2pHfu6zV6/SIEFVyHdurWD80IjUuZ3Er12gq2bQQak2Q==}
