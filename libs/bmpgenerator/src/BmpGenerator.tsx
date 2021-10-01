@@ -86,6 +86,8 @@ export class BmpGeneratorState {
   };
 
   loadDocumentRender = async () => {
+    this.renderingEditor?.documentEditor.openBlank();
+
     const blob = await this.editor!.documentEditor.saveAsBlob('Docx')!;
     const file = new FileReader();
 
@@ -117,19 +119,15 @@ export class BmpGeneratorState {
 
       const text = await res.text();
 
-      this.loadRender(text);
+      console.log({
+        documentText: text,
+        editor: this.renderingEditor?.documentEditor,
+      });
+
+      this.renderingEditor?.documentEditor.open(text);
     });
 
     file.readAsDataURL(blob);
-  };
-
-  loadRender = (text: string) => {
-    console.log({
-      documentText: text,
-      editor: this.renderingEditor?.documentEditor,
-    });
-
-    this.renderingEditor?.documentEditor.open(text);
   };
 }
 
