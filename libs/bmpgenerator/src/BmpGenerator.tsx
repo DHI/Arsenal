@@ -12,7 +12,7 @@ import {
   WordExport,
 } from '@syncfusion/ej2-react-documenteditor';
 import styled from '@emotion/styled';
-import { BooleanModel, StateModel } from '@dhi/arsenal.models';
+import { StateModel } from '@dhi/arsenal.models';
 import './styles.css';
 import { PropsOf } from '@emotion/react';
 import AutoSizer from 'react-virtualized-auto-sizer';
@@ -49,8 +49,6 @@ export class BmpGeneratorState {
     makeAutoObservable(this);
   }
 
-  documentIsReady = new BooleanModel(false);
-  documentLastChanged = new StateModel(Date.now());
   documentEditor = new StateModel<DocumentEditorContainer | undefined>(
     undefined,
   );
@@ -58,8 +56,6 @@ export class BmpGeneratorState {
   renderedDocumentEditor = new StateModel<DocumentEditorContainer | undefined>(
     undefined,
   );
-
-  isPreviewOpen = new BooleanModel(false);
 
   replacements = new StateModel<ReplacementProps | undefined>(undefined);
 
@@ -200,15 +196,14 @@ export const BmpGenerator = observer<{
               <DocumentEditorContainerComponent
                 key={serviceUrl}
                 ref={editorRef as any}
-                documentChange={(e) => {
-                  state.documentLastChanged.set(Date.now());
-                }}
                 height={height + 'px'}
                 width={width + 'px'}
                 serviceUrl={serviceUrl}
                 enableToolbar
                 showPropertiesPane={false}
                 enableComment={false}
+                enableTrackChanges={false}
+                immediateRender
                 toolbarItems={[
                   'New',
                   'Open',
@@ -262,6 +257,8 @@ export const BmpGeneratorRenderEditor = observer<{
           showPropertiesPane={false}
           enableToolbar={false}
           enableComment={false}
+          enableTrackChanges={false}
+          immediateRender
           {...editorProps}
         />
       )}
