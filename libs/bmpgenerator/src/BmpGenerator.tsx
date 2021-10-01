@@ -101,7 +101,12 @@ export class BmpGeneratorState {
             fileName: this.editor?.documentEditor.documentName,
             documentContent: base64String,
             textReplacements: [
-              ...(this.replacements.value?.textReplacements ?? []),
+              ...(this.replacements.value?.textReplacements ?? []).map(
+                ({ tag, value }) => ({
+                  tag,
+                  value: String(value), // Force strings for now
+                }),
+              ),
             ],
             imageReplacements: [
               ...(this.replacements.value?.imageReplacements ?? []),
