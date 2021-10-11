@@ -2,6 +2,11 @@
   "name": "@dhi/arsenal.bmpgenerator",
   "version": "0.2.1",
   "main": "./x",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DHI/Arsenal",
+    "directory": "libs/bmpgenerator"
+  },
   "scripts": {
     "build": "webpack",
     "build:tsd": "tsc --emitDeclarationOnly",
