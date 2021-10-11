@@ -73,12 +73,20 @@ export class BmpGeneratorState {
     editor.resize();
   };
 
-  save = () => {
+  downloadTemplate = () => {
     const data = this.editor?.documentEditor.serialize();
 
     console.log({ data });
 
     this.editor?.documentEditor.save('file.docx', 'Docx');
+  };
+
+  downloadRender = () => {
+    const data = this.renderingEditor?.documentEditor.serialize();
+
+    console.log({ data });
+
+    this.renderingEditor?.documentEditor.save('file.docx', 'Docx');
   };
 
   loadDocumentRender = async () => {

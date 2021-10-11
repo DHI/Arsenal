@@ -1072,8 +1072,8 @@ packages:
       zen-observable: 0.8.15
     dev: false
 
-  /@apollo/client/3.4.15_graphql@14.1.1+react@17.0.2:
-    resolution: {integrity: sha512-CnlT9i7TgHagkKQNvti81A9KcbIMqgpUPGJJL6bg5spTsB2R/5J6E7qiPcMvXuuXwR2xe4FmE4Ey4HizStb8Hg==}
+  /@apollo/client/3.4.16_graphql@14.1.1+react@17.0.2:
+    resolution: {integrity: sha512-iF4zEYwvebkri0BZQyv8zfavPfVEafsK0wkOofa6eC2yZu50J18uTutKtC174rjHZ2eyxZ8tV7NvAPKRT+OtZw==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0
       react: ^16.8.0 || ^17.0.0
@@ -1123,7 +1123,7 @@ packages:
   /@apollo/react-hoc/4.0.0_graphql@14.1.1+react@17.0.2:
     resolution: {integrity: sha512-+DgmqWRLkdlFk5jq11xJdVzb014TiTvr0K+E9CL1ioJpr85d7XIVycUwcYqb2acjeMbDF0V7G8VGiAVgkSkZKA==}
     dependencies:
-      '@apollo/client': 3.4.15_graphql@14.1.1+react@17.0.2
+      '@apollo/client': 3.4.16_graphql@14.1.1+react@17.0.2
     transitivePeerDependencies:
       - graphql
       - react
@@ -9794,7 +9794,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       envinfo: 7.8.1
-      webpack-cli: 4.8.0_a1f4ccf56d4b0b3a788a70de982f531e
+      webpack-cli: 4.8.0_1aa085980ae2061343da92a11834249a
     dev: true
 
   /@webpack-cli/serve/1.5.2_7c3b358a9f51778452d16ef13906b9ff:
