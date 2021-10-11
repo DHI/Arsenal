@@ -1,5 +1,11 @@
 # @dhi/arsenal.bmpgenerator
 
+## 0.2.2
+
+### Patch Changes
+
+- Build bundle
+
 ## 0.2.1
 
 ### Patch Changes
