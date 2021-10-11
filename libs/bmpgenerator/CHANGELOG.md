@@ -1,5 +1,11 @@
 # @dhi/arsenal.bmpgenerator
 
+## 0.3.0
+
+### Minor Changes
+
+- Ensure build contains correct d.ts
+
 ## 0.2.2
 
 ### Patch Changes

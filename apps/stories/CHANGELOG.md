@@ -1,5 +1,12 @@
 # stories
 
+## 0.1.10
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @dhi/arsenal.bmpgenerator@0.3.0
+
 ## 0.1.9
 
 ### Patch Changes
