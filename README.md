@@ -11,32 +11,6 @@ See [./.docs](./.docs)
 - ./libs
   - NPM packages (Published to Github Packages)
 
-## Development guide
-
-```bash
-# Watch libs for changes
-# ...
-
-pnpm dev:libs
-```
-
-```bash
-# Link the package into an arbitrary project
-# ...
-
-cd libs/jsonform
-
-pnpm link --global
-
-cd ~/Projects/SomeProject
-
-pnpm link --global @dhi/arsenal.jsonform
-
-pnpm start
-
-# Should now utilize the live dependency, and react to changes on a recompile
-```
-
 ## Usage
 
 This project uses:
@@ -61,7 +35,7 @@ pnpm build
 
 # Development of libraries
 # - Will recompile on changes
-pnpm dev:libs
+cd libs/jsonform && pnpm dev
 
 # Start an app from the root directory
 pnpm run start --filter ./apps/stories
@@ -73,9 +47,6 @@ pnpm release:version
 # Publish libraries
 # - Will publish & replace all workspace:* aliases 
 pnpm release:publish
-
-# Clean up cache & build files
-pnpm clean
 ```
 
 For package versioning please read this:
