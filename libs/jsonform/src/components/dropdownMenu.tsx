@@ -2,7 +2,7 @@ import Popper from '@material-ui/core/Popper/Popper';
 import Grow from '@material-ui/core/Grow/Grow';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener/ClickAwayListener';
 import { observer } from 'mobx-react-lite';
-import { PropsOf } from '@dhi/arsenal.ui';
+import { PropsOf } from '@emotion/react';
 import { ReactElement, useState, useEffect } from 'react';
 
 export const DropdownMenu = observer<{

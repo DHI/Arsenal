@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { DropdownMenu } from './dropdownMenu';
 import { Button, ListItemIcon, MenuItem, Paper } from '@material-ui/core';
-import { PropsOf } from '@dhi/arsenal.ui';
+import { PropsOf } from '@emotion/react';
 import { CloseIcon, CheckIcon } from './icons';
 import { ReactNode } from 'react';
 
