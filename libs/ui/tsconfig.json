@@ -2,8 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "composite": true,
+        "target": "ES2020",
+
     "rootDir": "src",
     "outDir": "./x",
   },
-  "include": ["src", "src/*.d.ts", "*.js"]
+  "include": ["src"]
 }

@@ -15,30 +15,36 @@ import { StateModel } from './StateModel';
  * isActive.setFalse()
  * isActive.isFalse // true
  */
-
 export class BooleanModel extends StateModel {
   constructor(public value = false) {
     super(value);
-    makeObservable(this);
+
+    makeObservable(this, {
+      isFalse: computed,
+      isTrue: computed,
+      setFalse: action.bound,
+      setTrue: action.bound,
+      toggle: action.bound,
+    });
   }
 
-  @computed get isTrue() {
+  get isTrue() {
     return !!this.value;
   }
 
-  @computed get isFalse() {
+  get isFalse() {
     return !this.isTrue;
   }
 
-  @action.bound toggle() {
+  toggle() {
     return (this.value = !this.value);
   }
 
-  @action.bound setFalse() {
+  setFalse() {
     this.value = false;
   }
 
-  @action.bound setTrue() {
+  setTrue() {
     this.value = true;
   }
 }

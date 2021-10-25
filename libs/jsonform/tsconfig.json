@@ -1,11 +1,12 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "composite": true,
+    // "composite": true,
+    "target": "ES2020",
     "rootDir": "src",
-    "outDir": "./x",
+    "outDir": "./x"
   },
-  "include": ["src"],
+  "include": [ "src"],
   "references": [
     { "path": "../models" },
     { "path": "../ui" },

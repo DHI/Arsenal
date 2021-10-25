@@ -2,6 +2,12 @@
   "name": "@dhi/arsenal.models",
   "version": "1.0.4",
   "main": "./x",
+  "scripts": {
+    "wp:build": "webpack",
+    "wp:dev": "webpack --watch",
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
   "dependencies": {
     "mobx": "^6.3.3"
   },

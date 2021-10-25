@@ -12,7 +12,8 @@ import {
 } from './types';
 import { makeAutoObservable, runInAction, toJS } from 'mobx';
 import { BooleanModel } from '@dhi/arsenal.models';
-import { css, PropsOf, styled } from '@dhi/arsenal.ui';
+import { css, PropsOf } from '@emotion/react';
+import styled from '@emotion/styled';
 import cloneDeep from 'lodash-es/cloneDeep';
 import { JsonPointer } from 'json-ptr';
 import { StepperForm } from './components/StepperForm';
@@ -167,116 +168,126 @@ interface Operations {
   onDiscard?(): void;
 }
 
-export const FormConfigEditor = observer<{
-  data: Data;
-  form: FormConfig;
-  operations?: Operations;
-  onData?(data: FormConfigEditorState['data']): void;
-  onInit?(state: FormConfigEditorState): void;
-  components?: {
-    // textField: React.Component
-    saveButton?: {
-      text?: React.ReactNode;
+export const FormConfigEditor = observer(
+  ({
+    data,
+    form,
+    onInit,
+    onData,
+    operations,
+    components = {},
+    className,
+  }: {
+    data: Data;
+    form: FormConfig;
+    operations?: Operations;
+    onData?(data: FormConfigEditorState['data']): void;
+    onInit?(state: FormConfigEditorState): void;
+    components?: {
+      // textField: React.Component
+      saveButton?: {
+        text?: React.ReactNode;
+      };
+      discardButton?: {
+        text?: React.ReactNode;
+      };
     };
-    discardButton?: {
-      text?: React.ReactNode;
-    };
-  };
-  className?: string;
-}>(({ data, form, onInit, onData, operations, components = {}, className }) => {
-  const [state] = React.useState(() => new FormConfigEditorState(data, form));
+    className?: string;
+  }) => {
+    const [state] = React.useState(() => new FormConfigEditorState(data, form));
 
-  React.useEffect(() => {
-    state.setData(data);
-  }, [data]);
+    React.useEffect(() => {
+      state.setData(data);
+    }, [data]);
 
-  React.useEffect(() => {
-    state.setForm(form);
-  }, [form]);
+    React.useEffect(() => {
+      state.setForm(form);
+    }, [form]);
 
-  React.useEffect(() => {
-    if (!onData) return;
+    React.useEffect(() => {
+      if (!onData) return;
 
-    return deepObserve(state.data, () => {
-      onData(toJS(state.data));
-    });
-  }, [state.data]);
+      return deepObserve(state.data, () => {
+        onData(toJS(state.data));
+      });
+    }, [state.data]);
 
-  React.useEffect(() => {
-    onInit?.(state);
-  }, [state]);
+    React.useEffect(() => {
+      onInit?.(state);
+    }, [state]);
 
-  return (
-    <Grid item {...{ className }}>
-      {form.fields.map((f, i) => (
-        <FormField
-          key={f.kind + i}
-          field={f}
-          state={state}
-          operations={operations}
-        />
-      ))}
-      <Grid container>
-        {state.hasValidationErrors && (
-          <Alert
-            severity="error"
-            css={css`
-              opacity: 0.5;
-              flex-grow: 1;
-              padding: 0px;
-              padding-left: 1.5rem;
-            `}
-          >
-            {state.validationErrorsCount} issues found
-          </Alert>
-        )}
-      </Grid>
-      <Grid
-        container
-        css={css`
-          flex-grow: 1;
-          justify-content: space-between;
-          padding: 1em 1.5em;
-          box-shadow: 0 -2px 3px 0 #0002, 0 1px 1px 0 #0001;
-          position: relative;
-        `}
-      >
-        <ButtonGroup variant="contained">
-          <ConfirmDropdown
-            trigger={{
-              button: {
-                variant: 'outlined',
-              },
-              icon: <DiscardIcon fontSize="small" />,
-              label: <>{components.discardButton?.text || 'Discard'}</>,
-            }}
-            confirm={{
-              icon: <DiscardIcon />,
-              label: <>{components.discardButton?.text || 'Discard'}</>,
-              onClick() {
-                operations?.onDiscard?.();
-              },
-            }}
+    return (
+      <Grid item {...{ className }}>
+        {form.fields.map((f, i) => (
+          <FormField
+            key={f.kind + i}
+            field={f}
+            state={state}
+            operations={operations}
           />
-          <Button
-            color="primary"
-            endIcon={<SaveIcon fontSize="small" />}
-            onClick={() => {
-              state.validateEntireForm();
+        ))}
+        <Grid container>
+          {state.hasValidationErrors && (
+            <Alert
+              severity="error"
+              css={css`
+                opacity: 0.5;
+                flex-grow: 1;
+                padding: 0px;
+                padding-left: 1.5rem;
+              `}
+            >
+              {state.validationErrorsCount} issues found
+            </Alert>
+          )}
+        </Grid>
+        <Grid
+          container
+          css={css`
+            flex-grow: 1;
+            justify-content: space-between;
+            padding: 1em 1.5em;
+            box-shadow: 0 -2px 3px 0 #0002, 0 1px 1px 0 #0001;
+            position: relative;
+          `}
+        >
+          <ButtonGroup variant="contained">
+            <ConfirmDropdown
+              trigger={{
+                button: {
+                  variant: 'outlined',
+                },
+                icon: <DiscardIcon fontSize="small" />,
+                label: <>{components.discardButton?.text || 'Discard'}</>,
+              }}
+              confirm={{
+                icon: <DiscardIcon />,
+                label: <>{components.discardButton?.text || 'Discard'}</>,
+                onClick() {
+                  operations?.onDiscard?.();
+                },
+              }}
+            />
+            <Button
+              color="primary"
+              endIcon={<SaveIcon fontSize="small" />}
+              onClick={() => {
+                state.validateEntireForm();
 
-              if (state.hasValidationErrors) return;
+                if (state.hasValidationErrors) return;
 
-              operations?.onSave?.(state.data);
-            }}
-            disabled={state.hasValidationErrors}
-          >
-            {components.saveButton?.text || 'Save'}
-          </Button>
-        </ButtonGroup>
+                operations?.onSave?.(state.data);
+              }}
+              disabled={state.hasValidationErrors}
+            >
+              {components.saveButton?.text || 'Save'}
+            </Button>
+          </ButtonGroup>
+        </Grid>
       </Grid>
-    </Grid>
-  );
-});
+    );
+  },
+);
 
 export const FormField = observer<{
   field: FieldKinds | RootFieldKinds;
@@ -721,6 +732,7 @@ export function extractScaffoldFromFields(
       case 'set': {
         const pointer = parent.concat(field.pointer);
 
+        JsonPointer.set(scaffold, pointer, [], true);
         field.fields.forEach((f) => walk(f, pointer));
 
         break;

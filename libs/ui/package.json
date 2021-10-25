@@ -2,10 +2,17 @@
   "name": "@dhi/arsenal.ui",
   "version": "1.1.1",
   "main": "./x",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
   "dependencies": {
     "@emotion/styled": "^11.3.0",
     "@emotion/css": "^11.1.3",
     "@emotion/react": "^11.4.1"
+  },
+  "peerDependencies": {
+    "react": "17"
   },
   "repository": {
     "type": "git",

@@ -25,11 +25,17 @@ console.dir({ MODE, ENVIRONMENT_VARS });
 export const withDir = (dirname: string) => (...filePaths: string[]) =>
   path.resolve(dirname, ...filePaths);
 
-export default ({ dir }: { dir: ReturnType<typeof withDir> }) => {
+export default ({
+  dir,
+  useReactShim = false,
+}: {
+  dir: ReturnType<typeof withDir>;
+  useReactShim?: boolean;
+}) => {
   /** @ts-check @type import('webpack').Configuration */
   return {
     mode: MODE,
-    devtool: MODE === 'production' ? false : 'eval-cheap-module-source-map',
+    devtool: MODE === 'production' ? false : 'source-map',
     plugins: [
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(ENVIRONMENT_VARS.NODE_ENV),
@@ -49,20 +55,28 @@ export default ({ dir }: { dir: ReturnType<typeof withDir> }) => {
               options: {
                 loader: 'tsx',
                 target: 'es2018',
+                jsxFactory: 'jsx',
+                jsxFragment: 'React.Fragment',
+                ...(useReactShim
+                  ? {
+                      banner: `
+                        import React from 'react';
+                        import { jsx } from '@emotion/react/jsx-runtime';
+                      `,
+                    }
+                  : {}),
               },
             },
-            // {
-            //   loader: 'babel-loader',
-            //   options: {
-            //     plugins: [
-            //       '@babel/plugin-syntax-typescript',
-            //       '@babel/plugin-syntax-jsx',
-            //       // ['@babel/plugin-syntax-decorators', { legacy: true }],
-            //       // ['@babel/plugin-syntax-class-properties', { loose: true }],
-            //       '@emotion/babel-plugin',
-            //     ],
-            //   },
-            // },
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: [],
+                plugins: [
+                  ['@babel/plugin-syntax-typescript', { isTSX: true }],
+                  '@emotion',
+                ],
+              },
+            },
           ],
         },
         {

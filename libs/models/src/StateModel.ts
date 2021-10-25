@@ -13,12 +13,16 @@ import { observable, makeObservable, action } from 'mobx';
 export class StateModel<STATE = any> {
   constructor(value: STATE) {
     this.value = value;
-    makeObservable(this);
+
+    makeObservable(this, {
+      set: action.bound,
+      value: observable,
+    });
   }
 
-  @observable value: STATE;
+  value: STATE;
 
-  @action set = (state: this['value']): void => {
+  set(state: this['value']) {
     this.value = state;
-  };
+  }
 }
