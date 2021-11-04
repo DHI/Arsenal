@@ -75,8 +75,8 @@ export class AsyncValue<VALUE extends any, PAYLOAD extends any> {
     return autorun(() => cb(this.error));
   }
 
-  onValue(cb: (err: this['error']) => void) {
-    return autorun(() => cb(this.error));
+  onValue(cb: (v: this['value']) => void) {
+    return autorun(() => cb(this.value));
   }
 
   /**
