@@ -1,5 +1,11 @@
-import { action, makeObservable, observable } from 'mobx';
-import { Annotation } from 'mobx/dist/internal';
+import {
+  action,
+  makeObservable,
+  observable,
+  autorun,
+  toJS,
+  AnnotationMapEntry,
+} from 'mobx';
 
 /**
  * A simple way to encapsulate API access.
@@ -24,21 +30,18 @@ import { Annotation } from 'mobx/dist/internal';
  * await example.files.query({ foo: 22 }) // foo is strongly typed, inferred!
  * example.files.value?.[0]?.name // 'myFile.txt' - has data!
  */
-export class AsyncValue<VALUE extends any, PAYLOAD extends undefined | {}> {
+export class AsyncValue<VALUE extends any, PAYLOAD extends any> {
   constructor(
     private _query: (payload: PAYLOAD) => Promise<VALUE>,
     {
-      initialValue,
+      value,
       valueAnnotation = observable,
-      onError,
     }: {
-      initialValue?: VALUE;
-      valueAnnotation?: Annotation;
-      onError?: AsyncValue<VALUE, PAYLOAD>['onError'];
+      value?: VALUE;
+      valueAnnotation?: AnnotationMapEntry;
     } = {},
   ) {
-    this.value = initialValue;
-    this.onError = onError;
+    this.value = value;
 
     makeObservable(this, {
       value: valueAnnotation,
@@ -55,7 +58,6 @@ export class AsyncValue<VALUE extends any, PAYLOAD extends undefined | {}> {
   value?: VALUE = undefined;
   isPending = false;
   error?: Error = undefined;
-  onError?(err: Error): void;
 
   set(value: this['value']) {
     this.value = value;
@@ -69,31 +71,70 @@ export class AsyncValue<VALUE extends any, PAYLOAD extends undefined | {}> {
     return this;
   }
 
-  async query(payload: PAYLOAD) {
+  onError(cb: (err: this['error']) => void) {
+    return autorun(() => cb(this.error));
+  }
+
+  onValue(cb: (err: this['error']) => void) {
+    return autorun(() => cb(this.error));
+  }
+
+  /**
+   * @example
+   * // Valid usage:
+   * new AsyncValue((foo: number) => {}).query(22222222)
+   * new AsyncValue((foo: { a: number }) => {}).query({ a: 222222})
+   * new AsyncValue(() => {}).query()
+   */
+  async query<P extends PAYLOAD extends {} ? [PAYLOAD] : undefined[]>(
+    ...[payload]: P
+  ) {
     this.setIsPending(true);
     this.setError(undefined);
 
     try {
-      const val = await this._query(payload);
+      const val = await this._query(payload as any);
 
       this.set(val);
-
-      return this;
     } catch (err: any) {
-      this.onError?.(err);
       this.setError(err);
-
-      return this;
-    } finally {
-      this.setIsPending(false);
     }
+
+    this.setIsPending(false);
+
+    return this;
   }
 
-  setIsPending(x: this['isPending']) {
-    this.isPending = x;
+  setIsPending(v: this['isPending']) {
+    this.isPending = v;
   }
 
-  setError(x: this['error']) {
-    this.error = x;
+  setError(v: this['error']) {
+    this.error = v;
   }
+}
+
+export function onPropChanges<V extends {}, K extends keyof V>(
+  obj: V,
+  onChange: (key: K, v: V[K]) => void,
+) {
+  const observables = { ...obj };
+  const disposers = Object.keys(observables).map((key) =>
+    autorun(() => onChange(key as K, obj[key as K])),
+  );
+
+  return () => disposers.forEach((d) => d());
+}
+
+export function logPropChanges<V extends {}>(value: V, ...headers: string[]) {
+  let last = Date.now();
+
+  return onPropChanges(value, (key, value) => {
+    const now = Date.now();
+    const timeAgo = `+${now - last}ms`;
+
+    last = now;
+
+    console.log(...headers, timeAgo, { [key]: toJS(value) });
+  });
 }

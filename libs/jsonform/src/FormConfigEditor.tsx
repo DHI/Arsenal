@@ -728,7 +728,6 @@ export function extractScaffoldFromFields(
         break;
       }
 
-      // eslint-disable-next-line no-fallthrough
       case 'set': {
         const pointer = parent.concat(field.pointer);
 

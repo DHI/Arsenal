@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    {
+      "path": "./libs/models"
+    },
+    {
+      "path": "./libs/ui"
+    },
+    {
+      "path": "./libs/jsonform"
+    },
+    {
+      "path": "./libs/bmpgenerator"
+    },
+  ]
+}
