@@ -10,6 +10,7 @@ import {
   StepButton,
   StepContent,
   Stepper,
+  Tooltip,
 } from '@mui/material';
 import { ArrowLeft, ArrowRight } from '@mui/icons-material';
 
@@ -56,20 +57,19 @@ export const StepperForm = observer<{
                 `}
               >
                 <ButtonGroup>
-                  <Button
-                    startIcon={<ArrowLeft />}
-                    disabled={i === 0}
-                    onClick={() => onStep?.(i - 1)}
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    endIcon={<ArrowRight />}
-                    disabled={i === all.length - 1}
-                    onClick={() => onStep?.(i + 1)}
-                  >
-                    Next
-                  </Button>
+                  <Tooltip title="Previous step">
+                    <Button disabled={i === 0} onClick={() => onStep?.(i - 1)}>
+                      <ArrowLeft />
+                    </Button>
+                  </Tooltip>
+                  <Tooltip title="Next step">
+                    <Button
+                      disabled={i === all.length - 1}
+                      onClick={() => onStep?.(i + 1)}
+                    >
+                      <ArrowRight />
+                    </Button>
+                  </Tooltip>
                 </ButtonGroup>
               </Grid>
             )}

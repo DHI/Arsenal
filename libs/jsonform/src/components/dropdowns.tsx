@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { ReactNode } from 'react';
-import { DropdownMenu } from './dropdownMenu';
+import { DropdownMenu } from './DropdownMenu';
 import { CheckIcon, CloseIcon } from './icons';
 
 export const ConfirmDropdown = observer<{

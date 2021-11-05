@@ -216,7 +216,6 @@ export const FormConfigEditor = observer<{
           operations={operations}
         />
       ))}
-      3333333333333
       <Grid container>
         {state.hasValidationErrors && (
           <Alert
@@ -308,6 +307,7 @@ export const FormField = observer<{
                   margin: 0.5em 0;
                   width: 100%;
 
+                  min-width: 100px;
                   max-width: 225px;
                 }
               `}
@@ -493,10 +493,12 @@ export const FormField = observer<{
                 key={rowIndex}
                 css={css`
                   margin-bottom: 10px;
-                  border: 2px solid ${theme.palette?.grey?.[700]};
+                  border: 2px solid ${theme.palette?.grey?.[300]};
                   padding: 1em;
+                  padding-bottom: 3em;
                   margin: 1em 0;
                   position: relative;
+                  width: 100%;
                 `}
               >
                 <Grid item>
@@ -517,11 +519,19 @@ export const FormField = observer<{
                     `}
                     trigger={{
                       icon: <DiscardIcon fontSize="small" />,
-                      label: <>Remove</>,
+                      label: (
+                        <>
+                          <small>Remove</small>
+                        </>
+                      ),
                     }}
                     confirm={{
                       icon: <DiscardIcon />,
-                      label: <>Remove</>,
+                      label: (
+                        <>
+                          <small>Remove</small>
+                        </>
+                      ),
                       onClick() {
                         removeRowFromSet(rowIndex);
                       },
@@ -533,14 +543,14 @@ export const FormField = observer<{
           })}
           <Grid container>
             <Button
-              variant="contained"
+              variant="outlined"
               color="secondary"
               onClick={() => {
                 addNewRowToSet(field.fields);
               }}
               startIcon={<AddBoxIcon />}
             >
-              Add
+              {field.name ?? 'Add'}
             </Button>
           </Grid>
         </>
@@ -646,6 +656,7 @@ const $GroupRow = styled(GridRow)`
 const $TextField = styled(TextField)`
   && {
     margin: 0.45em 0;
+    min-width: 100px;
   }
 `;
 const $SmallTextField = styled($TextField)`
