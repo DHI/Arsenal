@@ -10,8 +10,8 @@ import {
   StepButton,
   StepContent,
   Stepper,
-} from '@material-ui/core';
-import { ArrowLeft, ArrowRight } from '@material-ui/icons';
+} from '@mui/material';
+import { ArrowLeft, ArrowRight } from '@mui/icons-material';
 
 export const StepperForm = observer<{
   activeStepIndex: number;

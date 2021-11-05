@@ -1,6 +1,6 @@
-import Popper from '@material-ui/core/Popper/Popper';
-import Grow from '@material-ui/core/Grow/Grow';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener/ClickAwayListener';
+import Popper from '@mui/material/Popper';
+import Grow from '@mui/material/Grow/Grow';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 import { observer } from 'mobx-react-lite';
 import { PropsOf } from '@emotion/react';
 import { ReactElement, useState, useEffect } from 'react';

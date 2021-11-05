@@ -1,28 +1,34 @@
+import {
+  Button,
+  ButtonProps,
+  ListItemIcon,
+  MenuItem,
+  MenuItemProps,
+  Paper,
+} from '@mui/material';
 import { observer } from 'mobx-react-lite';
-import { DropdownMenu } from './dropdownMenu';
-import { Button, ListItemIcon, MenuItem, Paper } from '@material-ui/core';
-import { PropsOf } from '@emotion/react';
-import { CloseIcon, CheckIcon } from './icons';
 import { ReactNode } from 'react';
+import { DropdownMenu } from './dropdownMenu';
+import { CheckIcon, CloseIcon } from './icons';
 
 export const ConfirmDropdown = observer<{
   trigger: {
     icon?: ReactNode;
     label: ReactNode;
-    button?: Partial<PropsOf<typeof Button>>;
+    button?: Partial<ButtonProps>;
   };
   confirm: {
     icon?: ReactNode;
     label: ReactNode;
     onClick?(): void;
 
-    menuItem?: Partial<PropsOf<typeof MenuItem>>;
+    menuItem?: Partial<MenuItemProps>;
   };
   cancel?: {
     icon?: ReactNode;
     label?: ReactNode;
     onClick?(): void;
-    menuItem?: Partial<PropsOf<typeof MenuItem>>;
+    menuItem?: Partial<MenuItemProps>;
   };
   className?: string;
 }>(({ trigger, cancel, confirm, ...p }) => {
