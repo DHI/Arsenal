@@ -100,8 +100,18 @@ export interface FieldSetGroup {
    */
   canDelete?: boolean;
 }
+export interface ActionGroup {
+  kind: 'action';
+  id: string;
+  name?: string;
+}
 
-export type FieldKinds = FieldGroup | FieldSetGroup | Field | LocationGroup;
+export type FieldKinds =
+  | FieldGroup
+  | FieldSetGroup
+  | Field
+  | LocationGroup
+  | ActionGroup;
 
 export type RootFieldKinds = FieldKinds | StepperGroup;
 
@@ -132,12 +142,16 @@ export interface NumberInputSchema extends BaseInputSchema {
   minimum?: number;
   maximum?: number;
 }
+export interface BooleanInputSchema extends BaseInputSchema {
+  type: 'boolean';
+}
 
 export type FormJSONSchema =
   | SelectInputSchema
   | MultiSelectInputSchema
   | TextInputSchema
-  | NumberInputSchema;
+  | NumberInputSchema
+  | BooleanInputSchema;
 
 export interface FormJSONSchemaError {}
 

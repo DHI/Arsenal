@@ -732,8 +732,14 @@ export function extractScaffoldFromFields(
       case 'set': {
         const pointer = parent.concat(field.pointer);
 
-        JsonPointer.set(scaffold, pointer, [], true);
-        field.fields.forEach((f) => walk(f, pointer));
+        try {
+          JsonPointer.set(scaffold, pointer, [], true);
+          field.fields.forEach((f) => walk(f, pointer));
+        } catch (e: any) {
+          console.error(e);
+
+          console.error({ scaffold, pointer });
+        }
 
         break;
       }
@@ -757,7 +763,13 @@ export function extractScaffoldFromFields(
         const pointer = parent.concat(field.pointer);
         const value = deriveFieldDefaultValue(field);
 
-        JsonPointer.set(scaffold, pointer, value, true);
+        try {
+          JsonPointer.set(scaffold, pointer, value, true);
+        } catch (e: any) {
+          console.error(e);
+
+          console.error({ scaffold, pointer, value });
+        }
       }
     }
   }
