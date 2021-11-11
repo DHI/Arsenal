@@ -9,32 +9,34 @@
     "dev": "tsc --watch"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.3.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.5",
+    "@mui/material": "^5.0.6",
     "mobx-react-lite": "3",
     "react": ">= 17",
-    "react-dom": ">= 17",
-    "@emotion/styled": "^11.3.0",
-    "@emotion/react": "^11.3.0",
-    "@mui/material": "^5.0.6",
-    "@mui/icons-material": "^5.0.5"
+    "react-dom": ">= 17"
   },
   "dependencies": {
     "@dhi/arsenal.models": "workspace:*",
-    "@types/lodash-es": "^4.17.5",
     "@emotion/react": "^11.5.0",
+    "@types/lodash-es": "^4.17.5",
+    "@types/pluralize": "^0.0.29",
     "ajv": "^8.6.2",
     "change-case": "^4.1.2",
     "date-fns": "^2.23.0",
     "json-ptr": "^2.2.0",
     "lodash-es": "^4.17.21",
     "mobx": "^6.3.3",
-    "mobx-utils": "^6.0.4"
+    "mobx-utils": "^6.0.4",
+    "pluralize": "^8.0.0"
   },
   "devDependencies": {
-    "@emotion/styled": "^11.3.0",
     "@emotion/react": "^11.3.0",
-    "mobx-react-lite": "^3.2.1",
-    "@mui/material": "^5.0.6",
+    "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.5",
+    "@mui/material": "^5.0.6",
+    "mobx-react-lite": "^3.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },

@@ -44,6 +44,7 @@ import {
   RoomIcon,
   LocationSearchingIcon,
 } from './components/icons';
+import pluralize from 'pluralize';
 
 type Data = Record<string, any>;
 type LocationPickReaction = (
@@ -341,7 +342,7 @@ export const FormField = observer<{
                     color: red;
                   `}
                 >
-                  {errors?.[0]?.message}
+                  <small> {errors?.[0]?.message}</small>
                 </FormHelperText>
               )}
             </FormControl>
@@ -446,6 +447,7 @@ export const FormField = observer<{
       return (
         <$GroupRow>
           <Grid item>
+            {!!field.name && <$GroupHeading>{field.name}</$GroupHeading>}
             {field.fields.map((f, i) => (
               <FormField
                 key={i}
@@ -484,6 +486,9 @@ export const FormField = observer<{
 
       return (
         <>
+          {!!field.name && (
+            <$GroupHeading>{pluralize(field.name)}</$GroupHeading>
+          )}
           {rows.map((row, rowIndex) => {
             const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
 
@@ -550,7 +555,7 @@ export const FormField = observer<{
               }}
               startIcon={<AddBoxIcon />}
             >
-              {field.name ?? 'Add'}
+              Add {!!field.name && pluralize(field.name, 1)}
             </Button>
           </Grid>
         </>
@@ -648,7 +653,11 @@ function validateSchema(schema: Schema, value: any) {
 
 const GridRow = (p: PropsOf<typeof Grid>) => <Grid container {...p} />;
 const $GroupRow = styled(GridRow)`
-  border-left: 0.75em solid ${(x: any) => x.theme?.palette?.grey?.[700]};
+  border-left: 0.75em solid
+    ${(x: any) =>
+      x.theme?.palette?.mode === 'dark'
+        ? 'rgba(255, 255, 255, 0.075)'
+        : 'rgba(0, 0, 0, 0.068)'};
   padding-left: 0.75em;
   margin: 0.5em 0;
 `;
@@ -788,3 +797,10 @@ function deriveFieldDefaultValue(field: Field) {
 
   return null;
 }
+
+const $GroupHeading = styled.p`
+  margin: 0.75em 0 1.25em;
+  font-size: 1em;
+  font-weight: 600;
+  opacity: 0.75;
+`;
