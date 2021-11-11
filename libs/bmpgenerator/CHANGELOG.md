@@ -1,5 +1,13 @@
 # @dhi/arsenal.bmpgenerator
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @dhi/arsenal.models@2.1.0
+  - @dhi/arsenal.ui@2.1.0
+
 ## 1.0.0
 
 ### Major Changes
