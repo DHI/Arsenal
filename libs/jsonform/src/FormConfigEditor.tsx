@@ -592,7 +592,7 @@ export const FormField = observer<{
                     width: 100%;
                   `}
                 >
-                  <Grid item>
+                  <Grid item flexGrow={1}>
                     {field.fields.map((f, i) => (
                       <FormField
                         key={i}
@@ -924,8 +924,8 @@ const GroupHeading = observer<{
                 margin-right: 0.5em;
                 opacity: 0.75;
                 transform: ${collapsing.isTrue
-                  ? 'rotate(0deg)'
-                  : 'rotate(90deg)'};
+                  ? 'rotate(-90deg)'
+                  : 'rotate(0deg)'};
                 transition: all 0.2s;
               `}
             />
@@ -936,7 +936,7 @@ const GroupHeading = observer<{
           align-items: center;
           flex-grow: 1;
           width: 100%;
-          padding: 0.75em 0.5em 1.25em;
+          padding: 0.75em 1em 1.25em;
           margin: 0.25em 0 0.75em;
 
           &.Mui-disabled {
@@ -944,7 +944,7 @@ const GroupHeading = observer<{
             opacity: 0.85;
           }
         `}
-        color="secondary"
+        color="inherit"
         disabled={!collapsing}
         disableRipple={!collapsing}
         disableElevation={!collapsing}
