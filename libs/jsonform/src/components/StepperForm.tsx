@@ -58,17 +58,24 @@ export const StepperForm = observer<{
               >
                 <ButtonGroup>
                   <Tooltip title="Previous step">
-                    <Button disabled={i === 0} onClick={() => onStep?.(i - 1)}>
-                      <ArrowLeft />
-                    </Button>
+                    <div>
+                      <Button
+                        disabled={i === 0}
+                        onClick={() => onStep?.(i - 1)}
+                      >
+                        <ArrowLeft />
+                      </Button>
+                    </div>
                   </Tooltip>
                   <Tooltip title="Next step">
-                    <Button
-                      disabled={i === all.length - 1}
-                      onClick={() => onStep?.(i + 1)}
-                    >
-                      <ArrowRight />
-                    </Button>
+                    <div>
+                      <Button
+                        disabled={i === all.length - 1}
+                        onClick={() => onStep?.(i + 1)}
+                      >
+                        <ArrowRight />
+                      </Button>
+                    </div>
                   </Tooltip>
                 </ButtonGroup>
               </Grid>

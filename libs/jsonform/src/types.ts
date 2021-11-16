@@ -34,6 +34,8 @@ export interface Field {
   schema: FormJSONSchema;
 }
 
+type CollapseOptions = 'initiallyClosed' | 'initiallyOpen' | 'disabled';
+
 /**
  * Field groups's job is to contain a list of fields
  */
@@ -41,6 +43,7 @@ export interface FieldGroup {
   kind: 'group';
   name?: string;
   fields: FieldKinds[];
+  collapsing?: CollapseOptions;
 }
 
 export type StepperStep = number;
@@ -99,11 +102,13 @@ export interface FieldSetGroup {
    * When true, a set can be removed from list
    */
   canDelete?: boolean;
+  collapsing?: CollapseOptions;
 }
-export interface ActionGroup {
+
+export interface ActionFieldGroup {
   kind: 'action';
   id: string;
-  name?: string;
+  label?: string;
 }
 
 export type FieldKinds =
@@ -111,7 +116,7 @@ export type FieldKinds =
   | FieldSetGroup
   | Field
   | LocationGroup
-  | ActionGroup;
+  | ActionFieldGroup;
 
 export type RootFieldKinds = FieldKinds | StepperGroup;
 

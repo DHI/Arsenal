@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import {
+  ActionFieldGroup,
   Field,
   FieldKinds,
   FormConfig,
@@ -32,6 +33,9 @@ import {
   OutlinedInput,
   Alert,
   useTheme,
+  Switch,
+  FormControlLabel,
+  Collapse,
 } from '@mui/material';
 import Ajv, { Schema } from 'ajv';
 import { pascalCase } from 'change-case';
@@ -43,8 +47,10 @@ import {
   AddBoxIcon,
   RoomIcon,
   LocationSearchingIcon,
+  ExpandMoreIcon,
 } from './components/icons';
 import pluralize from 'pluralize';
+import { ReactNode, useMemo } from 'react';
 
 type Data = Record<string, any>;
 type LocationPickReaction = (
@@ -161,11 +167,14 @@ class FormConfigEditorState {
   };
 }
 
+type ActionKey = string;
+
 interface Operations {
   onPickingLocation?: LocationPickReaction;
   onGotoLocation?(latLon: LonLat): void;
   onSave?(data: Data): void;
   onDiscard?(): void;
+  onAction?(action: ActionFieldGroup, context?: { parent: JsonPointer }): void;
 }
 
 export const FormConfigEditor = observer<{
@@ -282,128 +291,162 @@ export const FormConfigEditor = observer<{
 export const FormField = observer<{
   field: FieldKinds | RootFieldKinds;
   state: FormConfigEditorState;
-  parentPointer?: JsonPointer;
+  parent?: JsonPointer;
   operations?: Operations;
-}>(({ field, state, parentPointer = new JsonPointer([]), operations }) => {
+}>(({ field, state, parent = new JsonPointer([]), operations }) => {
   const theme = useTheme();
 
   switch (field.kind) {
     case 'field': {
-      const pointer = parentPointer.concat(field.pointer);
+      const pointer = parent.concat(field.pointer);
       const { errors, isValid = true } =
         state.fieldValidation.get(pointer.pointer) ?? {};
 
       const value = pointer.get(state.data);
 
-      if ('enum' in field.schema) {
-        const selectId = `${pointer.pointer}`;
-
-        return (
-          <Grid item>
-            <FormControl
-              size="small"
-              variant="outlined"
-              css={css`
-                && {
-                  margin: 0.5em 0;
-                  width: 100%;
-
-                  min-width: 100px;
-                  max-width: 225px;
-                }
-              `}
-            >
-              <InputLabel shrink id={selectId}>
-                {field.name}
-              </InputLabel>
-              <Select
-                error={!isValid}
-                labelId={selectId}
-                value={value ?? ''}
-                input={<OutlinedInput notched label={field.name} />}
-                autoWidth
-                fullWidth
-                onChange={(e) => {
-                  state.setField({ pointer, field, value: e.target.value });
-                }}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                {field.schema.enum.map((v) => (
-                  <MenuItem key={v} value={v}>
-                    {pascalCase(v.toString())}
-                  </MenuItem>
-                ))}
-              </Select>
-              {!isValid && (
-                <FormHelperText
-                  css={css`
-                    color: red;
-                  `}
-                >
-                  <small> {errors?.[0]?.message}</small>
-                </FormHelperText>
-              )}
-            </FormControl>
-          </Grid>
-        );
-      }
-
       const fieldType = (() => {
         if (field.variant) return field.variant;
 
+        if ('enum' in field.schema) return 'enum' as const;
+        if (field.schema.type === 'boolean') return 'boolean' as const;
         if (field.schema.type === 'number') return 'number' as const;
 
         return 'text' as const;
       })();
 
-      return (
-        <Grid item>
-          <$TextField
-            variant="outlined"
-            size="small"
-            label={<>{field.name}</>}
-            type={fieldType}
-            multiline={fieldType === 'textarea'}
-            value={value ?? ''}
-            error={!isValid}
-            helperText={errors?.[0]?.message}
-            css={css`
-              ${fieldType === 'number'
-                ? css`
-                    min-width: 150px;
-                    max-width: 250px;
-                  `
-                : ''}
-            `}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            InputProps={{
-              ...(field.unit
-                ? {
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        {field.unit}
-                      </InputAdornment>
-                    ),
+      switch (fieldType) {
+        case 'enum': {
+          const selectId = `${pointer.pointer}`;
+
+          return (
+            <Grid item>
+              <FormControl
+                size="small"
+                variant="outlined"
+                css={css`
+                  && {
+                    margin: 0.5em 0;
+                    width: 100%;
+
+                    min-width: 100px;
+                    max-width: 225px;
                   }
-                : {}),
-            }}
-            onChange={(e) =>
-              state.setField({
-                pointer,
-                field,
-                value:
-                  fieldType === 'number'
-                    ? Number(e.target.value)
-                    : e.target.value,
-              })
-            }
-          />
-        </Grid>
-      );
+                `}
+              >
+                <InputLabel shrink id={selectId}>
+                  {field.name}
+                </InputLabel>
+                <Select
+                  error={!isValid}
+                  labelId={selectId}
+                  value={value ?? ''}
+                  input={<OutlinedInput notched label={field.name} />}
+                  autoWidth
+                  fullWidth
+                  onChange={(e) => {
+                    state.setField({ pointer, field, value: e.target.value });
+                  }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {(field.schema as any).enum.map((v: string) => (
+                    <MenuItem key={v} value={v}>
+                      {pascalCase(v.toString())}
+                    </MenuItem>
+                  ))}
+                </Select>
+                {!isValid && (
+                  <FormHelperText
+                    css={css`
+                      color: red;
+                    `}
+                  >
+                    <small> {errors?.[0]?.message}</small>
+                  </FormHelperText>
+                )}
+              </FormControl>
+            </Grid>
+          );
+        }
+
+        case 'boolean': {
+          console.log({
+            pointer,
+            field,
+            value,
+          });
+
+          return (
+            <Grid item>
+              <FormControlLabel
+                css={css`
+                  margin: 0.5em 0.25em;
+                `}
+                checked={value as any}
+                onChange={(e, isChecked) =>
+                  state.setField({
+                    pointer,
+                    field,
+                    value: isChecked,
+                  })
+                }
+                control={<Switch />}
+                label={field.name}
+              />
+            </Grid>
+          );
+        }
+
+        default: {
+          return (
+            <Grid item flexGrow={1}>
+              <$TextField
+                variant="outlined"
+                size="small"
+                label={<>{field.name}</>}
+                type={fieldType}
+                multiline={fieldType === 'textarea'}
+                value={value ?? ''}
+                error={!isValid}
+                helperText={errors?.[0]?.message}
+                css={css`
+                  ${fieldType === 'number'
+                    ? css`
+                        min-width: 150px;
+                        max-width: 250px;
+                      `
+                    : ''}
+                `}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                InputProps={{
+                  ...(field.unit
+                    ? {
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            {field.unit}
+                          </InputAdornment>
+                        ),
+                      }
+                    : {}),
+                }}
+                onChange={(e) =>
+                  state.setField({
+                    pointer,
+                    field,
+                    value:
+                      fieldType === 'number'
+                        ? Number(e.target.value)
+                        : e.target.value,
+                  })
+                }
+              />
+            </Grid>
+          );
+        }
+      }
     }
 
     case 'stepper': {
@@ -428,7 +471,7 @@ export const FormField = observer<{
                       field={f}
                       state={state}
                       operations={operations}
-                      parentPointer={parentPointer}
+                      parent={parent}
                     />
                   ));
                 },
@@ -443,27 +486,65 @@ export const FormField = observer<{
       );
     }
 
-    case 'group':
+    case 'group': {
+      const isCollapseDisabled =
+        !field.collapsing || field.collapsing === 'disabled';
+      const isCollapsed = useMemo(
+        () =>
+          new BooleanModel(
+            field.collapsing === 'initiallyOpen'
+              ? false
+              : field.collapsing === 'initiallyClosed',
+          ),
+        [],
+      );
+
+      console.log(
+        field.name,
+        { isCollapsed, isCollapseDisabled },
+        !!isCollapsed,
+      );
+
       return (
         <$GroupRow>
-          <Grid item>
-            {!!field.name && <$GroupHeading>{field.name}</$GroupHeading>}
-            {field.fields.map((f, i) => (
-              <FormField
-                key={i}
-                field={f}
-                state={state}
-                operations={operations}
-                parentPointer={parentPointer}
-              />
-            ))}
+          <Grid container flexGrow={1}>
+            {!!field.name && (
+              <GroupHeading
+                collapsing={isCollapseDisabled ? undefined : isCollapsed}
+              >
+                {field.name}
+              </GroupHeading>
+            )}
+            <$Collapse in={!isCollapsed.value} mountOnEnter>
+              {field.fields.map((f, i) => (
+                <FormField
+                  key={i}
+                  field={f}
+                  state={state}
+                  operations={operations}
+                  parent={parent}
+                />
+              ))}
+            </$Collapse>
           </Grid>
         </$GroupRow>
       );
+    }
 
     case 'set': {
-      const pointer = parentPointer.concat(field.pointer);
+      const pointer = parent.concat(field.pointer);
       const rows = (pointer.get(state.data) ?? []) as any[];
+      const isCollapseDisabled =
+        !field.collapsing || field.collapsing === 'disabled';
+      const isCollapsed = useMemo(
+        () =>
+          new BooleanModel(
+            field.collapsing === 'initiallyClosed'
+              ? false
+              : field.collapsing === 'initiallyOpen',
+          ),
+        [],
+      );
 
       if (!isArray(rows))
         return <>Expected list `set` value at: {pointer.path}</>;
@@ -487,85 +568,91 @@ export const FormField = observer<{
       return (
         <>
           {!!field.name && (
-            <$GroupHeading>{pluralize(field.name)}</$GroupHeading>
-          )}
-          {rows.map((row, rowIndex) => {
-            const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
-
-            return (
-              <Grid
-                container
-                key={rowIndex}
-                css={css`
-                  margin-bottom: 10px;
-                  border: 2px solid ${theme.palette?.grey?.[300]};
-                  padding: 1em;
-                  padding-bottom: 3em;
-                  margin: 1em 0;
-                  position: relative;
-                  width: 100%;
-                `}
-              >
-                <Grid item>
-                  {field.fields.map((f, i) => (
-                    <FormField
-                      key={i}
-                      field={f}
-                      state={state}
-                      operations={operations}
-                      parentPointer={rowPointer}
-                    />
-                  ))}
-                  <ConfirmDropdown
-                    css={css`
-                      position: absolute;
-                      bottom: -2px;
-                      right: -2px;
-                    `}
-                    trigger={{
-                      icon: <DiscardIcon fontSize="small" />,
-                      label: (
-                        <>
-                          <small>Remove</small>
-                        </>
-                      ),
-                    }}
-                    confirm={{
-                      icon: <DiscardIcon />,
-                      label: (
-                        <>
-                          <small>Remove</small>
-                        </>
-                      ),
-                      onClick() {
-                        removeRowFromSet(rowIndex);
-                      },
-                    }}
-                  />
-                </Grid>
-              </Grid>
-            );
-          })}
-          <Grid container>
-            <Button
-              variant="outlined"
-              color="secondary"
-              onClick={() => {
-                addNewRowToSet(field.fields);
-              }}
-              startIcon={<AddBoxIcon />}
+            <GroupHeading
+              collapsing={isCollapseDisabled ? undefined : isCollapsed}
             >
-              Add {!!field.name && pluralize(field.name, 1)}
-            </Button>
-          </Grid>
+              {pluralize(field.name)}
+            </GroupHeading>
+          )}
+          <$Collapse in={!isCollapsed.value} mountOnEnter>
+            {rows.map((row, rowIndex) => {
+              const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
+
+              return (
+                <Grid
+                  container
+                  key={rowIndex}
+                  css={css`
+                    margin-bottom: 10px;
+                    border: 2px solid ${theme.palette?.grey?.[300]};
+                    padding: 1em;
+                    padding-bottom: 3em;
+                    margin: 1em 0;
+                    position: relative;
+                    width: 100%;
+                  `}
+                >
+                  <Grid item>
+                    {field.fields.map((f, i) => (
+                      <FormField
+                        key={i}
+                        field={f}
+                        state={state}
+                        operations={operations}
+                        parent={rowPointer}
+                      />
+                    ))}
+                    <ConfirmDropdown
+                      css={css`
+                        position: absolute;
+                        bottom: -2px;
+                        right: -2px;
+                      `}
+                      trigger={{
+                        icon: <DiscardIcon fontSize="small" />,
+                        label: (
+                          <>
+                            <small>Remove</small>
+                          </>
+                        ),
+                      }}
+                      confirm={{
+                        icon: <DiscardIcon />,
+                        label: (
+                          <>
+                            <small>Remove</small>
+                          </>
+                        ),
+                        onClick() {
+                          removeRowFromSet(rowIndex);
+                        },
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+              );
+            })}
+            <Grid container>
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={() => {
+                  addNewRowToSet(field.fields);
+                }}
+                startIcon={<AddBoxIcon />}
+              >
+                Add {!!field.name && pluralize(field.name, 1)}
+              </Button>
+            </Grid>
+          </$Collapse>
         </>
       );
     }
 
     case 'location': {
       const { x: xField, y: yField } = field.location;
-      const xPointer = parentPointer.concat(xField.pointer);
-      const yPointer = parentPointer.concat(yField.pointer);
+      const xPointer = parent.concat(xField.pointer);
+      const yPointer = parent.concat(yField.pointer);
       const xValue = xPointer.get(state.data) as number;
       const yValue = yPointer.get(state.data) as number;
 
@@ -625,17 +712,36 @@ export const FormField = observer<{
                 field={yField}
                 state={state}
                 operations={operations}
-                parentPointer={parentPointer}
+                parent={parent}
               />
               <FormField
                 field={xField}
                 state={state}
                 operations={operations}
-                parentPointer={parentPointer}
+                parent={parent}
               />
             </Grid>
           </Grid>
         </$GroupRow>
+      );
+    }
+
+    case 'action': {
+      console.log('action', field);
+
+      return (
+        <Grid item>
+          <Button
+            // startIcon={<LocationSearchingIcon />}
+            variant="text"
+            onClick={() => {
+              // TODO: add debug info if not existing
+              operations?.onAction?.(field, { parent });
+            }}
+          >
+            {field.label ?? field.id}
+          </Button>
+        </Grid>
       );
     }
 
@@ -653,12 +759,12 @@ function validateSchema(schema: Schema, value: any) {
 
 const GridRow = (p: PropsOf<typeof Grid>) => <Grid container {...p} />;
 const $GroupRow = styled(GridRow)`
-  border-left: 0.75em solid
+  border-left: 2px solid
     ${(x: any) =>
       x.theme?.palette?.mode === 'dark'
-        ? 'rgba(255, 255, 255, 0.075)'
-        : 'rgba(0, 0, 0, 0.068)'};
-  padding-left: 0.75em;
+        ? 'rgba(255, 255, 255, 0.08)'
+        : 'rgba(0, 0, 0, 0.07)'};
+  padding-left: 1em;
   margin: 0.5em 0;
 `;
 
@@ -666,6 +772,7 @@ const $TextField = styled(TextField)`
   && {
     margin: 0.45em 0;
     min-width: 100px;
+    width: 100%;
   }
 `;
 const $SmallTextField = styled($TextField)`
@@ -798,9 +905,80 @@ function deriveFieldDefaultValue(field: Field) {
   return null;
 }
 
-const $GroupHeading = styled.p`
-  margin: 0.75em 0 1.25em;
-  font-size: 1em;
-  font-weight: 600;
-  opacity: 0.75;
+const GroupHeading = observer<{
+  collapsing?: BooleanModel;
+  children: ReactNode;
+}>(({ collapsing, children }) => {
+  const theme = useTheme();
+
+  return (
+    <>
+      <Button
+        variant="text"
+        endIcon={
+          !!collapsing && (
+            <ExpandMoreIcon
+              fontSize="small"
+              css={css`
+                margin-left: 1em;
+                margin-right: 0.5em;
+                opacity: 0.75;
+                transform: ${collapsing.isTrue
+                  ? 'rotate(0deg)'
+                  : 'rotate(90deg)'};
+                transition: all 0.2s;
+              `}
+            />
+          )
+        }
+        css={css`
+          justify-content: space-between;
+          align-items: center;
+          flex-grow: 1;
+          width: 100%;
+          padding: 0.75em 0.5em 1.25em;
+          margin: 0.25em 0 0.75em;
+
+          &.Mui-disabled {
+            color: inherit;
+            opacity: 0.85;
+          }
+        `}
+        color="secondary"
+        disabled={!collapsing}
+        disableRipple={!collapsing}
+        disableElevation={!collapsing}
+        disableTouchRipple={!collapsing}
+        disableFocusRipple={!collapsing}
+        onClick={collapsing?.toggle}
+      >
+        <span
+          css={css`
+            font-size: 1em;
+            font-weight: 600;
+            opacity: 0.75;
+            display: flex;
+            flex-grow: 1;
+            text-align: left;
+            align-items: center;
+            width: 100%;
+          `}
+        >
+          {children}
+        </span>
+      </Button>
+    </>
+  );
+});
+
+type StyledProps = {
+  theme?: {
+    palette?: {
+      mode: 'light' | 'dark';
+    };
+  };
+};
+
+const $Collapse = styled(Collapse)`
+  width: 100%;
 `;
