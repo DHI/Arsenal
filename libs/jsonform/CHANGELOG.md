@@ -1,5 +1,11 @@
 # @dhi/arsenal.jsonform
 
+## 2.2.0
+
+### Minor Changes
+
+- Wip
+
 ## 2.1.0
 
 ### Minor Changes
