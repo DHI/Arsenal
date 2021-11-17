@@ -12,7 +12,8 @@
     "clean:node_modules": "pnpm -r exec rimraf node_modules",
     "release:version": "changeset && changeset version",
     "release:publish": "pnpm -r publish",
-    "build": "pnpm run build:libs && pnpm -r run build --filter ./apps",
+    "build": "pnpm build:libs",
+    "build:apps": "pnpm -r run build --filter ./apps",
     "build:libs": "pnpm -r run build --filter ./libs",
     "dev:libs": "pnpm build:libs -- -w"
   },
