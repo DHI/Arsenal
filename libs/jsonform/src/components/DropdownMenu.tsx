@@ -2,7 +2,7 @@ import Popper from '@mui/material/Popper';
 import Grow from '@mui/material/Grow/Grow';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import { observer } from 'mobx-react-lite';
-import { PropsOf } from '@emotion/react';
+import { css, PropsOf } from '@emotion/react';
 import { ReactElement, useState, useEffect } from 'react';
 
 export const DropdownMenu = observer<{
@@ -50,6 +50,9 @@ export const DropdownMenu = observer<{
         transition
         // disablePortal
         {...popper}
+        css={css`
+          z-index: 2;
+        `}
       >
         {({ TransitionProps, placement }) => (
           <Grow {...TransitionProps}>

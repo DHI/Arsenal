@@ -60,6 +60,7 @@ export const StepperForm = observer<{
                   <Tooltip title="Previous step">
                     <div>
                       <Button
+                        variant="outlined"
                         disabled={i === 0}
                         onClick={() => onStep?.(i - 1)}
                       >
@@ -70,6 +71,7 @@ export const StepperForm = observer<{
                   <Tooltip title="Next step">
                     <div>
                       <Button
+                        variant="outlined"
                         disabled={i === all.length - 1}
                         onClick={() => onStep?.(i + 1)}
                       >

@@ -499,12 +499,6 @@ export const FormField = observer<{
         [],
       );
 
-      console.log(
-        field.name,
-        { isCollapsed, isCollapseDisabled },
-        !!isCollapsed,
-      );
-
       return (
         <$GroupRow>
           <Grid container flexGrow={1}>
@@ -567,84 +561,86 @@ export const FormField = observer<{
 
       return (
         <>
-          {!!field.name && (
-            <GroupHeading
-              collapsing={isCollapseDisabled ? undefined : isCollapsed}
-            >
-              {pluralize(field.name)}
-            </GroupHeading>
-          )}
-          <$Collapse in={!isCollapsed.value} mountOnEnter>
-            {rows.map((row, rowIndex) => {
-              const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
-
-              return (
-                <Grid
-                  container
-                  key={rowIndex}
-                  css={css`
-                    margin-bottom: 10px;
-                    border: 2px solid ${theme.palette?.grey?.[300]};
-                    padding: 1em;
-                    padding-bottom: 3em;
-                    margin: 1em 0;
-                    position: relative;
-                    width: 100%;
-                  `}
-                >
-                  <Grid item flexGrow={1}>
-                    {field.fields.map((f, i) => (
-                      <FormField
-                        key={i}
-                        field={f}
-                        state={state}
-                        operations={operations}
-                        parent={rowPointer}
-                      />
-                    ))}
-                    <ConfirmDropdown
-                      css={css`
-                        position: absolute;
-                        bottom: -2px;
-                        right: -2px;
-                      `}
-                      trigger={{
-                        icon: <DiscardIcon fontSize="small" />,
-                        label: (
-                          <>
-                            <small>Remove</small>
-                          </>
-                        ),
-                      }}
-                      confirm={{
-                        icon: <DiscardIcon />,
-                        label: (
-                          <>
-                            <small>Remove</small>
-                          </>
-                        ),
-                        onClick() {
-                          removeRowFromSet(rowIndex);
-                        },
-                      }}
-                    />
-                  </Grid>
-                </Grid>
-              );
-            })}
+          <$GroupRow>
+            {!!field.name && (
+              <GroupHeading
+                collapsing={isCollapseDisabled ? undefined : isCollapsed}
+              >
+                {pluralize(field.name)}
+                {` (${rows.length})`}
+              </GroupHeading>
+            )}
             <Grid container>
               <Button
                 variant="outlined"
                 color="secondary"
                 onClick={() => {
                   addNewRowToSet(field.fields);
+                  isCollapsed.setFalse();
                 }}
                 startIcon={<AddBoxIcon />}
               >
                 Add {!!field.name && pluralize(field.name, 1)}
               </Button>
             </Grid>
-          </$Collapse>
+            <$Collapse in={!isCollapsed.value} mountOnEnter>
+              {rows.map((row, rowIndex) => {
+                const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
+
+                return (
+                  <$GroupRow
+                    container
+                    key={rowIndex}
+                    css={css`
+                      margin-bottom: 14px;
+                      padding-bottom: 3em;
+                      margin: 1em 0;
+                      position: relative;
+                      width: 100%;
+                    `}
+                  >
+                    <Grid item flexGrow={1}>
+                      {field.fields.map((f, i) => (
+                        <FormField
+                          key={i}
+                          field={f}
+                          state={state}
+                          operations={operations}
+                          parent={rowPointer}
+                        />
+                      ))}
+                      <ConfirmDropdown
+                        css={css`
+                          position: absolute;
+                          bottom: -2px;
+                          right: -2px;
+                        `}
+                        trigger={{
+                          icon: <DiscardIcon fontSize="small" />,
+                          label: (
+                            <>
+                              <small>Remove</small>
+                            </>
+                          ),
+                        }}
+                        confirm={{
+                          icon: <DiscardIcon />,
+                          label: (
+                            <>
+                              <small>Remove</small>
+                            </>
+                          ),
+                          onClick() {
+                            removeRowFromSet(rowIndex);
+                          },
+                        }}
+                      />
+                    </Grid>
+                  </$GroupRow>
+                );
+              })}
+            </$Collapse>
+          </$GroupRow>
         </>
       );
     }
@@ -949,10 +945,6 @@ const GroupHeading = observer<{
         `}
         color="inherit"
         disabled={!collapsing}
-        disableRipple={!collapsing}
-        disableElevation={!collapsing}
-        disableTouchRipple={!collapsing}
-        disableFocusRipple={!collapsing}
         onClick={collapsing?.toggle}
       >
         <span
