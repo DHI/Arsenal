@@ -759,12 +759,12 @@ function validateSchema(schema: Schema, value: any) {
 
 const GridRow = (p: PropsOf<typeof Grid>) => <Grid container {...p} />;
 const $GroupRow = styled(GridRow)`
-  border-left: 2px solid
+  border: 2px solid
     ${(x: any) =>
       x.theme?.palette?.mode === 'dark'
         ? 'rgba(255, 255, 255, 0.08)'
         : 'rgba(0, 0, 0, 0.07)'};
-  padding-left: 1em;
+  padding: 0.5em;
   margin: 0.5em 0;
 `;
 
@@ -936,8 +936,11 @@ const GroupHeading = observer<{
           align-items: center;
           flex-grow: 1;
           width: 100%;
-          padding: 0.75em 1em 1.25em;
-          margin: 0.25em 0 0.75em;
+          padding: 0.75em 1em 0.75em;
+
+          & + div {
+            margin-top: 1em;
+          }
 
           &.Mui-disabled {
             color: inherit;
