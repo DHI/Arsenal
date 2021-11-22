@@ -22,7 +22,6 @@ import {
   TextField,
   Grid,
   Button,
-  ButtonGroup,
   Tooltip,
   MenuItem,
   Select,
@@ -251,7 +250,7 @@ export const FormConfigEditor = observer<{
           position: relative;
         `}
       >
-        <ButtonGroup variant="contained">
+        <div>
           <ConfirmDropdown
             trigger={{
               button: {
@@ -270,6 +269,7 @@ export const FormConfigEditor = observer<{
           />
           <Button
             color="primary"
+            variant="outlined"
             endIcon={<SaveIcon fontSize="small" />}
             onClick={() => {
               state.validateEntireForm();
@@ -282,7 +282,7 @@ export const FormConfigEditor = observer<{
           >
             {components.saveButton?.text || 'Save'}
           </Button>
-        </ButtonGroup>
+        </div>
       </Grid>
     </Grid>
   );
@@ -655,9 +655,7 @@ export const FormField = observer<{
       return (
         <$GroupRow>
           <Grid item>
-            <ButtonGroup
-              variant="outlined"
-              color="primary"
+            <div
               css={css`
                 margin-top: 0.5em;
                 margin-bottom: 0.6em;
@@ -666,6 +664,7 @@ export const FormField = observer<{
               <Tooltip title="Click to pick a location on the map" arrow>
                 <Button
                   variant="outlined"
+                  color="primary"
                   startIcon={<RoomIcon />}
                   onClick={() => {
                     const hasLonLat = !!xValue && !!yValue;
@@ -693,6 +692,8 @@ export const FormField = observer<{
               </Tooltip>
               <Tooltip title="View location on map" arrow>
                 <Button
+                  variant="outlined"
+                  color="primary"
                   startIcon={<LocationSearchingIcon />}
                   onClick={() => {
                     operations?.onGotoLocation?.([xValue, yValue]);
@@ -701,7 +702,7 @@ export const FormField = observer<{
                   Goto
                 </Button>
               </Tooltip>
-            </ButtonGroup>
+            </div>
             <br />
             <Grid container>
               <FormField

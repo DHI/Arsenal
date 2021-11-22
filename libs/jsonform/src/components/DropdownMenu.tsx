@@ -19,18 +19,18 @@ export const DropdownMenu = observer<{
 }>(({ children, isOpen: controlledIsOpen, popper }) => {
   // TODO: use a ref here to stop the error
   // Do we need a forward ref for this to be controllable for placement?
-  const [anchor, setAnchor] = useState<null | Element>(null);
+  const [anchorEl, setAnchorEl] = useState<null | Element>(null);
   const [isOpen, setOpen] = useState(false);
 
   type Props = Parameters<typeof children>[0];
 
   const closeMenu: Props['closeMenu'] = () => {
-    setAnchor(null);
+    setAnchorEl(null);
     setOpen(false);
   };
 
   const openMenu: Props['openMenu'] = ({ currentTarget }) => {
-    setAnchor(anchor ? null : currentTarget);
+    setAnchorEl(anchorEl ? null : currentTarget);
     setOpen(true);
   };
 
@@ -45,7 +45,7 @@ export const DropdownMenu = observer<{
       {button}
       <Popper
         open={isOpen}
-        anchorEl={anchor}
+        anchorEl={anchorEl}
         role={undefined}
         transition
         // disablePortal
