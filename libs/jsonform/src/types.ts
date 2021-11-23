@@ -29,8 +29,25 @@ export interface Field {
   name: string;
   /** The value's unit eg. 88 mg/l */
   unit?: string | { position: 'start' | 'end'; value: string };
-  /** Defaults to whatever the `schema` infers */
-  variant?: 'number' | 'textarea' | 'text' | 'date' | 'week';
+  /**
+   * Defaults to whatever the `schema` infers.
+   *
+   * Can also be provided to override the schema's default.
+   *
+   * 'primaryBoolean':
+   *   - When this is defined, the parent group can be rendered with a checkbox
+   *   - Can only be one of these variants in the group
+   *
+   * */
+  variant?:
+    | 'number'
+    | 'textarea'
+    | 'text'
+    | 'date'
+    | 'week'
+    | 'primaryCheckbox'
+    | 'checkbox'
+    | 'unlabeledCheckbox';
   schema: FormJSONSchema;
 }
 
@@ -112,9 +129,9 @@ export interface ActionFieldGroup {
 }
 
 export type FieldKinds =
+  | Field
   | FieldGroup
   | FieldSetGroup
-  | Field
   | LocationGroup
   | ActionFieldGroup;
 
