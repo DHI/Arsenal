@@ -26,6 +26,7 @@ import { observer } from 'mobx-react-lite';
 import pluralize from 'pluralize';
 import * as React from 'react';
 import { ReactNode, useMemo } from 'react';
+import { FieldGroup } from '.';
 import { ConfirmDropdown } from './components/dropdowns';
 import {
   AddBoxIcon,
@@ -259,6 +260,7 @@ export const FormField = observer<{
         [],
       );
 
+      /** When a primary checkbox is found, use it in the heading and remove it from the list. */
       const primaryCheckboxField = field.fields.find(
         (f) => f.kind === 'field' && f.variant === 'primaryCheckbox',
       ) as undefined | Field;
@@ -270,21 +272,19 @@ export const FormField = observer<{
       return (
         <$GroupRow>
           <Grid container flexGrow={1}>
-            {!!field.name && (
-              <GroupHeading
-                collapsing={isCollapseDisabled ? undefined : isCollapsed}
-                primaryBoolean={
-                  primaryCheckboxField ? (
-                    <FormField
-                      field={primaryCheckboxField}
-                      {...{ state, operations, parent }}
-                    />
-                  ) : undefined
-                }
-              >
-                {field.name}
-              </GroupHeading>
-            )}
+            <GroupHeading
+              collapsing={isCollapseDisabled ? undefined : isCollapsed}
+              before={
+                primaryCheckboxField ? (
+                  <FormField
+                    field={primaryCheckboxField}
+                    {...{ state, operations, parent }}
+                  />
+                ) : undefined
+              }
+            >
+              {field.name ?? ''}
+            </GroupHeading>
             <$Collapse in={!isCollapsed.value} mountOnEnter>
               {filteredFields.map((f, i) => (
                 <FormField
@@ -304,20 +304,9 @@ export const FormField = observer<{
     case 'set': {
       const pointer = parent.concat(field.pointer);
       const rows = (pointer.get(state.data) ?? []) as any[];
-      const isCollapseDisabled =
-        !field.collapsing || field.collapsing === 'disabled';
-      const isCollapsed = useMemo(
-        () =>
-          new BooleanModel(
-            field.collapsing === 'initiallyClosed'
-              ? false
-              : field.collapsing === 'initiallyOpen',
-          ),
-        [],
-      );
 
       if (!isArray(rows))
-        return <>Expected list `set` value at: {pointer.path}</>;
+        return <>Expected `set` value to be a list, at: {pointer.path}</>;
 
       function removeRowFromSet(rowIndex: number) {
         state.setInData(() => {
@@ -336,30 +325,36 @@ export const FormField = observer<{
       }
 
       return (
-        <>
-          <$GroupRow>
-            {!!field.name && (
-              <GroupHeading
-                collapsing={isCollapseDisabled ? undefined : isCollapsed}
-              >
-                {pluralize(field.name)}
+        <CollapsableGrouping
+          collapsing={field.collapsing}
+          heading={{
+            title: (
+              <>
+                {pluralize(field.name ?? '')}
                 {` (${rows.length})`}
-              </GroupHeading>
-            )}
-            <Grid container>
-              <Button
-                variant="outlined"
-                color="secondary"
-                onClick={() => {
-                  addNewRowToSet(field.fields);
-                  isCollapsed.setFalse();
-                }}
-                startIcon={<AddBoxIcon />}
+              </>
+            ),
+          }}
+        >
+          {({ isCollapsed }) => (
+            <>
+              <Grid
+                container
+                css={css`
+                  padding: 1em 0.5em;
+                `}
               >
-                Add {!!field.name && pluralize(field.name, 1)}
-              </Button>
-            </Grid>
-            <$Collapse in={!isCollapsed.value} mountOnEnter>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  onClick={() => {
+                    addNewRowToSet(field.fields);
+                  }}
+                  startIcon={<AddBoxIcon />}
+                >
+                  Add {!!field.name && pluralize(field.name, 1)}
+                </Button>
+              </Grid>
               {rows.map((row, rowIndex) => {
                 const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
 
@@ -415,9 +410,89 @@ export const FormField = observer<{
                   </$GroupRow>
                 );
               })}
-            </$Collapse>
-          </$GroupRow>
-        </>
+            </>
+          )}
+        </CollapsableGrouping>
+        // <$GroupRow>
+        //   {!!field.name && (
+        //     <GroupHeading
+        //       collapsing={isCollapseDisabled ? undefined : isCollapsed}
+        //     >
+        //       {pluralize(field.name)}
+        //       {` (${rows.length})`}
+        //     </GroupHeading>
+        //   )}
+        //   <Grid container>
+        //     <Button
+        //       variant="outlined"
+        //       color="secondary"
+        //       onClick={() => {
+        //         addNewRowToSet(field.fields);
+        //         isCollapsed.setFalse();
+        //       }}
+        //       startIcon={<AddBoxIcon />}
+        //     >
+        //       Add {!!field.name && pluralize(field.name, 1)}
+        //     </Button>
+        //   </Grid>
+        //   <$Collapse in={!isCollapsed.value} mountOnEnter>
+        //     {rows.map((row, rowIndex) => {
+        //       const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
+
+        //       return (
+        //         <$GroupRow
+        //           container
+        //           key={rowIndex}
+        //           css={css`
+        //             margin-bottom: 14px;
+        //             padding-bottom: 3em;
+        //             margin: 1em 0;
+        //             position: relative;
+        //             width: 100%;
+        //           `}
+        //         >
+        //           <Grid item flexGrow={1}>
+        //             {field.fields.map((f, i) => (
+        //               <FormField
+        //                 key={i}
+        //                 field={f}
+        //                 state={state}
+        //                 operations={operations}
+        //                 parent={rowPointer}
+        //               />
+        //             ))}
+        //             <ConfirmDropdown
+        //               css={css`
+        //                 position: absolute;
+        //                 bottom: -2px;
+        //                 right: -2px;
+        //               `}
+        //               trigger={{
+        //                 icon: <DiscardIcon fontSize="small" />,
+        //                 label: (
+        //                   <>
+        //                     <small>Remove</small>
+        //                   </>
+        //                 ),
+        //               }}
+        //               confirm={{
+        //                 icon: <DiscardIcon />,
+        //                 label: (
+        //                   <>
+        //                     <small>Remove</small>
+        //                   </>
+        //                 ),
+        //                 onClick() {
+        //                   removeRowFromSet(rowIndex);
+        //                 },
+        //               }}
+        //             />
+        //           </Grid>
+        //         </$GroupRow>
+        //       );
+        //     })}
+        //   </$Collapse>
+        // </$GroupRow>
       );
     }
 
@@ -547,9 +622,6 @@ const $TextField = styled(TextField)`
     width: 100%;
   }
 `;
-const $SmallTextField = styled($TextField)`
-  max-width: 160px;
-`;
 
 export function walkFormData({
   onField,
@@ -609,15 +681,14 @@ export function walkFormData({
 
 const GroupHeading = observer<{
   collapsing?: BooleanModel;
-  primaryBoolean?: ReactNode;
+  /** Inserted before the title element */
+  before?: ReactNode;
   children: ReactNode;
-}>(({ collapsing, primaryBoolean, children }) => {
-  const theme = useTheme();
-
+}>(({ collapsing, before, children }) => {
   return (
     <>
       <$Row>
-        {primaryBoolean}
+        {before}
         <Button
           variant="text"
           endIcon={
@@ -673,6 +744,46 @@ const GroupHeading = observer<{
         </Button>
       </$Row>
     </>
+  );
+});
+
+const CollapsableGrouping = observer<{
+  collapsing?: FieldGroup['collapsing'];
+  heading?: {
+    before?: ReactNode;
+    after?: ReactNode;
+    title?: ReactNode;
+  };
+  children: ReactNode | ((props: { isCollapsed: BooleanModel }) => ReactNode);
+}>(({ collapsing, heading, children }) => {
+  const isCollapseDisabled = !collapsing || collapsing === 'disabled';
+
+  const isCollapsed = useMemo(
+    () =>
+      new BooleanModel(
+        collapsing === 'initiallyOpen'
+          ? false
+          : collapsing === 'initiallyClosed',
+      ),
+    [],
+  );
+
+  return (
+    <$GroupRow>
+      <Grid container flexGrow={1}>
+        <GroupHeading
+          collapsing={isCollapseDisabled ? undefined : isCollapsed}
+          before={heading?.before}
+        >
+          {heading?.title ?? ''}
+        </GroupHeading>
+        <$Collapse in={!isCollapsed.value} mountOnEnter>
+          {typeof children === 'function'
+            ? children({ isCollapsed })
+            : children}
+        </$Collapse>
+      </Grid>
+    </$GroupRow>
   );
 });
 

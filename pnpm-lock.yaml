@@ -1054,6 +1054,7 @@ importers:
       mapbox-gl: ^2.5.1
       mobx: 6.3.3
       mobx-react-lite: 3.2.1
+      qs: ^6.10.1
       react: 17.0.2
       react-dom: 17.0.2
       react-map-gl: ^6.1.17
@@ -1062,7 +1063,7 @@ importers:
       type-fest: ^2.5.2
       typescript: 4.4.4
       uuid: ^8.3.2
-      vite: ^2.6.13
+      vite: ^2.6.14
       xroute: ^6.1.0
     dependencies:
       '@dhi/arsenal.jsonform': link:../../../libs/jsonform
@@ -1084,6 +1085,7 @@ importers:
       mapbox-gl: 2.5.1
       mobx: 6.3.3
       mobx-react-lite: 3.2.1_8aec6830c9f393111667240500a3b25c
+      qs: 6.10.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-map-gl: 6.1.17_react@17.0.2
@@ -1105,7 +1107,7 @@ importers:
       eslint-plugin-unused-imports: 2.0.0_eslint@7.32.0
       rexreplace: 7.0.7
       typescript: 4.4.4
-      vite: 2.6.13
+      vite: 2.6.14
 
 packages:
 
@@ -1145,10 +1147,10 @@ packages:
       zen-observable: 0.8.15
     dev: false
 
-  /@apollo/client/3.4.17_graphql@14.1.1+react@17.0.2:
-    resolution: {integrity: sha512-MDt2rwMX1GqodiVEKJqmDmAz8xr0qJmq5PdWeIt0yDaT4GOkKYWZiWkyfhfv3raTk8PyJvbsNG9q2CqmUrlGfg==}
+  /@apollo/client/3.5.5_graphql@14.1.1+react@17.0.2:
+    resolution: {integrity: sha512-EiQstc8VjeqosS2h21bwY9fhL3MCRRmACtRrRh2KYpp9vkDyx5pUfMnN3swgiBVYw1twdXg9jHmyZa1gZlvlog==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
       react: ^16.8.0 || ^17.0.0
       subscriptions-transport-ws: ^0.9.0 || ^0.11.0
     peerDependenciesMeta:
@@ -1170,7 +1172,7 @@ packages:
       symbol-observable: 4.0.0
       ts-invariant: 0.9.3
       tslib: 2.3.1
-      zen-observable-ts: 1.1.0
+      zen-observable-ts: 1.2.3
     dev: false
 
   /@apollo/protobufjs/1.2.2:
@@ -1196,7 +1198,7 @@ packages:
   /@apollo/react-hoc/4.0.0_graphql@14.1.1+react@17.0.2:
     resolution: {integrity: sha512-+DgmqWRLkdlFk5jq11xJdVzb014TiTvr0K+E9CL1ioJpr85d7XIVycUwcYqb2acjeMbDF0V7G8VGiAVgkSkZKA==}
     dependencies:
-      '@apollo/client': 3.4.17_graphql@14.1.1+react@17.0.2
+      '@apollo/client': 3.5.5_graphql@14.1.1+react@17.0.2
     transitivePeerDependencies:
       - graphql
       - react
@@ -28952,8 +28954,8 @@ packages:
       '@math.gl/web-mercator': 3.5.5
     dev: false
 
-  /vite/2.6.13:
-    resolution: {integrity: sha512-+tGZ1OxozRirTudl4M3N3UTNJOlxdVo/qBl2IlDEy/ZpTFcskp+k5ncNjayR3bRYTCbqSOFz2JWGN1UmuDMScA==}
+  /vite/2.6.14:
+    resolution: {integrity: sha512-2HA9xGyi+EhY2MXo0+A2dRsqsAG3eFNEVIo12olkWhOmc8LfiM+eMdrXf+Ruje9gdXgvSqjLI9freec1RUM5EA==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
@@ -30076,10 +30078,9 @@ packages:
       toposort: 2.0.2
     dev: true
 
-  /zen-observable-ts/1.1.0:
-    resolution: {integrity: sha512-1h4zlLSqI2cRLPJUHJFL8bCWHhkpuXkF+dbGkRaWjgDIG26DmzyshUMrdV/rL3UnR+mhaX4fRq8LPouq0MYYIA==}
+  /zen-observable-ts/1.2.3:
+    resolution: {integrity: sha512-hc/TGiPkAWpByykMwDcem3SdUgA4We+0Qb36bItSuJC9xD0XVBZoFHYoadAomDSNf64CG8Ydj0Qb8Od8BUWz5g==}
     dependencies:
-      '@types/zen-observable': 0.8.3
       zen-observable: 0.8.15
     dev: false
 
