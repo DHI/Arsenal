@@ -126,16 +126,18 @@ export const FormField = observer<{
         case 'unlabeledCheckbox':
           return (
             <Grid item>
-              <Checkbox
-                checked={value as any}
-                onChange={(e, isChecked) =>
-                  state.setField({
-                    pointer,
-                    field,
-                    value: isChecked,
-                  })
-                }
-              />
+              <Tooltip title={`Toggles "${field.name}"`}>
+                <Checkbox
+                  checked={value as any}
+                  onChange={(e, isChecked) =>
+                    state.setField({
+                      pointer,
+                      field,
+                      value: isChecked,
+                    })
+                  }
+                />
+              </Tooltip>
             </Grid>
           );
 
@@ -143,9 +145,7 @@ export const FormField = observer<{
           return (
             <Grid item>
               <FormControlLabel
-                css={css`
-                  margin: 0.5em 0.25em;
-                `}
+                css={css``}
                 checked={value as any}
                 onChange={(e, isChecked) =>
                   state.setField({
@@ -218,6 +218,7 @@ export const FormField = observer<{
         <StepperForm
           css={css`
             flex-grow: 1;
+            margin-bottom: 1em;
           `}
           activeStepIndex={step}
           steps={Object.fromEntries(
@@ -689,7 +690,7 @@ const CollapsableGrouping = observer<{
               font-weight: 900;
               ${isCollapsed.isTrue
                 ? css`
-                    font-weight: 500;
+                    font-weight: 600;
                   `
                 : ''};
             }
