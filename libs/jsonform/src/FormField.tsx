@@ -270,34 +270,28 @@ export const FormField = observer<{
       );
 
       return (
-        <$GroupRow>
-          <Grid container flexGrow={1}>
-            <GroupHeading
-              collapsing={isCollapseDisabled ? undefined : isCollapsed}
-              before={
-                primaryCheckboxField ? (
-                  <FormField
-                    field={primaryCheckboxField}
-                    {...{ state, operations, parent }}
-                  />
-                ) : undefined
-              }
-            >
-              {field.name ?? ''}
-            </GroupHeading>
-            <$Collapse in={!isCollapsed.value} mountOnEnter>
-              {filteredFields.map((f, i) => (
-                <FormField
-                  key={i}
-                  field={f}
-                  state={state}
-                  operations={operations}
-                  parent={parent}
-                />
-              ))}
-            </$Collapse>
-          </Grid>
-        </$GroupRow>
+        <CollapsableGrouping
+          collapsing={field.collapsing}
+          heading={{
+            before: primaryCheckboxField ? (
+              <FormField
+                field={primaryCheckboxField}
+                {...{ state, operations, parent }}
+              />
+            ) : undefined,
+            title: field.name,
+          }}
+        >
+          {filteredFields.map((f, i) => (
+            <FormField
+              key={i}
+              field={f}
+              state={state}
+              operations={operations}
+              parent={parent}
+            />
+          ))}
+        </CollapsableGrouping>
       );
     }
 
@@ -359,16 +353,12 @@ export const FormField = observer<{
                 const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
 
                 return (
-                  <$GroupRow
-                    container
+                  <CollapsableGrouping
+                    collapsing={'initiallyOpen'}
                     key={rowIndex}
-                    css={css`
-                      margin-bottom: 14px;
-                      padding-bottom: 3em;
-                      margin: 1em 0;
-                      position: relative;
-                      width: 100%;
-                    `}
+                    heading={{
+                      title: <>{rowIndex}</>,
+                    }}
                   >
                     <Grid item flexGrow={1}>
                       {field.fields.map((f, i) => (
@@ -407,92 +397,12 @@ export const FormField = observer<{
                         }}
                       />
                     </Grid>
-                  </$GroupRow>
+                  </CollapsableGrouping>
                 );
               })}
             </>
           )}
         </CollapsableGrouping>
-        // <$GroupRow>
-        //   {!!field.name && (
-        //     <GroupHeading
-        //       collapsing={isCollapseDisabled ? undefined : isCollapsed}
-        //     >
-        //       {pluralize(field.name)}
-        //       {` (${rows.length})`}
-        //     </GroupHeading>
-        //   )}
-        //   <Grid container>
-        //     <Button
-        //       variant="outlined"
-        //       color="secondary"
-        //       onClick={() => {
-        //         addNewRowToSet(field.fields);
-        //         isCollapsed.setFalse();
-        //       }}
-        //       startIcon={<AddBoxIcon />}
-        //     >
-        //       Add {!!field.name && pluralize(field.name, 1)}
-        //     </Button>
-        //   </Grid>
-        //   <$Collapse in={!isCollapsed.value} mountOnEnter>
-        //     {rows.map((row, rowIndex) => {
-        //       const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
-
-        //       return (
-        //         <$GroupRow
-        //           container
-        //           key={rowIndex}
-        //           css={css`
-        //             margin-bottom: 14px;
-        //             padding-bottom: 3em;
-        //             margin: 1em 0;
-        //             position: relative;
-        //             width: 100%;
-        //           `}
-        //         >
-        //           <Grid item flexGrow={1}>
-        //             {field.fields.map((f, i) => (
-        //               <FormField
-        //                 key={i}
-        //                 field={f}
-        //                 state={state}
-        //                 operations={operations}
-        //                 parent={rowPointer}
-        //               />
-        //             ))}
-        //             <ConfirmDropdown
-        //               css={css`
-        //                 position: absolute;
-        //                 bottom: -2px;
-        //                 right: -2px;
-        //               `}
-        //               trigger={{
-        //                 icon: <DiscardIcon fontSize="small" />,
-        //                 label: (
-        //                   <>
-        //                     <small>Remove</small>
-        //                   </>
-        //                 ),
-        //               }}
-        //               confirm={{
-        //                 icon: <DiscardIcon />,
-        //                 label: (
-        //                   <>
-        //                     <small>Remove</small>
-        //                   </>
-        //                 ),
-        //                 onClick() {
-        //                   removeRowFromSet(rowIndex);
-        //                 },
-        //               }}
-        //             />
-        //           </Grid>
-        //         </$GroupRow>
-        //       );
-        //     })}
-        //   </$Collapse>
-        // </$GroupRow>
       );
     }
 
@@ -684,66 +594,65 @@ const GroupHeading = observer<{
   /** Inserted before the title element */
   before?: ReactNode;
   children: ReactNode;
-}>(({ collapsing, before, children }) => {
+  className?: string;
+}>(({ collapsing, before, className, children }) => {
   return (
-    <>
-      <$Row>
-        {before}
-        <Button
-          variant="text"
-          endIcon={
-            !!collapsing && (
-              <ExpandMoreIcon
-                fontSize="small"
-                css={css`
-                  margin-left: 1em;
-                  margin-right: 0.5em;
-                  opacity: 0.75;
-                  transform: ${collapsing.isTrue
-                    ? 'rotate(-90deg)'
-                    : 'rotate(0deg)'};
-                  transition: all 0.2s;
-                `}
-              />
-            )
+    <$Row {...{ className }}>
+      {before}
+      <Button
+        variant="text"
+        endIcon={
+          !!collapsing && (
+            <ExpandMoreIcon
+              fontSize="small"
+              css={css`
+                margin-left: 1em;
+                margin-right: 0.5em;
+                opacity: 0.75;
+                transform: ${collapsing.isTrue
+                  ? 'rotate(-90deg)'
+                  : 'rotate(0deg)'};
+                transition: all 0.2s;
+              `}
+            />
+          )
+        }
+        css={css`
+          justify-content: space-between;
+          align-items: center;
+          flex-grow: 1;
+          width: 100%;
+          padding: 0.75em 1em 0.75em;
+
+          & + div {
+            margin-top: 1em;
           }
+
+          &.Mui-disabled {
+            color: inherit;
+            opacity: 0.85;
+          }
+        `}
+        color="inherit"
+        disabled={!collapsing}
+        onClick={collapsing?.toggle}
+      >
+        <span
           css={css`
-            justify-content: space-between;
-            align-items: center;
+            font-size: 1em;
+            font-weight: 600;
+            opacity: 0.75;
+            display: flex;
             flex-grow: 1;
+            text-align: left;
+            align-items: center;
             width: 100%;
-            padding: 0.75em 1em 0.75em;
-
-            & + div {
-              margin-top: 1em;
-            }
-
-            &.Mui-disabled {
-              color: inherit;
-              opacity: 0.85;
-            }
           `}
-          color="inherit"
-          disabled={!collapsing}
-          onClick={collapsing?.toggle}
         >
-          <span
-            css={css`
-              font-size: 1em;
-              font-weight: 600;
-              opacity: 0.75;
-              display: flex;
-              flex-grow: 1;
-              text-align: left;
-              align-items: center;
-              width: 100%;
-            `}
-          >
-            {children}
-          </span>
-        </Button>
-      </$Row>
-    </>
+          {children}
+        </span>
+      </Button>
+    </$Row>
   );
 });
 
@@ -755,7 +664,8 @@ const CollapsableGrouping = observer<{
     title?: ReactNode;
   };
   children: ReactNode | ((props: { isCollapsed: BooleanModel }) => ReactNode);
-}>(({ collapsing, heading, children }) => {
+  className?: string;
+}>(({ collapsing, heading, children, className }) => {
   const isCollapseDisabled = !collapsing || collapsing === 'disabled';
 
   const isCollapsed = useMemo(
@@ -769,20 +679,42 @@ const CollapsableGrouping = observer<{
   );
 
   return (
-    <$GroupRow>
-      <Grid container flexGrow={1}>
-        <GroupHeading
-          collapsing={isCollapseDisabled ? undefined : isCollapsed}
-          before={heading?.before}
+    <$GroupRow {...{ className }}>
+      <GroupHeading
+        collapsing={isCollapseDisabled ? undefined : isCollapsed}
+        before={heading?.before}
+        css={css`
+          && {
+            button span {
+              font-weight: 900;
+              ${isCollapsed.isTrue
+                ? css`
+                    font-weight: 500;
+                  `
+                : ''};
+            }
+          }
+        `}
+      >
+        {heading?.title ?? ''}
+      </GroupHeading>
+      <$Collapse
+        in={!isCollapsed.value}
+        mountOnEnter
+        css={css`
+          padding-left: 0.75em;
+        `}
+      >
+        <div
+          css={css`
+            padding-top: 0.75em;
+          `}
         >
-          {heading?.title ?? ''}
-        </GroupHeading>
-        <$Collapse in={!isCollapsed.value} mountOnEnter>
           {typeof children === 'function'
             ? children({ isCollapsed })
             : children}
-        </$Collapse>
-      </Grid>
+        </div>
+      </$Collapse>
     </$GroupRow>
   );
 });
