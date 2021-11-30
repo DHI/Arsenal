@@ -1033,6 +1033,7 @@ importers:
       '@fontsource/roboto': ^4.5.1
       '@mui/icons-material': ^5.0.5
       '@mui/material': ^5.0.6
+      '@turf/turf': ^6.5.0
       '@types/lodash-es': ^4.17.5
       '@types/node': ^16.11.1
       '@types/react': 17.0.24
@@ -1074,6 +1075,7 @@ importers:
       '@fontsource/roboto': 4.5.1
       '@mui/icons-material': 5.0.5_ace220d1261e6c3d9603ae70c92d7757
       '@mui/material': 5.0.6_3bd6e1999a4a2ed15dd98d9987fa3bbf
+      '@turf/turf': 6.5.0
       '@types/lodash-es': 4.17.5
       '@types/uuid': 8.3.1
       change-case: 4.1.2

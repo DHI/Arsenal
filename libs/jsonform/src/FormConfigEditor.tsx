@@ -29,7 +29,15 @@ type LocationPickReaction = (
 export const schemas = new Ajv();
 
 export class FormConfigEditorState {
-  constructor(public data: Data, public form: FormConfig) {
+  constructor(
+    public data: Data,
+    public form: FormConfig,
+    private config: {
+      validation: {
+        disabled?: boolean;
+      };
+    },
+  ) {
     this.setData(data);
     this.setForm(form);
     makeAutoObservable(this);
@@ -85,6 +93,8 @@ export class FormConfigEditorState {
     pointer: JsonPointer;
     value: any;
   }) => {
+    if (this.config.validation?.disabled) return;
+
     const details = validateSchema(field.schema, value);
 
     this.fieldValidation.set(pointer.pointer, details);
@@ -160,102 +170,116 @@ export const FormConfigEditor = observer<{
       text?: React.ReactNode;
     };
   };
+  validation?: FormConfigEditorState['config']['validation'];
   className?: string;
-}>(({ data, form, onInit, onData, operations, components = {}, className }) => {
-  const [state] = React.useState(() => new FormConfigEditorState(data, form));
+}>(
+  ({
+    data,
+    form,
+    onInit,
+    onData,
+    operations,
+    components = {},
+    className,
+    validation = {},
+  }) => {
+    const [state] = React.useState(
+      () => new FormConfigEditorState(data, form, { validation }),
+    );
 
-  React.useEffect(() => {
-    state.setData(data);
-  }, [data]);
+    React.useEffect(() => {
+      state.setData(data);
+    }, [data]);
 
-  React.useEffect(() => {
-    state.setForm(form);
-  }, [form]);
+    React.useEffect(() => {
+      state.setForm(form);
+    }, [form]);
 
-  React.useEffect(() => {
-    if (!onData) return;
+    React.useEffect(() => {
+      if (!onData) return;
 
-    return deepObserve(state.data, () => {
-      onData(toJS(state.data));
-    });
-  }, [state.data]);
+      return deepObserve(state.data, () => {
+        onData(toJS(state.data));
+      });
+    }, [state.data]);
 
-  React.useEffect(() => {
-    onInit?.(state);
-  }, [state]);
+    React.useEffect(() => {
+      onInit?.(state);
+    }, [state]);
 
-  return (
-    <Grid item {...{ className }}>
-      {form.fields.map((f, i) => (
-        <FormField
-          key={f.kind + i}
-          field={f}
-          state={state}
-          operations={operations}
-        />
-      ))}
-      <Grid container>
-        {state.hasValidationErrors && (
-          <Alert
-            severity="error"
-            css={css`
-              opacity: 0.5;
-              flex-grow: 1;
-              padding: 0px;
-              padding-left: 1.5rem;
-            `}
-          >
-            {state.validationErrorsCount} issues found
-          </Alert>
-        )}
-      </Grid>
-      <Grid
-        container
-        css={css`
-          flex-grow: 1;
-          justify-content: space-between;
-          padding: 1em 1.5em;
-          box-shadow: 0 -2px 3px 0 #0002, 0 1px 1px 0 #0001;
-          position: relative;
-        `}
-      >
-        <div>
-          <ConfirmDropdown
-            trigger={{
-              button: {
-                variant: 'outlined',
-              },
-              icon: <DiscardIcon fontSize="small" />,
-              label: <>{components.discardButton?.text || 'Discard'}</>,
-            }}
-            confirm={{
-              icon: <DiscardIcon />,
-              label: <>{components.discardButton?.text || 'Discard'}</>,
-              onClick() {
-                operations?.onDiscard?.();
-              },
-            }}
+    return (
+      <Grid item {...{ className }}>
+        {form.fields.map((f, i) => (
+          <FormField
+            key={f.kind + i}
+            field={f}
+            state={state}
+            operations={operations}
           />
-          <Button
-            color="primary"
-            variant="outlined"
-            endIcon={<SaveIcon fontSize="small" />}
-            onClick={() => {
-              state.validateEntireForm();
+        ))}
+        <Grid container>
+          {state.hasValidationErrors && (
+            <Alert
+              severity="error"
+              css={css`
+                opacity: 0.5;
+                flex-grow: 1;
+                padding: 0px;
+                padding-left: 1.5rem;
+              `}
+            >
+              {state.validationErrorsCount} issues found
+            </Alert>
+          )}
+        </Grid>
+        <Grid
+          container
+          css={css`
+            flex-grow: 1;
+            justify-content: space-between;
+            padding: 1em 1.5em;
+            box-shadow: 0 -2px 3px 0 #0002, 0 1px 1px 0 #0001;
+            position: relative;
+          `}
+        >
+          <div>
+            <ConfirmDropdown
+              trigger={{
+                button: {
+                  variant: 'outlined',
+                },
+                icon: <DiscardIcon fontSize="small" />,
+                label: <>{components.discardButton?.text || 'Discard'}</>,
+              }}
+              confirm={{
+                icon: <DiscardIcon />,
+                label: <>{components.discardButton?.text || 'Discard'}</>,
+                onClick() {
+                  operations?.onDiscard?.();
+                },
+              }}
+            />
+            <Button
+              color="primary"
+              variant="outlined"
+              endIcon={<SaveIcon fontSize="small" />}
+              onClick={() => {
+                state.validateEntireForm();
 
-              if (state.hasValidationErrors) return;
+                if (state.hasValidationErrors) return;
 
-              operations?.onSave?.(state.data);
-            }}
-            disabled={state.hasValidationErrors}
-          >
-            {components.saveButton?.text || 'Save'}
-          </Button>
-        </div>
+                operations?.onSave?.(state.data);
+              }}
+              disabled={state.hasValidationErrors}
+            >
+              {components.saveButton?.text || 'Save'}
+            </Button>
+          </div>
+        </Grid>
       </Grid>
-    </Grid>
-  );
-});
+    );
+  },
+);
 
 type StyledProps = {
   theme?: {
