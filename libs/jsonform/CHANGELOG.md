@@ -1,5 +1,11 @@
 # @dhi/arsenal.jsonform
 
+## 2.3.0
+
+### Minor Changes
+
+- Added ability to disable validation
+
 ## 2.2.0
 
 ### Minor Changes
