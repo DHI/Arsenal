@@ -29,7 +29,7 @@ import {
  * await example.files.query({ foo: 22 }) // foo is strongly typed, inferred!
  * example.files.value?.[0]?.name // 'myFile.txt' - has data!
  */
-export class AsyncValue<VALUE extends any, PAYLOAD extends any> {
+export class AsyncValue<VALUE extends any, PAYLOAD extends any = any> {
   constructor(
     private _query: (payload: PAYLOAD) => Promise<VALUE>,
     {
@@ -53,6 +53,8 @@ export class AsyncValue<VALUE extends any, PAYLOAD extends any> {
       setIsPending: action.bound,
     });
   }
+
+  protected PAYLOAD!: PAYLOAD;
 
   value?: VALUE = undefined;
   isPending = false;
