@@ -16,7 +16,6 @@ import {
   Select,
   TextField,
   Tooltip,
-  useTheme,
 } from '@mui/material';
 import { Schema } from 'ajv';
 import { pascalCase } from 'change-case';
@@ -47,16 +46,16 @@ export const FormField = observer<{
   parent?: JsonPointer;
   operations?: Operations;
 }>(({ field, state, parent = new JsonPointer([]), operations }) => {
-  const theme = useTheme();
-
   switch (field.kind) {
     case 'field': {
       const pointer = parent.concat(field.pointer);
       const { errors, isValid = true } =
         state.fieldValidation.get(pointer.pointer) ?? {};
       const value = pointer.get(state.data);
+      const isDisabled = field.disabled === true;
 
       const fieldType = (() => {
+        if (field.hidden) return 'hidden';
         if (field.variant) return field.variant;
 
         if ('enum' in field.schema) return 'enum' as const;
@@ -67,6 +66,9 @@ export const FormField = observer<{
       })();
 
       switch (fieldType) {
+        case 'hidden':
+          return <></>;
+
         case 'enum': {
           const selectId = `${pointer.pointer}`;
 
@@ -75,6 +77,7 @@ export const FormField = observer<{
               <FormControl
                 size="small"
                 variant="outlined"
+                disabled={isDisabled}
                 css={css`
                   && {
                     margin: 0.5em 0;
@@ -128,6 +131,7 @@ export const FormField = observer<{
             <Grid item>
               <Tooltip title={`Toggles "${field.name}"`}>
                 <Checkbox
+                  disabled={isDisabled}
                   checked={value as any}
                   onChange={(e, isChecked) =>
                     state.setField({
@@ -145,6 +149,7 @@ export const FormField = observer<{
           return (
             <Grid item>
               <FormControlLabel
+                disabled={isDisabled}
                 css={css``}
                 checked={value as any}
                 onChange={(e, isChecked) =>
@@ -164,6 +169,7 @@ export const FormField = observer<{
           return (
             <Grid item flexGrow={1}>
               <$TextField
+                disabled={isDisabled}
                 variant="outlined"
                 size="small"
                 label={<>{field.name}</>}
@@ -249,18 +255,6 @@ export const FormField = observer<{
     }
 
     case 'group': {
-      const isCollapseDisabled =
-        !field.collapsing || field.collapsing === 'disabled';
-      const isCollapsed = useMemo(
-        () =>
-          new BooleanModel(
-            field.collapsing === 'initiallyOpen'
-              ? false
-              : field.collapsing === 'initiallyClosed',
-          ),
-        [],
-      );
-
       /** When a primary checkbox is found, use it in the heading and remove it from the list. */
       const primaryCheckboxField = field.fields.find(
         (f) => f.kind === 'field' && f.variant === 'primaryCheckbox',
@@ -679,26 +673,30 @@ const CollapsableGrouping = observer<{
     [],
   );
 
+  const hasTitle = !!heading?.title;
+
   return (
     <$GroupRow {...{ className }}>
-      <GroupHeading
-        collapsing={isCollapseDisabled ? undefined : isCollapsed}
-        before={heading?.before}
-        css={css`
-          && {
-            button span {
-              font-weight: 900;
-              ${isCollapsed.isTrue
-                ? css`
-                    font-weight: 600;
-                  `
-                : ''};
+      {hasTitle && (
+        <GroupHeading
+          collapsing={isCollapseDisabled ? undefined : isCollapsed}
+          before={heading?.before}
+          css={css`
+            && {
+              button span {
+                font-weight: 900;
+                ${isCollapsed.isTrue
+                  ? css`
+                      font-weight: 600;
+                    `
+                  : ''};
+              }
             }
-          }
-        `}
-      >
-        {heading?.title ?? ''}
-      </GroupHeading>
+          `}
+        >
+          {heading?.title ?? ''}
+        </GroupHeading>
+      )}
       <$Collapse
         in={!isCollapsed.value}
         mountOnEnter
@@ -708,7 +706,7 @@ const CollapsableGrouping = observer<{
       >
         <div
           css={css`
-            padding-top: 0.75em;
+            padding-top: ${hasTitle ? '0.75em' : '0'};
           `}
         >
           {typeof children === 'function'

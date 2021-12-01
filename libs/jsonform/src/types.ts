@@ -49,6 +49,8 @@ export interface Field {
     | 'checkbox'
     | 'unlabeledCheckbox';
   schema: FormJSONSchema;
+  hidden?: boolean;
+  disabled?: boolean;
 }
 
 type CollapseOptions = 'initiallyClosed' | 'initiallyOpen' | 'disabled';
