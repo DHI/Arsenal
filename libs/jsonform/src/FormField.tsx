@@ -18,7 +18,6 @@ import {
   Tooltip,
 } from '@mui/material';
 import { Schema } from 'ajv';
-import { pascalCase } from 'change-case';
 import { JsonPointer } from 'json-ptr';
 import isArray from 'lodash-es/isArray';
 import { observer } from 'mobx-react-lite';
@@ -38,7 +37,13 @@ import { $Row } from './components/layout';
 import { StepperForm } from './components/StepperForm';
 import { extractScaffoldFromFields } from './extractScaffoldFromFields';
 import { FormConfigEditorState, Operations, schemas } from './FormConfigEditor';
-import { Field, FieldKinds, FormConfig, RootFieldKinds } from './types';
+import {
+  Field,
+  FieldKinds,
+  FormConfig,
+  RootFieldKinds,
+  SelectInputSchema,
+} from './types';
 
 export const FormField = observer<{
   field: FieldKinds | RootFieldKinds;
@@ -105,9 +110,9 @@ export const FormField = observer<{
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  {(field.schema as any).enum.map((v: string) => (
+                  {(field.schema as SelectInputSchema).enum.map((v) => (
                     <MenuItem key={v} value={v}>
-                      {pascalCase(v.toString())}
+                      {v.toString()}
                     </MenuItem>
                   ))}
                 </Select>
@@ -313,6 +318,8 @@ export const FormField = observer<{
         });
       }
 
+      // TODO: use component here to include primary boolean logic
+
       return (
         <CollapsableGrouping
           collapsing={field.collapsing}
@@ -355,43 +362,32 @@ export const FormField = observer<{
                       title: <>{rowIndex}</>,
                     }}
                   >
-                    <Grid item flexGrow={1}>
-                      {field.fields.map((f, i) => (
-                        <FormField
-                          key={i}
-                          field={f}
-                          state={state}
-                          operations={operations}
-                          parent={rowPointer}
-                        />
-                      ))}
+                    {field.fields.map((f, i) => (
+                      <FormField
+                        key={i}
+                        field={f}
+                        state={state}
+                        operations={operations}
+                        parent={rowPointer}
+                      />
+                    ))}
+                    <$Row
+                      css={css`
+                        justify-content: flex-end;
+                      `}
+                    >
                       <ConfirmDropdown
-                        css={css`
-                          position: absolute;
-                          bottom: -2px;
-                          right: -2px;
-                        `}
                         trigger={{
                           icon: <DiscardIcon fontSize="small" />,
-                          label: (
-                            <>
-                              <small>Remove</small>
-                            </>
-                          ),
+                          label: <>Remove</>,
                         }}
                         confirm={{
                           icon: <DiscardIcon />,
-                          label: (
-                            <>
-                              <small>Remove</small>
-                            </>
-                          ),
-                          onClick() {
-                            removeRowFromSet(rowIndex);
-                          },
+                          label: <>Remove</>,
+                          onClick: () => removeRowFromSet(rowIndex),
                         }}
                       />
-                    </Grid>
+                    </$Row>
                   </CollapsableGrouping>
                 );
               })}
@@ -512,6 +508,7 @@ export function validateSchema(schema: Schema, value: any) {
 
 const GridRow = (p: PropsOf<typeof Grid>) => <Grid container {...p} />;
 const $GroupRow = styled(GridRow)`
+  position: relative;
   border: 2px solid
     ${(x: any) =>
       x.theme?.palette?.mode === 'dark'
