@@ -28,32 +28,54 @@ export interface Field {
   pointer: string;
   name: string;
   /** The value's unit eg. 88 mg/l */
-  unit?: string | { position: 'start' | 'end'; value: string };
-  /**
-   * Defaults to whatever the `schema` infers.
-   *
-   * Can also be provided to override the schema's default.
-   *
-   * 'primaryBoolean':
-   *   - When this is defined, the parent group can be rendered with a checkbox
-   *   - Can only be one of these variants in the group
-   *
-   * */
-  variant?:
-    | 'number'
-    | 'textarea'
-    | 'text'
-    | 'date'
-    | 'week'
-    | 'primaryCheckbox'
-    | 'checkbox'
-    | 'unlabeledCheckbox';
+  layout?: {
+    unit?: string | { position: 'start' | 'end'; value: string };
+    /**
+     * Defaults to whatever the `schema` infers.
+     *
+     * Can also be provided to override the schema's default.
+     *
+     * 'primaryBoolean':
+     *   - When this is defined, the parent group can be rendered with a checkbox
+     *   - Can only be one of these variants in the group
+     *
+     * */
+    variant?:
+      | 'number'
+      | 'textarea'
+      | 'text'
+      | 'date'
+      | 'week'
+      | 'primaryCheckbox'
+      | 'checkbox'
+      | 'unlabeledCheckbox'
+      | 'rangeSlider'
+      | 'primaryText';
+    hidden?: boolean;
+    disabled?: boolean;
+  };
   schema: FormJSONSchema;
-  hidden?: boolean;
-  disabled?: boolean;
 }
 
-type CollapseOptions = 'initiallyClosed' | 'initiallyOpen' | 'disabled';
+interface RangeSliderFieldVariant extends Field {
+  schema: NumberInputSchema & {
+    minimum: number;
+    maximum: number;
+  };
+  layout?: Field['layout'] & {
+    variant: 'rangeSlider';
+    rangeSlider?: {
+      /** @default 'end' */
+      valuePosition?: 'end' | 'handle';
+      /** @default 100 */
+      stepCount?: number;
+    };
+  };
+}
+
+export type FieldVariants = RangeSliderFieldVariant | Field;
+
+export type CollapseOptions = 'initiallyClosed' | 'initiallyOpen' | 'disabled';
 
 /**
  * Field groups's job is to contain a list of fields
@@ -62,7 +84,14 @@ export interface FieldGroup {
   kind: 'group';
   name?: string;
   fields: FieldKinds[];
-  collapsing?: CollapseOptions;
+  layout?: {
+    collapsing?: CollapseOptions;
+    /** @default column */
+    direction?: 'column' | 'row';
+
+    /** @default true */
+    indentation?: boolean;
+  };
 }
 
 export type StepperStep = number;
@@ -73,18 +102,22 @@ export type StepperStep = number;
 export interface StepperGroup {
   kind: 'stepper';
   id: string;
-  /** @default 0 */
-  defaultStep?: StepperStep;
-  /** @default true */
-  backAndNextButtons?: boolean;
   steps: {
     name: string;
     fields: FieldKinds[];
   }[];
+  layout?: {
+    /** @default 0 */
+    defaultStep?: StepperStep;
+    /** @default true */
+    backAndNextButtons?: boolean;
+  };
 }
 
 /**
  * Special group for handling location picking
+ *
+ * @deprecated
  */
 export interface LocationGroup {
   kind: 'location';
@@ -96,6 +129,10 @@ export interface LocationGroup {
   };
   canPick?: boolean;
   canGoto?: boolean;
+}
+
+export interface RangeSliderField {
+  kind: 'rangeSlider';
 }
 
 /**
@@ -111,17 +148,19 @@ export interface FieldSetGroup {
   /** All fields in `fields` are relative to this pointer (by array index) */
   pointer: string;
   fields: FieldKinds[];
-  /**
-   * @default true
-   * When true, can create a new set with default values, adding it to start of list
-   */
-  canCreate?: boolean;
-  /**
-   * @default true
-   * When true, a set can be removed from list
-   */
-  canDelete?: boolean;
-  collapsing?: CollapseOptions;
+  layout?: {
+    /**
+     * @default true
+     * When true, can create a new set with default values, adding it to start of list
+     */
+    canCreate?: boolean;
+    /**
+     * @default true
+     * When true, a set can be removed from list
+     */
+    canDelete?: boolean;
+    collapsing?: CollapseOptions;
+  };
 }
 
 export interface ActionFieldGroup {
@@ -131,7 +170,7 @@ export interface ActionFieldGroup {
 }
 
 export type FieldKinds =
-  | Field
+  | FieldVariants
   | FieldGroup
   | FieldSetGroup
   | LocationGroup

@@ -75,6 +75,10 @@ export class FormConfigEditorState {
     this.isDataDirty.setFalse();
   };
 
+  getState = <V extends any>(pointer: JsonPointer) => {
+    return pointer.get(this.data) as V;
+  };
+
   setForm = (f: this['form']) => {
     this.form = cloneDeep(toJS(f));
   };

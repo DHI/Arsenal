@@ -24,7 +24,6 @@ import { observer } from 'mobx-react-lite';
 import pluralize from 'pluralize';
 import * as React from 'react';
 import { ReactNode, useMemo } from 'react';
-import { FieldGroup } from '.';
 import { ConfirmDropdown } from './components/dropdowns';
 import {
   AddBoxIcon,
@@ -33,11 +32,12 @@ import {
   LocationSearchingIcon,
   RoomIcon,
 } from './components/icons';
-import { $Row } from './components/layout';
+import { $Col, $Row } from './components/layout';
 import { StepperForm } from './components/StepperForm';
 import { extractScaffoldFromFields } from './extractScaffoldFromFields';
 import { FormConfigEditorState, Operations, schemas } from './FormConfigEditor';
 import {
+  CollapseOptions,
   Field,
   FieldKinds,
   FormConfig,
@@ -56,12 +56,12 @@ export const FormField = observer<{
       const pointer = parent.concat(field.pointer);
       const { errors, isValid = true } =
         state.fieldValidation.get(pointer.pointer) ?? {};
-      const value = pointer.get(state.data);
-      const isDisabled = field.disabled === true;
+      const value = state.getState<string | undefined>(pointer);
+      const isDisabled = field.layout?.disabled === true;
 
       const fieldType = (() => {
-        if (field.hidden) return 'hidden';
-        if (field.variant) return field.variant;
+        if (field.layout?.hidden) return 'hidden';
+        if (field.layout?.variant) return field.layout?.variant;
 
         if ('enum' in field.schema) return 'enum' as const;
         if (field.schema.type === 'boolean') return 'checkbox' as const;
@@ -78,7 +78,12 @@ export const FormField = observer<{
           const selectId = `${pointer.pointer}`;
 
           return (
-            <Grid item>
+            <Grid
+              item
+              css={css`
+                flex-grow: 1;
+              `}
+            >
               <FormControl
                 size="small"
                 variant="outlined"
@@ -87,8 +92,7 @@ export const FormField = observer<{
                   && {
                     margin: 0.5em 0;
                     width: 100%;
-
-                    min-width: 100px;
+                    min-width: ${field.name.length + 1}ex;
                     max-width: 225px;
                   }
                 `}
@@ -101,7 +105,7 @@ export const FormField = observer<{
                   labelId={selectId}
                   value={value ?? ''}
                   input={<OutlinedInput notched label={field.name} />}
-                  autoWidth
+                  autoWidth={false}
                   fullWidth
                   onChange={(e) => {
                     state.setField({ pointer, field, value: e.target.value });
@@ -195,11 +199,11 @@ export const FormField = observer<{
                   shrink: true,
                 }}
                 InputProps={{
-                  ...(field.unit
+                  ...(field.layout?.unit
                     ? {
                         endAdornment: (
                           <InputAdornment position="end">
-                            {field.unit}
+                            {field.layout?.unit}
                           </InputAdornment>
                         ),
                       }
@@ -262,16 +266,44 @@ export const FormField = observer<{
     case 'group': {
       /** When a primary checkbox is found, use it in the heading and remove it from the list. */
       const primaryCheckboxField = field.fields.find(
-        (f) => f.kind === 'field' && f.variant === 'primaryCheckbox',
+        (f) => f.kind === 'field' && f.layout?.variant === 'primaryCheckbox',
       ) as undefined | Field;
 
       const filteredFields = field.fields.filter(
         (v) => v !== primaryCheckboxField,
       );
 
+      const body = (() => {
+        const elements = filteredFields.map((f, i) => (
+          <FormField
+            key={i}
+            field={f}
+            state={state}
+            operations={operations}
+            parent={parent}
+          />
+        ));
+
+        return field.layout?.direction === 'row' ? (
+          <$Row
+            css={css`
+              > * + * {
+                margin-left: 1ex;
+              }
+            `}
+          >
+            {elements}
+          </$Row>
+        ) : (
+          <$Col grow>{elements}</$Col>
+        );
+      })();
+
+      if (field.layout?.indentation === false) return body;
+
       return (
         <CollapsableGrouping
-          collapsing={field.collapsing}
+          collapsing={field.layout?.collapsing}
           heading={{
             before: primaryCheckboxField ? (
               <FormField
@@ -282,22 +314,14 @@ export const FormField = observer<{
             title: field.name,
           }}
         >
-          {filteredFields.map((f, i) => (
-            <FormField
-              key={i}
-              field={f}
-              state={state}
-              operations={operations}
-              parent={parent}
-            />
-          ))}
+          {body}
         </CollapsableGrouping>
       );
     }
 
     case 'set': {
       const pointer = parent.concat(field.pointer);
-      const rows = (pointer.get(state.data) ?? []) as any[];
+      const rows = state.getState<any[]>(pointer);
 
       if (!isArray(rows))
         return <>Expected `set` value to be a list, at: {pointer.path}</>;
@@ -318,81 +342,101 @@ export const FormField = observer<{
         });
       }
 
-      // TODO: use component here to include primary boolean logic
-
       return (
         <CollapsableGrouping
-          collapsing={field.collapsing}
+          collapsing={field.layout?.collapsing}
           heading={{
-            title: (
-              <>
-                {pluralize(field.name ?? '')}
-                {` (${rows.length})`}
-              </>
-            ),
+            title: (() => {
+              return (
+                <>
+                  {pluralize(field.name ?? '')}
+                  {` (${rows.length})`}
+                </>
+              );
+            })(),
           }}
         >
-          {({ isCollapsed }) => (
-            <>
-              <Grid
-                container
-                css={css`
-                  padding: 1em 0.5em;
-                `}
-              >
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  onClick={() => {
-                    addNewRowToSet(field.fields);
-                  }}
-                  startIcon={<AddBoxIcon />}
-                >
-                  Add {!!field.name && pluralize(field.name, 1)}
-                </Button>
-              </Grid>
-              {rows.map((row, rowIndex) => {
-                const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
+          <Grid
+            container
+            css={css`
+              padding: 1em 0.5em;
+            `}
+          >
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => {
+                addNewRowToSet(field.fields);
+              }}
+              startIcon={<AddBoxIcon />}
+            >
+              Add {!!field.name && pluralize(field.name, 1)}
+            </Button>
+          </Grid>
+          {rows.map((row, rowIndex) => {
+            const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
 
-                return (
-                  <CollapsableGrouping
-                    collapsing={'initiallyOpen'}
-                    key={rowIndex}
-                    heading={{
-                      title: <>{rowIndex}</>,
-                    }}
-                  >
-                    {field.fields.map((f, i) => (
-                      <FormField
-                        key={i}
-                        field={f}
-                        state={state}
-                        operations={operations}
-                        parent={rowPointer}
-                      />
-                    ))}
+            const primaryText = field.fields.find(
+              (f) => f.kind === 'field' && f.layout?.variant === 'primaryText',
+            ) as undefined | Field;
+
+            return (
+              <CollapsableGrouping
+                collapsing={'initiallyOpen'}
+                key={rowIndex}
+                heading={{
+                  title: (
                     <$Row
                       css={css`
-                        justify-content: flex-end;
+                        align-items: stretch;
                       `}
                     >
-                      <ConfirmDropdown
-                        trigger={{
-                          icon: <DiscardIcon fontSize="small" />,
-                          label: <>Remove</>,
-                        }}
-                        confirm={{
-                          icon: <DiscardIcon />,
-                          label: <>Remove</>,
-                          onClick: () => removeRowFromSet(rowIndex),
-                        }}
-                      />
+                      {primaryText ? (
+                        <$Row
+                          css={css`
+                            margin-left: 1ex;
+                          `}
+                        >
+                          {state.getState(
+                            rowPointer.concat(primaryText.pointer),
+                          )}
+                        </$Row>
+                      ) : (
+                        rowIndex
+                      )}
                     </$Row>
-                  </CollapsableGrouping>
-                );
-              })}
-            </>
-          )}
+                  ),
+                }}
+              >
+                {field.fields.map((f, i) => (
+                  <FormField
+                    key={i}
+                    field={f}
+                    state={state}
+                    operations={operations}
+                    parent={rowPointer}
+                  />
+                ))}
+                <$Row
+                  css={css`
+                    justify-content: flex-end;
+                  `}
+                >
+                  <ConfirmDropdown
+                    trigger={{
+                      icon: <DiscardIcon fontSize="small" />,
+                      label: <>Remove</>,
+                    }}
+                    confirm={{
+                      icon: <DiscardIcon />,
+                      label: <>Remove</>,
+                      onClick: () => removeRowFromSet(rowIndex),
+                    }}
+                  />
+                </$Row>
+              </CollapsableGrouping>
+            );
+          })}
         </CollapsableGrouping>
       );
     }
@@ -401,8 +445,8 @@ export const FormField = observer<{
       const { x: xField, y: yField } = field.location;
       const xPointer = parent.concat(xField.pointer);
       const yPointer = parent.concat(yField.pointer);
-      const xValue = xPointer.get(state.data) as number;
-      const yValue = yPointer.get(state.data) as number;
+      const xValue = state.getState<number>(xPointer);
+      const yValue = state.getState<number>(yPointer);
 
       return (
         <$GroupRow>
@@ -649,7 +693,7 @@ const GroupHeading = observer<{
 });
 
 const CollapsableGrouping = observer<{
-  collapsing?: FieldGroup['collapsing'];
+  collapsing?: CollapseOptions;
   heading?: {
     before?: ReactNode;
     after?: ReactNode;
