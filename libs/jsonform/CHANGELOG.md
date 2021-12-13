@@ -1,5 +1,11 @@
 # @dhi/arsenal.jsonform
 
+## 2.4.0
+
+### Minor Changes
+
+- Added primary text layout for set kinds
+
 ## 2.3.2
 
 ### Patch Changes
