@@ -28,6 +28,12 @@ import {
  * example.files.value?.[0]?.name // undefined - missing data
  * await example.files.query({ foo: 22 }) // foo is strongly typed, inferred!
  * example.files.value?.[0]?.name // 'myFile.txt' - has data!
+ *
+ * @example
+ *
+ * const v = new AsyncValue(() => fetchUsersList())
+ * await v.query() // Don't need to provide params as none are defined
+ * v.value // [{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }]
  */
 export class AsyncValue<VALUE extends any, PAYLOAD extends any = any> {
   constructor(
@@ -54,31 +60,12 @@ export class AsyncValue<VALUE extends any, PAYLOAD extends any = any> {
     });
   }
 
+  /** This is just for typescript */
   protected PAYLOAD!: PAYLOAD;
 
-  value?: VALUE = undefined;
   isPending = false;
+  value?: VALUE = undefined;
   error?: Error = undefined;
-
-  set(value: this['value']) {
-    this.value = value;
-
-    return this;
-  }
-
-  reset() {
-    this.value = undefined;
-
-    return this;
-  }
-
-  onError(cb: (err: this['error']) => void) {
-    return autorun(() => cb(this.error));
-  }
-
-  onValue(cb: (v: this['value']) => void) {
-    return autorun(() => cb(this.value));
-  }
 
   /**
    * @example
@@ -106,11 +93,26 @@ export class AsyncValue<VALUE extends any, PAYLOAD extends any = any> {
     return this;
   }
 
-  setIsPending(v: this['isPending']) {
-    this.isPending = v;
+  /** Sets the value */
+  set(value: this['value']) {
+    this.value = value;
+
+    return this;
   }
 
-  setError(v: this['error']) {
-    this.error = v;
+  /** Reset value to undefined */
+  reset() {
+    this.value = undefined;
+
+    return this;
   }
+
+  setIsPending = (v: this['isPending']) => (this.isPending = v);
+  setError = (v: this['error']) => (this.error = v);
+
+  /** Creates an autorun reaction whenever the error changes */
+  onError = (cb: (err: this['error']) => void) => autorun(() => cb(this.error));
+
+  /** Creates an autorun reaction whenever the value changes */
+  onValue = (cb: (v: this['value']) => void) => autorun(() => cb(this.value));
 }

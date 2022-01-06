@@ -57,6 +57,11 @@ export interface Field {
   schema: FormJSONSchema;
 }
 
+export interface ComponentField {
+  kind: 'component';
+  component: string;
+}
+
 interface RangeSliderFieldVariant extends Field {
   schema: NumberInputSchema & {
     minimum: number;
@@ -160,6 +165,7 @@ export interface FieldSetGroup {
      */
     canDelete?: boolean;
     collapsing?: CollapseOptions;
+    rowCollapsing?: CollapseOptions;
   };
 }
 
@@ -174,7 +180,8 @@ export type FieldKinds =
   | FieldGroup
   | FieldSetGroup
   | LocationGroup
-  | ActionFieldGroup;
+  | ActionFieldGroup
+  | ComponentField;
 
 export type RootFieldKinds = FieldKinds | StepperGroup;
 

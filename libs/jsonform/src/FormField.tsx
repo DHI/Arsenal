@@ -319,6 +319,19 @@ export const FormField = observer<{
       );
     }
 
+    case 'component': {
+      if (!operations?.RenderComponentField)
+        return <>RenderComponentField must be defined for {field.component}</>;
+
+      return (
+        <operations.RenderComponentField
+          pointer={parent}
+          state={state}
+          field={field}
+        />
+      );
+    }
+
     case 'set': {
       const pointer = parent.concat(field.pointer);
       const rows = state.getState<any[]>(pointer);
@@ -346,14 +359,12 @@ export const FormField = observer<{
         <CollapsableGrouping
           collapsing={field.layout?.collapsing}
           heading={{
-            title: (() => {
-              return (
-                <>
-                  {pluralize(field.name ?? '')}
-                  {` (${rows.length})`}
-                </>
-              );
-            })(),
+            title: (
+              <>
+                {pluralize(field.name ?? '')}
+                {` (${rows.length})`}
+              </>
+            ),
           }}
         >
           <Grid
@@ -380,9 +391,13 @@ export const FormField = observer<{
               (f) => f.kind === 'field' && f.layout?.variant === 'primaryText',
             ) as undefined | Field;
 
+            const primaryTextValue: string | undefined = primaryText
+              ? state.getState(rowPointer.concat(primaryText.pointer))
+              : undefined;
+
             return (
               <CollapsableGrouping
-                collapsing={'initiallyOpen'}
+                collapsing={field.layout?.rowCollapsing}
                 key={rowIndex}
                 heading={{
                   title: (
@@ -397,9 +412,7 @@ export const FormField = observer<{
                             margin-left: 1ex;
                           `}
                         >
-                          {state.getState(
-                            rowPointer.concat(primaryText.pointer),
-                          )}
+                          {primaryTextValue || <>({rowIndex})</>}
                         </$Row>
                       ) : (
                         rowIndex
@@ -520,16 +533,21 @@ export const FormField = observer<{
     }
 
     case 'action': {
-      console.log('action', field);
-
       return (
         <Grid item>
           <Button
             // startIcon={<LocationSearchingIcon />}
             variant="text"
             onClick={() => {
-              // TODO: add debug info if not existing
-              operations?.onAction?.(field, { parent });
+              if (!operations?.onAction) {
+                console.warn(
+                  `No onAction handler defined for action ${field.id}`,
+                );
+
+                return;
+              }
+
+              operations.onAction(field, { parent });
             }}
           >
             {field.label ?? field.id}

@@ -13,6 +13,7 @@ import { DiscardIcon, SaveIcon } from './components/icons';
 import { FormField, validateSchema, walkFormData } from './FormField';
 import {
   ActionFieldGroup,
+  ComponentField,
   Field,
   FormConfig,
   LonLat,
@@ -32,7 +33,7 @@ export class FormConfigEditorState {
   constructor(
     public data: Data,
     public form: FormConfig,
-    private config: {
+    public config: {
       validation: {
         disabled?: boolean;
       };
@@ -149,32 +150,34 @@ export class FormConfigEditorState {
   };
 }
 
-type ActionKey = string;
-
 export interface Operations {
   onPickingLocation?: LocationPickReaction;
   onGotoLocation?(latLon: LonLat): void;
   onSave?(data: Data): void;
   onDiscard?(): void;
   onAction?(action: ActionFieldGroup, context?: { parent: JsonPointer }): void;
+  RenderComponentField?: FieldComponentFn;
 }
+
+export type TextItems = {
+  discardButton?: React.ReactNode;
+  saveButton?: React.ReactNode;
+};
+
+export type FieldComponentFn = React.FC<{
+  pointer: JsonPointer;
+  state: FormConfigEditorState;
+  field: ComponentField;
+}>;
 
 export const FormConfigEditor = observer<{
   data: Data;
   form: FormConfig;
   operations?: Operations;
+  text?: TextItems;
+  validation?: FormConfigEditorState['config']['validation'];
   onData?(data: FormConfigEditorState['data']): void;
   onInit?(state: FormConfigEditorState): void;
-  components?: {
-    // textField: React.Component
-    saveButton?: {
-      text?: React.ReactNode;
-    };
-    discardButton?: {
-      text?: React.ReactNode;
-    };
-  };
-  validation?: FormConfigEditorState['config']['validation'];
   className?: string;
 }>(
   ({
@@ -183,9 +186,9 @@ export const FormConfigEditor = observer<{
     onInit,
     onData,
     operations,
-    components = {},
     className,
     validation = {},
+    text,
   }) => {
     const [state] = React.useState(
       () => new FormConfigEditorState(data, form, { validation }),
@@ -253,11 +256,11 @@ export const FormConfigEditor = observer<{
                   variant: 'outlined',
                 },
                 icon: <DiscardIcon fontSize="small" />,
-                label: <>{components.discardButton?.text || 'Discard'}</>,
+                label: <>{text?.discardButton || 'Discard'}</>,
               }}
               confirm={{
                 icon: <DiscardIcon />,
-                label: <>{components.discardButton?.text || 'Discard'}</>,
+                label: <>{text?.discardButton || 'Discard'}</>,
                 onClick() {
                   operations?.onDiscard?.();
                 },
@@ -276,7 +279,7 @@ export const FormConfigEditor = observer<{
               }}
               disabled={state.hasValidationErrors}
             >
-              {components.saveButton?.text || 'Save'}
+              {text?.saveButton || 'Save'}
             </Button>
           </div>
         </Grid>
@@ -284,11 +287,3 @@ export const FormConfigEditor = observer<{
     );
   },
 );
-
-type StyledProps = {
-  theme?: {
-    palette?: {
-      mode: 'light' | 'dark';
-    };
-  };
-};
