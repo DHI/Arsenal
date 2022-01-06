@@ -45,6 +45,8 @@ import {
   SelectInputSchema,
 } from './types';
 
+export { JsonPointer };
+
 export const FormField = observer<{
   field: FieldKinds | RootFieldKinds;
   state: FormConfigEditorState;
@@ -381,7 +383,7 @@ export const FormField = observer<{
               }}
               startIcon={<AddBoxIcon />}
             >
-              Add {!!field.name && pluralize(field.name, 1)}
+              New {!!field.name && pluralize(field.name, 1)}
             </Button>
           </Grid>
           {rows.map((row, rowIndex) => {
