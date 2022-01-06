@@ -1,5 +1,11 @@
 # @dhi/arsenal.jsonform
 
+## 2.5.0
+
+### Minor Changes
+
+- Added component field support
+
 ## 2.4.0
 
 ### Minor Changes
