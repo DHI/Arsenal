@@ -1,5 +1,4 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
+import { css, styled } from '../react';
 
 type $RowProps = { grow?: boolean };
 

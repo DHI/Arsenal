@@ -1,6 +1,5 @@
 import { BooleanModel } from '@dhi/arsenal.models';
-import { css, PropsOf } from '@emotion/react';
-import styled from '@emotion/styled';
+import { css, PropsOf, styled } from '@dhi/arsenal.ui';
 import {
   Button,
   Checkbox,
@@ -24,16 +23,17 @@ import { observer } from 'mobx-react-lite';
 import pluralize from 'pluralize';
 import * as React from 'react';
 import { ReactNode, useMemo } from 'react';
-import { ConfirmDropdown } from './components/dropdowns';
 import {
+  ConfirmDropdown,
+  $Col,
+  $Row,
+  StepperForm,
   AddBoxIcon,
   DiscardIcon,
   ExpandMoreIcon,
   LocationSearchingIcon,
   RoomIcon,
-} from './components/icons';
-import { $Col, $Row } from './components/layout';
-import { StepperForm } from './components/StepperForm';
+} from '@dhi/arsenal.ui/x/components';
 import { extractScaffoldFromFields } from './extractScaffoldFromFields';
 import { FormConfigEditorState, Operations, schemas } from './FormConfigEditor';
 import {
@@ -56,6 +56,7 @@ export const FormField = observer<{
   switch (field.kind) {
     case 'field': {
       const pointer = parent.concat(field.pointer);
+
       const { errors, isValid = true } =
         state.fieldValidation.get(pointer.pointer) ?? {};
       const value = state.getState<string | undefined>(pointer);
@@ -571,6 +572,7 @@ export function validateSchema(schema: Schema, value: any) {
 }
 
 const GridRow = (p: PropsOf<typeof Grid>) => <Grid container {...p} />;
+
 const $GroupRow = styled(GridRow)`
   position: relative;
   border: 2px solid

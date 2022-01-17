@@ -8,7 +8,10 @@
     "build": "tsc",
     "dev": "tsc --watch"
   },
-  "dependencies": {
+  "peerDependencies": {
+    "mobx": "^6.3.3"
+  },
+  "devDependencies": {
     "mobx": "^6.3.3"
   },
   "repository": {

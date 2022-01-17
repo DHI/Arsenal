@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2018",
-    "baseUrl": "/",
+    "baseUrl": ".",
     "strict": true,
     "declaration": true,
     "jsxImportSource": "@emotion/react",
@@ -13,6 +13,7 @@
     "incremental": true,
     "moduleResolution": "node",
     "sourceMap": true,
+    // "preserveSymlinks": true,
     "lib": [
       "es2018",
       "dom"

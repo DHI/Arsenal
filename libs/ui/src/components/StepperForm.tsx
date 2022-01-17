@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { observer } from 'mobx-react-lite';
-import { css, PropsOf } from '@emotion/react';
-import styled from '@emotion/styled';
+import { css, PropsOf, styled, observer } from '../react';
 import {
   Button,
   ButtonGroup,

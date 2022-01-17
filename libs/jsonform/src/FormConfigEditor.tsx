@@ -8,8 +8,11 @@ import { makeAutoObservable, runInAction, toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { deepObserve } from 'mobx-utils';
 import * as React from 'react';
-import { ConfirmDropdown } from './components/dropdowns';
-import { DiscardIcon, SaveIcon } from './components/icons';
+import {
+  ConfirmDropdown,
+  DiscardIcon,
+  SaveIcon,
+} from '@dhi/arsenal.ui/x/components';
 import { FormField, validateSchema, walkFormData } from './FormField';
 import {
   ActionFieldGroup,

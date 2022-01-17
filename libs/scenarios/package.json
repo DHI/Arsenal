@@ -1,35 +1,29 @@
 {
-  "name": "@dhi/arsenal.jsonform",
-  "version": "2.5.0",
+  "name": "@dhi/arsenal.scenarios",
+  "version": "0.0.1",
   "main": "./x",
   "scripts": {
-    "wp:build": "webpack",
-    "wp:dev": "webpack --watch",
     "build": "tsc",
     "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@dhi/arsenal.jsonform": "workspace:*",
+    "@dhi/arsenal.models": "workspace:*",
+    "@dhi/arsenal.ui": "workspace:*",
+    "@types/change-case": "^2.3.1",
+    "change-case": "^4.1.2",
+    "colord": "^2.9.2",
+    "fuse.js": "^6.4.6"
   },
   "peerDependencies": {
     "@emotion/react": "^11.3.0",
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.5",
     "@mui/material": "^5.0.6",
-    "mobx-react-lite": "3",
     "mobx": "^6.3.3",
+    "mobx-react-lite": "3",
     "react": ">= 17",
     "react-dom": ">= 17"
-  },
-  "dependencies": {
-    "@dhi/arsenal.models": "workspace:*",
-    "@dhi/arsenal.ui": "workspace:*",
-    "@types/lodash-es": "^4.17.5",
-    "@types/pluralize": "^0.0.29",
-    "ajv": "^8.6.2",
-    "change-case": "^4.1.2",
-    "date-fns": "^2.23.0",
-    "json-ptr": "^2.2.0",
-    "lodash-es": "^4.17.21",
-    "mobx-utils": "^6.0.4",
-    "pluralize": "^8.0.0"
   },
   "devDependencies": {
     "@emotion/react": "^11.3.0",
@@ -44,6 +38,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/DHI/Arsenal",
-    "directory": "libs/jsonform"
+    "directory": "libs/scenarios"
   }
 }

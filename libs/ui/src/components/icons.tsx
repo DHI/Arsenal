@@ -22,6 +22,19 @@ import ScenarioIcon from '@mui/icons-material/PlaylistPlay';
 import RoomIcon from '@mui/icons-material/Room';
 import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
 import MapIcon from '@mui/icons-material/MapRounded';
+import LogoutIcon from '@mui/icons-material/Logout';
+import ConfigIcon from '@mui/icons-material/Settings';
+import InfoIcon from '@mui/icons-material/Info';
+import CancelIcon from '@mui/icons-material/Cancel';
+import LaunchIcon from '@mui/icons-material/Launch';
+import ReadMoreIcon from '@mui/icons-material/ReadMore';
+import PlaylistIcon from '@mui/icons-material/PlaylistAddCheck';
+import RouteIcon from '@mui/icons-material/Route';
+import LayersIcon from '@mui/icons-material/Layers';
+import CircleIcon from '@mui/icons-material/Circle';
+import BoxIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import BoatIcon from '@mui/icons-material/DirectionsBoat';
+import EditIcon from '@mui/icons-material/Edit';
 
 export {
   ArrowUpwardIcon,
@@ -48,4 +61,17 @@ export {
   RoomIcon,
   LocationSearchingIcon,
   MapIcon,
+  LogoutIcon,
+  ConfigIcon,
+  InfoIcon,
+  CancelIcon,
+  LaunchIcon,
+  ReadMoreIcon,
+  PlaylistIcon,
+  RouteIcon,
+  LayersIcon,
+  CircleIcon,
+  BoxIcon,
+  BoatIcon,
+  EditIcon,
 };
