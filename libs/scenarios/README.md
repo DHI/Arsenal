@@ -58,6 +58,6 @@ import {
   SidebarPanel,
   ScenarioListItem,
   ScenarioConfigEditor,
-} from '@dhi/arsenal.scenarios
+} from '@dhi/arsenal.scenarios';
 ```
 > Check the source code & Typescript types for details on how components are used.

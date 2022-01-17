@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css, PropsOf, styled, observer } from '../react';
+import { css, styled, observer } from '../react';
 import {
   Button,
   ButtonGroup,
@@ -9,6 +9,7 @@ import {
   StepContent,
   Stepper,
   Tooltip,
+  StepperProps,
 } from '@mui/material';
 import { ArrowLeft, ArrowRight } from '@mui/icons-material';
 
@@ -22,7 +23,7 @@ export const StepperForm = observer<{
     };
   };
   nextPrevButtons?: boolean;
-  stepper?: Partial<PropsOf<typeof Stepper>>;
+  stepper?: Partial<StepperProps>;
 
   className?: string;
 }>(
