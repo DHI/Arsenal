@@ -1,0 +1,30 @@
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.0.2
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-
+          
+      # - name: Create .npmrc
+      #   run: |
+      #     cp .npmrc.example .npmrc
+      #     npx rexreplace __GITHUB_TOKEN__ '${{ secrets.npmToken }}' .npmrc
+
+      - run: pnpm install
+      - run: pnpm build:libs
+      
+     
