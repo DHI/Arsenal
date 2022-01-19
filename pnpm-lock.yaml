@@ -307,8 +307,6 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2
     dependencies:
-      '@dhi/arsenal.models': link:../models
-      '@dhi/arsenal.ui': link:../ui
       '@types/lodash-es': 4.17.5
       '@types/pluralize': 0.0.29
       ajv: 8.6.3
@@ -319,6 +317,8 @@ importers:
       mobx-utils: 6.0.4_mobx@6.3.3
       pluralize: 8.0.0
     devDependencies:
+      '@dhi/arsenal.models': link:../models
+      '@dhi/arsenal.ui': link:../ui
       '@emotion/react': 11.5.0_c29e92812fb8ca72777465aa64a28266
       '@emotion/styled': 11.3.0_c62d00218d42ee4ad755fbf9a51237c1
       '@mui/icons-material': 5.0.5_ace220d1261e6c3d9603ae70c92d7757
@@ -352,12 +352,12 @@ importers:
       react: 17.0.2
       react-dom: 17.0.2
     dependencies:
-      '@dhi/arsenal.jsonform': link:../jsonform
       '@types/change-case': 2.3.1
       change-case: 4.1.2
       colord: 2.9.2
       fuse.js: 6.4.6
     devDependencies:
+      '@dhi/arsenal.jsonform': link:../jsonform
       '@dhi/arsenal.models': link:../models
       '@dhi/arsenal.ui': link:../ui
       '@emotion/react': 11.5.0_c29e92812fb8ca72777465aa64a28266
@@ -381,9 +381,8 @@ importers:
       mobx-react-lite: 3.2.1
       react: 17.0.2
       react-dom: 17.0.2
-    dependencies:
-      '@dhi/arsenal.models': link:../models
     devDependencies:
+      '@dhi/arsenal.models': link:../models
       '@emotion/css': 11.7.1_@babel+core@7.15.8
       '@emotion/react': 11.5.0_c29e92812fb8ca72777465aa64a28266
       '@emotion/styled': 11.3.0_c62d00218d42ee4ad755fbf9a51237c1
@@ -685,8 +684,8 @@ importers:
       '@bugsnag/js': ^6.5.0
       '@bugsnag/plugin-react': ^6.5.0
       '@date-io/date-fns': ^1.1.0
-      '@dhi/arsenal.bmpgenerator': 1.0.2
-      '@dhi/arsenal.models': ^2.1.1
+      '@dhi/arsenal.bmpgenerator': 1.0.3
+      '@dhi/arsenal.models': ^3.0.0
       '@emotion/react': ^11.4.1
       '@emotion/styled': ^11.3.0
       '@headlessui/react': ^0.2.0
@@ -1075,9 +1074,9 @@ importers:
 
   submodules/apps/spt-fe:
     specifiers:
-      '@dhi/arsenal.jsonform': ^2.5
-      '@dhi/arsenal.models': ^2.1.1
-      '@dhi/arsenal.scenarios': '0'
+      '@dhi/arsenal.jsonform': ^3.0.0
+      '@dhi/arsenal.models': ^3.0.0
+      '@dhi/arsenal.scenarios': 1.0.0
       '@dhi/arsenal.ui': '*'
       '@emotion/babel-plugin': ^11.3.0
       '@emotion/css': ^11.1.3

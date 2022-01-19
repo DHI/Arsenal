@@ -7,7 +7,6 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "@dhi/arsenal.jsonform": "workspace:*",
     "@types/change-case": "^2.3.1",
     "change-case": "^4.1.2",
     "colord": "^2.9.2",

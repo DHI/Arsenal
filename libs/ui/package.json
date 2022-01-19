@@ -7,9 +7,9 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "@dhi/arsenal.models": "workspace:*"
   },
   "peerDependencies": {
+    "@dhi/arsenal.models": "workspace:*",
     "@emotion/css": "^11.3.0",
     "@emotion/react": "^11.3.0",
     "@emotion/styled": "^11.3.0",
@@ -21,6 +21,7 @@
     "react-dom": ">= 17"
   },
   "devDependencies": {
+    "@dhi/arsenal.models": "workspace:*",
     "@emotion/css": "^11.3.0",
     "@emotion/react": "^11.3.0",
     "@emotion/styled": "^11.3.0",
