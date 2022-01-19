@@ -1,5 +1,16 @@
 # @dhi/arsenal.ui
 
+## 4.0.0
+
+### Minor Changes
+
+- Sync deps
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @dhi/arsenal.models@3.1.0
+
 ## 3.0.0
 
 ### Major Changes
