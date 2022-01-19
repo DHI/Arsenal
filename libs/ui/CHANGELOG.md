@@ -1,5 +1,16 @@
 # @dhi/arsenal.ui
 
+## 3.0.0
+
+### Major Changes
+
+- Synchronize arsenal UI packages
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @dhi/arsenal.models@3.0.0
+
 ## 2.1.0
 
 ### Minor Changes

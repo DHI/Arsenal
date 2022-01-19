@@ -1,6 +1,6 @@
 {
   "name": "@dhi/arsenal.jsonform",
-  "version": "2.5.0",
+  "version": "3.0.0",
   "main": "./x",
   "scripts": {
     "wp:build": "webpack",
