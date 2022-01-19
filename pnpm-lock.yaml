@@ -684,8 +684,8 @@ importers:
       '@bugsnag/js': ^6.5.0
       '@bugsnag/plugin-react': ^6.5.0
       '@date-io/date-fns': ^1.1.0
-      '@dhi/arsenal.bmpgenerator': 1.0.3
-      '@dhi/arsenal.models': ^3.0.0
+      '@dhi/arsenal.bmpgenerator': 1.0.4
+      '@dhi/arsenal.models': ^3.1.0
       '@emotion/react': ^11.4.1
       '@emotion/styled': ^11.3.0
       '@headlessui/react': ^0.2.0
@@ -1074,10 +1074,10 @@ importers:
 
   submodules/apps/spt-fe:
     specifiers:
-      '@dhi/arsenal.jsonform': ^3.0.0
-      '@dhi/arsenal.models': ^3.0.0
-      '@dhi/arsenal.scenarios': 1.0.0
-      '@dhi/arsenal.ui': '*'
+      '@dhi/arsenal.jsonform': ^4.0.0
+      '@dhi/arsenal.models': ^3.1.0
+      '@dhi/arsenal.scenarios': ^2.0.0
+      '@dhi/arsenal.ui': ^4.0.0
       '@emotion/babel-plugin': ^11.3.0
       '@emotion/css': ^11.1.3
       '@emotion/react': ^11.5.0
