@@ -2,7 +2,7 @@ import { LinearProgress } from '@mui/material';
 import { PropsOf, styled } from '@dhi/arsenal.ui';
 import { StyledComponent } from '@emotion/styled';
 
-const ProgressBar = (p: PropsOf<typeof LinearProgress>) => (
+const ProgressBar = (p: PropsOf<typeof LinearProgress>): JSX.Element => (
   <LinearProgress variant="indeterminate" {...p} />
 );
 

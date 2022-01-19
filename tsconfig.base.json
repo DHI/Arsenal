@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2018",
-    "baseUrl": ".",
+    "module": "ES2020",
     "strict": true,
     "declaration": true,
+    "emitDecoratorMetadata": true,
+    "disableSourceOfProjectReferenceRedirect": true,
     "jsxImportSource": "@emotion/react",
     "jsx": "react-jsx",
     "esModuleInterop": true,
@@ -13,7 +15,8 @@
     "incremental": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    // "preserveSymlinks": true,
+    "declarationMap": false,
+    "preserveSymlinks": false,
     "lib": [
       "es2018",
       "dom"

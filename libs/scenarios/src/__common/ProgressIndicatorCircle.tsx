@@ -18,7 +18,7 @@ export const ProgressIndicatorCircle = ({
   isError?: boolean;
   isComplete?: boolean;
   isPending?: boolean;
-}) => (
+}): JSX.Element => (
   <$Col
     css={css`
       position: relative;

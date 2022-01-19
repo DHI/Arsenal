@@ -6,7 +6,6 @@ import { CloseIcon, $Col, $Row } from '@dhi/arsenal.ui/x/components';
 import { pascalCase } from 'change-case';
 import { ReactNode, useEffect, useMemo } from 'react';
 import { ScenarioConfigEditor } from './editor/ScenarioConfigEditor';
-import { Operations } from '@dhi/arsenal.jsonform/x';
 import { ClassNames } from './types';
 
 export const ActiveScenarioPanel = observer<{
@@ -15,7 +14,7 @@ export const ActiveScenarioPanel = observer<{
   /** The section is set to this when the active scenario changes */
 
   /** Form config editor operations */
-  operations?: Operations;
+  operations?: import('@dhi/arsenal.jsonform').Operations;
 
   defaultSection?: string;
 
