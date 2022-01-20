@@ -26,8 +26,8 @@ export class ScenariosState<
         activeSection(): undefined | string;
         setSection(section: undefined | string): void;
         scenarioList: AsyncValue<undefined | SCENARIO[], any>;
-        createScenario: AsyncValue<void, { scenario: SCENARIO }>;
-        updateScenario: AsyncValue<void, { scenario: SCENARIO }>;
+        createScenario: AsyncValue<any, { scenario: SCENARIO }>;
+        updateScenario: AsyncValue<any, { scenario: SCENARIO }>;
         deleteScenario: AsyncValue<any, { scenarioId: string }>;
         jobsList?: AsyncValue<undefined | NonNullable<SCENARIO['job']>[]>;
         executeJob?: AsyncValue<any, { scenarioId: string }>;

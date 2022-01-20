@@ -17,10 +17,7 @@
     "sourceMap": true,
     "declarationMap": false,
     "preserveSymlinks": false,
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": [ "es2018", "dom" ]
   },
    "ts-node": {
     // these options are overrides used only by ts-node

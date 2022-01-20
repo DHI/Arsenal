@@ -8,7 +8,11 @@ import {
   ListProps,
 } from '@mui/material';
 import { ReactNode, Fragment as Frag } from 'react';
-import { css, styled, observer } from '../react';
+import { css, styled, observer, cx } from '../react';
+
+export enum SimpleListClasses {
+  ListItem = 'simple-list-item',
+}
 
 export const SimpleList = observer<{
   items?: {
@@ -32,6 +36,12 @@ export const SimpleList = observer<{
             button={!!onClick as any}
             onClick={onClick}
             {...ListItemProps}
+            {...{
+              className: cx(
+                SimpleListClasses.ListItem,
+                ListItemProps?.className,
+              ),
+            }}
             selected={isSelected ?? ListItemProps?.selected}
           >
             {!!icon && <$ListItemIcon>{icon}</$ListItemIcon>}
@@ -51,7 +61,7 @@ export const SimpleList = observer<{
   </$List>
 ));
 
-export const $ListItem = styled(ListItem)`
+const $ListItem = styled(ListItem)`
   position: relative;
 `;
 
