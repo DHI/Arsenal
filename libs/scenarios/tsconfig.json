@@ -4,6 +4,7 @@
     "composite": true,
     "target": "ES2020",
     "rootDir": "src",
+    "declarationMap": true,
     "outDir": "./x"
   },
   "include": [ "src"],

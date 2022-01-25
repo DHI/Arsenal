@@ -1,21 +1,20 @@
 import { css, observer } from '@dhi/arsenal.ui';
 import { $Col, $Row } from '@dhi/arsenal.ui/x/components';
-import { ScenarioConfig, ScenarioInstance, ScenarioJobStatus } from '../types';
+import { ScenarioInstance, ScenarioJobStatus } from '../types';
 import { ProgressIndicatorCircle } from './ProgressIndicatorCircle';
 
 export const ScenarioListItem = observer<{
-  scenario: ScenarioInstance<ScenarioConfig, any>;
+  scenario: ScenarioInstance;
   isDraft?: boolean;
   className?: string;
-}>(({ scenario, isDraft, className }) => {
+  title?: string;
+}>(({ scenario, isDraft, title, className }) => {
   const isComplete = scenario.job?.status === ScenarioJobStatus.Completed;
   const isError = scenario.job?.status === ScenarioJobStatus.Error;
-
   const isPending =
     scenario.job?.status === ScenarioJobStatus.Pending ||
     scenario.job?.status === ScenarioJobStatus.InProgress;
   const progressPct = isComplete ? 100 : scenario.job?.progress ?? 0;
-
   const progressVariant =
     scenario.job?.status === 'Pending' ? 'indeterminate' : 'determinate';
 
@@ -37,7 +36,7 @@ export const ScenarioListItem = observer<{
         `}
       >
         {isDraft ? <>[ DRAFT ]&nbsp;</> : <></>}
-        {scenario.data?.Name}
+        {title}
       </$Col>
       <ProgressIndicatorCircle
         {...{

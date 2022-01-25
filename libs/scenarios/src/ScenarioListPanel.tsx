@@ -10,7 +10,7 @@ import {
 } from '@dhi/arsenal.ui/x/components';
 import { useScenariosStore } from './__state/ScenariosState';
 import { ScenarioListItem } from './__common/ScenarioListItem';
-import { ClassNames } from './types';
+import { ScenarioClasses } from './types';
 import { $ProgressBar } from './__common/$ProgressBar';
 
 export const ScenarioListPanel = observer((): JSX.Element => {
@@ -26,7 +26,7 @@ export const ScenarioListPanel = observer((): JSX.Element => {
 
   return (
     <SidebarPanel
-      className={ClassNames.ScenarioListPanel}
+      className={ScenarioClasses.ScenarioListPanel}
       css={css`
         && {
           z-index: 2;
@@ -115,6 +115,7 @@ export const ScenarioListPanel = observer((): JSX.Element => {
                 <ScenarioListItem
                   scenario={item}
                   isDraft={id === draftScenario.value?.id}
+                  title={item.data[data.scenearioDataNameKey]}
                 />
               ),
               onClick() {

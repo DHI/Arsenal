@@ -16,24 +16,26 @@ export const ScenarioConfigEditor = observer<{
   const {
     activeScenario,
     isActiveScenarioADraft,
+    scenarioSchema,
+    draftScenario,
+    activeWipScenario,
     resetActiveScenarioState,
     createScenario,
     updateScenario,
-    scenarioSchema,
-    draftScenario,
     deleteScenario,
     cloneScenario,
-    setSection,
-    activeScenarioWipData,
   } = useScenariosStore();
 
   useEffect(() => {
     if (!activeScenario?.id) {
-      activeScenarioWipData.set(undefined);
+      activeWipScenario.set(undefined);
       return;
     }
 
-    activeScenarioWipData.set(activeScenario.data);
+    activeWipScenario.set({
+      ...activeScenario,
+      data: { ...activeScenario.data },
+    });
   }, [activeScenario?.id]);
 
   if (!activeScenario) return <></>;
@@ -51,20 +53,21 @@ export const ScenarioConfigEditor = observer<{
             padding: 0.5em 1em;
           }
         `}
-        onData={(data) => activeScenarioWipData.set(data as any)}
+        onData={(data) => activeWipScenario.set(data as any)}
         data={activeScenario.data}
         form={scenarioSchema}
         validation={{
+          // todo: pass through config
           disabled: true,
         }}
         operations={{
+          onDiscard: resetActiveScenarioState,
           onSave(data: any) {
             if (isActiveScenarioADraft)
               return createScenario({ ...activeScenario, data });
 
             updateScenario({ ...activeScenario, data });
           },
-          onDiscard: resetActiveScenarioState,
           ...operations,
         }}
       />

@@ -11,13 +11,13 @@ export class ScenariosState<
 > {
   scenarioListSearchText = new StateModel<string | undefined>(undefined);
   draftScenario = new StateModel<undefined | SCENARIO>(undefined);
-  activeScenarioWipData = new StateModel<undefined | SCENARIO['data']>(
-    undefined,
-  );
+  activeWipScenario = new StateModel<undefined | SCENARIO>(undefined);
 
   constructor(
     public config: {
       data(): {
+        /** Key within scenario.data for the scenario name  */
+        scenearioDataNameKey: keyof SCENARIO['data'];
         /** Defines the structure of the scenario data when a new scenario is initiated */
         defaultScenarioData: () => undefined | Partial<SCENARIO['data']>;
         scenarioSchema: () => FormConfig;
@@ -40,6 +40,18 @@ export class ScenariosState<
 
   get data() {
     return this.config.data();
+  }
+
+  get activeScenarioName() {
+    return this.activeScenario?.data[this.data.scenearioDataNameKey as any] as
+      | string
+      | undefined;
+  }
+
+  get activeWipScenarioName() {
+    return this.activeWipScenario.value?.data?.[
+      this.data.scenearioDataNameKey as any
+    ] as string | undefined;
   }
 
   get scenarioSchema() {
@@ -129,7 +141,7 @@ export class ScenariosState<
       id: uuid(),
       data: {
         ...this.data.defaultScenarioData(),
-        Name: 'New Scenario',
+        [this.data.scenearioDataNameKey]: 'New Scenario',
       },
     } as SCENARIO);
 
@@ -138,14 +150,14 @@ export class ScenariosState<
 
   resetDraftScenario = () => {
     this.draftScenario.set(undefined);
-    this.activeScenarioWipData.set(undefined);
+    this.activeWipScenario.set(undefined);
   };
 
   resetActiveScenarioState = () => {
     if (this.isActiveScenarioADraft) this.resetDraftScenario();
 
     this.setScenario(undefined);
-    this.activeScenarioWipData.set(undefined);
+    this.activeWipScenario.set(undefined);
   };
 
   createScenario = async <S extends SCENARIO>(scenario: S) => {

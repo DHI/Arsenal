@@ -1,8 +1,10 @@
 export enum ScenarioJobStatus {
-  Pending = 'Pending',
-  InProgress = 'InProgress',
-  Completed = 'Completed',
-  Error = 'Error',
+  Pending = 'PENDING',
+  InProgress = 'INPROGRESS',
+  Completed = 'COMPLETED',
+  Cancelled = 'CANCELLED',
+  Cancelling = 'CANCELLING',
+  Error = 'ERROR',
 }
 
 export interface ScenarioJobInstance {
@@ -17,7 +19,7 @@ export interface ScenarioJobInstance {
 }
 
 export interface ScenarioInstance<
-  DATA extends ScenarioConfig = ScenarioConfig,
+  DATA = Record<string, any>,
   JOB extends ScenarioJobInstance = ScenarioJobInstance,
 > {
   id: string;
@@ -26,13 +28,7 @@ export interface ScenarioInstance<
   metadata?: { group: string };
 }
 
-export interface ScenarioConfig {
-  Name: string;
-  // CreatedAt: string;
-  // UpdatedAt: string;
-}
-
-export enum ClassNames {
+export enum ScenarioClasses {
   ScenarioListPanel = 'scenario-list-panel',
   ActiveScenarioPanel = 'active-scenario-panel',
 }

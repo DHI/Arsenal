@@ -4,27 +4,26 @@ import { SidebarPanel } from './__common/SidebarPanel';
 import { IconButton, Tab, Tabs } from '@mui/material';
 import { CloseIcon, $Col, $Row } from '@dhi/arsenal.ui/x/components';
 import { pascalCase } from 'change-case';
-import { ReactNode, useEffect, useMemo } from 'react';
+import { ReactNode, useCallback, useEffect } from 'react';
 import { ScenarioConfigEditor } from './editor/ScenarioConfigEditor';
-import { ClassNames } from './types';
+import { ScenarioClasses } from './types';
 
 export const ActiveScenarioPanel = observer<{
   /** Represents additional tabs */
   sections?: ActiveScenarioSectionsInput;
   /** The section is set to this when the active scenario changes */
-
   /** Form config editor operations */
   operations?: import('@dhi/arsenal.jsonform').Operations;
-
   defaultSection?: string;
-
   append?: ReactNode;
 }>(({ sections = {}, append, operations, defaultSection }) => {
   const { activeScenario, activeSection, setScenario, setSection } =
     useScenariosStore();
 
-  const ConfigEditorComponent = useMemo(
-    () => () => <ScenarioConfigEditor operations={operations} />,
+  const ConfigEditorComponent = useCallback(
+    function SCE() {
+      return <ScenarioConfigEditor operations={operations} />;
+    },
     [operations],
   );
 
@@ -58,7 +57,7 @@ export const ActiveScenarioPanel = observer<{
     >
       <SidebarPanel
         isOpen={!!activeScenario?.id}
-        className={ClassNames.ActiveScenarioPanel}
+        className={ScenarioClasses.ActiveScenarioPanel}
         css={css`
           background-color: #fafafafa;
           box-shadow: 3px 0 8px 0 rgba(0, 0, 0, 0.2);
