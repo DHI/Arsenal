@@ -344,6 +344,7 @@ importers:
       '@mui/icons-material': ^5.0.5
       '@mui/material': ^5.0.6
       '@types/change-case': ^2.3.1
+      '@types/uuid': ^8.3.4
       change-case: ^4.1.2
       colord: ^2.9.2
       fuse.js: ^6.4.6
@@ -351,11 +352,13 @@ importers:
       mobx-react-lite: 3.2.1
       react: 17.0.2
       react-dom: 17.0.2
+      uuid: ^8.3.2
     dependencies:
       '@types/change-case': 2.3.1
       change-case: 4.1.2
       colord: 2.9.2
       fuse.js: 6.4.6
+      uuid: 8.3.2
     devDependencies:
       '@dhi/arsenal.jsonform': link:../jsonform
       '@dhi/arsenal.models': link:../models
@@ -364,6 +367,7 @@ importers:
       '@emotion/styled': 11.3.0_c62d00218d42ee4ad755fbf9a51237c1
       '@mui/icons-material': 5.2.1_febe8d2f2a45c2e6ff21d9efbd8d471c
       '@mui/material': 5.2.3_3bd6e1999a4a2ed15dd98d9987fa3bbf
+      '@types/uuid': 8.3.4
       mobx: 6.3.3
       mobx-react-lite: 3.2.1_8aec6830c9f393111667240500a3b25c
       react: 17.0.2
@@ -1217,8 +1221,8 @@ packages:
       zen-observable: 0.8.15
     dev: false
 
-  /@apollo/client/3.5.7_graphql@14.1.1+react@17.0.2:
-    resolution: {integrity: sha512-HSLqTGp3sp/PVIWYLLr5v3fjQSr6Fxg6Z5RQj5Q9ALyseIVudD8GZk1jHplaUblTFMBueXGw3Z6DXObuVAr3tw==}
+  /@apollo/client/3.5.8_graphql@14.1.1+react@17.0.2:
+    resolution: {integrity: sha512-MAm05+I1ullr64VLpZwon/ISnkMuNLf6vDqgo9wiMhHYBGT4yOAbAIseRdjCHZwfSx/7AUuBgaTNOssZPIr6FQ==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
       react: ^16.8.0 || ^17.0.0
@@ -1268,7 +1272,7 @@ packages:
   /@apollo/react-hoc/4.0.0_graphql@14.1.1+react@17.0.2:
     resolution: {integrity: sha512-+DgmqWRLkdlFk5jq11xJdVzb014TiTvr0K+E9CL1ioJpr85d7XIVycUwcYqb2acjeMbDF0V7G8VGiAVgkSkZKA==}
     dependencies:
-      '@apollo/client': 3.5.7_graphql@14.1.1+react@17.0.2
+      '@apollo/client': 3.5.8_graphql@14.1.1+react@17.0.2
     transitivePeerDependencies:
       - graphql
       - react
@@ -10038,6 +10042,10 @@ packages:
 
   /@types/uuid/8.3.1:
     resolution: {integrity: sha512-Y2mHTRAbqfFkpjldbkHGY8JIzRN6XqYRliG8/24FcHm2D2PwW24fl5xMRTVGdrb7iMrwCaIEbLWerGIkXuFWVg==}
+
+  /@types/uuid/8.3.4:
+    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
+    dev: true
 
   /@types/validatorjs/3.15.0:
     resolution: {integrity: sha512-tqozguXICRdPQVGho1A+lYH4IzU3ggP82OmfFrmb6N6pxmWuXegpw4Th20hy5KtMfuyP+jXB466ABFMO9vma4Q==}

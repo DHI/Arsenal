@@ -9,6 +9,7 @@
   "dependencies": {
     "@types/change-case": "^2.3.1",
     "change-case": "^4.1.2",
+    "uuid": "^8.3.2",
     "colord": "^2.9.2",
     "fuse.js": "^6.4.6"
   },
@@ -29,6 +30,7 @@
     "@dhi/arsenal.jsonform": "workspace:*",
     "@dhi/arsenal.models": "workspace:*",
     "@dhi/arsenal.ui": "workspace:*",
+    "@types/uuid": "^8.3.4",
     "@emotion/react": "^11.3.0",
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.5",
