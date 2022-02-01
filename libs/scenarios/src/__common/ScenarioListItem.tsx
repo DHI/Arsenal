@@ -16,7 +16,9 @@ export const ScenarioListItem = observer<{
     scenario.job?.status === ScenarioJobStatus.InProgress;
   const progressPct = isComplete ? 100 : scenario.job?.progress ?? 0;
   const progressVariant =
-    scenario.job?.status === 'Pending' ? 'indeterminate' : 'determinate';
+    scenario.job?.status === ScenarioJobStatus.Pending
+      ? 'indeterminate'
+      : 'determinate';
 
   const statusKind = (() => {
     if (isError) return 'error';
