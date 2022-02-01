@@ -89,7 +89,11 @@ export class BmpGeneratorState {
     this.renderingEditor?.documentEditor.save('file.docx', 'Docx');
   };
 
-  loadDocumentRender = async () => {
+  loadDocumentRender = async ({
+    options = {},
+  }: {
+    options?: HeadersInit;
+  }): Promise<void> => {
     this.renderingEditor?.documentEditor.openBlank();
 
     const blob = await this.editor!.documentEditor.saveAsBlob('Docx')!;
@@ -97,13 +101,13 @@ export class BmpGeneratorState {
 
     file.addEventListener('loadend', async (e) => {
       const base64String = file.result;
-
       const res = await fetch(
-        `${this.serviceUrl.value}/PreviewParameterReplacement`,
+        `${this.serviceUrl.value}PreviewParameterReplacement`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
+            ...options,
           },
           body: JSON.stringify({
             fileName: this.editor?.documentEditor.documentName,

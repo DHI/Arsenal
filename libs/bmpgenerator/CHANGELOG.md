@@ -1,5 +1,11 @@
 # @dhi/arsenal.bmpgenerator
 
+## 1.1.0
+
+### Minor Changes
+
+- HTTP Request header options can be passsed to loadDocumentRender
+
 ## 1.0.4
 
 ### Patch Changes
