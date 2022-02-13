@@ -1,10 +1,10 @@
 import { makeAutoObservable, toJS } from 'mobx';
-import { AsyncValue, StateModel } from './';
+import { AsyncValue, StateModel } from '.';
 
 /**
  * Handles Authorization workflows
  */
-export class AuthState {
+export class AuthStore {
   constructor(
     private config: {
       data(): {

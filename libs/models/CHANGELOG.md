@@ -1,5 +1,11 @@
 # @dhi/arsenal.models
 
+## 3.2.0
+
+### Minor Changes
+
+- AuthStore added
+
 ## 3.1.0
 
 ### Minor Changes

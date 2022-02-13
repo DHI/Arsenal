@@ -1,5 +1,14 @@
 # @dhi/arsenal.scenarios
 
+## 3.0.0
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @dhi/arsenal.models@3.2.0
+  - @dhi/arsenal.jsonform@5.0.0
+  - @dhi/arsenal.ui@5.0.0
+
 ## 2.0.0
 
 ### Minor Changes
