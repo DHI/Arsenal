@@ -22,6 +22,10 @@ export const ScenarioListPanel = observer((): JSX.Element => {
     activeScenario,
     startDraftScenario,
     setScenario,
+
+    config: {
+      behaviour: { canFilterScenarios = true, canCreateScenarios = true } = {},
+    },
   } = useScenariosStore();
 
   return (
@@ -37,45 +41,58 @@ export const ScenarioListPanel = observer((): JSX.Element => {
       <SimpleList
         showDivider
         items={[
-          {
-            id: 'search',
-            icon: <SearchIcon />,
-            text: (
-              <TextField
-                placeholder="Filter scenarios..."
-                value={scenarioListSearchText.value ?? ''}
-                onChange={(e) => scenarioListSearchText.set(e.target.value)}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment
-                      position="end"
-                      onClick={() => scenarioListSearchText.set(undefined)}
-                      css={css`
-                        cursor: pointer;
-                        transition: all 0.2s;
-                        opacity: ${scenarioListSearchText.value === undefined
-                          ? 0.4
-                          : 1};
-                      `}
-                    >
-                      <CloseIcon />
-                    </InputAdornment>
+          ...(canFilterScenarios
+            ? [
+                {
+                  id: 'search',
+                  icon: <SearchIcon />,
+                  text: (
+                    <TextField
+                      placeholder="Filter scenarios..."
+                      value={scenarioListSearchText.value ?? ''}
+                      onChange={(e) =>
+                        scenarioListSearchText.set(e.target.value)
+                      }
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment
+                            position="end"
+                            onClick={() =>
+                              scenarioListSearchText.set(undefined)
+                            }
+                            css={css`
+                              cursor: pointer;
+                              transition: all 0.2s;
+                              opacity: ${scenarioListSearchText.value ===
+                              undefined
+                                ? 0.4
+                                : 1};
+                            `}
+                          >
+                            <CloseIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
                   ),
-                }}
-              />
-            ),
-          },
-          {
-            id: 'createScenario',
-            icon: <OpenNewIcon />,
-            text: <>Create New Scenario</>,
-            onClick() {
-              startDraftScenario();
-            },
-            ListItemProps: {
-              disabled: !!draftScenario.value,
-            },
-          },
+                },
+              ]
+            : []),
+          ...(canCreateScenarios
+            ? [
+                {
+                  id: 'createScenario',
+                  icon: <OpenNewIcon />,
+                  text: <>Create New Scenario</>,
+                  onClick() {
+                    startDraftScenario();
+                  },
+                  ListItemProps: {
+                    disabled: !!draftScenario.value,
+                  },
+                },
+              ]
+            : []),
         ]}
       />
 

@@ -15,6 +15,13 @@ export class ScenariosState<
 
   constructor(
     public config: {
+      behaviour?: {
+        canCreateScenarios?: boolean;
+        canFilterScenarios?: boolean;
+        canDeleteScenarios?: boolean;
+        canEditScenarios?: boolean;
+        canCloneScenarios?: boolean;
+      };
       data(): {
         /** Key within scenario.data for the scenario name  */
         scenearioDataNameKey: keyof SCENARIO['data'];
