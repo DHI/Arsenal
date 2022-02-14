@@ -1,5 +1,15 @@
 # stories
 
+## 0.1.22
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @dhi/arsenal.models@3.2.1
+  - @dhi/arsenal.ui@5.0.1
+  - @dhi/arsenal.bmpgenerator@1.0.6
+  - @dhi/arsenal.jsonform@5.0.1
+
 ## 0.1.21
 
 ### Patch Changes
