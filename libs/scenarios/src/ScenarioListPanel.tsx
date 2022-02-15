@@ -16,7 +16,6 @@ import { $ProgressBar } from './__common/$ProgressBar';
 export const ScenarioListPanel = observer((): JSX.Element => {
   const {
     scenarioListSearchText,
-    data,
     draftScenario,
     searchFilteredScenarioList,
     activeScenario,
@@ -25,6 +24,8 @@ export const ScenarioListPanel = observer((): JSX.Element => {
 
     config: {
       behaviour: { canFilterScenarios = true, canCreateScenarios = true } = {},
+      scenarioDataNameKey,
+      scenarioList,
     },
   } = useScenariosStore();
 
@@ -37,7 +38,7 @@ export const ScenarioListPanel = observer((): JSX.Element => {
         }
       `}
     >
-      {data.scenarioList.isPending && <$ProgressBar />}
+      {scenarioList.isPending && <$ProgressBar />}
       <SimpleList
         showDivider
         items={[
@@ -132,7 +133,7 @@ export const ScenarioListPanel = observer((): JSX.Element => {
                 <ScenarioListItem
                   scenario={item}
                   isDraft={id === draftScenario.value?.id}
-                  title={item.data[data.scenearioDataNameKey]}
+                  title={item.data[scenarioDataNameKey]}
                 />
               ),
               onClick() {

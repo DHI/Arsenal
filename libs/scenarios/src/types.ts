@@ -19,7 +19,7 @@ export interface ScenarioJobInstance {
 }
 
 export interface ScenarioInstance<
-  DATA = Record<string, any>,
+  DATA = Record<any, any>,
   JOB extends ScenarioJobInstance = ScenarioJobInstance,
 > {
   id: string;

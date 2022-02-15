@@ -14,7 +14,7 @@ export class ScenariosState<
   activeWipScenario = new StateModel<undefined | SCENARIO>(undefined);
 
   constructor(
-    public config: {
+    private _config: () => {
       behaviour?: {
         canCreateScenarios?: boolean;
         canFilterScenarios?: boolean;
@@ -22,64 +22,62 @@ export class ScenariosState<
         canEditScenarios?: boolean;
         canCloneScenarios?: boolean;
       };
-      data(): {
-        /** Key within scenario.data for the scenario name  */
-        scenearioDataNameKey: keyof SCENARIO['data'];
-        /** Defines the structure of the scenario data when a new scenario is initiated */
-        defaultScenarioData: () => undefined | Partial<SCENARIO['data']>;
-        scenarioSchema: () => FormConfig;
-        activeScenarioId(): undefined | string;
-        setScenario(id: undefined | string): void;
-        activeSection(): undefined | string;
-        setSection(section: undefined | string): void;
-        scenarioList: AsyncValue<undefined | SCENARIO[], any>;
-        createScenario: AsyncValue<any, { scenario: SCENARIO }>;
-        updateScenario: AsyncValue<any, { scenario: SCENARIO }>;
-        deleteScenario: AsyncValue<any, { scenarioId: string }>;
-        jobsList?: AsyncValue<undefined | NonNullable<SCENARIO['job']>[]>;
-        executeJob?: AsyncValue<any, { scenarioId: string }>;
-        cancelJob?: AsyncValue<any, { jobId: string }>;
-      };
+      /** Key within scenario.data for the scenario name  */
+      scenarioDataNameKey: keyof SCENARIO['data'];
+      /** Defines the structure of the scenario data when a new scenario is initiated */
+      defaultScenarioData: () => undefined | Partial<SCENARIO['data']>;
+      scenarioSchema: () => FormConfig;
+      activeScenarioId(): undefined | string;
+      setScenario(id: undefined | string): void;
+      activeSection(): undefined | string;
+      setSection(section: undefined | string): void;
+      scenarioList: AsyncValue<undefined | SCENARIO[], any>;
+      createScenario: AsyncValue<any, { scenario: SCENARIO }>;
+      updateScenario: AsyncValue<any, { scenario: SCENARIO }>;
+      deleteScenario: AsyncValue<any, { scenarioId: string }>;
+      jobsList?: AsyncValue<undefined | NonNullable<SCENARIO['job']>[]>;
+      executeJob?: AsyncValue<any, { scenarioId: string }>;
+      cancelJob?: AsyncValue<any, { jobId: string }>;
     },
   ) {
     makeAutoObservable(this);
   }
 
-  get data() {
-    return this.config.data();
+  get config() {
+    return this._config();
   }
 
   get activeScenarioName() {
-    return this.activeScenario?.data[this.data.scenearioDataNameKey as any] as
+    return this.activeScenario?.data[this.config.scenarioDataNameKey as any] as
       | string
       | undefined;
   }
 
   get activeWipScenarioName() {
     return this.activeWipScenario.value?.data?.[
-      this.data.scenearioDataNameKey as any
+      this.config.scenarioDataNameKey as any
     ] as string | undefined;
   }
 
   get scenarioSchema() {
-    return this.data.scenarioSchema();
+    return this.config.scenarioSchema();
   }
 
   get scenarios() {
-    return this.data.scenarioList.value?.map((s) => ({
+    return this.config.scenarioList.value?.map((s) => ({
       ...s,
-      job: this.data.jobsList?.value?.find(
+      job: this.config.jobsList?.value?.find(
         (j) => j.parameters?.ScenarioId === s.id,
       ),
     }));
   }
 
   get activeScenarioId() {
-    return this.data.activeScenarioId();
+    return this.config.activeScenarioId();
   }
 
   get activeSection() {
-    return this.data.activeSection();
+    return this.config.activeSection();
   }
 
   get activeScenario() {
@@ -122,7 +120,8 @@ export class ScenariosState<
 
   get isPendingCriticalOperation() {
     return (
-      this.data.createScenario.isPending || this.data.updateScenario.isPending
+      this.config.createScenario.isPending ||
+      this.config.updateScenario.isPending
     );
   }
 
@@ -134,10 +133,10 @@ export class ScenariosState<
     return this.activeScenario?.job?.status === ScenarioJobStatus.Completed;
   }
 
-  setScenario = (id: this['activeScenarioId']) => this.data.setScenario(id);
+  setScenario = (id: this['activeScenarioId']) => this.config.setScenario(id);
 
   setSection = (section: this['activeSection']) =>
-    this.data.setSection(section);
+    this.config.setSection(section);
 
   startDraftScenario = () => {
     if (this.draftScenario.value?.id) return;
@@ -147,8 +146,8 @@ export class ScenariosState<
     this.draftScenario.set({
       id: uuid(),
       data: {
-        ...this.data.defaultScenarioData(),
-        [this.data.scenearioDataNameKey]: 'New Scenario',
+        ...this.config.defaultScenarioData(),
+        [this.config.scenarioDataNameKey]: 'New Scenario',
       },
     } as SCENARIO);
 
@@ -170,7 +169,7 @@ export class ScenariosState<
   createScenario = async <S extends SCENARIO>(scenario: S) => {
     const now = new Date();
 
-    await this.data.createScenario.query({
+    await this.config.createScenario.query({
       scenario: {
         ...scenario,
         data: {
@@ -183,13 +182,13 @@ export class ScenariosState<
 
     this.resetActiveScenarioState();
 
-    await this.data.scenarioList.query();
+    await this.config.scenarioList.query();
 
     this.setScenario(scenario.id);
   };
 
   updateScenario = async <S extends SCENARIO>(scenario: S) => {
-    await this.data.updateScenario.query({
+    await this.config.updateScenario.query({
       scenario: {
         ...scenario,
         data: {
@@ -201,13 +200,13 @@ export class ScenariosState<
 
     this.resetActiveScenarioState();
 
-    await this.data.scenarioList.query();
+    await this.config.scenarioList.query();
 
     this.setScenario(scenario.id);
   };
 
   deleteScenario = async (scenarioId: string) => {
-    await this.data.deleteScenario.query({ scenarioId });
+    await this.config.deleteScenario.query({ scenarioId });
 
     await this.fetchScenarioList();
     await this.fetchJobsList();
@@ -227,21 +226,21 @@ export class ScenariosState<
   };
 
   cancelJob = async (jobId: string) => {
-    await this.data.cancelJob?.query({ jobId });
+    await this.config.cancelJob?.query({ jobId });
   };
 
   runScenarioJob = async (scenarioId: string) => {
-    await this.data.executeJob?.query({ scenarioId });
+    await this.config.executeJob?.query({ scenarioId });
     await new Promise((resolve) => setTimeout(resolve, 250));
     await this.fetchJobsList();
   };
 
   fetchJobsList = async () => {
-    await this.data.jobsList?.query();
+    await this.config.jobsList?.query();
   };
 
   fetchScenarioList = async () => {
-    await this.data.scenarioList.query();
+    await this.config.scenarioList.query();
   };
 
   jobsListPollingInterval?: ReturnType<typeof setInterval> = undefined;
@@ -262,6 +261,6 @@ export class ScenariosState<
 }
 
 const { Context: ScenariosStoreContext, use: useScenariosStore } =
-  createContextHook<ScenariosState<ScenarioInstance>>();
+  createContextHook<ScenariosState>();
 
 export { ScenariosStoreContext, useScenariosStore };

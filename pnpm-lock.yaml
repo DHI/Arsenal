@@ -408,10 +408,10 @@ importers:
       '@deck.gl/core': ^8.5.2
       '@deck.gl/layers': ^8.5.2
       '@deck.gl/react': ^8.5.2
-      '@dhi/arsenal.jsonform': '4'
-      '@dhi/arsenal.models': '3'
-      '@dhi/arsenal.scenarios': '2'
-      '@dhi/arsenal.ui': '4'
+      '@dhi/arsenal.jsonform': 5.0.1
+      '@dhi/arsenal.models': 3.2.1
+      '@dhi/arsenal.scenarios': 3.0.1
+      '@dhi/arsenal.ui': 5.0.1
       '@emotion/css': ^11.1.3
       '@emotion/react': 11.4.1
       '@emotion/styled': ^11.3.0
@@ -686,8 +686,8 @@ importers:
       '@bugsnag/js': ^6.5.0
       '@bugsnag/plugin-react': ^6.5.0
       '@date-io/date-fns': ^1.1.0
-      '@dhi/arsenal.bmpgenerator': 1.0.4
-      '@dhi/arsenal.models': ^3.1.0
+      '@dhi/arsenal.bmpgenerator': 1.0.6
+      '@dhi/arsenal.models': ^3.2.1
       '@emotion/react': ^11.4.1
       '@emotion/styled': ^11.3.0
       '@headlessui/react': ^0.2.0
@@ -1076,10 +1076,10 @@ importers:
 
   submodules/apps/spt-fe:
     specifiers:
-      '@dhi/arsenal.jsonform': ^4.0.0
-      '@dhi/arsenal.models': ^3.1.0
-      '@dhi/arsenal.scenarios': ^2.0.0
-      '@dhi/arsenal.ui': ^4.0.0
+      '@dhi/arsenal.jsonform': ^5.0.0
+      '@dhi/arsenal.models': ^3.2.1
+      '@dhi/arsenal.scenarios': ^3.0.1
+      '@dhi/arsenal.ui': ^5.0.1
       '@emotion/babel-plugin': ^11.3.0
       '@emotion/css': ^11.1.3
       '@emotion/react': ^11.5.0
@@ -1187,7 +1187,7 @@ importers:
     specifiers:
       '@chakra-ui/icons': ^1.1.5
       '@chakra-ui/react': ^1.8.3
-      '@dhi/arsenal.models': ^3.1.0
+      '@dhi/arsenal.models': ^3.2.0
       '@emotion/css': ^11.7.1
       '@emotion/react': ^11.7.1
       '@emotion/styled': ^11.6.0

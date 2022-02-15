@@ -5,7 +5,10 @@ import { IconButton, Tab, Tabs } from '@mui/material';
 import { CloseIcon, $Col, $Row } from '@dhi/arsenal.ui/x/components';
 import { pascalCase } from 'change-case';
 import { ReactNode, useCallback, useEffect } from 'react';
-import { ScenarioConfigEditor } from './editor/ScenarioConfigEditor';
+import {
+  ConfigEditorProps,
+  ScenarioConfigEditor,
+} from './editor/ScenarioConfigEditor';
 import { ScenarioClasses } from './types';
 
 export const ActiveScenarioPanel = observer<{
@@ -13,18 +16,18 @@ export const ActiveScenarioPanel = observer<{
   sections?: ActiveScenarioSectionsInput;
   /** The section is set to this when the active scenario changes */
   /** Form config editor operations */
-  operations?: import('@dhi/arsenal.jsonform').Operations;
+  editor?: ConfigEditorProps;
   defaultSection?: string;
   append?: ReactNode;
-}>(({ sections = {}, append, operations, defaultSection }) => {
+}>(({ sections = {}, append, editor, defaultSection }) => {
   const { activeScenario, activeSection, setScenario, setSection } =
     useScenariosStore();
 
   const ConfigEditorComponent = useCallback(
     function SCE() {
-      return <ScenarioConfigEditor operations={operations} />;
+      return <ScenarioConfigEditor editor={editor} />;
     },
-    [operations],
+    [editor],
   );
 
   const sectionComponents = {

@@ -1,7 +1,7 @@
-import { FormConfigEditor, Operations } from '@dhi/arsenal.jsonform';
+import { FormConfigEditor } from '@dhi/arsenal.jsonform';
 import { useScenariosStore } from '../__state/ScenariosState';
 import { ButtonGroup } from '@mui/material';
-import { observer, css } from '@dhi/arsenal.ui';
+import { observer, css, PropsOf } from '@dhi/arsenal.ui';
 import {
   $Col,
   DeleteIcon,
@@ -10,9 +10,11 @@ import {
 } from '@dhi/arsenal.ui/x/components';
 import { useEffect } from 'react';
 
+export type ConfigEditorProps = Partial<PropsOf<typeof FormConfigEditor>>;
+
 export const ScenarioConfigEditor = observer<{
-  operations?: Operations;
-}>(({ operations }) => {
+  editor?: ConfigEditorProps;
+}>(({ editor = {} }) => {
   const {
     activeScenario,
     isActiveScenarioADraft,
@@ -53,12 +55,20 @@ export const ScenarioConfigEditor = observer<{
             padding: 0.5em 1em;
           }
         `}
-        onData={(data) => activeWipScenario.set(data as any)}
+        {...editor}
+        onData={(data) => {
+          activeWipScenario.set({
+            ...activeWipScenario.value as any,
+            data
+          })
+          
+          editor.onData?.(data);
+        }}
         data={activeScenario.data}
         form={scenarioSchema}
         validation={{
-          // todo: pass through config
           disabled: true,
+          ...(editor.validation ?? {}),
         }}
         operations={{
           onDiscard: resetActiveScenarioState,
@@ -68,7 +78,7 @@ export const ScenarioConfigEditor = observer<{
 
             updateScenario({ ...activeScenario, data });
           },
-          ...operations,
+          ...(editor.operations ?? {}),
         }}
       />
       {showConfigActionBar && (
