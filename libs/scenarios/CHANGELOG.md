@@ -1,5 +1,15 @@
 # @dhi/arsenal.scenarios
 
+## 4.0.1
+
+### Patch Changes
+
+- npm ignore
+- Updated dependencies [undefined]
+  - @dhi/arsenal.jsonform@5.0.2
+  - @dhi/arsenal.models@3.2.2
+  - @dhi/arsenal.ui@5.0.2
+
 ## 4.0.0
 
 ### Major Changes

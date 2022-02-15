@@ -1,5 +1,11 @@
 # @dhi/arsenal.models
 
+## 3.2.2
+
+### Patch Changes
+
+- npm ignore
+
 ## 3.2.1
 
 ### Patch Changes

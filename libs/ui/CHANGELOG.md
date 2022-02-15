@@ -1,5 +1,13 @@
 # @dhi/arsenal.ui
 
+## 5.0.2
+
+### Patch Changes
+
+- npm ignore
+- Updated dependencies [undefined]
+  - @dhi/arsenal.models@3.2.2
+
 ## 5.0.1
 
 ### Patch Changes
