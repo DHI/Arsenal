@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 4.0.0
+
+### Major Changes
+
+- Alpha updates
+
 ## 3.0.1
 
 ### Patch Changes
