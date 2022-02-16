@@ -8,10 +8,11 @@ import { $Row } from '@dhi/arsenal.ui/x/components';
 type Props = PropsOf<typeof ActiveScenarioPanel> & {
   className?: string;
   appendAfterScenarioPanel?: ReactNode;
+  muiTheme?: Record<any, any>;
 };
 
 export const ScenariosPanels = observer<Props>(
-  ({ className, appendAfterScenarioPanel, ...props }) => {
+  ({ className, appendAfterScenarioPanel, muiTheme, ...props }) => {
     const { fetchJobsList, fetchScenarioList, startPollingJobsList } =
       useScenariosStore();
 
