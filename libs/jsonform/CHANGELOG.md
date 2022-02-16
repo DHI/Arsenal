@@ -1,5 +1,11 @@
 # @dhi/arsenal.jsonform
 
+## 5.1.0
+
+### Minor Changes
+
+- MUI ver bump
+
 ## 5.0.2
 
 ### Patch Changes

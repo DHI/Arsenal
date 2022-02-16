@@ -1,5 +1,16 @@
 # @dhi/arsenal.scenarios
 
+## 5.0.0
+
+### Minor Changes
+
+- MUI ver bump
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @dhi/arsenal.jsonform@5.1.0
+
 ## 4.0.1
 
 ### Patch Changes
