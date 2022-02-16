@@ -58,10 +58,10 @@ export const ScenarioConfigEditor = observer<{
         {...editor}
         onData={(data) => {
           activeWipScenario.set({
-            ...activeWipScenario.value as any,
-            data
-          })
-          
+            ...(activeWipScenario.value as any),
+            data,
+          });
+
           editor.onData?.(data);
         }}
         data={activeScenario.data}

@@ -5,37 +5,39 @@ import { ActiveScenarioPanel } from './ActiveScenarioPanel';
 import { observer, css, PropsOf } from '@dhi/arsenal.ui';
 import { $Row } from '@dhi/arsenal.ui/x/components';
 
-export const ScenariosPanels = observer<
-  PropsOf<typeof ActiveScenarioPanel> & {
-    className?: string;
-    appendAfterScenarioPanel?: ReactNode;
-  }
->(({ className, appendAfterScenarioPanel, ...props }) => {
-  const { fetchJobsList, fetchScenarioList, startPollingJobsList } =
-    useScenariosStore();
+type Props = PropsOf<typeof ActiveScenarioPanel> & {
+  className?: string;
+  appendAfterScenarioPanel?: ReactNode;
+};
 
-  useEffect(() => {
-    fetchScenarioList();
-    fetchJobsList();
-    startPollingJobsList();
-  }, []);
+export const ScenariosPanels = observer<Props>(
+  ({ className, appendAfterScenarioPanel, ...props }) => {
+    const { fetchJobsList, fetchScenarioList, startPollingJobsList } =
+      useScenariosStore();
 
-  return (
-    <$Row
-      css={css`
-        align-items: stretch;
-        z-index: 1;
-      `}
-      {...{ className }}
-    >
-      <ScenarioListPanel />
-      <div
+    useEffect(() => {
+      fetchScenarioList();
+      fetchJobsList();
+      startPollingJobsList();
+    }, []);
+
+    return (
+      <$Row
         css={css`
-          position: relative;
+          align-items: stretch;
+          z-index: 1;
         `}
+        {...{ className }}
       >
-        <ActiveScenarioPanel append={appendAfterScenarioPanel} {...props} />
-      </div>
-    </$Row>
-  );
-});
+        <ScenarioListPanel />
+        <div
+          css={css`
+            position: relative;
+          `}
+        >
+          <ActiveScenarioPanel append={appendAfterScenarioPanel} {...props} />
+        </div>
+      </$Row>
+    );
+  },
+);
