@@ -22,19 +22,16 @@ export const ActiveScenarioPanel = observer<{
 }>(({ sections = {}, append, editor, defaultSection }) => {
   const { activeScenario, activeSection, setScenario, setSection } =
     useScenariosStore();
-
   const ConfigEditorComponent = useCallback(
     function SCE() {
       return <ScenarioConfigEditor editor={editor} />;
     },
     [editor],
   );
-
   const sectionComponents = {
     [DefaultSections.Config]: ConfigEditorComponent,
     ...sections,
   };
-
   const Section =
     sectionComponents[activeSection as keyof typeof sectionComponents];
 
@@ -49,6 +46,11 @@ export const ActiveScenarioPanel = observer<{
 
     setSection(defaultSection);
   }, [activeScenario?.id, defaultSection, activeSection]);
+
+  useEffect(() => {
+    if (activeSection && !(activeSection in sectionComponents))
+      setSection(DefaultSections.Config);
+  }, [activeScenario?.id, activeSection]);
 
   return (
     <$Row
