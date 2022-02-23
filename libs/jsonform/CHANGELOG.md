@@ -1,5 +1,11 @@
 # @dhi/arsenal.jsonform
 
+## 5.2.0
+
+### Minor Changes
+
+- Add oneOf enum support to jsonForm
+
 ## 5.1.0
 
 ### Minor Changes

@@ -1,5 +1,16 @@
 # @dhi/arsenal.scenarios
 
+## 6.0.0
+
+### Minor Changes
+
+- Add oneOf enum support to jsonForm
+
+### Patch Changes
+
+- Updated dependencies [undefined]
+  - @dhi/arsenal.jsonform@5.2.0
+
 ## 5.0.0
 
 ### Minor Changes
