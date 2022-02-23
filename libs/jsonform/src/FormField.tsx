@@ -42,7 +42,7 @@ import {
   FieldKinds,
   FormConfig,
   RootFieldKinds,
-  SelectInputSchema,
+  SelectEnumInputSchema,
 } from './types';
 
 export { JsonPointer };
@@ -56,17 +56,16 @@ export const FormField = observer<{
   switch (field.kind) {
     case 'field': {
       const pointer = parent.concat(field.pointer);
-
       const { errors, isValid = true } =
         state.fieldValidation.get(pointer.pointer) ?? {};
       const value = state.getState<string | undefined>(pointer);
       const isDisabled = field.layout?.disabled === true;
-
       const fieldType = (() => {
         if (field.layout?.hidden) return 'hidden';
         if (field.layout?.variant) return field.layout?.variant;
 
-        if ('enum' in field.schema) return 'enum' as const;
+        if ('enum' in field.schema || 'oneOf' in field.schema)
+          return 'selection' as const;
         if (field.schema.type === 'boolean') return 'checkbox' as const;
         if (field.schema.type === 'number') return 'number' as const;
 
@@ -77,7 +76,17 @@ export const FormField = observer<{
         case 'hidden':
           return <></>;
 
-        case 'enum': {
+        case 'selection': {
+          const options =
+            'oneOf' in field.schema
+              ? field.schema.oneOf.map((o) => ({
+                  label: o.description ?? o.const,
+                  value: o.const,
+                }))
+              : (field.schema as SelectEnumInputSchema).enum.map((o) => ({
+                  label: o,
+                  value: o,
+                }));
           const selectId = `${pointer.pointer}`;
 
           return (
@@ -117,9 +126,9 @@ export const FormField = observer<{
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  {(field.schema as SelectInputSchema).enum.map((v) => (
-                    <MenuItem key={v} value={v}>
-                      {v.toString()}
+                  {options.map(({ label, value }) => (
+                    <MenuItem key={value} value={value}>
+                      {label.toString()}
                     </MenuItem>
                   ))}
                 </Select>
@@ -271,11 +280,9 @@ export const FormField = observer<{
       const primaryCheckboxField = field.fields.find(
         (f) => f.kind === 'field' && f.layout?.variant === 'primaryCheckbox',
       ) as undefined | Field;
-
       const filteredFields = field.fields.filter(
         (v) => v !== primaryCheckboxField,
       );
-
       const body = (() => {
         const elements = filteredFields.map((f, i) => (
           <FormField
@@ -389,11 +396,9 @@ export const FormField = observer<{
           </Grid>
           {rows.map((row, rowIndex) => {
             const rowPointer = pointer.concat(`/${rowIndex.toString()}`);
-
             const primaryText = field.fields.find(
               (f) => f.kind === 'field' && f.layout?.variant === 'primaryText',
             ) as undefined | Field;
-
             const primaryTextValue: string | undefined = primaryText
               ? state.getState(rowPointer.concat(primaryText.pointer))
               : undefined;
@@ -572,7 +577,6 @@ export function validateSchema(schema: Schema, value: any) {
 }
 
 const GridRow = (p: PropsOf<typeof Grid>) => <Grid container {...p} />;
-
 const $GroupRow = styled(GridRow)`
   position: relative;
   border: 2px solid
@@ -713,7 +717,6 @@ const GroupHeading = observer<{
     </$Row>
   );
 });
-
 const CollapsableGrouping = observer<{
   collapsing?: CollapseOptions;
   heading?: {
@@ -725,7 +728,6 @@ const CollapsableGrouping = observer<{
   className?: string;
 }>(({ collapsing, heading, children, className }) => {
   const isCollapseDisabled = !collapsing || collapsing === 'disabled';
-
   const isCollapsed = useMemo(
     () =>
       new BooleanModel(
@@ -735,7 +737,6 @@ const CollapsableGrouping = observer<{
       ),
     [],
   );
-
   const hasTitle = !!heading?.title;
 
   return (
@@ -780,7 +781,6 @@ const CollapsableGrouping = observer<{
     </$GroupRow>
   );
 });
-
 const $Collapse = styled(Collapse)`
   width: 100%;
 `;

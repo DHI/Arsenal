@@ -190,15 +190,21 @@ interface BaseInputSchema {
   default?: any;
 }
 
-export interface SelectInputSchema extends BaseInputSchema {
+export interface SelectEnumInputSchema extends BaseInputSchema {
   type: 'string';
   enum: (string | number)[];
 }
 
-export interface MultiSelectInputSchema extends BaseInputSchema {
-  type: 'array';
-  items: SelectInputSchema[];
+export interface SelectOneOfInputSchema extends BaseInputSchema {
+  type: 'string';
+  oneOf: {
+    const: string | number;
+    /** Used as label */
+    description?: string;
+  }[];
 }
+
+export type SelectInputSchemas = SelectEnumInputSchema | SelectOneOfInputSchema;
 
 export interface TextInputSchema extends BaseInputSchema {
   type: 'string';
@@ -217,8 +223,7 @@ export interface BooleanInputSchema extends BaseInputSchema {
 }
 
 export type FormJSONSchema =
-  | SelectInputSchema
-  | MultiSelectInputSchema
+  | SelectInputSchemas
   | TextInputSchema
   | NumberInputSchema
   | BooleanInputSchema;
