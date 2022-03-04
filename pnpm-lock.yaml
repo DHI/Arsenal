@@ -425,6 +425,7 @@ importers:
       '@types/json-pointer': ^1.0.31
       '@types/loadable__component': ^5.13.3
       '@types/lodash-es': ^4.17.4
+      '@types/luxon': ^2.0.9
       '@types/nanoid': ^3.0.0
       '@types/react': 17.0.24
       '@types/react-dom': ^17.0.7
@@ -447,6 +448,7 @@ importers:
       json-ptr: ^2.2.0
       localforage: ^1.9.0
       lodash-es: ^4.17.21
+      luxon: ^2.3.0
       mapbox-gl: 2.3.0
       math.gl: ^3.5.4
       mobx: 6.3.3
@@ -492,6 +494,7 @@ importers:
       '@types/geojson': 7946.0.8
       '@types/json-pointer': 1.0.31
       '@types/loadable__component': 5.13.4
+      '@types/luxon': 2.0.9
       '@types/nanoid': 3.0.0
       '@types/uuid': 8.3.1
       '@zip.js/zip.js': 2.3.18
@@ -509,6 +512,7 @@ importers:
       json-ptr: 2.2.0
       localforage: 1.10.0
       lodash-es: 4.17.21
+      luxon: 2.3.0
       mapbox-gl: 2.3.0
       math.gl: 3.5.5
       mobx: 6.3.3
@@ -10938,6 +10942,10 @@ packages:
 
   /@types/long/4.0.1:
     resolution: {integrity: sha512-5tXH6Bx/kNGd3MgffdmP4dy2Z+G4eaXw0SE81Tq3BNadtnMR5/ySMzX4SLEzHJzSmPNn4HIdpQsBvXMUykr58w==}
+    dev: false
+
+  /@types/luxon/2.0.9:
+    resolution: {integrity: sha512-ZuzIc7aN+i2ZDMWIiSmMdubR9EMMSTdEzF6R+FckP4p6xdnOYKqknTo/k+xXQvciSXlNGIwA4OPU5X7JIFzYdA==}
     dev: false
 
   /@types/mapbox-gl/2.4.2:
@@ -23541,6 +23549,11 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+
+  /luxon/2.3.0:
+    resolution: {integrity: sha512-gv6jZCV+gGIrVKhO90yrsn8qXPKD8HYZJtrUDSfEbow8Tkw84T9OnCyJhWvnJIaIF/tBuiAjZuQHUt1LddX2mg==}
+    engines: {node: '>=12'}
+    dev: false
 
   /lz-string/1.4.4:
     resolution: {integrity: sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY=}
