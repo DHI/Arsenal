@@ -35,11 +35,15 @@ export const ActiveScenarioPanel = observer<{
     [DefaultSections.Config]: ConfigEditorComponent,
     ...sections,
   };
-  const Section =
-    sectionComponents[activeSection as keyof typeof sectionComponents];
+  type SectionKeys = keyof typeof sectionComponents;
+  const validSectionKeys = Object.entries(sectionComponents)
+    .filter(([key, value]) => !!value)
+    .map(([k]) => k);
+  const Section = sectionComponents[activeSection as SectionKeys];
 
   useEffect(() => {
-    if (activeSection && activeSection in sectionComponents) return;
+    if (activeSection && sectionComponents[activeSection as SectionKeys])
+      return;
     if (!defaultSection) return;
     if (!activeScenario?.id) {
       setSection(undefined);
@@ -51,8 +55,8 @@ export const ActiveScenarioPanel = observer<{
   }, [activeScenario?.id, defaultSection, activeSection]);
 
   useEffect(() => {
-    if (activeSection && !(activeSection in sectionComponents))
-      setSection(DefaultSections.Config);
+    if (activeSection && !sectionComponents[activeSection as SectionKeys])
+      setSection(undefined);
   }, [activeScenario?.id, activeSection]);
 
   return (
@@ -86,7 +90,7 @@ export const ActiveScenarioPanel = observer<{
               align-items: flex-start;
             `}
           >
-            <ScenarioSectionsTabs tabs={Object.keys(sections)} />
+            <ScenarioSectionsTabs tabs={validSectionKeys} />
             <IconButton
               css={css`
                 && {
@@ -116,7 +120,7 @@ export const ActiveScenarioPanel = observer<{
 });
 
 export type ActiveScenarioSectionsInput = {
-  [k: string]: () => JSX.Element;
+  [k: string]: false | (() => JSX.Element);
 };
 
 export enum DefaultSections {
@@ -132,7 +136,7 @@ const ScenarioSectionsTabs = observer<{
   return (
     <$Row>
       <Tabs value={activeSection ?? ''} onChange={(_, v) => setSection(v)}>
-        {[DefaultSections.Config, ...tabs].map((key) => (
+        {[...tabs].map((key) => (
           <Tab key={key} value={key} label={pascalCase(key)} />
         ))}
         <Tab hidden value="" />
