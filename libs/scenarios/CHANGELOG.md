@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 6.2.0
+
+### Minor Changes
+
+- Fix issues in previous rls
+
 ## 6.1.0
 
 ### Minor Changes
