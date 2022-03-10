@@ -4,7 +4,7 @@ import { SidebarPanel } from './__common/SidebarPanel';
 import { IconButton, Tab, Tabs } from '@mui/material';
 import { CloseIcon, $Col, $Row } from '@dhi/arsenal.ui/x/components';
 import { pascalCase } from 'change-case';
-import { ReactNode, useCallback, useEffect } from 'react';
+import { ReactNode, Ref, useCallback, useEffect } from 'react';
 import {
   ConfigEditorProps,
   ScenarioConfigEditor,
@@ -19,7 +19,10 @@ export const ActiveScenarioPanel = observer<{
   editor?: ConfigEditorProps;
   defaultSection?: string;
   append?: ReactNode;
-}>(({ sections = {}, append, editor, defaultSection }) => {
+  refs?: {
+    detailsPanel?: Ref<any>;
+  };
+}>(({ sections = {}, append, editor, defaultSection, refs }) => {
   const { activeScenario, activeSection, setScenario, setSection } =
     useScenariosStore();
   const ConfigEditorComponent = useCallback(
@@ -54,6 +57,7 @@ export const ActiveScenarioPanel = observer<{
 
   return (
     <$Row
+      ref={refs?.detailsPanel}
       css={css`
         position: absolute;
         height: 100%;
