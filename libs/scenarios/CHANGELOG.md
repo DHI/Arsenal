@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 6.1.0
+
+### Minor Changes
+
+- Add refs to panels
+
 ## 6.0.0
 
 ### Minor Changes
