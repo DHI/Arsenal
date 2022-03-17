@@ -1,4 +1,4 @@
-import { InputAdornment, TextField } from '@mui/material';
+import { Checkbox, InputAdornment, TextField } from '@mui/material';
 import { observer, css } from '@dhi/arsenal.ui';
 import { SidebarPanel } from './__common/SidebarPanel';
 import {
@@ -12,8 +12,18 @@ import { useScenariosStore } from './__state/ScenariosState';
 import { ScenarioListItem } from './__common/ScenarioListItem';
 import { ScenarioClasses } from './types';
 import { $ProgressBar } from './__common/$ProgressBar';
+import { ScenarioInstance } from '.';
 
-export const ScenarioListPanel = observer((): JSX.Element => {
+export const ScenarioListPanel = observer<{
+  /** When `true` list items cannot be clicked */
+  isSelectingDisabled?: boolean;
+  checkboxes?: {
+    isCheckable?(scenario: ScenarioInstance): boolean;
+    enabled?: boolean;
+    checkedIds?: string[];
+    onChecked?(id: string, checked: boolean): void;
+  };
+}>(({ checkboxes, isSelectingDisabled }): JSX.Element => {
   const {
     scenarioListSearchText,
     draftScenario,
@@ -21,7 +31,6 @@ export const ScenarioListPanel = observer((): JSX.Element => {
     activeScenario,
     startDraftScenario,
     setScenario,
-
     config: {
       behaviour: { canFilterScenarios = true, canCreateScenarios = true } = {},
       scenarioDataNameKey,
@@ -119,10 +128,21 @@ export const ScenarioListPanel = observer((): JSX.Element => {
             const { item } = s;
             const { id } = item;
             const isActive = id === activeScenario?.id;
+            const isChecked = checkboxes?.checkedIds?.includes(item.id);
 
             return {
               id,
-              icon: (
+              icon: checkboxes?.enabled ? (
+                <Checkbox
+                  disabled={
+                    isChecked ? false : !checkboxes.isCheckable?.(item) ?? true
+                  }
+                  checked={isChecked}
+                  onChange={(e, checked) =>
+                    checkboxes?.onChecked?.(item.id, checked)
+                  }
+                />
+              ) : (
                 <ConfigIcon
                   css={css`
                     opacity: 0.5;
@@ -136,9 +156,7 @@ export const ScenarioListPanel = observer((): JSX.Element => {
                   title={item.data[scenarioDataNameKey]}
                 />
               ),
-              onClick() {
-                setScenario(id);
-              },
+              onClick: isSelectingDisabled ? undefined : () => setScenario(id),
               isSelected: isActive,
               arrow: 'right' as const,
             };

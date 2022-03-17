@@ -12,10 +12,18 @@ type Props = PropsOf<typeof ActiveScenarioPanel> & {
   refs?: {
     mainPanel?: Ref<any>;
   };
+  listing?: PropsOf<typeof ScenarioListPanel>;
 };
 
 export const ScenariosPanels = observer<Props>(
-  ({ className, appendAfterScenarioPanel, muiTheme, refs, ...props }) => {
+  ({
+    className,
+    appendAfterScenarioPanel,
+    muiTheme,
+    refs,
+    listing,
+    ...props
+  }) => {
     const { fetchJobsList, fetchScenarioList, startPollingJobsList } =
       useScenariosStore();
 
@@ -34,7 +42,7 @@ export const ScenariosPanels = observer<Props>(
         ref={refs?.mainPanel}
         {...{ className }}
       >
-        <ScenarioListPanel />
+        <ScenarioListPanel {...listing} />
         <div
           css={css`
             position: relative;

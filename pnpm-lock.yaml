@@ -404,7 +404,7 @@ importers:
       '@deck.gl/react': ^8.6.8
       '@dhi/arsenal.jsonform': 5.2.0
       '@dhi/arsenal.models': 3.2.2
-      '@dhi/arsenal.scenarios': 6.0.0
+      '@dhi/arsenal.scenarios': 6.2.0
       '@dhi/arsenal.ui': 5.0.2
       '@emotion/css': ^11.7.1
       '@emotion/react': ^11.7.1
@@ -462,6 +462,7 @@ importers:
       react-map-gl: 6.1.16
       react-player: ^2.9.0
       react-refresh: 0.11.0
+      react-use-measure: ^2.1.1
       rimraf: ^3.0.2
       story-browser: ^2.1.0
       typescript: ^4.3.5
@@ -526,6 +527,7 @@ importers:
       react-map-gl: 6.1.16_react@17.0.2
       react-player: 2.9.0_react@17.0.2
       react-refresh: 0.11.0
+      react-use-measure: 2.1.1_react-dom@17.0.2+react@17.0.2
       story-browser: 2.1.0_152e7e799885aa8e2c90f8240d94e04e
       uuid: 8.3.2
       xroute: 6.0.1_history@5.0.1
@@ -1301,13 +1303,16 @@ packages:
       zen-observable: 0.8.15
     dev: false
 
-  /@apollo/client/3.5.9_graphql@14.1.1+react@17.0.2:
-    resolution: {integrity: sha512-Qq3OE3GpyPG2fYXBzi1n4QXcKZ11c6jHdrXK2Kkn9SD+vUymSrllXsldqnKUK9tslxKqkKzNrkCXkLv7PxwfSQ==}
+  /@apollo/client/3.5.10_graphql@14.1.1+react@17.0.2:
+    resolution: {integrity: sha512-tL3iSpFe9Oldq7gYikZK1dcYxp1c01nlSwtsMz75382HcI6fvQXyFXUCJTTK3wgO2/ckaBvRGw7VqjFREdVoRw==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+      graphql-ws: ^5.5.5
       react: ^16.8.0 || ^17.0.0
       subscriptions-transport-ws: ^0.9.0 || ^0.11.0
     peerDependenciesMeta:
+      graphql-ws:
+        optional: true
       react:
         optional: true
       subscriptions-transport-ws:
@@ -1352,9 +1357,10 @@ packages:
   /@apollo/react-hoc/4.0.0_graphql@14.1.1+react@17.0.2:
     resolution: {integrity: sha512-+DgmqWRLkdlFk5jq11xJdVzb014TiTvr0K+E9CL1ioJpr85d7XIVycUwcYqb2acjeMbDF0V7G8VGiAVgkSkZKA==}
     dependencies:
-      '@apollo/client': 3.5.9_graphql@14.1.1+react@17.0.2
+      '@apollo/client': 3.5.10_graphql@14.1.1+react@17.0.2
     transitivePeerDependencies:
       - graphql
+      - graphql-ws
       - react
       - subscriptions-transport-ws
     dev: false

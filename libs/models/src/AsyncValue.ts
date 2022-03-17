@@ -38,14 +38,13 @@ import {
 export class AsyncValue<VALUE extends any, PAYLOAD extends any = any> {
   constructor(
     private _query: (payload: PAYLOAD) => Promise<VALUE>,
-    {
-      value,
-      valueAnnotation = observable,
-    }: {
+    private config: {
       value?: VALUE;
       valueAnnotation?: AnnotationMapEntry;
     } = {},
   ) {
+    const { value, valueAnnotation = observable } = config;
+
     this.value = value;
 
     makeObservable(this, {
@@ -92,6 +91,11 @@ export class AsyncValue<VALUE extends any, PAYLOAD extends any = any> {
 
     return this;
   }
+
+  /** Clones this instance allowing seperate values to be stored with the same configuration */
+  clone = () => {
+    return new AsyncValue(this._query, this.config);
+  };
 
   /** Sets the value */
   set(value: this['value']) {

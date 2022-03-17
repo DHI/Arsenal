@@ -19,7 +19,6 @@ export const ScenarioListItem = observer<{
     scenario.job?.status === ScenarioJobStatus.Pending
       ? 'indeterminate'
       : 'determinate';
-
   const statusKind = (() => {
     if (isError) return 'error';
     if (isPending) return 'pending';
