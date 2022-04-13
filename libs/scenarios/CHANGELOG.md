@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 7.1.0
+
+### Minor Changes
+
+- Add job api stream consumer & notitifications
+
 ## 7.0.0
 
 ### Minor Changes
