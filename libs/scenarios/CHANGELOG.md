@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 7.2.0
+
+### Minor Changes
+
+- Force jobStatus.method config as required
+
 ## 7.1.0
 
 ### Minor Changes
