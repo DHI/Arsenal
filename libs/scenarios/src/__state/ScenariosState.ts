@@ -30,8 +30,8 @@ export class ScenariosState<
         canDeleteScenarios?: boolean;
         canEditScenarios?: boolean;
         canCloneScenarios?: boolean;
-        jobStatus?: {
-          method?: 'polling' | 'websockets' | 'disabled';
+        jobStatus: {
+          method: 'polling' | 'websockets' | 'disabled';
         };
       };
       /** Key within scenario.data for the scenario name  */
