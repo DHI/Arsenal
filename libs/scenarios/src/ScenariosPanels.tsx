@@ -24,13 +24,13 @@ export const ScenariosPanels = observer<Props>(
     listing,
     ...props
   }) => {
-    const { fetchJobsList, fetchScenarioList, startPollingJobsList } =
+    const { fetchJobsList, fetchScenarioList, listenForJobUpdates } =
       useScenariosStore();
 
     useEffect(() => {
       fetchScenarioList();
       fetchJobsList();
-      startPollingJobsList();
+      listenForJobUpdates();
     }, []);
 
     return (

@@ -4,7 +4,13 @@ import Fuse from 'fuse.js';
 import { makeAutoObservable, toJS } from 'mobx';
 import { v4 as uuid } from 'uuid';
 import { createContextHook } from '@dhi/arsenal.ui/x/components';
-import { ScenarioInstance, ScenarioJobStatus } from '../types';
+import {
+  ScenarioInstance,
+  ScenarioJobInstance,
+  ScenarioJobStatus,
+} from '../types';
+import { NoticesModel } from './__models/NoticesModel';
+import { ScenarioJobStreamModel } from './__models/ScenarioJobStreamModel';
 
 export class ScenariosState<
   SCENARIO extends ScenarioInstance = ScenarioInstance,
@@ -12,6 +18,9 @@ export class ScenariosState<
   scenarioListSearchText = new StateModel<string | undefined>(undefined);
   draftScenario = new StateModel<undefined | SCENARIO>(undefined);
   activeWipScenario = new StateModel<undefined | SCENARIO>(undefined);
+  notices = new NoticesModel<ScenarioNoticeKinds>();
+  jobsListPollingInterval?: ReturnType<typeof setInterval> = undefined;
+  jobsListPollingDelay? = 5000;
 
   constructor(
     private _config: () => {
@@ -21,6 +30,9 @@ export class ScenariosState<
         canDeleteScenarios?: boolean;
         canEditScenarios?: boolean;
         canCloneScenarios?: boolean;
+        jobStatus?: {
+          method?: 'polling' | 'websockets' | 'disabled';
+        };
       };
       /** Key within scenario.data for the scenario name  */
       scenarioDataNameKey: keyof SCENARIO['data'];
@@ -38,6 +50,8 @@ export class ScenariosState<
       jobsList?: AsyncValue<undefined | NonNullable<SCENARIO['job']>[]>;
       executeJob?: AsyncValue<any, { scenarioId: string }>;
       cancelJob?: AsyncValue<any, { jobId: string }>;
+      jobStatusStreamUrl?: () => string;
+      authToken: () => undefined | string;
     },
   ) {
     makeAutoObservable(this);
@@ -94,7 +108,7 @@ export class ScenariosState<
 
     if (status)
       return [ScenarioJobStatus.InProgress, ScenarioJobStatus.Pending].includes(
-        status,
+        status.toUpperCase() as any,
       );
   }
 
@@ -130,7 +144,10 @@ export class ScenariosState<
   }
 
   get activeScenarioIsComplete() {
-    return this.activeScenario?.job?.status === ScenarioJobStatus.Completed;
+    return (
+      this.activeScenario?.job?.status.toUpperCase() ===
+      ScenarioJobStatus.Completed
+    );
   }
 
   setScenario = (id: this['activeScenarioId']) => this.config.setScenario(id);
@@ -243,11 +260,27 @@ export class ScenariosState<
     await this.config.scenarioList.query();
   };
 
-  jobsListPollingInterval?: ReturnType<typeof setInterval> = undefined;
-  jobsListPollingDelay? = 5000;
+  listenForJobUpdates = async () => {
+    switch (this.config.behaviour?.jobStatus?.method) {
+      case 'polling':
+        return this.startPollingJobsList();
+
+      case 'websockets': {
+        const stream = await this.consumeJobStream();
+
+        this.emitNotificationsForJobStream(stream);
+      }
+
+      default: {
+        // ..
+      }
+    }
+  };
 
   startPollingJobsList = () => {
     this.stopPollingJobsList();
+
+    if (this.config.behaviour?.jobStatus?.method !== 'polling') return;
 
     this.jobsListPollingInterval = setInterval(
       () => this.fetchJobsList(),
@@ -258,9 +291,142 @@ export class ScenariosState<
   stopPollingJobsList = () => {
     clearInterval(this.jobsListPollingInterval!);
   };
+
+  emitNotificationsForJobStream = async (
+    stream?: ScenarioJobStreamModel<SCENARIO>,
+  ) => {
+    if (!stream) return;
+
+    stream.onJobAdded((job) => {
+      this.notices.add({
+        content: {
+          kind: 'jobAdded',
+          job,
+        },
+        timeout: 5000,
+      });
+    });
+
+    stream.onJobUpdated((job) => {
+      if (job.status.toUpperCase() === ScenarioJobStatus.InProgress) return;
+      if (job.status.toUpperCase() === ScenarioJobStatus.Pending) return;
+
+      this.notices.add({
+        content: {
+          kind: 'jobUpdated',
+          job,
+        },
+        timeout: 5000,
+      });
+    });
+
+    stream.onScenarioAdded((scenario) => {
+      this.notices.add({
+        content: {
+          kind: 'scenarioAdded',
+          scenario,
+        },
+        timeout: 5000,
+      });
+    });
+  };
+
+  setJobInScenarioList = (updatedJob: SCENARIO['job']) => {
+    if (!updatedJob || !this.config.jobsList) return;
+
+    const existingIndex = this.config.jobsList?.value?.findIndex(
+      (j) => j.parameters?.ScenarioId === updatedJob.parameters?.ScenarioId,
+    );
+
+    // TODO: seems to causing unecessary refreshes in results reactions
+
+    if (existingIndex != null)
+      this.config.jobsList.set(
+        this.config.jobsList.value!.map((j) => {
+          if (j.parameters?.ScenarioId === updatedJob.parameters?.ScenarioId)
+            return updatedJob!;
+
+          return j;
+        }),
+      );
+    else
+      this.config.jobsList.set([
+        ...(this.config.jobsList.value ?? []),
+        updatedJob!,
+      ]);
+  };
+
+  setInScenarioList = (scenario: SCENARIO) => {
+    const existingIndex = this.config.scenarioList.value?.findIndex(
+      (s) => s.id === scenario.id,
+    );
+
+    if (existingIndex != null && existingIndex !== -1) {
+      const prevScenario = this.config.scenarioList.value![existingIndex];
+
+      this.config.scenarioList.value?.splice(existingIndex, 1, {
+        ...prevScenario,
+        ...scenario,
+      });
+    } else {
+      this.config.scenarioList.value?.push(scenario);
+    }
+  };
+
+  consumeJobStream = async () => {
+    if (this.config.behaviour?.jobStatus?.method !== 'websockets') return;
+
+    const apiUrl = this.config.jobStatusStreamUrl?.();
+    const accessToken = this.config.authToken();
+
+    if (!apiUrl) throw new Error('Missing job stream api url');
+    if (!apiUrl) throw new Error('Missing job stream api url');
+    if (!accessToken) throw new Error('Not authorized yet');
+
+    const stream = new ScenarioJobStreamModel<SCENARIO>();
+
+    await stream.connect({ accessToken, apiUrl });
+
+    stream.onJobAdded((job) => {
+      this.setJobInScenarioList(job);
+    });
+
+    stream.onJobUpdated((job) => {
+      this.setJobInScenarioList(job);
+    });
+
+    stream.onScenarioAdded((scenario) => {
+      this.setInScenarioList(scenario);
+    });
+
+    stream.onScenarioUpdated((scenario) => {
+      this.setInScenarioList(scenario);
+    });
+
+    await stream.start();
+
+    stream.invokeAddJobFilter([]);
+    stream.invokeAddJsonDocumentFilter([]);
+
+    return stream;
+  };
 }
 
 const { Context: ScenariosStoreContext, use: useScenariosStore } =
   createContextHook<ScenariosState>();
 
 export { ScenariosStoreContext, useScenariosStore };
+
+export type ScenarioNoticeKinds =
+  | {
+      job: ScenarioJobInstance;
+      kind: 'jobAdded';
+    }
+  | {
+      job: ScenarioJobInstance;
+      kind: 'jobUpdated';
+    }
+  | {
+      scenario: ScenarioInstance;
+      kind: 'scenarioAdded';
+    };
