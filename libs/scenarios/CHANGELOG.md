@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 7.3.0
+
+### Minor Changes
+
+- Tweak scenario section tab logic
+
 ## 7.2.0
 
 ### Minor Changes

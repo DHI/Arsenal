@@ -266,9 +266,13 @@ export class ScenariosState<
         return this.startPollingJobsList();
 
       case 'websockets': {
-        const stream = await this.consumeJobStream();
+        try {
+          const stream = await this.consumeJobStream();
 
-        this.emitNotificationsForJobStream(stream);
+          this.emitNotificationsForJobStream(stream);
+        } catch (e: any) {
+          console.log(e);
+        }
       }
 
       default: {

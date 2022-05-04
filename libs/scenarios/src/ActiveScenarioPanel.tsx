@@ -22,102 +22,112 @@ export const ActiveScenarioPanel = observer<{
   refs?: {
     detailsPanel?: Ref<any>;
   };
-}>(({ sections = {}, append, editor, defaultSection, refs }) => {
-  const { activeScenario, activeSection, setScenario, setSection } =
-    useScenariosStore();
-  const ConfigEditorComponent = useCallback(
-    function SCE() {
-      return <ScenarioConfigEditor editor={editor} />;
-    },
-    [editor],
-  );
-  const sectionComponents = {
-    [DefaultSections.Config]: ConfigEditorComponent,
-    ...sections,
-  };
-  type SectionKeys = keyof typeof sectionComponents;
-  const validSectionKeys = Object.entries(sectionComponents)
-    .filter(([key, value]) => !!value)
-    .map(([k]) => k);
-  const Section = sectionComponents[activeSection as SectionKeys];
+}>(
+  ({
+    sections = {},
+    append,
+    editor,
+    defaultSection: defaultSectionInput,
+    refs,
+  }) => {
+    const { activeScenario, activeSection, setScenario, setSection } =
+      useScenariosStore();
+    const ConfigEditorComponent = useCallback(
+      function SCE() {
+        return <ScenarioConfigEditor editor={editor} />;
+      },
+      [editor],
+    );
+    const sectionComponents = {
+      [DefaultSections.Config]: ConfigEditorComponent,
+      ...sections,
+    };
+    type SectionKeys = keyof typeof sectionComponents;
+    const validSectionKeys = Object.entries(sectionComponents)
+      .filter(([key, value]) => !!value)
+      .map(([k]) => k);
+    const Section = sectionComponents[activeSection as SectionKeys];
+    const defaultSection = validSectionKeys.includes(defaultSectionInput!)
+      ? defaultSectionInput
+      : validSectionKeys[0];
 
-  useEffect(() => {
-    if (activeSection && sectionComponents[activeSection as SectionKeys])
-      return;
-    if (!defaultSection) return;
-    if (!activeScenario?.id) {
-      setSection(undefined);
+    useEffect(() => {
+      if (activeSection && validSectionKeys.includes(activeSection)) return;
+      if (!defaultSection) return;
+      if (!activeScenario?.id) {
+        setSection(undefined);
 
-      return;
-    }
+        return;
+      }
 
-    setSection(defaultSection);
-  }, [activeScenario?.id, defaultSection, activeSection]);
+      setSection(defaultSection);
+    }, [activeScenario?.id, defaultSection, activeSection]);
 
-  useEffect(() => {
-    if (activeSection && !sectionComponents[activeSection as SectionKeys])
-      setSection(undefined);
-  }, [activeScenario?.id, activeSection]);
+    useEffect(() => {
+      if (activeSection && !validSectionKeys.includes(activeSection))
+        setSection(undefined);
+    }, [activeScenario?.id, activeSection, validSectionKeys.join('')]);
 
-  return (
-    <$Row
-      ref={refs?.detailsPanel}
-      css={css`
-        position: absolute;
-        height: 100%;
-        align-items: start;
-      `}
-    >
-      <SidebarPanel
-        isOpen={!!activeScenario?.id}
-        className={ScenarioClasses.ActiveScenarioPanel}
+    return (
+      <$Row
+        ref={refs?.detailsPanel}
         css={css`
-          background-color: #fafafafa;
-          box-shadow: 3px 0 8px 0 rgba(0, 0, 0, 0.2);
-          transition: all 0.2s ease-in-out;
-
-          && {
-            > div {
-              height: 100%;
-            }
-          }
+          position: absolute;
+          height: 100%;
+          align-items: start;
         `}
       >
-        <$Col grow>
-          <$Row
-            grow={false}
-            css={css`
-              align-items: flex-start;
-            `}
-          >
-            <ScenarioSectionsTabs tabs={validSectionKeys} />
-            <IconButton
+        <SidebarPanel
+          isOpen={!!activeScenario?.id}
+          className={ScenarioClasses.ActiveScenarioPanel}
+          css={css`
+            background-color: #fafafafa;
+            box-shadow: 3px 0 8px 0 rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease-in-out;
+
+            && {
+              > div {
+                height: 100%;
+              }
+            }
+          `}
+        >
+          <$Col grow>
+            <$Row
+              grow={false}
               css={css`
-                && {
-                  box-shadow: -1px 1px 8px 0 #0001;
-                  border-radius: 0;
-                  border-bottom-left-radius: 4px;
-                }
+                align-items: flex-start;
               `}
-              onClick={() => setScenario(undefined)}
             >
-              <CloseIcon />
-            </IconButton>
-          </$Row>
-          <$Row
-            css={css`
-              align-items: flex-start;
-              overflow: auto;
-            `}
-          >
-            {Section && <Section />}
-          </$Row>
-        </$Col>
-      </SidebarPanel>
-      {append}
-    </$Row>
-  );
-});
+              <ScenarioSectionsTabs tabs={validSectionKeys} />
+              <IconButton
+                css={css`
+                  && {
+                    box-shadow: -1px 1px 8px 0 #0001;
+                    border-radius: 0;
+                    border-bottom-left-radius: 4px;
+                  }
+                `}
+                onClick={() => setScenario(undefined)}
+              >
+                <CloseIcon />
+              </IconButton>
+            </$Row>
+            <$Row
+              css={css`
+                align-items: flex-start;
+                overflow: auto;
+              `}
+            >
+              {Section && <Section />}
+            </$Row>
+          </$Col>
+        </SidebarPanel>
+        {append}
+      </$Row>
+    );
+  },
+);
 
 export type ActiveScenarioSectionsInput = {
   [k: string]: false | (() => JSX.Element);
