@@ -153,7 +153,7 @@ export const ScenarioListPanel = observer<{
                 <ScenarioListItem
                   scenario={item}
                   isDraft={id === draftScenario.value?.id}
-                  title={item.data[scenarioDataNameKey]}
+                  title={item?.data?.[scenarioDataNameKey]}
                 />
               ),
               onClick: isSelectingDisabled ? undefined : () => setScenario(id),
