@@ -1,6 +1,6 @@
 {
   "name": "@dhi/arsenal.scenarios",
-  "version": "7.3.0",
+  "version": "7.3.1",
   "main": "./x",
   "scripts": {
     "build": "tsc",

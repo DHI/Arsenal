@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 7.3.1
+
+### Patch Changes
+
+- Scenario list undefined error fixed
+
 ## 7.3.0
 
 ### Minor Changes
