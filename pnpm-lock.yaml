@@ -412,7 +412,7 @@ importers:
       '@deck.gl/react': ^8.7.5
       '@dhi/arsenal.jsonform': 6.0.0
       '@dhi/arsenal.models': 3.3.0
-      '@dhi/arsenal.scenarios': 7.3.0
+      '@dhi/arsenal.scenarios': 7.3.1
       '@dhi/arsenal.ui': 6.0.0
       '@emotion/css': ^11.7.1
       '@emotion/react': ^11.7.1
@@ -6662,7 +6662,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.17.2
-      '@mui/material': 5.4.2_2c62b3acd5c2be6513098be59f379647
+      '@mui/material': 5.4.2_3bd6e1999a4a2ed15dd98d9987fa3bbf
       '@types/react': 17.0.24
       react: 17.0.2
 
