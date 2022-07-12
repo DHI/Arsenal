@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 7.4.0
+
+### Minor Changes
+
+- Job status parsing updates
+
 ## 7.3.1
 
 ### Patch Changes
