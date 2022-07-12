@@ -9,16 +9,17 @@ export const ScenarioListItem = observer<{
   className?: string;
   title?: string;
 }>(({ scenario, isDraft, title, className }) => {
-  const isComplete = scenario.job?.status === ScenarioJobStatus.Completed;
-  const isError = scenario.job?.status === ScenarioJobStatus.Error;
+  const status = scenario.job?.status?.toUpperCase();
+  const isComplete = status === ScenarioJobStatus.Completed;
+  const isError = status === ScenarioJobStatus.Error;
   const isPending =
-    scenario.job?.status === ScenarioJobStatus.Pending ||
-    scenario.job?.status === ScenarioJobStatus.InProgress;
+    status === ScenarioJobStatus.Pending ||
+    status === ScenarioJobStatus.InProgress;
+
   const progressPct = isComplete ? 100 : scenario.job?.progress ?? 0;
   const progressVariant =
-    scenario.job?.status === ScenarioJobStatus.Pending
-      ? 'indeterminate'
-      : 'determinate';
+    status === ScenarioJobStatus.Pending ? 'indeterminate' : 'determinate';
+
   const statusKind = (() => {
     if (isError) return 'error';
     if (isPending) return 'pending';

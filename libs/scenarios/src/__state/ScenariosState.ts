@@ -11,6 +11,7 @@ import {
 } from '../types';
 import { NoticesModel } from './__models/NoticesModel';
 import { ScenarioJobStreamModel } from './__models/ScenarioJobStreamModel';
+import { normalizeJobStatusData } from './__models/normalizeJobStatusData';
 
 export class ScenariosState<
   SCENARIO extends ScenarioInstance = ScenarioInstance,
@@ -253,7 +254,9 @@ export class ScenariosState<
   };
 
   fetchJobsList = async () => {
-    await this.config.jobsList?.query();
+    const { value } = (await this.config.jobsList?.query()) ?? {};
+
+    if (value) this.config.jobsList?.set(value.map(normalizeJobStatusData));
   };
 
   fetchScenarioList = async () => {
@@ -392,10 +395,12 @@ export class ScenariosState<
     await stream.connect({ accessToken, apiUrl });
 
     stream.onJobAdded((job) => {
+      console.log('job added', job);
       this.setJobInScenarioList(job);
     });
 
     stream.onJobUpdated((job) => {
+      console.log('job updated', job);
       this.setJobInScenarioList(job);
     });
 

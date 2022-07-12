@@ -3,9 +3,9 @@ import {
   HubConnectionBuilder,
   LogLevel,
 } from '@microsoft/signalr';
-import camelCase from 'lodash-es/camelCase';
 import { makeAutoObservable } from 'mobx';
 import { ScenarioInstance } from '../..';
+import { normalizeJobStatusData } from './normalizeJobStatusData';
 
 export class ScenarioJobStreamModel<SCENARIO extends ScenarioInstance> {
   constructor() {
@@ -17,28 +17,28 @@ export class ScenarioJobStreamModel<SCENARIO extends ScenarioInstance> {
   onJobUpdated = (resolver: (job: NonNullable<SCENARIO['job']>) => void) =>
     this.connection.on('JobUpdated', (event: JobStateEvent) => {
       try {
-        resolver(parseEventData(event.data));
+        resolver(parseSignalrEventData(event.data));
       } catch {}
     });
 
   onJobAdded = (resolver: (job: NonNullable<SCENARIO['job']>) => void) =>
     this.connection.on('JobAdded', (event: JobStateEvent) => {
       try {
-        resolver(parseEventData(event.data));
+        resolver(parseSignalrEventData(event.data));
       } catch {}
     });
 
   onScenarioAdded = (resolver: (job: SCENARIO) => void) =>
     this.connection.on('JsonDocumentAdded', (event: JobStateEvent) => {
       try {
-        resolver(parseEventData(event.data));
+        resolver(parseSignalrEventData(event.data));
       } catch {}
     });
 
   onScenarioUpdated = (resolver: (job: SCENARIO) => void) =>
     this.connection.on('JsonDocumentUpdated', (event: JobStateEvent) => {
       try {
-        resolver(parseEventData(event.data));
+        resolver(parseSignalrEventData(event.data));
       } catch {}
     });
 
@@ -86,12 +86,6 @@ interface JobStateEvent {
   data: string;
 }
 
-function parseEventData<R = {}>(v: string): R {
-  return keysToCamelCase(JSON.parse(v)) as any;
-}
-
-export function keysToCamelCase(obj: {}) {
-  return Object.fromEntries(
-    Object.entries(obj).map(([k, v]) => [camelCase(k), v]),
-  );
+function parseSignalrEventData<R = {}>(v: string): R {
+  return normalizeJobStatusData(JSON.parse(v));
 }
