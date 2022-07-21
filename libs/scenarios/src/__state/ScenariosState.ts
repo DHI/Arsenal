@@ -15,11 +15,12 @@ import { normalizeJobStatusData } from './__models/normalizeJobStatusData';
 
 export class ScenariosState<
   SCENARIO extends ScenarioInstance = ScenarioInstance,
+  CONFIG extends { NoticeKinds: {} } = { NoticeKinds: ScenarioNoticeKinds }
 > {
   scenarioListSearchText = new StateModel<string | undefined>(undefined);
   draftScenario = new StateModel<undefined | SCENARIO>(undefined);
   activeWipScenario = new StateModel<undefined | SCENARIO>(undefined);
-  notices = new NoticesModel<ScenarioNoticeKinds>();
+  notices = new NoticesModel<CONFIG['NoticeKinds']>();
   jobsListPollingInterval?: ReturnType<typeof setInterval> = undefined;
   jobsListPollingDelay?= 5000;
   jobStream?: ScenarioJobStreamModel<SCENARIO>
