@@ -215,7 +215,7 @@ export const FormField = observer<{
                     ? {
                         endAdornment: (
                           <InputAdornment position="end">
-                            {field.layout?.unit}
+                            <span>{typeof field.layout.unit === 'string' ? field.layout.unit : field.layout.unit.value}</span>
                           </InputAdornment>
                         ),
                       }

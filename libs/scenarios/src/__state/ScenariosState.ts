@@ -21,7 +21,8 @@ export class ScenariosState<
   activeWipScenario = new StateModel<undefined | SCENARIO>(undefined);
   notices = new NoticesModel<ScenarioNoticeKinds>();
   jobsListPollingInterval?: ReturnType<typeof setInterval> = undefined;
-  jobsListPollingDelay? = 5000;
+  jobsListPollingDelay?= 5000;
+  jobStream?: ScenarioJobStreamModel<SCENARIO>
 
   constructor(
     private _config: () => {
@@ -391,6 +392,8 @@ export class ScenariosState<
     if (!accessToken) throw new Error('Not authorized yet');
 
     const stream = new ScenarioJobStreamModel<SCENARIO>();
+
+    this.jobStream = stream
 
     await stream.connect({ accessToken, apiUrl });
 
