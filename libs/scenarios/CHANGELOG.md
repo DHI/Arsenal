@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 8.1.0
+
+### Minor Changes
+
+- Bump
+
 ## 8.0.0
 
 ### Minor Changes
