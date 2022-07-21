@@ -3,8 +3,6 @@
   "version": "3.3.0",
   "main": "./x",
   "scripts": {
-    "wp:build": "webpack",
-    "wp:dev": "webpack --watch",
     "build": "tsc",
     "dev": "tsc --watch"
   },

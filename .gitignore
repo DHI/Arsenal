@@ -1,7 +1,6 @@
 node_modules
 build
 x
-.npmrc
 tsconfig.tsbuildinfo
 .gitmodules
 submodules/apps/*
