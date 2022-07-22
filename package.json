@@ -13,12 +13,13 @@
     "release:version": "changeset && changeset version",
     "release:publish": "pnpm -r publish",
     "build": "pnpm build:libs",
-    "build:apps": "pnpm -r run build --filter ./apps",
-    "build:libs": "pnpm -r run build --filter ./libs",
+    "build:apps": "pnpm run -r --filter './apps/**' build",
+    "build:libs": "pnpm run -r --filter './libs/**' build",
     "dev:libs": "pnpm build:libs -- -w"
   },
   "devDependencies": {
     "@changesets/cli": "^2.21.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.4"
   }
 }

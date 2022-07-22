@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import * as path from 'path';
-import * as webpack from 'webpack';
+import webpack from 'webpack';
 // const babelOptions = require('./babel.config');
-const TsPlugin = require('fork-ts-checker-webpack-plugin');
+import TsPlugin from 'fork-ts-checker-webpack-plugin'
+import { fileURLToPath } from 'url';
 
 export const MODE =
   process.env.NODE_ENV === 'production' ? 'production' : 'development';
@@ -22,15 +23,12 @@ export const ENVIRONMENT_VARS = {
 
 console.dir({ MODE, ENVIRONMENT_VARS });
 
-export const withDir = (dirname: string) => (...filePaths: string[]) =>
-  path.resolve(dirname, ...filePaths);
+export const withDir = (dirname) => (...filePaths) =>
+  path.resolve(path.dirname(fileURLToPath(import.meta.url)), ...filePaths);
 
 export default ({
   dir,
   useReactShim = false,
-}: {
-  dir: ReturnType<typeof withDir>;
-  useReactShim?: boolean;
 }) => {
   /** @ts-check @type import('webpack').Configuration */
   return {

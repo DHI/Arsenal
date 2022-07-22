@@ -1,9 +1,10 @@
-import Config, { withDir } from '../../webpack.config.base';
-import { Configuration } from 'webpack';
-import * as pkgJson from './package.json';
+import Config, { withDir } from './webpack.config.base.mjs';
+import  pkgJson from './package.json' assert {type: "json"};
+import { dirname } from 'path'
+import { fileURLToPath } from 'url';
+import DeclarationPlugin from 'npm-dts-webpack-plugin'
 
-const DeclarationPlugin = require('npm-dts-webpack-plugin');
-const dir = withDir(__dirname);
+const dir = withDir(dirname(fileURLToPath(import.meta.url)));
 const base = Config({ dir });
 const entry = dir('./src/index.ts');
 const outdir = dir('./x');
@@ -31,6 +32,6 @@ export const config = {
     ...Object.keys(pkgJson.dependencies),
     ...Object.keys(pkgJson.peerDependencies),
   ],
-} as Configuration;
+};
 
 export default config;

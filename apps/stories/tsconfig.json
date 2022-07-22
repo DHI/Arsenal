@@ -13,5 +13,5 @@
     "src",
     "*.js",
     "*.ts"
-  ]
+, "webpack.config.mjs", "webpack.config.base.mjs"  ]
 }
