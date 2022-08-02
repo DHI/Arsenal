@@ -143,6 +143,8 @@ export class ScenariosState<
   }
 
   get isActiveScenarioADraft() {
+    if (!this.activeScenario?.id) return false
+    
     return this.activeScenario?.id === this.draftScenario.value?.id;
   }
 
@@ -262,7 +264,7 @@ export class ScenariosState<
   };
 
   fetchScenarioList = async () => {
-    await this.config.scenarioList.query();
+    await this.config.scenarioList.reset().query();
   };
 
   listenForJobUpdates = async () => {
@@ -399,12 +401,10 @@ export class ScenariosState<
     await stream.connect({ accessToken, apiUrl });
 
     stream.onJobAdded((job) => {
-      console.log('job added', job);
       this.setJobInScenarioList(job);
     });
 
     stream.onJobUpdated((job) => {
-      console.log('job updated', job);
       this.setJobInScenarioList(job);
     });
 
