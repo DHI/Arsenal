@@ -15,15 +15,15 @@ import { normalizeJobStatusData } from './__models/normalizeJobStatusData';
 
 export class ScenariosState<
   SCENARIO extends ScenarioInstance = ScenarioInstance,
-  CONFIG extends { NoticeKinds: {} } = { NoticeKinds: ScenarioNoticeKinds }
+  CONFIG extends { NoticeKinds: {} } = { NoticeKinds: ScenarioNoticeKinds },
 > {
   scenarioListSearchText = new StateModel<string | undefined>(undefined);
   draftScenario = new StateModel<undefined | SCENARIO>(undefined);
   activeWipScenario = new StateModel<undefined | SCENARIO>(undefined);
   notices = new NoticesModel<CONFIG['NoticeKinds']>();
   jobsListPollingInterval?: ReturnType<typeof setInterval> = undefined;
-  jobsListPollingDelay?= 5000;
-  jobStream?: ScenarioJobStreamModel<SCENARIO>
+  jobsListPollingDelay? = 5000;
+  jobStream?: ScenarioJobStreamModel<SCENARIO> = undefined;
 
   constructor(
     private _config: () => {
@@ -143,8 +143,8 @@ export class ScenariosState<
   }
 
   get isActiveScenarioADraft() {
-    if (!this.activeScenario?.id) return false
-    
+    if (!this.activeScenario?.id) return false;
+
     return this.activeScenario?.id === this.draftScenario.value?.id;
   }
 
@@ -300,7 +300,7 @@ export class ScenariosState<
   };
 
   stopPollingJobsList = () => {
-    clearInterval(this.jobsListPollingInterval!);
+    clearInterval(this.jobsListPollingInterval);
   };
 
   emitNotificationsForJobStream = async (
@@ -386,7 +386,7 @@ export class ScenariosState<
 
   consumeJobStream = async () => {
     if (this.config.behaviour?.jobStatus?.method !== 'websockets') return;
-    
+
     const apiUrl = this.config.jobStatusStreamUrl?.();
     const accessToken = this.config.authToken();
 
@@ -396,7 +396,7 @@ export class ScenariosState<
 
     const stream = new ScenarioJobStreamModel<SCENARIO>();
 
-    this.jobStream = stream
+    this.jobStream = stream;
 
     await stream.connect({ accessToken, apiUrl });
 
