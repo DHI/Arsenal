@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 8.3.0
+
+### Minor Changes
+
+- Fix scenario listener for jobstream
+
 ## 8.2.0
 
 ### Minor Changes
