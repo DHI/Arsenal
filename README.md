@@ -7,6 +7,7 @@
 + [Usage](#usage)
 + [Package/Library versioning, changelogs, publishing](#packagelibrary-versioning-changelogs-publishing)
 + [Development in other projects](#development-in-other-projects)
+  + [Vitejs](#vitejs)
 + [Deprecated functionality](#deprecated-functionality)
   
 ## Overview
@@ -94,13 +95,21 @@ Example workflow:
 - Output files are update in `libs/scenarios/x`
 - Dev server in `~/Work/MyProject` detects this change from ``~/Work/MyProject/node_modules/@dhi/arsenal.scenarios/x` and reloads the page/hot reloads
 
+### Vitejs
+
+These config options may enable a smooth experience HMR:
+```ts
+
+// ...
+
+  optimizeDeps: {
+    force: true,
+  },
+
+```
+
 ## Deprecated functionality
 
 The `submodules/libs` `submodules/apps` directories were previously used to facilitate connected workspace automatic linking.
 
 This practice has been abandoned due to `pnpm link` fitting that need, and it introduced issues with pnpm lockfiles becoming malformed.
-
-The remaining functionality of submodules:
-- When versioning & publishing a package, the version number of all dependent projects's package.json will get automatically bumped
-- Packages will **not** be automatically linked, as that would require a shared pnpm-lock. You must still use `pnpm link --global`
-  

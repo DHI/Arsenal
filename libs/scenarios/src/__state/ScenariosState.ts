@@ -386,7 +386,7 @@ export class ScenariosState<
 
   consumeJobStream = async () => {
     if (this.config.behaviour?.jobStatus?.method !== 'websockets') return;
-
+    
     const apiUrl = this.config.jobStatusStreamUrl?.();
     const accessToken = this.config.authToken();
 

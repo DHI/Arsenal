@@ -1,5 +1,5 @@
 packages:
   - 'libs/**'
   - 'apps/**'
-  - 'submodules/libs/**'
-  - 'submodules/apps/**'
+  # - 'submodules/libs/**'
+  # - 'submodules/apps/**'
