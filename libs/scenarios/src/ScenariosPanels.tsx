@@ -33,8 +33,6 @@ export const ScenariosPanels = observer<Props>(
       listenForJobUpdates();
     }, []);
 
-    console.log('22');
-
     return (
       <$Row
         css={css`
