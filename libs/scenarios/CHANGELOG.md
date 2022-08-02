@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 8.2.0
+
+### Minor Changes
+
+- Fix to routing, removal of debug logs
+
 ## 8.1.1
 
 ### Patch Changes
