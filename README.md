@@ -1,76 +1,96 @@
 # @dhi/arsenal.*
 
-## Docs
+> A monorepo workspace for shared library development
 
-See [./.docs](./.docs)
++ [Overview](#overview)
++ [Requirements](#requirements)
++ [Usage](#usage)
++ [Package/Library versioning, changelogs, publishing](#packagelibrary-versioning-changelogs-publishing)
++ [Development in other projects](#development-in-other-projects)
+  
+## Overview
 
-## Project
+Structure:
+- `./apps`
+  - Applications to demonstrate libraries within this repo
+- `./libs`
+  - NPM packages, published to Github Packages
 
-- ./apps
-  - Applications
-- ./libs
-  - NPM packages (Published to Github Packages)
+Tooling:
+- `pnpm` with workspaces
+- `changesets` for npm package versioning, changelogs & publishing
+
+
+## Requirements
+
+- To access the NPM registry correctly, update your user ~/.npmrc with a GitHub Access Token. [See this for how to](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
 
 ## Usage
 
-This project uses:
-- `pnpm` with workspaces
-- `changesets` for npm versioning
-- Requires you configure your user ~/.npmrc with GitHub Access Token. [See this for details](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
-
+Project setup essentials:
 ```bash
-# Clone repo
+# Clone the repo
 
-git clone git@github.com:DHI/Arsenal.git
-cd Arsenal
+git clone git@github.com:DHI/Arsenal.git && cd Arsenal
 
-# Install deps
+# Install deps & link everything up
 pnpm i
 
-# Start default app
-pnpm start
-
-# Build all packages & apps
+# Build all libraries
 pnpm build
 
-# Development of libraries
-# - Will recompile on changes
+```
+
+Developing within the repo:
+```bash
+# Start developing a library
 cd libs/jsonform && pnpm dev
 
-# Start an app from the root directory
-pnpm run start --filter ./apps/stories
+# Start an app
+cd apps/stories && pnpm start
+## Library/Package versioning
+```
 
+## Package/Library versioning, changelogs, publishing
+
+**Read this before doing any package versioning or publishing**:
+- https://pnpm.io/using-changesets
+
+> Note: All package should conform to this naming structure within NPM/package.json
+> @dhi/arsenal.{name}
+
+```bash
 # Version libraries
-# - Will walk through versioning choices
+# - Will walk through versioning choices and allow you to specify changed packages
 pnpm release:version
 
 # Publish libraries
-# - Will publish & replace all workspace:* aliases 
+# - Publishes packages which need to be published
+# - Also updates all dependent packages with new version numbers
 pnpm release:publish
 ```
 
-For package versioning please read this:
-- https://pnpm.io/using-changesets
 
-## Submodules
+## Development in other projects
 
-In order to link in in-development libraries we can make git submodules part of the pnpm workspace automatically.
-
-To add a project:
+By using `pnpm` we can leverage its `pnpm link --global` command to correctly link libraries from this monorepo into any other project.
 
 ```bash
-cd submodules/apps
-git clone <uri>
+pnpm setup # sets up PNPM to work globally
 
-cd ../..
-pnpm install
+cd libs/scenarios
+pnpm link --global # link the package into the global store
+pnpm dev # start the development script to update build output on save
 ```
 
-Then to develop within that project open a new workspace for it:
+```bash
 
-```
-cd submodules/apps/MyProject
-code .
+cd ~/Work/MyProject
+pnpm link --global @dhi/arsenal.scenarios # link in the library we are working on
+pnpm dev # start development server
 ```
 
-All submodules/**/* projects are git ignored by this parent project.
+Example workflow:
+- Update source files in `libs/scenarios`
+- Output files are update in `libs/scenarios/x`
+- Dev server in `~/Work/MyProject` detects this change from ``~/Work/MyProject/node_modules/@dhi/arsenal.scenarios/x` and reloads the page/hot reloads
