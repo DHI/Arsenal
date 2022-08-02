@@ -29,8 +29,6 @@ Tooling:
 
 Project setup essentials:
 ```bash
-# Clone the repo
-
 git clone git@github.com:DHI/Arsenal.git && cd Arsenal
 
 # Install deps & link everything up
