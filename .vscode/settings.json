@@ -5,7 +5,7 @@
     { "pattern": "apps/*"},
   ],
   "explorer.fileNesting.patterns": {
-    "package.json": "package*.json, tsconfig*, .npm*, yarn*, pnpm*, .eslint*, .prettier*"
+    "package.json": "package*.json, tsconfig*, .npm*, yarn*, pnpm*, .eslint*, .prettier*, prettier.*, eslint.*, .git*, .editorconfig, vite.*"
   },
 
 }
