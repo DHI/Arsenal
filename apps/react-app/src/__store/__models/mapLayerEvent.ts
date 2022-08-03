@@ -14,7 +14,7 @@ import { makeAutoObservable } from 'mobx';
  * <Tooltip isHidden={!hoverEvent.isActive}>{hoverEvent.properties?.title}</Tooltip>
  */
 export class MapEventModel<
-  DATUM extends { id?: string | number; properties?: {} }
+  DATUM extends { id?: string | number; properties?: {} },
 > {
   constructor(private config: { ignoreId?: boolean } = {}) {
     makeAutoObservable(this);

@@ -1,0 +1,5 @@
+{
+  "ignorePatterns": ["node_modules", "build", "STORY_MAP.ts"],
+  "extends": ["eslint-config-nfour/.eslintrc.react"],
+  "rules": {}
+}

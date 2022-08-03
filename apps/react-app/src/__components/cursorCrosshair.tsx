@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite';
-import * as React from 'react';
 import { css } from '__css';
 
 export type ICursorPosition = {
@@ -15,7 +14,6 @@ export const CursorCrosshair = observer<{
   if (!position) return <></>;
 
   const { x, y, latitude, longitude } = position;
-
   const horLine = (
     <div
       css={css`

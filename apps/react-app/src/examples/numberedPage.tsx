@@ -1,8 +1,7 @@
-import { useStore } from '../__store/root';
-import * as React from 'react';
+import { useStore } from '../__hooks';
 import { observer } from 'mobx-react-lite';
 import { XRoute } from 'xroute';
-import { NavBar } from '../navBar';
+import { NavBar } from '../NavBar';
 import { styled } from '__css';
 
 export const numberedPagesRoute = XRoute(

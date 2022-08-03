@@ -1,9 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { XRoute } from 'xroute';
-import { NavBar } from '../../navBar';
+import { NavBar } from '../../NavBar';
 import { DeckGlMap } from '../../__components/deckglMap';
-import { useStore } from '../../__store/root';
-import * as React from 'react';
+import { useStore } from '../../__hooks';
 import { LatLonDisplay } from './latLon';
 import { css } from '__css';
 import { CursorCrosshair } from '../../__components/cursorCrosshair';

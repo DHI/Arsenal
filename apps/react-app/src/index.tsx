@@ -1,20 +1,8 @@
-import * as React from 'react';
-import { render } from 'react-dom';
-import { Routes } from './routing';
-import { RootStore, StoreReactContext } from './__store/root';
 import './global.css';
-import './__config/featureFlags';
+import { createRoot } from 'react-dom/client';
+import { Root } from './Root';
 
-function Root() {
-  const [store] = React.useState(() => new RootStore());
+const container = document.getElementById('__root')!;
+const rootNode = createRoot(container);
 
-  return (
-    <StoreReactContext.Provider value={store}>
-      <Routes />
-    </StoreReactContext.Provider>
-  );
-}
-
-render(<Root />, document.getElementById('__root'));
-
-if (import.meta.hot) import.meta.hot.accept();
+rootNode.render(<Root />);

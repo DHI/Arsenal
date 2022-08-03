@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { makeAutoObservable } from 'mobx';
-import { RootStore } from './root';
+import { RootStore } from './RootStore';
 
 /**
  * A basic store to hold state for a page

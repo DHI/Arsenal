@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import { useStore } from './__store/root';
-import * as React from 'react';
 import { css, cx, styled } from '__css';
+import { useStore } from './__hooks';
 
 export const NavBar = observer(() => {
   const {
@@ -52,6 +51,12 @@ const $Link = styled.a`
   border: 2px solid #aaa;
   margin: 0.3em;
   padding: 0.5em 1em;
+  cursor: pointer;
+
+  &.active {
+    background: #fff;
+    color: #000;
+  }
 `;
 
 const $NavBar = styled.main`

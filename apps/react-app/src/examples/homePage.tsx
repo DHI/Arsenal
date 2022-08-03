@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { observer } from 'mobx-react-lite';
-import { NavBar } from '../navBar';
+import { NavBar } from '../NavBar';
 import { XRoute } from 'xroute';
 
 export const homePageRoute = XRoute(

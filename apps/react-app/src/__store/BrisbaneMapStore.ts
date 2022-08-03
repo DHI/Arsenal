@@ -1,8 +1,8 @@
 import { makeAutoObservable } from 'mobx';
-import { BrisbaneAreaFeature } from '../examples/brisbaneMap/__config';
+import { BrisbaneAreaFeature } from '../examples/brisbaneMap/__types';
 import { ICursorPosition } from '../__components/cursorCrosshair';
 import { pickableGeoJsonLayer } from '../__components/mapLayers';
-import { RootStore } from './root';
+import { RootStore } from './RootStore';
 import { MapEventModel } from './__models/mapLayerEvent';
 import { MapViewportModel } from './__models/mapViewport';
 import { BooleanModel, StateModel } from './__models/primitives';

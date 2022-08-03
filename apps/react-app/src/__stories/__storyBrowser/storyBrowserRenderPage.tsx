@@ -1,8 +1,7 @@
-import * as React from 'react';
 import { RenderStory, useStoryBrowser } from 'story-browser';
 import { observer } from 'mobx-react-lite';
 import * as modules from './STORY_MAP';
-import { useStore } from '../../__store/root';
+import { useStore } from '../../__hooks';
 import { css } from '__css';
 
 export const StoryBrowserRenderPage = observer(() => {

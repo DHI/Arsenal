@@ -29,7 +29,6 @@ export class MapViewportModel {
     }
 
     const { latitude, longitude, ...other } = props;
-
     const boundLatitude = (() => {
       if (latitude > this.boundary.ne.latitude)
         return this.boundary.ne.latitude;
@@ -38,6 +37,7 @@ export class MapViewportModel {
 
       return latitude;
     })();
+
     const boundLongitude = (() => {
       if (longitude > this.boundary.ne.longitude)
         return this.boundary.ne.longitude;

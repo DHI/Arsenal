@@ -1,7 +1,7 @@
 import { Layer } from '@deck.gl/core';
 import DeckGL from '@deck.gl/react';
 import { observer } from 'mobx-react-lite';
-import React from 'react';
+import { ReactNode } from 'react';
 import { StaticMap } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { MapViewportModel } from '../__store/__models/mapViewport';
@@ -15,7 +15,7 @@ export const DeckGlMap = observer<{
   staticMap: Partial<PropsOf<typeof StaticMap>>;
   deckgl?: Partial<PropsOf<typeof DeckGL>>;
 
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
 }>(
   ({
@@ -38,7 +38,7 @@ export const DeckGlMap = observer<{
 
           if (deckglProps?.onViewStateChange) deckglProps?.onViewStateChange(v);
         }}
-        {...deckglProps}
+        {...(deckglProps as any)}
       >
         <StaticMap
           height="100%"

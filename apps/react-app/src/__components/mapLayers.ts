@@ -22,7 +22,7 @@ export function pickableGeoJsonLayer<FEATURE extends IFeature>({
   hoverEvent?.id; // Listen to id changes
   clickEvent?.id; // Listen to id changes
 
-  return new GeoJsonLayer({
+  return new GeoJsonLayer<typeof features[number]>({
     id,
     data: features.map((f) => toJS(f)),
     pickable: true,
