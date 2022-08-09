@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 8.4.0
+
+### Minor Changes
+
+- Scenariolist minimizing option added
+
 ## 8.3.0
 
 ### Minor Changes
