@@ -17,13 +17,14 @@ import { ScenarioInstance } from '.';
 export const ScenarioListPanel = observer<{
   /** When `true` list items cannot be clicked */
   isSelectingDisabled?: boolean;
+  isMinimized?: boolean;
   checkboxes?: {
     isCheckable?(scenario: ScenarioInstance): boolean;
     enabled?: boolean;
     checkedIds?: string[];
     onChecked?(id: string, checked: boolean): void;
   };
-}>(({ checkboxes, isSelectingDisabled }): JSX.Element => {
+}>(({ checkboxes, isSelectingDisabled, isMinimized = false }): JSX.Element => {
   const {
     scenarioListSearchText,
     draftScenario,
@@ -41,6 +42,7 @@ export const ScenarioListPanel = observer<{
   return (
     <SidebarPanel
       className={ScenarioClasses.ScenarioListPanel}
+      isOpen={!isMinimized}
       css={css`
         && {
           z-index: 2;
