@@ -288,6 +288,13 @@ export class ScenariosState<
     }
   };
 
+  initializeQuery = async () =>
+    Promise.all([
+      this.fetchScenarioList(),
+      this.fetchJobsList(),
+      this.listenForJobUpdates(),
+    ]);
+
   startPollingJobsList = () => {
     this.stopPollingJobsList();
 

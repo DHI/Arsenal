@@ -32,20 +32,24 @@ export const ActiveScenarioPanel = observer<{
   }) => {
     const { activeScenario, activeSection, setScenario, setSection } =
       useScenariosStore();
+
     const ConfigEditorComponent = useCallback(
       function SCE() {
         return <ScenarioConfigEditor editor={editor} />;
       },
       [editor],
     );
+
     const sectionComponents = {
       [DefaultSections.Config]: ConfigEditorComponent,
       ...sections,
     };
+
     type SectionKeys = keyof typeof sectionComponents;
     const validSectionKeys = Object.entries(sectionComponents)
       .filter(([key, value]) => !!value)
       .map(([k]) => k);
+
     const Section = sectionComponents[activeSection as SectionKeys];
     const defaultSection = validSectionKeys.includes(defaultSectionInput!)
       ? defaultSectionInput
@@ -54,6 +58,7 @@ export const ActiveScenarioPanel = observer<{
     useEffect(() => {
       if (activeSection && validSectionKeys.includes(activeSection)) return;
       if (!defaultSection) return;
+
       if (!activeScenario?.id) {
         setSection(undefined);
 

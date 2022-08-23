@@ -33,6 +33,14 @@ class MyAppState {
 ```
 
 ```tsx
+
+// Fetch data & connect streams when your api is ready to
+useEffect(() => {
+  if (!apiAndAuthIsReady) return
+
+  myAppState.scenarios.initializeQuery()
+}, apiAndAuthIsReady)
+
 // - Provide the state store via React context
 // - Utilize the components
 <ScenariosStoreContext.Provider value={myAppState.scenarios}>

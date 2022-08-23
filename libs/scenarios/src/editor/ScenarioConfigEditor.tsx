@@ -31,6 +31,7 @@ export const ScenarioConfigEditor = observer<{
   useEffect(() => {
     if (!activeScenario?.id) {
       activeWipScenario.set(undefined);
+
       return;
     }
 

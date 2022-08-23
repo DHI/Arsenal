@@ -1,6 +1,5 @@
 import { ScenarioListPanel } from './ScenarioListPanel';
-import { useScenariosStore } from './__state/ScenariosState';
-import { ReactNode, Ref, useEffect } from 'react';
+import { ReactNode, Ref } from 'react';
 import { ActiveScenarioPanel } from './ActiveScenarioPanel';
 import { observer, css, PropsOf } from '@dhi/arsenal.ui';
 import { $Row } from '@dhi/arsenal.ui/x/components';
@@ -23,40 +22,29 @@ export const ScenariosPanels = observer<Props>(
     refs,
     listing,
     ...props
-  }) => {
-    const { fetchJobsList, fetchScenarioList, listenForJobUpdates } =
-      useScenariosStore();
-
-    useEffect(() => {
-      fetchScenarioList();
-      fetchJobsList();
-      listenForJobUpdates();
-    }, []);
-
-    return (
-      <$Row
+  }) => (
+    <$Row
+      css={css`
+        align-items: stretch;
+        z-index: 1;
+      `}
+      ref={refs?.mainPanel}
+      {...{ className }}
+    >
+      <ScenarioListPanel {...listing} />
+      <div
         css={css`
-          align-items: stretch;
-          z-index: 1;
+          position: relative;
         `}
-        ref={refs?.mainPanel}
-        {...{ className }}
       >
-        <ScenarioListPanel {...listing} />
-        <div
-          css={css`
-            position: relative;
-          `}
-        >
-          <ActiveScenarioPanel
-            refs={{
-              detailsPanel: refs?.detailsPanel,
-            }}
-            append={appendAfterScenarioPanel}
-            {...props}
-          />
-        </div>
-      </$Row>
-    );
-  },
+        <ActiveScenarioPanel
+          refs={{
+            detailsPanel: refs?.detailsPanel,
+          }}
+          append={appendAfterScenarioPanel}
+          {...props}
+        />
+      </div>
+    </$Row>
+  ),
 );
