@@ -1,5 +1,12 @@
 # stories
 
+## 0.1.29
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.jsonform@7.1.0
+
 ## 0.1.28
 
 ### Patch Changes

@@ -1,5 +1,16 @@
 # @dhi/arsenal.scenarios
 
+## 9.0.0
+
+### Major Changes
+
+- Scenarios now requires manual data query, JsonForm types loosened
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.jsonform@7.1.0
+
 ## 8.4.0
 
 ### Minor Changes

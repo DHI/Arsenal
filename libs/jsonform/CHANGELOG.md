@@ -1,5 +1,11 @@
 # @dhi/arsenal.jsonform
 
+## 7.1.0
+
+### Minor Changes
+
+- Scenarios now requires manual data query, JsonForm types loosened
+
 ## 7.0.1
 
 ### Patch Changes
