@@ -37,7 +37,7 @@ export class FormConfigEditorState {
     public data: Data,
     public form: FormConfig,
     public config: {
-      validation: {
+      validation?: {
         disabled?: boolean;
       };
     },
@@ -142,7 +142,7 @@ export class FormConfigEditorState {
   }) => {
     pointer.set(this.data, value, true);
 
-    clearTimeout(this.validationTimers.get(pointer.pointer)!);
+    clearTimeout(this.validationTimers.get(pointer.pointer));
 
     this.validationTimers.set(
       pointer.pointer,
