@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 9.1.0
+
+### Minor Changes
+
+- Fix scenario drafts not unmounting
+
 ## 9.0.0
 
 ### Major Changes
