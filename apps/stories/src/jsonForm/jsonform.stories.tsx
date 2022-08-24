@@ -1,29 +1,26 @@
-import { css, styled } from '@dhi/arsenal.ui';
+import { css, observer, styled } from '@dhi/arsenal.ui';
 import { Grid, Paper } from '@material-ui/core';
 import * as React from 'react';
 import {
   extractScaffoldFromFields,
   FormConfigEditor,
 } from '@dhi/arsenal.jsonform';
-import {
-  outfallParameterFields,
-  reditScenarioForm,
-} from '@dhi/arsenal.jsonform/x/reditScenario';
-import { WithDarkTheme } from './__dev/themes';
+import { WithDarkTheme } from '../__dev/themes';
+import { reditScenarioForm, outfallParameterFields } from './schema';
 
 export default {
   title: 'JsonForm',
 };
 
-export function Main() {
-  const Component = () => {
-    const [data, setData] = React.useState({
-      name: 'foo',
-      outflowLocations: [],
-      selectedEvent: {},
-    });
+export const Main = observer(() => {
+  const [data, setData] = React.useState({
+    name: 'foo',
+    outflowLocations: [],
+    selectedEvent: {},
+  });
 
-    return (
+  return (
+    <WithDarkTheme>
       <Grid
         container
         css={css`
@@ -68,15 +65,9 @@ export function Main() {
           </$Container>
         </Grid>
       </Grid>
-    );
-  };
-
-  return (
-    <WithDarkTheme>
-      <Component />
     </WithDarkTheme>
   );
-}
+});
 
 export function Fn_extractScaffoldFromFields() {
   return (

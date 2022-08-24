@@ -1,7 +1,5 @@
-import * as jsonformStories from './../jsonform.stories'
-import * as bmpGeneratorStories from './../bmpgenerator/bmpGenerator.stories'
+import * as jsonformStories from '../jsonForm/jsonform.stories'
 
 export {
   jsonformStories,
-  bmpGeneratorStories,
 }
