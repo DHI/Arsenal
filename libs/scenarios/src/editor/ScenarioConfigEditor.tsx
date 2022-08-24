@@ -31,14 +31,14 @@ export const ScenarioConfigEditor = observer<{
   useEffect(() => {
     if (!activeScenario?.id) {
       activeWipScenario.set(undefined);
-
-      return;
+    } else {
+      activeWipScenario.set({
+        ...activeScenario,
+        data: { ...activeScenario.data },
+      });
     }
 
-    activeWipScenario.set({
-      ...activeScenario,
-      data: { ...activeScenario.data },
-    });
+    return () => activeWipScenario.set(undefined);
   }, [activeScenario?.id]);
 
   if (!activeScenario) return <></>;
