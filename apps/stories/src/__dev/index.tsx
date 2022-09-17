@@ -1,21 +1,5 @@
-import './globals.d.ts';
-import * as React from 'react';
-import { render } from 'react-dom';
-import { RoutingEntry } from './routing';
-import { Global, css } from '@emotion/react';
+import { createRoot } from 'react-dom/client';
+import 'vite/types/importMeta.d';
+import { Root } from './Root';
 
-render(
-  <>
-    <Global
-      styles={css`
-        body {
-          font-family: 'Roboto';
-        }
-      `}
-    />
-    <RoutingEntry />
-  </>,
-  document.getElementById('__root'),
-);
-
-if (import.meta.hot) import.meta.hot.accept();
+createRoot(document.getElementById('__root')!).render(<Root />);
