@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 9.2.0
+
+### Minor Changes
+
+- Update NPM exports to support HMR
+
 ## 9.1.0
 
 ### Minor Changes
