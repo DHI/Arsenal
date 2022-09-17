@@ -1,7 +1,7 @@
 node_modules
 build
 x
-tsconfig.tsbuildinfo
+tsconfig*.tsbuildinfo
 .gitmodules
 submodules/apps/*
 submodules/libs/*

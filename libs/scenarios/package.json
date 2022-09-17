@@ -3,9 +3,10 @@
   "version": "9.1.0",
   "main": "./x",
   "scripts": {
-    "build": "tsc",
-    "build:vite": "vite build --mode dev",
-    "dev": "tsc --watch"
+    "build": "tsc -p tsconfig.lib.json",
+    "build:vite": "vite build",
+    "dev:vite": "vite build -c vite.config.watch.ts",
+    "dev": "tsc -p tsconfig.lib.json --watch"
   },
   "dependencies": {
     "@types/change-case": "^2.3.1",
