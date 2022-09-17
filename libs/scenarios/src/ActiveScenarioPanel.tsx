@@ -51,7 +51,9 @@ export const ActiveScenarioPanel = observer<{
       .map(([k]) => k);
 
     const Section = sectionComponents[activeSection as SectionKeys];
-    const defaultSection = validSectionKeys.includes(defaultSectionInput!)
+    const defaultSection = validSectionKeys.includes(
+      defaultSectionInput as string,
+    )
       ? defaultSectionInput
       : validSectionKeys[0];
 

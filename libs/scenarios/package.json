@@ -4,6 +4,7 @@
   "main": "./x",
   "scripts": {
     "build": "tsc",
+    "build:vite": "vite build --mode dev",
     "dev": "tsc --watch"
   },
   "dependencies": {
@@ -42,12 +43,15 @@
     "@types/node": "^18.0.6",
     "@types/react": "^18.0.15",
     "@types/uuid": "^8.3.4",
+    "@vitejs/plugin-react": "^2.1.0",
+    "eslint-config-nfour": "3.2.0",
     "mobx": "^6.3.3",
     "mobx-react-lite": "^3.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "eslint-config-nfour": "3.2.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "vite": "^3.1.1",
+    "vite-plugin-build": "^0.6.0"
   },
   "repository": {
     "type": "git",

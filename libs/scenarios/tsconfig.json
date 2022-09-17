@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "outDir": "./x"
   },
-  "include": [ "src"],
+  "include": [ "src", "vite.config.ts"],
   "references": [
     { "path": "../models" },
     { "path": "../ui" },
