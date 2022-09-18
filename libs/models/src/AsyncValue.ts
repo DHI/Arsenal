@@ -35,7 +35,7 @@ import {
  * await v.query() // Don't need to provide params as none are defined
  * v.value // [{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }]
  */
-export class AsyncValue<VALUE extends any, PAYLOAD extends any = any> {
+export class AsyncValue<VALUE, PAYLOAD = any> {
   constructor(
     private _query: (payload: PAYLOAD) => Promise<VALUE>,
     private config: {
@@ -120,3 +120,5 @@ export class AsyncValue<VALUE extends any, PAYLOAD extends any = any> {
   /** Creates an autorun reaction whenever the value changes */
   onValue = (cb: (v: this['value']) => void) => autorun(() => cb(this.value));
 }
+
+export const AsyncValueModel = AsyncValue

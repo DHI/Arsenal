@@ -1,20 +1,23 @@
 import { css, observer } from '@dhi/arsenal.ui';
 import * as React from 'react';
 import { FormConfigEditor } from '@dhi/arsenal.jsonform';
-import { reditScenarioForm } from './schema';
+import { reditScenarioForm, SchemaCustomComponents } from './schema';
 import { $Row, $Col } from '@dhi/arsenal.ui/src/components';
 import { PropsOf } from '@emotion/react';
+import { TextField } from '@mui/material';
 
 export default {
   title: 'JsonForm',
 };
 
-export const Main = observer(() => {
+export const ReditScenario = observer(() => {
   const [data, setData] = React.useState({
     name: 'foo',
     outflowLocations: [],
     selectedEvent: {},
   });
+
+  const [form, setForm] = React.useState(reditScenarioForm);
 
   return (
     <$Row
@@ -28,18 +31,30 @@ export const Main = observer(() => {
     >
       <Box
         title="Form"
-        grow
         css={css`
-          width: 500px;
+          && {
+            max-width: 500px;
+          }
         `}
       >
         <FormConfigEditor
-          form={reditScenarioForm}
+          form={form}
           data={data}
           onData={setData}
+          operations={{
+            RenderComponentField: (p) => {
+              if (p.field.kind === 'component') {
+                if (p.field.component === SchemaCustomComponents.selectedEvent)
+                  return <p>[[Custom Component reference goes here]]</p>;
+              }
+
+              return <>{p.children}</>;
+            },
+          }}
         />
       </Box>
       <$Col
+        grow
         css={css`
           align-items: stretch;
         `}
@@ -50,13 +65,25 @@ export const Main = observer(() => {
             max-height: 50%;
           `}
         >
-          <pre
+          <TextField
+            multiline
             css={css`
               font-size: 90%;
+              width: 100%;
+              overflow: auto;
+              white-space: nowrap;
+
+              textarea {
+                font-family: monospace;
+              }
             `}
-          >
-            {JSON.stringify(reditScenarioForm, null, 2)}
-          </pre>
+            onChange={(e) => {
+              try {
+                setForm(JSON.parse(e.target.value));
+              } catch {}
+            }}
+            value={JSON.stringify(form, null, 2)}
+          />
         </Box>
         <Box title="Output JSON">
           <pre

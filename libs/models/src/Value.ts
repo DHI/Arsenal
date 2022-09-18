@@ -10,19 +10,24 @@ import { observable, makeObservable, action } from 'mobx';
  * selectedFruit.value // 'banana'
  */
 
-export class StateModel<STATE = any> {
-  constructor(value: STATE) {
-    this.value = value;
-
+export class Value<STATE = any> {
+  constructor(
+    public value: STATE,
+    annotations: Partial<Parameters<typeof makeObservable>[1]> = {},
+  ) {
     makeObservable(this, {
       set: action.bound,
       value: observable,
+      ...annotations,
     });
   }
-
-  value: STATE;
 
   set(state: this['value']) {
     this.value = state;
   }
 }
+
+export const ValueModel = Value;
+
+/** @deprecated Use `Value` instead. */
+export const StateModel = Value;

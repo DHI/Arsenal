@@ -1,8 +1,8 @@
 import { makeObservable, action, computed } from 'mobx';
-import { StateModel } from './StateModel';
+import { Value } from './Value';
 
 /**
- * @see StateModel
+ * @see Value
  *
  * An easier way to manage simple boolean state.
  *
@@ -15,7 +15,7 @@ import { StateModel } from './StateModel';
  * isActive.setFalse()
  * isActive.isFalse // true
  */
-export class BooleanModel extends StateModel {
+export class BoolValue extends Value<boolean> {
   constructor(public value = false) {
     super(value);
 
@@ -48,3 +48,8 @@ export class BooleanModel extends StateModel {
     this.value = true;
   }
 }
+
+export const BooleanValue = BoolValue;
+export const BooleanValueModel = BoolValue;
+/** @deprecated use BoolValue */
+export const BooleanModel = BoolValue;

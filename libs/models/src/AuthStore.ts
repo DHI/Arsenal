@@ -1,5 +1,5 @@
 import { makeAutoObservable, toJS } from 'mobx';
-import { AsyncValue, StateModel } from '.';
+import { AsyncValue, Value } from '.';
 
 /**
  * Handles Authorization workflows
@@ -22,7 +22,7 @@ export class AuthStore {
     makeAutoObservable(this);
   }
 
-  state = new StateModel<
+  state = new Value<
     | { status: 'idle' }
     | { status: 'pending' }
     | { status: 'authed'; token: AuthTokenResponse }
@@ -147,7 +147,7 @@ export class AuthStore {
   };
 
   stopRefreshTimer = () => {
-    clearInterval(this.refreshTimer!);
+    clearInterval(this.refreshTimer);
   };
 
   private checkRefreshToken = async (token: this['token']) => {

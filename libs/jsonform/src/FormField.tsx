@@ -1,4 +1,4 @@
-import { BooleanModel } from '@dhi/arsenal.models';
+import { BoolValue } from '@dhi/arsenal.models';
 import { css, PropsOf, styled } from '@dhi/arsenal.ui';
 import {
   Button,
@@ -58,6 +58,7 @@ export const FormField = observer<{
       const pointer = parent.concat(field.pointer);
       const { errors, isValid = true } =
         state.fieldValidation.get(pointer.pointer) ?? {};
+
       const value = state.getState<string | undefined>(pointer);
       const isDisabled = field.layout?.disabled === true;
       const fieldType = (() => {
@@ -87,6 +88,7 @@ export const FormField = observer<{
                   label: o,
                   value: o,
                 }));
+
           const selectId = `${pointer.pointer}`;
 
           return (
@@ -215,7 +217,11 @@ export const FormField = observer<{
                     ? {
                         endAdornment: (
                           <InputAdornment position="end">
-                            <span>{typeof field.layout.unit === 'string' ? field.layout.unit : field.layout.unit.value}</span>
+                            <span>
+                              {typeof field.layout.unit === 'string'
+                                ? field.layout.unit
+                                : field.layout.unit.value}
+                            </span>
                           </InputAdornment>
                         ),
                       }
@@ -280,9 +286,11 @@ export const FormField = observer<{
       const primaryCheckboxField = field.fields.find(
         (f) => f.kind === 'field' && f.layout?.variant === 'primaryCheckbox',
       ) as undefined | Field;
+
       const filteredFields = field.fields.filter(
         (v) => v !== primaryCheckboxField,
       );
+
       const body = (() => {
         const elements = filteredFields.map((f, i) => (
           <FormField
@@ -399,6 +407,7 @@ export const FormField = observer<{
             const primaryText = field.fields.find(
               (f) => f.kind === 'field' && f.layout?.variant === 'primaryText',
             ) as undefined | Field;
+
             const primaryTextValue: string | undefined = primaryText
               ? state.getState(rowPointer.concat(primaryText.pointer))
               : undefined;
@@ -587,6 +596,7 @@ const $GroupRow = styled(GridRow)`
   padding: 0.5em;
   margin: 0.5em 0;
 `;
+
 const $TextField = styled(TextField)`
   && {
     margin: 0.45em 0;
@@ -652,7 +662,7 @@ export function walkFormData({
 }
 
 const GroupHeading = observer<{
-  collapsing?: BooleanModel;
+  collapsing?: BoolValue;
   /** Inserted before the title element */
   before?: ReactNode;
   children: ReactNode;
@@ -717,6 +727,7 @@ const GroupHeading = observer<{
     </$Row>
   );
 });
+
 const CollapsableGrouping = observer<{
   collapsing?: CollapseOptions;
   heading?: {
@@ -724,19 +735,20 @@ const CollapsableGrouping = observer<{
     after?: ReactNode;
     title?: ReactNode;
   };
-  children: ReactNode | ((props: { isCollapsed: BooleanModel }) => ReactNode);
+  children: ReactNode | ((props: { isCollapsed: BoolValue }) => ReactNode);
   className?: string;
 }>(({ collapsing, heading, children, className }) => {
   const isCollapseDisabled = !collapsing || collapsing === 'disabled';
   const isCollapsed = useMemo(
     () =>
-      new BooleanModel(
+      new BoolValue(
         collapsing === 'initiallyOpen'
           ? false
           : collapsing === 'initiallyClosed',
       ),
     [],
   );
+
   const hasTitle = !!heading?.title;
 
   return (
@@ -781,6 +793,7 @@ const CollapsableGrouping = observer<{
     </$GroupRow>
   );
 });
+
 const $Collapse = styled(Collapse)`
   width: 100%;
 `;

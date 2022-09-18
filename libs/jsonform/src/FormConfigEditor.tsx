@@ -167,11 +167,12 @@ export type TextItems = {
   saveButton?: React.ReactNode;
 };
 
-export type FieldComponentFn = React.FC<{
+export type FieldComponentFn = (props: {
   pointer: JsonPointer;
   state: FormConfigEditorState;
   field: ComponentField;
-}>;
+  children?: React.ReactNode;
+}) => JSX.Element;
 
 export const FormConfigEditor = observer<{
   data: Data;
