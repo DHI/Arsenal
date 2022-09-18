@@ -109,7 +109,9 @@ These` vite.config.ts` options can enable HMR for dependencies by using source f
     },
   },
 
-```
+```'
+This also means you do not have to start the dev script for a library, as it relies on filesystem save events on source files, as if they are a part of your project.
+The caveat is that the source must be transpilable by your vite.config.ts, and that is dependent mostly of use of `@emotion/react`.
 
 ## Deprecated functionality
 
