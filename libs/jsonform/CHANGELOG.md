@@ -1,5 +1,17 @@
 # @dhi/arsenal.jsonform
 
+## 8.0.0
+
+### Minor Changes
+
+- Sweeping updates
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.models@3.5.0
+  - @dhi/arsenal.ui@8.0.0
+
 ## 7.1.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @dhi/arsenal.models
 
+## 3.5.0
+
+### Minor Changes
+
+- Sweeping updates
+
 ## 3.4.1
 
 ### Patch Changes

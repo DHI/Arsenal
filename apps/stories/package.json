@@ -1,6 +1,6 @@
 {
   "name": "stories",
-  "version": "0.2",
+  "version": null,
   "private": true,
   "scripts": {
     "start": "vite dev",

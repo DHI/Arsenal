@@ -12,7 +12,7 @@ import {
   WordExport,
 } from '@syncfusion/ej2-react-documenteditor';
 import styled from '@emotion/styled';
-import { StateModel } from '@dhi/arsenal.models';
+import { Value } from '@dhi/arsenal.models';
 import './styles.css';
 import { PropsOf } from '@emotion/react';
 import AutoSizer from 'react-virtualized-auto-sizer';
@@ -42,22 +42,20 @@ export interface PreviewBody extends ReplacementProps {
 export { DocumentEditorContainer };
 
 export class BmpGeneratorState {
-  serviceUrl: StateModel<string>;
+  serviceUrl: Value<string>;
   constructor({ serviceUrl }: { serviceUrl: string }) {
-    this.serviceUrl = new StateModel(serviceUrl);
+    this.serviceUrl = new Value(serviceUrl);
 
     makeAutoObservable(this);
   }
 
-  documentEditor = new StateModel<DocumentEditorContainer | undefined>(
+  documentEditor = new Value<DocumentEditorContainer | undefined>(undefined);
+
+  renderedDocumentEditor = new Value<DocumentEditorContainer | undefined>(
     undefined,
   );
 
-  renderedDocumentEditor = new StateModel<DocumentEditorContainer | undefined>(
-    undefined,
-  );
-
-  replacements = new StateModel<ReplacementProps | undefined>(undefined);
+  replacements = new Value<ReplacementProps | undefined>(undefined);
 
   get editor() {
     return this.documentEditor.value;
@@ -97,7 +95,6 @@ export class BmpGeneratorState {
 
     file.addEventListener('loadend', async (e) => {
       const base64String = file.result;
-
       const res = await fetch(
         `${this.serviceUrl.value}/PreviewParameterReplacement`,
         {

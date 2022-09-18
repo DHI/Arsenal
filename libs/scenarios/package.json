@@ -1,6 +1,6 @@
 {
   "name": "@dhi/arsenal.scenarios",
-  "version": "9.2.0",
+  "version": "10.0.0",
   "main": "./x",
   "scripts": {
     "build": "tsc -p tsconfig.lib.json",

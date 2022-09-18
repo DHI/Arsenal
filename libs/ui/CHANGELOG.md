@@ -1,5 +1,16 @@
 # @dhi/arsenal.ui
 
+## 8.0.0
+
+### Minor Changes
+
+- Sweeping updates
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.models@3.5.0
+
 ## 7.0.1
 
 ### Patch Changes
