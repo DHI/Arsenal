@@ -14,14 +14,13 @@
 
 Structure:
 - `./apps`
-  - Applications to demonstrate libraries within this repo
+  - Boilerplates or Applications to demonstrate libraries within this repo
 - `./libs`
   - NPM packages, published to Github Packages
 
 Tooling:
 - `pnpm` with workspaces
 - `changesets` for npm package versioning, changelogs & publishing
-
 
 ## Requirements
 
@@ -48,7 +47,6 @@ cd libs/jsonform && pnpm dev
 
 # Start an app
 cd apps/stories && pnpm start
-## Library/Package versioning
 ```
 
 ## Package/Library versioning, changelogs, publishing
@@ -69,7 +67,6 @@ pnpm release:version
 # - Also updates all dependent packages with new version numbers
 pnpm release:publish
 ```
-
 
 ## Development in other projects
 
@@ -97,13 +94,19 @@ Example workflow:
 
 ### Vitejs
 
-These config options may enable a smooth experience HMR:
+Packages in this project should include `src` files in the bundled package.    
+These` vite.config.ts` options can enable HMR for dependencies by using source files:
 ```ts
 
 // ...
 
-  optimizeDeps: {
-    force: true,
+  resolve: {
+    alias: {
+      // Use src files in specific projects to enable hot reloading
+      '@dhi/arsenal.scenarios': resolve(
+        './node_modules/@dhi/arsenal.scenarios/src',
+      ),
+    },
   },
 
 ```
