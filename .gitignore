@@ -1,6 +1,7 @@
 node_modules
 build
 x
+!apps/stories/x
 tsconfig*.tsbuildinfo
 .gitmodules
 submodules/apps/*
