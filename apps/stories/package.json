@@ -10,6 +10,9 @@
   },
   "browserslist": ">0.75%, not ie 11, not UCAndroid >0, not OperaMini all",
   "dependencies": {
+    "luxon": "^3.0.3",
+    "@types/luxon": "^3.0.1",
+    "@dhi/arsenal.date-slider": "workspace:*",
     "@dhi/arsenal.bmpgenerator": "workspace:*",
     "@dhi/arsenal.jsonform": "workspace:*",
     "@dhi/arsenal.models": "workspace:*",
