@@ -5,6 +5,7 @@ import reactPlugin from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [reactPlugin({ jsxImportSource: '@emotion/react' })],
   root: resolve('./src'),
+  base: './',
   server: {
     host: '0.0.0.0',
     port: 9005,
