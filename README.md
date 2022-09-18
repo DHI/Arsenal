@@ -12,11 +12,17 @@
   
 ## Overview
 
-Structure:
 - `./apps`
-  - Boilerplates or Applications to demonstrate libraries within this repo
+  Boilerplates or Applications to demonstrate libraries within this repo
+  - [react-app](./apps/react-app/)
+  - [stories](./apps/stories/)
 - `./libs`
-  - NPM packages, published to Github Packages
+  NPM packages, published to Github Packages
+  - [date-slider](./libs/date-slider/)
+  - [jsonform](./libs/jsonform/)
+  - [scenarios](./libs/scenarios/)
+  - [models](./libs/models/)
+  - [ui](./libs/ui/)
 
 Tooling:
 - `pnpm` with workspaces
