@@ -1,5 +1,9 @@
 import { createContext, useContext, useEffect } from 'react';
-import { autorun } from 'mobx';
+import { autorun, IReactionDisposer } from 'mobx';
+
+// export function useMobxClass<CLASS>(fn: () => CLASS)  {
+//   return useMemo(() => fn(), []);
+// }
 
 /** Shortcut to creating a hook for a context */
 export function createContextHook<S extends unknown>(
@@ -44,6 +48,22 @@ export function useAutorun(...params: Parameters<typeof autorun>) {
   return useEffect(() => autorun(...params), []);
 }
 
-// export function useMobxClass<CLASS>(fn: () => CLASS)  {
-//   return useMemo(() => fn(), []);
-// }
+/**
+ * Use many mobx autorun/reaction as a react hook
+ * @example
+ * const Component = observer(() => {
+ *   useReactions(() => [
+ *     reaction(() => store.someValue, (v) => {}),
+ *     autorun(() => store.someValue, (v) => {}),
+ *   ])
+ * })
+ */
+export const useReactions = (
+  reactions: () => IReactionDisposer[],
+  deps: any[] = [],
+) =>
+  useEffect(() => {
+    const disposers = reactions();
+
+    return () => disposers.forEach((disposer) => disposer());
+  }, deps);
