@@ -1,5 +1,11 @@
 # @dhi/arsenal.models
 
+## 3.6.0
+
+### Minor Changes
+
+- .
+
 ## 3.5.0
 
 ### Minor Changes
