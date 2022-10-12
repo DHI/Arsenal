@@ -4,7 +4,12 @@ import {
   observable,
   autorun,
   AnnotationMapEntry,
+  computed,
 } from 'mobx';
+
+type MaybeCancellablePromise<T> = Promise<T> & {
+  cancel?(): void;
+};
 
 /**
  * A simple way to encapsulate API access.
@@ -37,10 +42,14 @@ import {
  */
 export class AsyncValue<VALUE, PAYLOAD = any> {
   constructor(
-    private _query: (payload: PAYLOAD) => Promise<VALUE>,
+    private _query: (payload: PAYLOAD) => MaybeCancellablePromise<VALUE>,
     private config: {
+      /** Initial value */
       value?: VALUE;
+      /** Changes the mobx value annotation for fine grained observability */
       valueAnnotation?: AnnotationMapEntry;
+      /** @default false */
+      disablePromiseCancellingOnReset?: boolean;
     } = {},
   ) {
     const { value, valueAnnotation = observable } = config;
@@ -49,22 +58,28 @@ export class AsyncValue<VALUE, PAYLOAD = any> {
 
     makeObservable(this, {
       value: valueAnnotation,
-      isPending: observable,
+      queue: observable,
+      isPending: computed,
       error: observable,
       query: action.bound,
       set: action.bound,
       reset: action.bound,
       setError: action.bound,
-      setIsPending: action.bound,
     });
   }
 
   /** This is just for typescript */
   protected PAYLOAD!: PAYLOAD;
 
-  isPending = false;
+  get isPending() {
+    return this.queue.size > 0;
+  }
+
   value?: VALUE = undefined;
   error?: Error = undefined;
+
+  /** This is used to ensure the `isPending` boolean works with concurrent queries */
+  queue = new Set<MaybeCancellablePromise<VALUE>>();
 
   /**
    * @example
@@ -76,18 +91,18 @@ export class AsyncValue<VALUE, PAYLOAD = any> {
   async query<P extends PAYLOAD extends {} ? [PAYLOAD] : undefined[]>(
     ...[payload]: P
   ) {
-    this.setIsPending(true);
     this.setError(undefined);
+    const promise = this._query(payload as PAYLOAD);
+
+    this.queue.add(promise);
 
     try {
-      const val = await this._query(payload as any);
-
-      this.set(val);
+      this.set(await promise);
     } catch (err: any) {
       this.setError(err);
+    } finally {
+      this.queue.delete(promise);
     }
-
-    this.setIsPending(false);
 
     return this;
   }
@@ -106,12 +121,16 @@ export class AsyncValue<VALUE, PAYLOAD = any> {
 
   /** Reset value to undefined */
   reset() {
+    if (this.config.disablePromiseCancellingOnReset) {
+      this.queue.forEach((promise) => promise?.cancel?.());
+      this.queue.clear();
+    }
+
     this.value = undefined;
 
     return this;
   }
 
-  setIsPending = (v: this['isPending']) => (this.isPending = v);
   setError = (v: this['error']) => (this.error = v);
 
   /** Creates an autorun reaction whenever the error changes */
@@ -121,4 +140,4 @@ export class AsyncValue<VALUE, PAYLOAD = any> {
   onValue = (cb: (v: this['value']) => void) => autorun(() => cb(this.value));
 }
 
-export const AsyncValueModel = AsyncValue
+export const AsyncValueModel = AsyncValue;
