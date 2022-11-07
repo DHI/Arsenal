@@ -1,5 +1,11 @@
 # @dhi/arsenal.models
 
+## 3.7.0
+
+### Minor Changes
+
+- Fix import pathing
+
 ## 3.6.0
 
 ### Minor Changes

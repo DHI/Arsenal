@@ -1,5 +1,16 @@
 # @dhi/arsenal.ui
 
+## 10.0.0
+
+### Minor Changes
+
+- Fix import pathing
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.models@3.7.0
+
 ## 9.0.0
 
 ### Minor Changes
