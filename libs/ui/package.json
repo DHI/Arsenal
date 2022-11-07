@@ -1,7 +1,7 @@
 {
   "name": "@dhi/arsenal.ui",
   "version": "9.0.0",
-  "main": "./x",
+  "main": "./x/index",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch"

@@ -1,7 +1,7 @@
 {
   "name": "@dhi/arsenal.scenarios",
   "version": "11.0.0",
-  "main": "./x",
+  "main": "./x/index",
   "scripts": {
     "build": "tsc -p tsconfig.lib.json",
     "build:vite": "vite build",
