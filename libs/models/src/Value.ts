@@ -27,7 +27,4 @@ export class Value<STATE = any> {
   }
 }
 
-export const ValueModel = Value;
-
-/** @deprecated Use `Value` instead. */
-export const StateModel = Value;
+export { Value as StateModel, Value as ValueModel };

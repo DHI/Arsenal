@@ -49,7 +49,8 @@ export class BoolValue extends Value<boolean> {
   }
 }
 
-export const BooleanValue = BoolValue;
-export const BooleanValueModel = BoolValue;
-/** @deprecated use BoolValue */
-export const BooleanModel = BoolValue;
+export {
+  BoolValue as BooleanModel,
+  BoolValue as BooleanValueModel,
+  BoolValue as BooleanValue,
+};

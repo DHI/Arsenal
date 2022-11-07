@@ -121,7 +121,7 @@ export class AsyncValue<VALUE, PAYLOAD = any> {
 
   /** Reset value to undefined */
   reset() {
-    if (this.config.disablePromiseCancellingOnReset) {
+    if (!this.config.disablePromiseCancellingOnReset) {
       this.queue.forEach((promise) => promise?.cancel?.());
       this.queue.clear();
     }
@@ -140,4 +140,4 @@ export class AsyncValue<VALUE, PAYLOAD = any> {
   onValue = (cb: (v: this['value']) => void) => autorun(() => cb(this.value));
 }
 
-export const AsyncValueModel = AsyncValue;
+export { AsyncValue as AsyncValueModel };
