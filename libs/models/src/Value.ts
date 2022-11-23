@@ -4,7 +4,7 @@ import { observable, makeObservable, action } from 'mobx';
  * An easier way to handle simple value getter/setter.
  *
  * @example
- * const selectedFruit = new StateModel<'banana'|'apple'|undefined>(undefined)
+ * const selectedFruit = new Value<'banana'|'apple'|undefined>(undefined)
  * selectedFruit.set('test') // TS error
  * selectedFruit.set('banana') // Valid
  * selectedFruit.value // 'banana'

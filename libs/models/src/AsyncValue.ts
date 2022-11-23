@@ -14,11 +14,11 @@ type MaybeCancellablePromise<T> = Promise<T> & {
 /**
  * A simple way to encapsulate API access.
  *
- * Read the example closely:
+ * Read this example closely:
  *
  * @example
  * async function fetchFiles(c: { userId: string; foo: number }): Promise<{ name: string }[]> {
- *   return []
+ *   return [{ name: 'myFile.txt' }]
  * }
  *
  * class ExampleModel {

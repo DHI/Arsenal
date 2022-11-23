@@ -7,7 +7,7 @@ import { Value } from './Value';
  * An easier way to manage simple boolean state.
  *
  * @example
- * const isActive = new BooleanModel(true)
+ * const isActive = new BoolValue(true)
  * isActive.value // true
  * isActive.toggle() // false
  * isActive.set(true)
