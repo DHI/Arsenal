@@ -1,6 +1,7 @@
 import { css, observer, PropsOf } from '@dhi/arsenal.ui';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { ReactNode } from 'react';
+import 'overlayscrollbars/overlayscrollbars.css';
 
 export const OverlayScrollbar = observer<{
   children: ReactNode;

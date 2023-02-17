@@ -11,10 +11,7 @@ import { ScenarioListItem } from './__common/ScenarioListItem';
 import { ScenarioClasses } from './types';
 import { $ProgressBar } from './__common/$ProgressBar';
 import { ScenarioInstance } from '.';
-// import ScenarioIcon from '@mui/icons-material/Ballot';
 import CreateIcon from '@mui/icons-material/PostAdd';
-// import ScenarioIcon from '@mui/icons-material/DataObject';
-import 'overlayscrollbars/overlayscrollbars.css';
 import { OverlayScrollbar } from './__common/OverlayScrollbar';
 
 // import ScenarioIcon from '@mui/icons-material/ArrowRight';
