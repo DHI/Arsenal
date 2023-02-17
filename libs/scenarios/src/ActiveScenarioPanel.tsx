@@ -10,6 +10,7 @@ import {
   ScenarioConfigEditor,
 } from './editor/ScenarioConfigEditor';
 import { ScenarioClasses } from './types';
+import { OverlayScrollbar } from './__common/OverlayScrollbar';
 
 export const ActiveScenarioPanel = observer<{
   /** Represents additional tabs */
@@ -120,14 +121,8 @@ export const ActiveScenarioPanel = observer<{
                 <CloseIcon />
               </IconButton>
             </$Row>
-            <$Row
-              css={css`
-                align-items: flex-start;
-                overflow: auto;
-              `}
-            >
-              {Section && <Section />}
-            </$Row>
+
+            <OverlayScrollbar>{Section && <Section />}</OverlayScrollbar>
           </$Col>
         </SidebarPanel>
         {append}

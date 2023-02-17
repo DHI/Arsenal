@@ -1,10 +1,8 @@
-import { Checkbox, InputAdornment, TextField } from '@mui/material';
+import { Button, Checkbox, InputAdornment, TextField } from '@mui/material';
 import { observer, css } from '@dhi/arsenal.ui';
 import { SidebarPanel } from './__common/SidebarPanel';
 import {
   CloseIcon,
-  ConfigIcon,
-  OpenNewIcon,
   SearchIcon,
   SimpleList,
 } from '@dhi/arsenal.ui/x/components';
@@ -13,7 +11,13 @@ import { ScenarioListItem } from './__common/ScenarioListItem';
 import { ScenarioClasses } from './types';
 import { $ProgressBar } from './__common/$ProgressBar';
 import { ScenarioInstance } from '.';
+// import ScenarioIcon from '@mui/icons-material/Ballot';
+import CreateIcon from '@mui/icons-material/PostAdd';
+// import ScenarioIcon from '@mui/icons-material/DataObject';
+import 'overlayscrollbars/overlayscrollbars.css';
+import { OverlayScrollbar } from './__common/OverlayScrollbar';
 
+// import ScenarioIcon from '@mui/icons-material/ArrowRight';
 export const ScenarioListPanel = observer<{
   /** When `true` list items cannot be clicked */
   isSelectingDisabled?: boolean;
@@ -52,6 +56,10 @@ export const ScenarioListPanel = observer<{
       {scenarioList.isPending && <$ProgressBar />}
       <SimpleList
         showDivider
+        css={css`
+          padding-bottom: 0;
+          padding: 0;
+        `}
         items={[
           ...(canFilterScenarios
             ? [
@@ -62,6 +70,7 @@ export const ScenarioListPanel = observer<{
                     <TextField
                       placeholder="Filter scenarios..."
                       value={scenarioListSearchText.value ?? ''}
+                      size="small"
                       onChange={(e) =>
                         scenarioListSearchText.set(e.target.value)
                       }
@@ -94,8 +103,20 @@ export const ScenarioListPanel = observer<{
             ? [
                 {
                   id: 'createScenario',
-                  icon: <OpenNewIcon />,
-                  text: <>Create New Scenario</>,
+                  text: (
+                    <>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        endIcon={<CreateIcon />}
+                        css={css`
+                          width: 100%;
+                        `}
+                      >
+                        Create New Scenario
+                      </Button>
+                    </>
+                  ),
                   onClick() {
                     startDraftScenario();
                   },
@@ -108,63 +129,66 @@ export const ScenarioListPanel = observer<{
         ]}
       />
 
-      <SimpleList
-        css={css`
-          overflow-y: auto;
-          overflow-x: hidden;
-          padding-top: 0;
-        `}
-        showDivider
-        listProps={{ dense: true }}
-        items={[
-          ...[
-            ...(draftScenario.value
-              ? [
-                  {
-                    item: draftScenario.value,
-                  },
-                ]
-              : []),
-            ...searchFilteredScenarioList,
-          ].map((s) => {
-            const { item } = s;
-            const { id } = item;
-            const isActive = id === activeScenario?.id;
-            const isChecked = checkboxes?.checkedIds?.includes(item.id);
+      <OverlayScrollbar
+        options={{
+          overflow: { x: 'hidden' },
+        }}
+      >
+        <SimpleList
+          css={css`
+            padding-top: 0;
+            box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.1);
+          `}
+          showDivider
+          listProps={{ dense: true }}
+          items={[
+            ...[
+              ...(draftScenario.value
+                ? [
+                    {
+                      item: draftScenario.value,
+                    },
+                  ]
+                : []),
+              ...searchFilteredScenarioList,
+            ].map((s) => {
+              const { item } = s;
+              const { id } = item;
+              const isActive = id === activeScenario?.id;
+              const isChecked = checkboxes?.checkedIds?.includes(item.id);
 
-            return {
-              id,
-              icon: checkboxes?.enabled ? (
-                <Checkbox
-                  disabled={
-                    isChecked ? false : !checkboxes.isCheckable?.(item) ?? true
-                  }
-                  checked={isChecked}
-                  onChange={(e, checked) =>
-                    checkboxes?.onChecked?.(item.id, checked)
-                  }
-                />
-              ) : (
-                <ConfigIcon
-                  css={css`
-                    opacity: 0.5;
-                  `}
-                />
-              ),
-              text: (
-                <ScenarioListItem
-                  scenario={item}
-                  isDraft={id === draftScenario.value?.id}
-                  title={item?.data?.[scenarioDataNameKey]}
-                />
-              ),
-              onClick: isSelectingDisabled ? undefined : () => setScenario(id),
-              isSelected: isActive,
-              arrow: 'right' as const,
-            };
-          }),
-        ]}
-      />
+              return {
+                id,
+                icon: checkboxes?.enabled ? (
+                  <Checkbox
+                    disabled={
+                      isChecked
+                        ? false
+                        : !checkboxes.isCheckable?.(item) ?? true
+                    }
+                    checked={isChecked}
+                    onChange={(e, checked) =>
+                      checkboxes?.onChecked?.(item.id, checked)
+                    }
+                  />
+                ) : undefined,
+                text: (
+                  <ScenarioListItem
+                    scenario={item}
+                    isDraft={id === draftScenario.value?.id}
+                    title={item?.data?.[scenarioDataNameKey]}
+                  />
+                ),
+                onClick: isSelectingDisabled
+                  ? undefined
+                  : () => setScenario(id),
+                isSelected: isActive,
+                arrow: 'right' as const,
+              };
+            }),
+          ]}
+        />
+      </OverlayScrollbar>
     </SidebarPanel>
   );
 });

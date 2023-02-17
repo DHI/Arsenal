@@ -31,4 +31,5 @@ export interface ScenarioInstance<
 export enum ScenarioClasses {
   ScenarioListPanel = 'scenario-list-panel',
   ActiveScenarioPanel = 'active-scenario-panel',
+  ScenarioListItem = 'scenario-list-item',
 }

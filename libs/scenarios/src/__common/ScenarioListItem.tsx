@@ -1,6 +1,6 @@
 import { css, observer } from '@dhi/arsenal.ui';
 import { $Col, $Row } from '@dhi/arsenal.ui/x/components';
-import { ScenarioInstance, ScenarioJobStatus } from '../types';
+import { ScenarioClasses, ScenarioInstance, ScenarioJobStatus } from '../types';
 import { ProgressIndicatorCircle } from './ProgressIndicatorCircle';
 
 export const ScenarioListItem = observer<{
@@ -30,7 +30,7 @@ export const ScenarioListItem = observer<{
       css={css`
         justify-content: space-between;
       `}
-      {...{ className }}
+      className={[ScenarioClasses.ScenarioListItem, className].join(' ')}
     >
       <$Col
         css={css`

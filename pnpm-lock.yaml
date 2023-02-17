@@ -359,6 +359,8 @@ importers:
       mobx: ^6.3.3
       mobx-react-lite: ^3.2.1
       nanoid: ^3.3.2
+      overlayscrollbars: ^2.1.0
+      overlayscrollbars-react: ^0.5.0
       react: ^17.0.2
       react-dom: ^17.0.2
       typescript: ^4.7.4
@@ -372,6 +374,8 @@ importers:
       fuse.js: 6.6.2
       lodash-es: 4.17.21
       nanoid: 3.3.4
+      overlayscrollbars: 2.1.0
+      overlayscrollbars-react: 0.5.0_wqka6fcoscjlpypsggh3aaqaji
       uuid: 8.3.2
     devDependencies:
       '@dhi/arsenal.jsonform': link:../jsonform
@@ -6917,6 +6921,20 @@ packages:
   /outdent/0.5.0:
     resolution: {integrity: sha512-/jHxFIzoMXdqPzTaCpFzAAWhpkSjZPF4Vsn6jAfNpmbH/ymsmd7Qc6VE9BGn0L6YMj6uwpQLxCECpus4ukKS9Q==}
     dev: true
+
+  /overlayscrollbars-react/0.5.0_wqka6fcoscjlpypsggh3aaqaji:
+    resolution: {integrity: sha512-uCNTnkfWW74veoiEv3kSwoLelKt4e8gTNv65D771X3il0x5g5Yo0fUbro7SpQzR9yNgi23cvB2mQHTTdQH96pA==}
+    peerDependencies:
+      overlayscrollbars: ^2.0.0
+      react: '>=16.8.0'
+    dependencies:
+      overlayscrollbars: 2.1.0
+      react: 17.0.2
+    dev: false
+
+  /overlayscrollbars/2.1.0:
+    resolution: {integrity: sha512-L6p4o4aWse5pDstRnJjZaos+al+bkuAgzGIlWwlsxRSgW6+7Kvrp+kAzlWoTZ1bgB4CJj+8u5bjdq8XHEhWjrw==}
+    dev: false
 
   /p-filter/2.1.0:
     resolution: {integrity: sha512-ZBxxZ5sL2HghephhpGAQdoskxplTwr7ICaehZwLIlfL6acuVgZPm8yBNuRAFBGEqtD/hmUeq9eqLg2ys9Xr/yw==}
