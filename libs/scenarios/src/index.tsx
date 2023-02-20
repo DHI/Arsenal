@@ -1,4 +1,4 @@
-import '@dhi/arsenal.ui/css-prop.d.ts';
+import '@emotion/react/types/css-prop';
 
 export * from './ScenariosPanels';
 export * from './ScenarioListPanel';

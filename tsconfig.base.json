@@ -15,6 +15,7 @@
     "incremental": true,
     "moduleResolution": "node",
     "sourceMap": true,
+    "skipLibCheck": true,
     "declarationMap": false,
     "preserveSymlinks": false,
     "lib": [ "es2018", "dom" ],

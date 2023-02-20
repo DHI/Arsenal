@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { ReactNode, Fragment as Frag } from 'react';
 import { css, styled, observer, cx } from '../react';
+import * as React from 'react';
 
 export enum SimpleListClasses {
   ListItem = 'simple-list-item',
@@ -45,7 +46,12 @@ export const SimpleList = observer<{
             selected={isSelected ?? ListItemProps?.selected}
           >
             {!!icon && <$ListItemIcon>{icon}</$ListItemIcon>}
-            <ListItemText primary={text} />
+            <ListItemText
+              primary={text}
+              css={css`
+                margin: 0;
+              `}
+            />
             {!!isSelected && arrow === 'right' && <$RightArrow />}
           </$ListItem>
           {showDivider && (
@@ -64,9 +70,11 @@ export const SimpleList = observer<{
 const $ListItem = styled(ListItem)`
   position: relative;
 `;
+
 const $ListItemIcon = styled(ListItemIcon)`
   min-width: 32px;
 `;
+
 const $RightArrow = styled.div`
   width: 0;
   height: 0;
@@ -77,6 +85,7 @@ const $RightArrow = styled.div`
   border-bottom: 10px solid transparent;
   border-left: 10px solid #ebebeb;
 `;
+
 const $List = styled(List)`
   .Mui-selected {
     .MuiListItemText-primary {
