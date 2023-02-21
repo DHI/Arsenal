@@ -1,5 +1,12 @@
 # @dhi/arsenal.date-slider
 
+## 5.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.ui@11.0.0
+
 ## 4.0.0
 
 ### Minor Changes
