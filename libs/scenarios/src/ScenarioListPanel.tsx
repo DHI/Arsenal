@@ -17,7 +17,7 @@ import { ScenarioListItem } from './__common/ScenarioListItem';
 import { ScenarioClasses, ScenarioJobStatus } from './types';
 import { $ProgressBar } from './__common/$ProgressBar';
 import { ScenarioInstance } from '.';
-import CreateIcon from '@mui/icons-material/PostAdd';
+import { PostAdd as CreateIcon } from '@mui/icons-material';
 import { OverlayScrollbar } from './__common/OverlayScrollbar';
 
 // import ScenarioIcon from '@mui/icons-material/ArrowRight';
