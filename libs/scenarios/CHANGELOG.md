@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 13.1.0
+
+### Minor Changes
+
+- Update icon import for mui
+
 ## 13.0.0
 
 ### Minor Changes
