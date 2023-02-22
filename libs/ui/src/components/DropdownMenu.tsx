@@ -3,6 +3,7 @@ import Grow from '@mui/material/Grow/Grow';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import { css, PropsOf, observer } from '../react';
 import { ReactElement, useState, useEffect } from 'react';
+import * as React from 'react';
 
 export const DropdownMenu = observer<{
   isOpen?: boolean;

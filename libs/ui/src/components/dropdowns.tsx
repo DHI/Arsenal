@@ -7,6 +7,7 @@ import {
   Paper,
 } from '@mui/material';
 import { observer } from 'mobx-react-lite';
+import * as React from 'react';
 import { ReactNode } from 'react';
 import { DropdownMenu } from './DropdownMenu';
 import { CheckIcon, CloseIcon } from './icons';
