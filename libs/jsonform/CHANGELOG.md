@@ -1,5 +1,12 @@
 # @dhi/arsenal.jsonform
 
+## 12.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.ui@11.1.0
+
 ## 11.0.0
 
 ### Minor Changes

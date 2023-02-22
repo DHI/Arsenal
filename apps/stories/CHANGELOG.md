@@ -5,6 +5,17 @@
 ### Patch Changes
 
 - Updated dependencies
+  - @dhi/arsenal.ui@11.1.0
+  - @dhi/arsenal.bmpgenerator@1.1.4
+  - @dhi/arsenal.date-slider@6.0.0
+  - @dhi/arsenal.jsonform@12.0.0
+  - @dhi/arsenal.scenarios@14.0.0
+
+## null
+
+### Patch Changes
+
+- Updated dependencies
   - @dhi/arsenal.scenarios@13.1.0
 
 ## null

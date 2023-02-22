@@ -1,5 +1,11 @@
 # @dhi/arsenal.ui
 
+## 11.1.0
+
+### Minor Changes
+
+- Fix react import issue
+
 ## 11.0.0
 
 ### Minor Changes
