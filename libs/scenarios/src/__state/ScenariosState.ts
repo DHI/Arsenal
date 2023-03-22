@@ -359,8 +359,8 @@ export class ScenariosState<
     // TODO: seems to causing unecessary refreshes in results reactions
 
     if (existingIndex != null)
-      this.config.jobsList.set(
-        this.config.jobsList.value!.map((j) => {
+      this.config.jobsList?.set(
+        this.config.jobsList?.value!.map((j) => {
           if (j.parameters?.ScenarioId === updatedJob.parameters?.ScenarioId)
             return updatedJob!;
 
@@ -368,8 +368,8 @@ export class ScenariosState<
         }),
       );
     else
-      this.config.jobsList.set([
-        ...(this.config.jobsList.value ?? []),
+      this.config.jobsList?.set([
+        ...(this.config.jobsList?.value ?? []),
         updatedJob!,
       ]);
   };

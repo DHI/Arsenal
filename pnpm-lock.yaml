@@ -252,7 +252,7 @@ importers:
       '@types/node': ^18.0.6
       '@types/react': ^18.0.15
       luxon: ^3.0.3
-      mobx: ^6.3.3
+      mobx: ^6.8.0
       mobx-react-lite: ^3.2.1
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -270,8 +270,8 @@ importers:
       '@types/luxon': 3.0.1
       '@types/node': 18.6.3
       '@types/react': 18.0.15
-      mobx: 6.6.2
-      mobx-react-lite: 3.4.0_ghghrguybkw72jf5a7pj3e2fam
+      mobx: 6.8.0
+      mobx-react-lite: 3.4.0_qq5k7xmo3oqg7ez4gi6qckqgy4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       typescript: 4.8.3
@@ -293,7 +293,7 @@ importers:
       date-fns: ^2.23.0
       json-ptr: ^2.2.0
       lodash-es: ^4.17.21
-      mobx: ^6.3.3
+      mobx: ^6.8.0
       mobx-react-lite: ^3.2.1
       mobx-utils: ^6.0.4
       pluralize: ^8.0.0
@@ -308,7 +308,7 @@ importers:
       date-fns: 2.29.1
       json-ptr: 2.2.0
       lodash-es: 4.17.21
-      mobx-utils: 6.0.5_mobx@6.6.1
+      mobx-utils: 6.0.5_mobx@6.8.0
       pluralize: 8.0.0
     devDependencies:
       '@dhi/arsenal.models': link:../models
@@ -319,8 +319,8 @@ importers:
       '@mui/material': 5.9.3_orevtvwwr7asuvj7hxmn46ctqq
       '@types/node': 18.6.3
       '@types/react': 18.0.15
-      mobx: 6.6.1
-      mobx-react-lite: 3.4.0_vuaia3cr2ucdrk3q4mauc2kfvi
+      mobx: 6.8.0
+      mobx-react-lite: 3.4.0_qq5k7xmo3oqg7ez4gi6qckqgy4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       typescript: 4.7.4
@@ -328,11 +328,11 @@ importers:
   libs/models:
     specifiers:
       '@types/node': ^18.0.6
-      mobx: ^6.3.3
+      mobx: ^6.8.0
       typescript: ^4.7.4
     devDependencies:
       '@types/node': 18.6.3
-      mobx: 6.6.1
+      mobx: 6.8.0
       typescript: 4.7.4
 
   libs/scenarios:
@@ -356,7 +356,7 @@ importers:
       eslint-config-nfour: 3.2.0
       fuse.js: ^6.4.6
       lodash-es: ^4.17.21
-      mobx: ^6.3.3
+      mobx: ^6.8.0
       mobx-react-lite: ^3.2.1
       nanoid: ^3.3.2
       overlayscrollbars: ^2.1.0
@@ -392,8 +392,8 @@ importers:
       '@types/uuid': 8.3.4
       '@vitejs/plugin-react': 2.1.0_vite@3.1.1
       eslint-config-nfour: 3.2.0_typescript@4.7.4
-      mobx: 6.6.1
-      mobx-react-lite: 3.4.0_vuaia3cr2ucdrk3q4mauc2kfvi
+      mobx: 6.8.0
+      mobx-react-lite: 3.4.0_qq5k7xmo3oqg7ez4gi6qckqgy4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       typescript: 4.7.4
@@ -411,7 +411,7 @@ importers:
       '@types/lodash-es': ^4.17.6
       '@types/react': ^18.0.15
       lodash-es: ^4.17.21
-      mobx: ^6.3.3
+      mobx: ^6.8.0
       mobx-react-lite: ^3.2.1
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -427,8 +427,8 @@ importers:
       '@mui/icons-material': 5.8.4_6vgsb5s4olmp3wxdsdu6pkufyi
       '@mui/material': 5.9.3_orevtvwwr7asuvj7hxmn46ctqq
       '@types/react': 18.0.15
-      mobx: 6.6.1
-      mobx-react-lite: 3.4.0_vuaia3cr2ucdrk3q4mauc2kfvi
+      mobx: 6.8.0
+      mobx-react-lite: 3.4.0_qq5k7xmo3oqg7ez4gi6qckqgy4
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       typescript: 4.7.4
@@ -6614,24 +6614,6 @@ packages:
     hasBin: true
     dev: true
 
-  /mobx-react-lite/3.4.0_ghghrguybkw72jf5a7pj3e2fam:
-    resolution: {integrity: sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==}
-    peerDependencies:
-      mobx: ^6.1.0
-      react: ^16.8.0 || ^17 || ^18
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-    dependencies:
-      mobx: 6.6.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: true
-
   /mobx-react-lite/3.4.0_m26jawr67gnusmh4egzqtnhxru:
     resolution: {integrity: sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==}
     peerDependencies:
@@ -6649,6 +6631,24 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
+
+  /mobx-react-lite/3.4.0_qq5k7xmo3oqg7ez4gi6qckqgy4:
+    resolution: {integrity: sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==}
+    peerDependencies:
+      mobx: ^6.1.0
+      react: ^16.8.0 || ^17 || ^18
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      mobx: 6.8.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: true
 
   /mobx-react-lite/3.4.0_qrr2ojv4n7h7ey2xj7njerqqr4:
     resolution: {integrity: sha512-bRuZp3C0itgLKHu/VNxi66DN/XVkQG7xtoBVWxpvC5FhAqbOCP21+nPhULjnzEqd7xBMybp6KwytdUpZKEgpIQ==}
@@ -6684,20 +6684,26 @@ packages:
       mobx: 6.6.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
+    dev: false
 
-  /mobx-utils/6.0.5_mobx@6.6.1:
+  /mobx-utils/6.0.5_mobx@6.8.0:
     resolution: {integrity: sha512-QOduwicYedD4mwYZRl8+c3BalljFDcubg+PUGqBkn8tOuBoj2q7GhjXBP6JXM9J+Zh+2mePK8IoToeLfqr3Z/w==}
     peerDependencies:
       mobx: ^6.0.0
     dependencies:
-      mobx: 6.6.1
+      mobx: 6.8.0
     dev: false
 
   /mobx/6.6.1:
     resolution: {integrity: sha512-7su3UZv5JF+ohLr2opabjbUAERfXstMY+wiBtey8yNAPoB8H187RaQXuhFjNkH8aE4iHbDWnhDFZw0+5ic4nGQ==}
+    dev: false
 
   /mobx/6.6.2:
     resolution: {integrity: sha512-IOpS0bf3+hXIhDIy+CmlNMBfFpAbHS0aVHcNC+xH/TFYEKIIVDKNYRh9eKlXuVfJ1iRKAp0cRVmO145CyJAMVQ==}
+    dev: false
+
+  /mobx/6.8.0:
+    resolution: {integrity: sha512-+o/DrHa4zykFMSKfS8Z+CPSEg5LW9tSNGTuN8o6MF1GKxlfkSHSeJn5UtgxvPkGgaouplnrLXCF+duAsmm6FHQ==}
 
   /mri/1.1.4:
     resolution: {integrity: sha512-6y7IjGPm8AzlvoUrwAaw1tLnUBudaS3752vcd8JtrpGGQn+rXIe63LFVHm/YMwtqAuh+LJPCFdlLYPWM1nYn6w==}
@@ -8908,7 +8914,7 @@ packages:
       path-to-regexp: 6.2.1
       qs: 6.11.0
     optionalDependencies:
-      mobx: 6.6.2
+      mobx: 6.8.0
     dev: false
 
   /xroute/6.8.0_history@5.3.0:
@@ -8922,7 +8928,7 @@ packages:
       path-to-regexp: 6.2.1
       qs: 6.11.0
     optionalDependencies:
-      mobx: 6.6.2
+      mobx: 6.8.0
     dev: false
 
   /y18n/4.0.3:
