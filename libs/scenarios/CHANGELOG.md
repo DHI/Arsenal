@@ -1,5 +1,15 @@
 # @dhi/arsenal.scenarios
 
+## 14.0.1
+
+### Patch Changes
+
+- Dep upgrade
+- Updated dependencies
+  - @dhi/arsenal.jsonform@12.0.1
+  - @dhi/arsenal.models@3.8.1
+  - @dhi/arsenal.ui@11.1.1
+
 ## 14.0.0
 
 ### Patch Changes

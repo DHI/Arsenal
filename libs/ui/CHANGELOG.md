@@ -1,5 +1,13 @@
 # @dhi/arsenal.ui
 
+## 11.1.1
+
+### Patch Changes
+
+- Dep upgrade
+- Updated dependencies
+  - @dhi/arsenal.models@3.8.1
+
 ## 11.1.0
 
 ### Minor Changes
