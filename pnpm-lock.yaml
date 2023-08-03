@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 importers:
 
   .:
@@ -138,8 +142,8 @@ importers:
         specifier: ^5.0.0
         version: 5.3.0
       luxon:
-        specifier: ^3.0.3
-        version: 3.0.3
+        specifier: ^3.2.1
+        version: 3.2.1
       mobx:
         specifier: ^6.6.2
         version: 6.6.2
@@ -350,8 +354,8 @@ importers:
   libs/date-slider:
     dependencies:
       luxon:
-        specifier: ^3.0.3
-        version: 3.0.3
+        specifier: ^3.2.1
+        version: 3.2.1
       react-use:
         specifier: ^17.4.0
         version: 17.4.0(react-dom@17.0.2)(react@17.0.2)
@@ -6812,8 +6816,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /luxon@3.0.3:
-    resolution: {integrity: sha512-+EfHWnF+UT7GgTnq5zXg3ldnTKL2zdv7QJgsU5bjjpbH17E3qi/puMhQyJVYuCq+FRkogvB5WB6iVvUr+E4a7w==}
+  /luxon@3.2.1:
+    resolution: {integrity: sha512-QrwPArQCNLAKGO/C+ZIilgIuDnEnKx5QYODdDtbFaxzsbZcc/a7WFq7MhsVYgRlwawLtvOUESTlfJ+hc/USqPg==}
     engines: {node: '>=12'}
     dev: false
 
