@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 15.1.0
+
+### Minor Changes
+
+- Fix recursive render loop issue
+
 ## 15.0.0
 
 ### Minor Changes
