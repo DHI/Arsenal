@@ -16,7 +16,6 @@ import {
   TextField,
   Tooltip,
 } from '@mui/material';
-import { Schema } from 'ajv';
 import { JsonPointer } from 'json-ptr';
 import isArray from 'lodash-es/isArray';
 import { observer } from 'mobx-react-lite';
@@ -35,12 +34,11 @@ import {
   RoomIcon,
 } from '@dhi/arsenal.ui/x/components';
 import { extractScaffoldFromFields } from './extractScaffoldFromFields';
-import { FormConfigEditorState, Operations, schemas } from './FormConfigEditor';
+import { FormConfigEditorState, Operations } from './FormConfigEditor';
 import {
   CollapseOptions,
   Field,
   FieldKinds,
-  FormConfig,
   RootFieldKinds,
   SelectEnumInputSchema,
 } from './types';
@@ -53,6 +51,8 @@ export const FormField = observer<{
   parent?: JsonPointer;
   operations?: Operations;
 }>(({ field, state, parent = new JsonPointer([]), operations }) => {
+  let isDisabled = state.isReadOnly;
+
   switch (field.kind) {
     case 'field': {
       const pointer = parent.concat(field.pointer);
@@ -60,7 +60,8 @@ export const FormField = observer<{
         state.fieldValidation.get(pointer.pointer) ?? {};
 
       const value = state.getState<string | undefined>(pointer);
-      const isDisabled = field.layout?.disabled === true;
+
+      isDisabled = state.isReadOnly ?? field.layout?.disabled === true;
       const fieldType = (() => {
         if (field.layout?.hidden) return 'hidden';
         if (field.layout?.variant) return field.layout?.variant;
@@ -173,7 +174,6 @@ export const FormField = observer<{
             <Grid item>
               <FormControlLabel
                 disabled={isDisabled}
-                css={css``}
                 checked={value as any}
                 onChange={(e, isChecked) =>
                   state.setField({
@@ -394,6 +394,7 @@ export const FormField = observer<{
             <Button
               variant="outlined"
               color="secondary"
+              disabled={isDisabled}
               onClick={() => {
                 addNewRowToSet(field.fields);
               }}
@@ -491,6 +492,7 @@ export const FormField = observer<{
                 <Button
                   variant="outlined"
                   color="primary"
+                  disabled={isDisabled}
                   startIcon={<RoomIcon />}
                   onClick={() => {
                     const hasLonLat = !!xValue && !!yValue;
@@ -578,13 +580,6 @@ export const FormField = observer<{
   }
 });
 
-export function validateSchema(schema: Schema, value: any) {
-  const validate = schemas.compile(schema);
-  const isValid = validate(value);
-
-  return { isValid, errors: validate.errors };
-}
-
 const GridRow = (p: PropsOf<typeof Grid>) => <Grid container {...p} />;
 const $GroupRow = styled(GridRow)`
   position: relative;
@@ -604,62 +599,6 @@ const $TextField = styled(TextField)`
     width: 100%;
   }
 `;
-
-export function walkFormData({
-  onField,
-  form,
-  data,
-}: {
-  data: {};
-  form: FormConfig;
-  onField(pointer: JsonPointer, field: Field): void;
-}) {
-  function walk(field: RootFieldKinds, parent: JsonPointer) {
-    switch (field.kind) {
-      case 'group': {
-        field.fields.forEach((f) => walk(f, parent));
-
-        return;
-      }
-
-      case 'set': {
-        const pointer = parent.concat(field.pointer);
-        const listData = (pointer.get(data) ?? []) as any[];
-
-        listData.forEach((_, index) => {
-          field.fields.forEach((f) => {
-            walk(f, pointer.concat([index.toString()]));
-          });
-        });
-
-        return;
-      }
-
-      case 'location': {
-        walk(field.location.x, parent);
-        walk(field.location.y, parent);
-
-        return;
-      }
-
-      case 'stepper': {
-        field.steps.forEach((s) => {
-          s.fields.forEach((f) => walk(f, parent));
-        });
-
-        return;
-      }
-
-      case 'field': {
-        const pointer = parent.concat(field.pointer);
-
-        onField(pointer, field);
-      }
-    }
-  }
-
-  return form.fields.forEach((f) => walk(f, new JsonPointer([])));
-}
 
 const GroupHeading = observer<{
   collapsing?: BoolValue;

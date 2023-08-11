@@ -74,6 +74,8 @@ export const ScenarioConfigEditor = observer<{
         operations={{
           onDiscard: resetActiveScenarioState,
           onSave(data: any) {
+            if (editor.readOnly) return;
+
             if (isActiveScenarioADraft)
               return createScenario({ ...activeScenario, data });
 
@@ -90,6 +92,7 @@ export const ScenarioConfigEditor = observer<{
             box-shadow: 0 2px 3px 0 #0002, 0 -1px 1px 0 #0001;
             position: relative;
           `}
+          disabled={!!editor.readOnly}
         >
           <ConfirmDropdown
             css={css`
@@ -98,6 +101,9 @@ export const ScenarioConfigEditor = observer<{
             trigger={{
               icon: <DeleteIcon />,
               label: <>Delete</>,
+              button: {
+                disabled: !!editor.readOnly,
+              },
             }}
             confirm={{
               icon: <DeleteIcon />,

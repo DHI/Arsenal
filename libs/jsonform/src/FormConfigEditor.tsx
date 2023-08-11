@@ -13,7 +13,9 @@ import {
   DiscardIcon,
   SaveIcon,
 } from '@dhi/arsenal.ui/x/components';
-import { FormField, validateSchema, walkFormData } from './FormField';
+import { FormField } from './FormField';
+import { validateSchema } from './validateSchema';
+import { walkFormData } from './walkFormData';
 import {
   ActionFieldGroup,
   ComponentField,
@@ -37,6 +39,7 @@ export class FormConfigEditorState {
     public data: Data,
     public form: FormConfig,
     public config: {
+      readOnly?: boolean;
       validation?: {
         disabled?: boolean;
       };
@@ -58,6 +61,10 @@ export class FormConfigEditorState {
     JsonPointer['pointer'],
     ReturnType<typeof setTimeout>
   >();
+
+  get isReadOnly() {
+    return !!this.config.readOnly;
+  }
 
   get validationErrorsCount() {
     return [...this.fieldValidation.values()].reduce(
@@ -179,6 +186,8 @@ export const FormConfigEditor = observer<{
   form: FormConfig;
   operations?: Operations;
   text?: TextItems;
+  /** All inputs become in-editable, and state updates are rejected */
+  readOnly?: boolean;
   validation?: FormConfigEditorState['config']['validation'];
   onData?(data: FormConfigEditorState['data']): void;
   onInit?(state: FormConfigEditorState): void;
@@ -193,9 +202,11 @@ export const FormConfigEditor = observer<{
     className,
     validation = {},
     text,
+    readOnly,
   }) => {
-    const [state] = React.useState(
-      () => new FormConfigEditorState(data, form, { validation }),
+    const state = React.useMemo(
+      () => new FormConfigEditorState(data, form, { readOnly, validation }),
+      [readOnly, validation],
     );
 
     React.useEffect(() => {
@@ -258,6 +269,7 @@ export const FormConfigEditor = observer<{
               trigger={{
                 button: {
                   variant: 'outlined',
+                  disabled: !!readOnly,
                 },
                 icon: <DiscardIcon fontSize="small" />,
                 label: <>{text?.discardButton || 'Discard'}</>,
@@ -281,7 +293,7 @@ export const FormConfigEditor = observer<{
 
                 operations?.onSave?.(state.data);
               }}
-              disabled={state.hasValidationErrors}
+              disabled={!!readOnly || state.hasValidationErrors}
             >
               {text?.saveButton || 'Save'}
             </Button>

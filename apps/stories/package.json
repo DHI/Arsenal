@@ -33,7 +33,7 @@
     "xroute": "^6.8.0"
   },
   "devDependencies": {
-    "eslint-config-nfour": "3.2.0",
+    "eslint-config-nfour": "^3.5.0",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/node": "^18.0.6",
