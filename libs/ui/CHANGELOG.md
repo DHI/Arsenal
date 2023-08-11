@@ -1,5 +1,11 @@
 # @dhi/arsenal.ui
 
+## 11.2.0
+
+### Minor Changes
+
+- Read only in JSON form, deps updates
+
 ## 11.1.1
 
 ### Patch Changes

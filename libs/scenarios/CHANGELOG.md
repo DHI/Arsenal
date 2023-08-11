@@ -1,5 +1,17 @@
 # @dhi/arsenal.scenarios
 
+## 15.0.0
+
+### Minor Changes
+
+- Read only in JSON form, deps updates
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.jsonform@13.0.0
+  - @dhi/arsenal.ui@11.2.0
+
 ## 14.1.0
 
 ### Minor Changes

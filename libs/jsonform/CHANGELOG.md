@@ -1,5 +1,16 @@
 # @dhi/arsenal.jsonform
 
+## 13.0.0
+
+### Minor Changes
+
+- Read only in JSON form, deps updates
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.ui@11.2.0
+
 ## 12.0.1
 
 ### Patch Changes
