@@ -10,7 +10,10 @@ import {
 } from '@dhi/arsenal.ui/x/components';
 import { useEffect } from 'react';
 
-export type ConfigEditorProps = Partial<PropsOf<typeof FormConfigEditor>>;
+export type ConfigEditorProps = Pick<
+  Partial<PropsOf<typeof FormConfigEditor>>,
+  'className' | 'operations' | 'onData' | 'onInit' | 'validation' | 'readOnly'
+>;
 
 export const ScenarioConfigEditor = observer<{
   editor?: ConfigEditorProps;

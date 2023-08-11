@@ -4,7 +4,7 @@ import { SidebarPanel } from './__common/SidebarPanel';
 import { IconButton, Tab, Tabs } from '@mui/material';
 import { CloseIcon, $Col, $Row } from '@dhi/arsenal.ui/x/components';
 import { pascalCase } from 'change-case';
-import { ReactNode, Ref, useCallback, useEffect } from 'react';
+import { ReactNode, Ref, useEffect } from 'react';
 import {
   ConfigEditorProps,
   ScenarioConfigEditor,
@@ -34,16 +34,13 @@ export const ActiveScenarioPanel = observer<{
     const { activeScenario, activeSection, setScenario, setSection } =
       useScenariosStore();
 
-    const ConfigEditorComponent = useCallback(
-      function SCE() {
-        return <ScenarioConfigEditor editor={editor} />;
-      },
-      [editor],
-    );
-
     const sectionComponents = {
-      [DefaultSections.Config]: ConfigEditorComponent,
+      [DefaultSections.Config]: ScenarioConfigEditor,
       ...sections,
+    };
+
+    const sectionProps = {
+      editor,
     };
 
     type SectionKeys = keyof typeof sectionComponents;
@@ -122,7 +119,9 @@ export const ActiveScenarioPanel = observer<{
               </IconButton>
             </$Row>
 
-            <OverlayScrollbar>{Section && <Section />}</OverlayScrollbar>
+            <OverlayScrollbar>
+              {Section && <Section {...sectionProps} />}
+            </OverlayScrollbar>
           </$Col>
         </SidebarPanel>
         {append}
