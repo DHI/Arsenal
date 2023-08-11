@@ -206,7 +206,7 @@ export const FormConfigEditor = observer<{
   }) => {
     const state = React.useMemo(
       () => new FormConfigEditorState(data, form, { readOnly, validation }),
-      [readOnly, validation],
+      [],
     );
 
     React.useEffect(() => {

@@ -29,7 +29,7 @@
     "@microsoft/signalr": "*",
     "@mui/icons-material": "^5",
     "@mui/material": "^5",
-    "mobx": "^6.8.0",
+    "mobx": "^6.10.0",
     "mobx-react-lite": "^4",
     "react": ">= 17",
     "react-dom": ">= 17"

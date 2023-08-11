@@ -1,4 +1,5 @@
 import { observable, makeObservable, action } from 'mobx';
+import { Annotation } from 'mobx/dist/internal';
 
 /**
  * An easier way to handle simple value getter/setter.
@@ -11,10 +12,7 @@ import { observable, makeObservable, action } from 'mobx';
  */
 
 export class Value<STATE = any> {
-  constructor(
-    public value: STATE,
-    annotations: Partial<Parameters<typeof makeObservable>[1]> = {},
-  ) {
+  constructor(public value: STATE, annotations: { value?: Annotation } = {}) {
     makeObservable(this, {
       set: action.bound,
       value: observable,

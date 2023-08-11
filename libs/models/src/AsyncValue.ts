@@ -3,9 +3,9 @@ import {
   makeObservable,
   observable,
   autorun,
-  AnnotationMapEntry,
   computed,
 } from 'mobx';
+import { Annotation } from 'mobx/dist/internal';
 
 type MaybeCancellablePromise<T> = Promise<T> & {
   cancel?(): void;
@@ -47,7 +47,7 @@ export class AsyncValue<VALUE, PAYLOAD = any> {
       /** Initial value */
       value?: VALUE;
       /** Changes the mobx value annotation for fine grained observability */
-      valueAnnotation?: AnnotationMapEntry;
+      valueAnnotation?: Annotation;
       /** @default false */
       disablePromiseCancellingOnReset?: boolean;
     } = {},
