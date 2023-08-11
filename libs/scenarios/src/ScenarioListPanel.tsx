@@ -26,6 +26,13 @@ export const ScenarioListPanel = observer<{
   isSelectingDisabled?: boolean;
   isMinimized?: boolean;
   categorize?: {
+    /** Like byJobStatuses but you provide the categorizer */
+    byFilter?: {
+      title: string | null;
+      /** Return true to include a scenario, false to exclude */
+      filter(scenario: ScenarioInstance): boolean;
+      hideWhenEmpty?: boolean;
+    }[];
     /**
      * Categorizes by job status.
      * If `title` is null, no title will be displayed
@@ -83,7 +90,17 @@ export const ScenarioListPanel = observer<{
           ]
         : [];
 
-      if (categorize?.byJobStatuses) {
+      if (categorize?.byFilter) {
+        const scenariosGroupedByFilter = categorize.byFilter.map(
+          ({ title, filter, hideWhenEmpty }) => {
+            const scenarios = filteredScenarios.filter((s) => filter(s));
+
+            return { title, scenarios, hideWhenEmpty };
+          },
+        );
+
+        return [...draftCategories, ...scenariosGroupedByFilter];
+      } else if (categorize?.byJobStatuses) {
         const scenariosGroupedByStatuses = categorize.byJobStatuses.map(
           ({ title, statuses, hideWhenEmpty }) => {
             const scenarios = filteredScenarios.filter((scenario) => {
