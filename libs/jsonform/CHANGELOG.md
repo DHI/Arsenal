@@ -1,5 +1,17 @@
 # @dhi/arsenal.jsonform
 
+## 14.0.0
+
+### Minor Changes
+
+- Sync deps
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.models@3.9.0
+  - @dhi/arsenal.ui@12.0.0
+
 ## 13.0.0
 
 ### Minor Changes

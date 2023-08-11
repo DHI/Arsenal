@@ -1,5 +1,18 @@
 # @dhi/arsenal.scenarios
 
+## 16.0.0
+
+### Minor Changes
+
+- Sync deps
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.jsonform@14.0.0
+  - @dhi/arsenal.models@3.9.0
+  - @dhi/arsenal.ui@12.0.0
+
 ## 15.1.0
 
 ### Minor Changes

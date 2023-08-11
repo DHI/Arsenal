@@ -1,5 +1,11 @@
 # @dhi/arsenal.models
 
+## 3.9.0
+
+### Minor Changes
+
+- Sync deps
+
 ## 3.8.1
 
 ### Patch Changes
