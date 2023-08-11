@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 14.1.0
+
+### Minor Changes
+
+- Scenario grouping additions
+
 ## 14.0.1
 
 ### Patch Changes
