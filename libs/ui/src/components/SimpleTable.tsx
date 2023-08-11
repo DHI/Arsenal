@@ -8,11 +8,12 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  TableProps,
 } from '@mui/material';
-import { css, PropsOf } from '../react';
+import { css } from '../react';
 
 export const SimpleTable = observer<{
-  tableProps?: PropsOf<typeof Table>;
+  tableProps?: TableProps;
   head?: string[] | { id?: string; cell: React.ReactNode }[];
   body: {
     id?: string;

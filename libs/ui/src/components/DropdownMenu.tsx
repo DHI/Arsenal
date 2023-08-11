@@ -1,13 +1,13 @@
-import Popper from '@mui/material/Popper';
+import Popper, { PopperProps } from '@mui/material/Popper';
 import Grow from '@mui/material/Grow/Grow';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
-import { css, PropsOf, observer } from '../react';
+import { css, observer } from '../react';
 import { ReactElement, useState, useEffect } from 'react';
 import * as React from 'react';
 
 export const DropdownMenu = observer<{
   isOpen?: boolean;
-  popper?: PropsOf<typeof Popper>;
+  popper?: PopperProps;
   children(props: {
     isOpen: boolean;
     openMenu(event: { currentTarget: Element }): void;
@@ -16,7 +16,7 @@ export const DropdownMenu = observer<{
     button: ReactElement;
     menu: ReactElement;
   };
-}>(({ children, isOpen: controlledIsOpen, popper }) => {
+}>(({ children, isOpen: controlledIsOpen, popper }): ReactElement => {
   // TODO: use a ref here to stop the error
   // Do we need a forward ref for this to be controllable for placement?
   const [anchorEl, setAnchorEl] = useState<null | Element>(null);
