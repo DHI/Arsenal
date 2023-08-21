@@ -25,7 +25,7 @@ export interface ScenarioInstance<
   id: string;
   data: DATA;
   job?: JOB;
-  metadata?: { group: string };
+  metadata?: { group: string; isBaseline: boolean };
 }
 
 export enum ScenarioClasses {
