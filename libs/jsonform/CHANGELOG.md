@@ -1,5 +1,11 @@
 # @dhi/arsenal.jsonform
 
+## 14.1.0
+
+### Minor Changes
+
+- Update readonly function
+
 ## 14.0.0
 
 ### Minor Changes
