@@ -1,4 +1,4 @@
-import { BooleanModel } from '@dhi/arsenal.models';
+import { BoolValue } from '@dhi/arsenal.models';
 import { css } from '@emotion/react';
 import { Alert, Button, Grid } from '@mui/material';
 import Ajv from 'ajv';
@@ -35,22 +35,15 @@ type LocationPickReaction = (
 export const schemas = new Ajv();
 
 export class FormConfigEditorState {
-  constructor(
-    public data: Data,
-    public form: FormConfig,
-    public config: {
-      readOnly?: boolean;
-      validation?: {
-        disabled?: boolean;
-      };
-    },
-  ) {
+  constructor(public data: Data, public form: FormConfig) {
     this.setData(data);
     this.setForm(form);
     makeAutoObservable(this);
   }
 
-  isDataDirty = new BooleanModel(false);
+  isValidationEnabled = new BoolValue(false);
+  isReadOnly = new BoolValue(false);
+  isDataDirty = new BoolValue(false);
   stepperGroups = new Map<StepperGroup['id'], StepperStep>();
   fieldValidation = new Map<
     JsonPointer['pointer'],
@@ -61,10 +54,6 @@ export class FormConfigEditorState {
     JsonPointer['pointer'],
     ReturnType<typeof setTimeout>
   >();
-
-  get isReadOnly() {
-    return !!this.config.readOnly;
-  }
 
   get validationErrorsCount() {
     return [...this.fieldValidation.values()].reduce(
@@ -108,7 +97,7 @@ export class FormConfigEditorState {
     pointer: JsonPointer;
     value: any;
   }) => {
-    if (this.config.validation?.disabled) return;
+    if (this.isValidationEnabled.isFalse) return;
 
     const details = validateSchema(field.schema, value);
 
@@ -188,7 +177,7 @@ export const FormConfigEditor = observer<{
   text?: TextItems;
   /** All inputs become in-editable, and state updates are rejected */
   readOnly?: boolean;
-  validation?: FormConfigEditorState['config']['validation'];
+  validation?: boolean;
   onData?(data: FormConfigEditorState['data']): void;
   onInit?(state: FormConfigEditorState): void;
   className?: string;
@@ -200,14 +189,22 @@ export const FormConfigEditor = observer<{
     onData,
     operations,
     className,
-    validation = {},
     text,
-    readOnly,
+    validation = false,
+    readOnly = false,
   }) => {
     const state = React.useMemo(
-      () => new FormConfigEditorState(data, form, { readOnly, validation }),
+      () => new FormConfigEditorState(data, form),
       [],
     );
+
+    React.useEffect(() => {
+      state.isValidationEnabled.set(validation ?? false);
+    }, [validation]);
+
+    React.useEffect(() => {
+      state.isReadOnly.set(readOnly);
+    }, [readOnly]);
 
     React.useEffect(() => {
       state.setData(data);

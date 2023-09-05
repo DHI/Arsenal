@@ -70,10 +70,6 @@ export const ScenarioConfigEditor = observer<{
         }}
         data={activeScenario.data}
         form={scenarioSchema}
-        validation={{
-          disabled: true,
-          ...(editor.validation ?? {}),
-        }}
         operations={{
           onDiscard: resetActiveScenarioState,
           onSave(data: any) {

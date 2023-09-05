@@ -51,7 +51,7 @@ export const FormField = observer<{
   parent?: JsonPointer;
   operations?: Operations;
 }>(({ field, state, parent = new JsonPointer([]), operations }) => {
-  let isDisabled = state.isReadOnly;
+  let isDisabled = state.isReadOnly.isTrue;
 
   switch (field.kind) {
     case 'field': {
@@ -61,7 +61,7 @@ export const FormField = observer<{
 
       const value = state.getState<string | undefined>(pointer);
 
-      isDisabled = state.isReadOnly ?? field.layout?.disabled === true;
+      isDisabled = state.isReadOnly.isTrue ?? field.layout?.disabled === true;
       const fieldType = (() => {
         if (field.layout?.hidden) return 'hidden';
         if (field.layout?.variant) return field.layout?.variant;
