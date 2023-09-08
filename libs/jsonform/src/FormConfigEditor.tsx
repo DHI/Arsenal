@@ -251,51 +251,53 @@ export const FormConfigEditor = observer<{
             </Alert>
           )}
         </Grid>
-        <Grid
-          container
-          css={css`
-            flex-grow: 1;
-            justify-content: space-between;
-            padding: 1em 1.5em;
-            box-shadow: 0 -2px 3px 0 #0002, 0 1px 1px 0 #0001;
-            position: relative;
-          `}
-        >
-          <div>
-            <ConfirmDropdown
-              trigger={{
-                button: {
-                  variant: 'outlined',
-                  disabled: !!readOnly,
-                },
-                icon: <DiscardIcon fontSize="small" />,
-                label: <>{text?.discardButton || 'Discard'}</>,
-              }}
-              confirm={{
-                icon: <DiscardIcon />,
-                label: <>{text?.discardButton || 'Discard'}</>,
-                onClick() {
-                  operations?.onDiscard?.();
-                },
-              }}
-            />
-            <Button
-              color="primary"
-              variant="outlined"
-              endIcon={<SaveIcon fontSize="small" />}
-              onClick={() => {
-                state.validateEntireForm();
+        {!readOnly && (
+          <Grid
+            container
+            css={css`
+              flex-grow: 1;
+              justify-content: space-between;
+              padding: 1em 1.5em;
+              box-shadow: 0 -2px 3px 0 #0002, 0 1px 1px 0 #0001;
+              position: relative;
+            `}
+          >
+            <div>
+              <ConfirmDropdown
+                trigger={{
+                  button: {
+                    variant: 'outlined',
+                    disabled: !!readOnly,
+                  },
+                  icon: <DiscardIcon fontSize="small" />,
+                  label: <>{text?.discardButton || 'Discard'}</>,
+                }}
+                confirm={{
+                  icon: <DiscardIcon />,
+                  label: <>{text?.discardButton || 'Discard'}</>,
+                  onClick() {
+                    operations?.onDiscard?.();
+                  },
+                }}
+              />
+              <Button
+                color="primary"
+                variant="outlined"
+                endIcon={<SaveIcon fontSize="small" />}
+                onClick={() => {
+                  state.validateEntireForm();
 
-                if (state.hasValidationErrors) return;
+                  if (state.hasValidationErrors) return;
 
-                operations?.onSave?.(state.data);
-              }}
-              disabled={!!readOnly || state.hasValidationErrors}
-            >
-              {text?.saveButton || 'Save'}
-            </Button>
-          </div>
-        </Grid>
+                  operations?.onSave?.(state.data);
+                }}
+                disabled={!!readOnly || state.hasValidationErrors}
+              >
+                {text?.saveButton || 'Save'}
+              </Button>
+            </div>
+          </Grid>
+        )}
       </Grid>
     );
   },
