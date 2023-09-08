@@ -1,5 +1,11 @@
 # @dhi/arsenal.jsonform
 
+## 14.2.0
+
+### Minor Changes
+
+- Fix readonly mode buttons
+
 ## 14.1.0
 
 ### Minor Changes

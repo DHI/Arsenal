@@ -1,5 +1,16 @@
 # @dhi/arsenal.scenarios
 
+## 18.0.0
+
+### Minor Changes
+
+- Fix readonly mode buttons
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.jsonform@14.2.0
+
 ## 17.0.0
 
 ### Minor Changes
