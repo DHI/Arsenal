@@ -100,11 +100,15 @@ export const ScenarioConfigEditor = observer<{
             trigger={{
               icon: <DeleteIcon />,
               label: <>Delete</>,
+              button: {
+                disabled: activeScenario.metadata.isBaseline,
+              },
             }}
             confirm={{
               icon: <DeleteIcon />,
               label: <>Delete Scenario</>,
-              onClick: () => deleteScenario?.(activeScenario.id),
+              onClick: false,
+              // onClick: () => deleteScenario?.(activeScenario.id),
             }}
           />
 
@@ -114,6 +118,7 @@ export const ScenarioConfigEditor = observer<{
               label: <>Clone</>,
             }}
             confirm={{
+              disabled: true,
               icon: <CloneIcon />,
               label: <>Clone Scenario</>,
               onClick: () => cloneScenario?.(activeScenario),
