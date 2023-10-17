@@ -1,5 +1,16 @@
 # @dhi/arsenal.ui
 
+## 13.0.0
+
+### Minor Changes
+
+- Dependency update, scenario component improvements
+
+### Patch Changes
+
+- Updated dependencies
+  - @dhi/arsenal.models@3.10.0
+
 ## 12.0.0
 
 ### Minor Changes

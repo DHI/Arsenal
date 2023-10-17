@@ -1,6 +1,6 @@
 {
   "name": "@dhi/arsenal.models",
-  "version": "3.9.0",
+  "version": "3.10.0",
   "main": "./x/index",
   "scripts": {
     "build": "tsc",

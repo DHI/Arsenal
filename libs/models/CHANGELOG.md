@@ -1,5 +1,11 @@
 # @dhi/arsenal.models
 
+## 3.10.0
+
+### Minor Changes
+
+- Dependency update, scenario component improvements
+
 ## 3.9.0
 
 ### Minor Changes
