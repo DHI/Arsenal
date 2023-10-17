@@ -13,7 +13,16 @@ import { useEffect } from 'react';
 export type ConfigEditorProps = Pick<
   Partial<PropsOf<typeof FormConfigEditor>>,
   'className' | 'operations' | 'onData' | 'onInit' | 'validation' | 'readOnly'
->;
+> & {
+  scenarioActions?: {
+    delete?: {
+      disabled?: boolean;
+    };
+    clone?: {
+      disabled?: boolean;
+    };
+  };
+};
 
 export const ScenarioConfigEditor = observer<{
   editor?: ConfigEditorProps;
@@ -46,7 +55,10 @@ export const ScenarioConfigEditor = observer<{
 
   if (!activeScenario) return <></>;
 
+  const actions = editor.scenarioActions;
   const showConfigActionBar = draftScenario.value?.id !== activeScenario?.id;
+  const isAllActionsDisabled =
+    actions?.delete?.disabled === true && actions?.clone?.disabled === true;
 
   return (
     <$Col grow>
@@ -84,7 +96,7 @@ export const ScenarioConfigEditor = observer<{
           ...(editor.operations ?? {}),
         }}
       />
-      {showConfigActionBar && (
+      {showConfigActionBar && !isAllActionsDisabled && (
         <ButtonGroup
           css={css`
             width: 100%;
@@ -93,32 +105,36 @@ export const ScenarioConfigEditor = observer<{
             position: relative;
           `}
         >
-          <ConfirmDropdown
-            css={css`
-              color: #ff1100ae;
-            `}
-            trigger={{
-              icon: <DeleteIcon />,
-              label: <>Delete</>,
-            }}
-            confirm={{
-              icon: <DeleteIcon />,
-              label: <>Delete Scenario</>,
-              onClick: () => deleteScenario?.(activeScenario.id),
-            }}
-          />
+          {!actions?.delete?.disabled && (
+            <ConfirmDropdown
+              css={css`
+                color: #ff1100ae;
+              `}
+              trigger={{
+                icon: <DeleteIcon />,
+                label: <>Delete</>,
+              }}
+              confirm={{
+                icon: <DeleteIcon />,
+                label: <>Delete Scenario</>,
+                onClick: () => deleteScenario?.(activeScenario.id),
+              }}
+            />
+          )}
 
-          <ConfirmDropdown
-            trigger={{
-              icon: <CloneIcon />,
-              label: <>Clone</>,
-            }}
-            confirm={{
-              icon: <CloneIcon />,
-              label: <>Clone Scenario</>,
-              onClick: () => cloneScenario?.(activeScenario),
-            }}
-          />
+          {!actions?.clone?.disabled && (
+            <ConfirmDropdown
+              trigger={{
+                icon: <CloneIcon />,
+                label: <>Clone</>,
+              }}
+              confirm={{
+                icon: <CloneIcon />,
+                label: <>Clone Scenario</>,
+                onClick: () => cloneScenario?.(activeScenario),
+              }}
+            />
+          )}
         </ButtonGroup>
       )}
     </$Col>
