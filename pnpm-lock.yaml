@@ -533,8 +533,8 @@ importers:
         specifier: ^2.17.2
         version: 2.17.2(@types/node@18.6.3)(react-dom@18.2.0)(react@18.2.0)
       '@microsoft/signalr':
-        specifier: ^6.0.4
-        version: 6.0.7
+        specifier: ^7.0.11
+        version: 7.0.11
       '@mui/icons-material':
         specifier: ~5.14.3
         version: 5.14.3(@mui/material@5.14.4)(@types/react@18.0.15)(react@18.2.0)
@@ -560,11 +560,11 @@ importers:
         specifier: ^3.5.0
         version: 3.5.0(typescript@5.1.6)
       mobx:
-        specifier: ^6.10.0
-        version: 6.10.0
+        specifier: ^6.10.2
+        version: 6.10.2
       mobx-react-lite:
-        specifier: ^4.0.3
-        version: 4.0.3(mobx@6.10.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^4.0.5
+        version: 4.0.5(mobx@6.10.2)(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2672,12 +2672,12 @@ packages:
       react: 18.2.0
     dev: true
 
-  /@microsoft/signalr@6.0.7:
-    resolution: {integrity: sha512-CoIz8K0IpaCGbI4rr2W8RHYA8Yq0KqY8DNsJzHw3UEWTJ3KqhWqeVCE8R24czzcsoUrE28xltEQ6qNTXZDHf3g==}
+  /@microsoft/signalr@7.0.11:
+    resolution: {integrity: sha512-//6ipnYKhHf2MJgM+MQSlgB5L/pcYeZ+v4w6YAr4epRM1iSDQ6WjUkCVX2ZMxcY06XGlLzggs3Z9ZIcL9ws9KQ==}
     dependencies:
       abort-controller: 3.0.0
-      eventsource: 1.1.2
-      fetch-cookie: 0.11.0
+      eventsource: 2.0.2
+      fetch-cookie: 2.1.0
       node-fetch: 2.6.7
       ws: 7.5.9
     transitivePeerDependencies:
@@ -7330,9 +7330,9 @@ packages:
     engines: {node: '>=0.8.x'}
     dev: true
 
-  /eventsource@1.1.2:
-    resolution: {integrity: sha512-xAH3zWhgO2/3KIniEKYPr8plNSzlGINOUqYj0m0u7AB81iRw8b/3E73W6AuU+6klLbaSFmZnaETQ2lXPfAydrA==}
-    engines: {node: '>=0.12.0'}
+  /eventsource@2.0.2:
+    resolution: {integrity: sha512-IzUmBGPR3+oUG9dUeXynyNmf91/3zUSJg1lCktzKw47OXuhco54U3r9B7O4XX+Rb1Itm9OZ2b0RkTs10bICOxA==}
+    engines: {node: '>=12.0.0'}
     dev: true
 
   /execa@5.1.1:
@@ -7455,10 +7455,10 @@ packages:
     resolution: {integrity: sha512-OP2IUU6HeYKJi3i0z4A19kHMQoLVs4Hc+DPqqxI2h/DPZHTm/vjsfC6P0b4jCMy14XizLBqvndQ+UilD7707Jw==}
     dev: true
 
-  /fetch-cookie@0.11.0:
-    resolution: {integrity: sha512-BQm7iZLFhMWFy5CZ/162sAGjBfdNWb7a8LEqqnzsHFhxT/X/SVj/z2t2nu3aJvjlbQkrAlTUApplPRjWyH4mhA==}
-    engines: {node: '>=8'}
+  /fetch-cookie@2.1.0:
+    resolution: {integrity: sha512-39+cZRbWfbibmj22R2Jy6dmTbAWC+oqun1f1FzQaNurkPDUP4C38jpeZbiXCR88RKRVDp8UcDrbFXkNhN+NjYg==}
     dependencies:
+      set-cookie-parser: 2.6.0
       tough-cookie: 4.0.0
     dev: true
 
@@ -9583,25 +9583,6 @@ packages:
       use-sync-external-store: 1.2.0(react@17.0.2)
     dev: true
 
-  /mobx-react-lite@4.0.3(mobx@6.10.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-wEE1oT5zvDdvplG4HnRrFgPwg5GFVVrEtl42Er85k23zeu3om8H8wbDPgdbQP88zAihVsik6xJfw6VnzUl8fQw==}
-    peerDependencies:
-      mobx: ^6.9.0
-      react: ^16.8.0 || ^17 || ^18
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-    dependencies:
-      mobx: 6.10.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      use-sync-external-store: 1.2.0(react@18.2.0)
-    dev: true
-
   /mobx-react-lite@4.0.3(mobx@6.8.0)(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-wEE1oT5zvDdvplG4HnRrFgPwg5GFVVrEtl42Er85k23zeu3om8H8wbDPgdbQP88zAihVsik6xJfw6VnzUl8fQw==}
     peerDependencies:
@@ -9621,6 +9602,25 @@ packages:
       use-sync-external-store: 1.2.0(react@17.0.2)
     dev: true
 
+  /mobx-react-lite@4.0.5(mobx@6.10.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-StfB2wxE8imKj1f6T8WWPf4lVMx3cYH9Iy60bbKXEs21+HQ4tvvfIBZfSmMXgQAefi8xYEwQIz4GN9s0d2h7dg==}
+    peerDependencies:
+      mobx: ^6.9.0
+      react: ^16.8.0 || ^17 || ^18
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      mobx: 6.10.2
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: true
+
   /mobx-utils@6.0.5(mobx@6.10.0):
     resolution: {integrity: sha512-QOduwicYedD4mwYZRl8+c3BalljFDcubg+PUGqBkn8tOuBoj2q7GhjXBP6JXM9J+Zh+2mePK8IoToeLfqr3Z/w==}
     peerDependencies:
@@ -9631,6 +9631,9 @@ packages:
 
   /mobx@6.10.0:
     resolution: {integrity: sha512-WMbVpCMFtolbB8swQ5E2YRrU+Yu8iLozCVx3CdGjbBKlP7dFiCSuiG06uea3JCFN5DnvtAX7+G5Bp82e2xu0ww==}
+
+  /mobx@6.10.2:
+    resolution: {integrity: sha512-B1UGC3ieK3boCjnMEcZSwxqRDMdzX65H/8zOHbuTY8ZhvrIjTUoLRR2TP2bPqIgYRfb3+dUigu8yMZufNjn0LQ==}
 
   /mobx@6.6.1:
     resolution: {integrity: sha512-7su3UZv5JF+ohLr2opabjbUAERfXstMY+wiBtey8yNAPoB8H187RaQXuhFjNkH8aE4iHbDWnhDFZw0+5ic4nGQ==}
@@ -11099,6 +11102,10 @@ packages:
 
   /set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
+    dev: true
+
+  /set-cookie-parser@2.6.0:
+    resolution: {integrity: sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==}
     dev: true
 
   /set-harmonic-interval@1.0.1:
@@ -12638,7 +12645,7 @@ packages:
       path-to-regexp: 6.2.1
       qs: 6.11.0
     optionalDependencies:
-      mobx: 6.10.0
+      mobx: 6.10.2
     dev: false
 
   /xroute@6.8.0(history@5.3.0):
@@ -12652,7 +12659,7 @@ packages:
       path-to-regexp: 6.2.1
       qs: 6.11.0
     optionalDependencies:
-      mobx: 6.10.0
+      mobx: 6.10.2
     dev: false
 
   /y18n@4.0.3:
