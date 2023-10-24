@@ -117,7 +117,10 @@ export class ScenariosState<
 
   get scenarioListSearch() {
     return new Fuse(this.scenarios ?? [], {
-      keys: ['Data.Name'],
+      keys: [
+        `Data.${String(this.config.scenarioDataNameKey)}`,
+        `data.${String(this.config.scenarioDataNameKey)}`,
+      ],
       isCaseSensitive: false,
       shouldSort: true,
       findAllMatches: true,
@@ -241,7 +244,10 @@ export class ScenariosState<
       ...toJS(scenario),
       job: undefined,
       id: uuid(),
-      data: { ...scenario.data, Name: `${scenario.data.Name} CLONE` },
+      data: {
+        ...scenario.data,
+        [this.config.scenarioDataNameKey]: `${scenario.data.Name} CLONE`,
+      },
     });
 
     this.setScenario(this.draftScenario.value!.id);

@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 20.0.0
+
+### Major Changes
+
+- Fix usage of `name` in scenarios
+
 ## 19.0.0
 
 ### Minor Changes
