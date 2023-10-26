@@ -1,10 +1,4 @@
-import {
-  action,
-  makeObservable,
-  observable,
-  autorun,
-  computed,
-} from 'mobx';
+import { action, makeObservable, observable, autorun, computed } from 'mobx';
 import { Annotation } from 'mobx/dist/internal';
 
 type MaybeCancellablePromise<T> = Promise<T> & {
@@ -42,7 +36,10 @@ type MaybeCancellablePromise<T> = Promise<T> & {
  */
 export class AsyncValue<VALUE, PAYLOAD = any> {
   constructor(
-    private _query: (payload: PAYLOAD) => MaybeCancellablePromise<VALUE>,
+    private _query: (
+      this: AsyncValue<VALUE, PAYLOAD>,
+      payload: PAYLOAD,
+    ) => MaybeCancellablePromise<VALUE>,
     private config: {
       /** Initial value */
       value?: VALUE;
@@ -65,6 +62,9 @@ export class AsyncValue<VALUE, PAYLOAD = any> {
       set: action.bound,
       reset: action.bound,
       setError: action.bound,
+      setProgress: action.bound,
+      clearQueue: action.bound,
+      progress: observable,
     });
   }
 
@@ -77,6 +77,7 @@ export class AsyncValue<VALUE, PAYLOAD = any> {
 
   value?: VALUE = undefined;
   error?: Error = undefined;
+  progress?: number = undefined;
 
   /** This is used to ensure the `isPending` boolean works with concurrent queries */
   queue = new Set<MaybeCancellablePromise<VALUE>>();
@@ -92,12 +93,14 @@ export class AsyncValue<VALUE, PAYLOAD = any> {
     ...[payload]: P
   ) {
     this.setError(undefined);
+    this.setProgress(0);
     const promise = this._query(payload as PAYLOAD);
 
     this.queue.add(promise);
 
     try {
       this.set(await promise);
+      this.setProgress(100);
     } catch (err: any) {
       this.setError(err);
     } finally {
@@ -119,19 +122,36 @@ export class AsyncValue<VALUE, PAYLOAD = any> {
     return this;
   }
 
+  setError = (v: this['error']) => {
+    this.error = v;
+
+    return this;
+  };
+
+  setProgress = (v: this['progress']) => {
+    this.progress = v;
+
+    return this;
+  };
+
+  clearQueue = () => {
+    if (this.config.disablePromiseCancellingOnReset) return;
+
+    this.queue.forEach((promise) => promise?.cancel?.());
+    this.queue.clear();
+
+    return this;
+  };
+
   /** Reset value to undefined */
   reset() {
-    if (!this.config.disablePromiseCancellingOnReset) {
-      this.queue.forEach((promise) => promise?.cancel?.());
-      this.queue.clear();
-    }
-
-    this.value = undefined;
+    this.clearQueue();
+    this.setProgress(undefined);
+    this.setError(undefined);
+    this.set(undefined);
 
     return this;
   }
-
-  setError = (v: this['error']) => (this.error = v);
 
   /** Creates an autorun reaction whenever the error changes */
   onError = (cb: (err: this['error']) => void) => autorun(() => cb(this.error));

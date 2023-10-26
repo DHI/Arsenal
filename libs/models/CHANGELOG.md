@@ -1,5 +1,11 @@
 # @dhi/arsenal.models
 
+## 4.0.0
+
+### Major Changes
+
+- Add progress to asyncvalue
+
 ## 3.10.0
 
 ### Minor Changes
