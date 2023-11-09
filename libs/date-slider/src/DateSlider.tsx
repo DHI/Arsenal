@@ -1,4 +1,4 @@
-import { IconButton } from '@mui/material';
+import { Grid, IconButton } from '@mui/material';
 import {
   ChevronLeft as ArrowBack,
   ChevronRight as ArrowForward,
@@ -8,8 +8,8 @@ import { makeAutoObservable } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
 import { useMeasure } from 'react-use';
-import { $Row, $Col } from '@dhi/arsenal.ui/x/components';
-import { css, styled } from '@dhi/arsenal.ui/x';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 export type SliderPoint = SliderRangePoint | SliderDatePoint;
 export interface SliderDatePoint {
@@ -210,12 +210,17 @@ export const DateSlider = observer<{
     );
 
     return (
-      <$Row
+      <Grid
+        direction={'row'}
+        container
+        flexGrow={1}
+        alignItems={'center'}
+        flexWrap={'nowrap'}
+        gap={'1.5em'}
         {...{ className }}
         css={css`
           padding: 0.75em 1.5em;
           width: 100%;
-          flex-grow: 1;
         `}
       >
         <$PrevNextIconButton
@@ -230,7 +235,7 @@ export const DateSlider = observer<{
         >
           <ArrowBack color="secondary" />
         </$PrevNextIconButton>
-        <$Col ref={ref as any} grow>
+        <Grid container ref={ref as any} flexGrow={1}>
           <div
             css={css`
               position: relative;
@@ -398,7 +403,7 @@ export const DateSlider = observer<{
               </div>
             ))}
           </div>
-        </$Col>
+        </Grid>
         <$PrevNextIconButton
           disableTouchRipple
           disableFocusRipple
@@ -411,7 +416,7 @@ export const DateSlider = observer<{
         >
           <ArrowForward />
         </$PrevNextIconButton>
-      </$Row>
+      </Grid>
     );
   },
 );
@@ -419,6 +424,7 @@ export const DateSlider = observer<{
 const $PrevNextIconButton = styled(IconButton)`
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0);
   padding: 0;
+  margin-top: -0.5ex;
 
   &:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
