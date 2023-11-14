@@ -244,6 +244,7 @@ export class ScenariosState<
       ...toJS(scenario),
       job: undefined,
       id: uuid(),
+      metadata: {},
       data: {
         ...scenario.data,
         [this.config.scenarioDataNameKey]: `${scenario.data.Name} CLONE`,
