@@ -5,6 +5,13 @@
 ### Patch Changes
 
 - Updated dependencies
+  - @dhi/arsenal.scenarios@21.2.0
+
+## null
+
+### Patch Changes
+
+- Updated dependencies
   - @dhi/arsenal.scenarios@21.1.0
 
 ## null

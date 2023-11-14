@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 21.2.0
+
+### Minor Changes
+
+- Fix clone name
+
 ## 21.1.0
 
 ### Minor Changes
