@@ -1,5 +1,11 @@
 # @dhi/arsenal.scenarios
 
+## 21.1.0
+
+### Minor Changes
+
+- Dont clone metadata
+
 ## 21.0.0
 
 ### Patch Changes
