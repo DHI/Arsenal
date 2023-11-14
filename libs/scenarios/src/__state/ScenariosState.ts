@@ -247,7 +247,9 @@ export class ScenariosState<
       metadata: {},
       data: {
         ...scenario.data,
-        [this.config.scenarioDataNameKey]: `${scenario.data.Name} CLONE`,
+        [this.config.scenarioDataNameKey]: `${
+          scenario.data[this.config.scenarioDataNameKey]
+        } CLONE`,
       },
     });
 
