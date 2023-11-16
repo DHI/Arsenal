@@ -27,7 +27,7 @@
     "mobx-react-lite": "^4.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-map-gl": "6.1.12",
+    "react-map-gl": "6.1.21",
     "story-browser": "^2.3.2",
     "xroute": "^6.2.1"
   },
