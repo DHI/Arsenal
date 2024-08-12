@@ -82,4 +82,4 @@ During installation playwright CLI will ask to create a pipeline file to run tes
 
 Make sure to inspect it to be sure it's running the right script.
 
-
+When the pipeline runs it will produce artifacts which you can inspect - such as screenshots. You can then, as a minimal testing strategy, check the screenshots to see if the tests are running as expected.
