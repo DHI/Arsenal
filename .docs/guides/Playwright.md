@@ -82,4 +82,46 @@ During installation playwright CLI will ask to create a pipeline file to run tes
 
 Make sure to inspect it to be sure it's running the right script.
 
+Set the trigger to:
+
+```yaml
+on:
+  workflow_run: 
+    workflows: ["Frontend"]
+    types:
+      - completed
+    branches:
+      - dev
+      - staging
+      - production
+```
+
+This will cause the tests to run after the frontend pipeline has completed.
+
+
+Then, run the tests like so:
+
+```yaml
+  - name: Run Playwright tests
+    run: |
+      export PLAYWRIGHT_URL=$(./frontend/scripts/getPlaywrightUrlForEnv.sh) 
+
+      echo "Running Playwright tests at url $PLAYWRIGHT_URL"
+
+      pnpm --filter frontend exec playwright test
+```
+
+Which is picked up in the `playwright.config.ts` file in the baseURL field:
+
+```typescript
+const baseURL = process.env.PLAYWRIGHT_URL || undefined;
+
+export default {
+  // ...
+  use: {
+    baseURL,
+  },
+};
+```
+
 When the pipeline runs it will produce artifacts which you can inspect - such as screenshots. You can then, as a minimal testing strategy, check the screenshots to see if the tests are running as expected.
