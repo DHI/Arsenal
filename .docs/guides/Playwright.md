@@ -57,9 +57,8 @@ In VSCode, just tick the checkbox "Trace browser" and run the tests you want.
 
 ```typescript
 import { test, expect } from '@playwright/test';
+
 test.use({
-  ignoreHTTPSErrors: true,
-  baseURL: 'https://localhost:9005',
   screenshot: 'on',
   viewport: { width: 1920, height: 1080 },
 });
