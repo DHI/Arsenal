@@ -124,4 +124,21 @@ export default {
 };
 ```
 
+This will run the tests in the pipeline at the deployed URL you provide, which is set in the `getPlaywrightUrlForEnv.sh` script. It might look something like this:
+
+```bash
+#!/bin/bash
+
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "$current_branch" == 'dev' ]; then
+  echo "https://fooooooooo-048674503-dev.westeurope.3.azurestaticapps.net/"
+elif [ "$current_branch" == 'staging' ]; then
+  echo "https://fooooooooo-0416dc103-staging.westeurope.5.azurestaticapps.net/"
+elif [ "$current_branch" == 'production' ]; then
+  echo "https://fooooooooo-0416dc103.5.azurestaticapps.net/"
+fi
+
+```
+
 When the pipeline runs it will produce artifacts which you can inspect - such as screenshots. You can then, as a minimal testing strategy, check the screenshots to see if the tests are running as expected.
