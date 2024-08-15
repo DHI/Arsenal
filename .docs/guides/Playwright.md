@@ -145,6 +145,9 @@ fi
 
 When the pipeline runs it will produce artifacts which you can inspect - such as screenshots. You can then, as a minimal testing strategy, check the screenshots to see if the tests are running as expected.
 
+You'll get something like this:
+
+![alt text](image-2.png)
 
 ## Example projects
 
