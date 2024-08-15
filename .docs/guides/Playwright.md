@@ -149,3 +149,11 @@ When the pipeline runs it will produce artifacts which you can inspect - such as
 ## Example projects
 
 - [North Sea Portal](https://github.com/DHI/NorthSeaEnvironmentPortal/blob/dev/frontend/src/__tests/dataExplorer/dataexplorer.spec.ts#L22)
+
+## Guides
+
+Make sure to visit the [Playwright documentation](https://playwright.dev/docs/intro) for guides.
+
+![alt text](image.png)
+
+```
