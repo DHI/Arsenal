@@ -97,6 +97,9 @@ on:
 
 This will cause the tests to run after the frontend pipeline has completed.
 
+Notes on environments:
+
+Make sure if your tests are mutative that you aren't making a mistake by blindly running them on production resources.
 
 Then, run the tests like so:
 
@@ -141,3 +144,8 @@ fi
 ```
 
 When the pipeline runs it will produce artifacts which you can inspect - such as screenshots. You can then, as a minimal testing strategy, check the screenshots to see if the tests are running as expected.
+
+
+## Example projects
+
+- [North Sea Portal](https://github.com/DHI/NorthSeaEnvironmentPortal/blob/dev/frontend/src/__tests/dataExplorer/dataexplorer.spec.ts#L22)
